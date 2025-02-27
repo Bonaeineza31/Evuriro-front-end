@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Welcome.css';
+import '../styles/welcome.css';
 import logoImage from '../assets/evuriro-logo.png'; // You'll need to create/add this logo
 
 const Welcome = () => {
