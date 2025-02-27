@@ -1,19 +1,5 @@
 /* Welcome.css */
-:root {
-    --primary-color: #1a56db;
-    --primary-hover: #1e429f;
-    --secondary-color: #e2e8f0;
-    --text-color: #1a202c;
-    --light-text: #718096;
-    --white: #ffffff;
-    --error: #e53e3e;
-    --success: #38a169;
-    --light-bg: #f7fafc;
-    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --gradient-bg: linear-gradient(135deg, #2563eb 0%, #1a56db 100%);
-  }
-  
-  * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,7 +7,7 @@
   }
   
   body {
-    background-color: var(--light-bg);
+    background-color: #f7fafc;
   }
   
   .welcome-container {
@@ -41,8 +27,8 @@
   }
   
   .language-selector button {
-    background: var(--white);
-    border: 1px solid var(--secondary-color);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
@@ -51,9 +37,9 @@
   }
   
   .language-selector button.active {
-    background: var(--primary-color);
-    color: var(--white);
-    border-color: var(--primary-color);
+    background: #1a56db;
+    color: #ffffff;
+    border-color: #1a56db;
   }
   
   .welcome-content {
@@ -63,8 +49,8 @@
   
   .left-section {
     flex: 1;
-    background: var(--gradient-bg);
-    color: var(--white);
+    background: linear-gradient(135deg, #2563eb 0%, #1a56db 100%);
+    color: #ffffff;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -118,9 +104,9 @@
   }
   
   .card {
-    background: var(--white);
+    background: #ffffff;
     border-radius: 12px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     width: 100%;
     max-width: 450px;
     padding: 30px;
@@ -129,7 +115,7 @@
   .tab-buttons {
     display: flex;
     margin-bottom: 25px;
-    border-bottom: 1px solid var(--secondary-color);
+    border-bottom: 1px solid #e2e8f0;
   }
   
   .tab-buttons button {
@@ -139,14 +125,14 @@
     padding: 12px 20px;
     font-size: 16px;
     font-weight: 600;
-    color: var(--light-text);
+    color: #718096;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
   }
   
   .tab-buttons button.active {
-    color: var(--primary-color);
+    color: #1a56db;
   }
   
   .tab-buttons button.active::after {
@@ -156,7 +142,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: #1a56db;
   }
   
   .form-group {
@@ -168,13 +154,13 @@
     margin-bottom: 6px;
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-color);
+    color: #1a202c;
   }
   
   .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid #e2e8f0;
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.3s ease;
@@ -182,7 +168,7 @@
   
   .form-group input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: #1a56db;
   }
   
   .form-options {
@@ -206,21 +192,21 @@
   
   .checkbox-group label {
     font-size: 14px;
-    color: var(--light-text);
+    color: #718096;
     cursor: pointer;
   }
   
   .forgot-password {
     font-size: 14px;
-    color: var(--primary-color);
+    color: #1a56db;
     text-decoration: none;
   }
   
   .submit-btn {
     width: 100%;
     padding: 12px;
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: #1a56db;
+    color: #ffffff;
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -231,15 +217,15 @@
   }
   
   .submit-btn:hover {
-    background-color: var(--primary-hover);
+    background-color: #1e429f;
   }
   
   .guest-btn {
     width: 100%;
     padding: 12px;
     background-color: transparent;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    color: #1a56db;
+    border: 1px solid #1a56db;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 600;
@@ -263,12 +249,12 @@
   .separator::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid var(--secondary-color);
+    border-bottom: 1px solid #e2e8f0;
   }
   
   .separator span {
     padding: 0 10px;
-    color: var(--light-text);
+    color: #718096;
     font-size: 14px;
   }
   
@@ -279,7 +265,7 @@
   
   .social-login p {
     font-size: 14px;
-    color: var(--light-text);
+    color: #718096;
     margin-bottom: 15px;
   }
   
@@ -293,8 +279,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid var(--secondary-color);
-    background-color: var(--white);
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -303,7 +289,7 @@
   }
   
   .social-btn:hover {
-    background-color: var(--secondary-color);
+    background-color: #e2e8f0;
   }
   
   /* Add social icons - replace with actual icons */
@@ -312,7 +298,7 @@
   .apple-icon {
     width: 20px;
     height: 20px;
-    background-color: var(--light-text);
+    background-color: #718096;
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -333,13 +319,13 @@
   .switch-form {
     text-align: center;
     font-size: 14px;
-    color: var(--light-text);
+    color: #718096;
   }
   
   .switch-form button {
     background: none;
     border: none;
-    color: var(--primary-color);
+    color: #1a56db;
     font-weight: 600;
     cursor: pointer;
     padding: 0 5px;
@@ -380,7 +366,7 @@
       background: rgba(255, 255, 255, 0.2);
       border: none;
       border-radius: 6px;
-      color: var(--white);
+      color: #ffffff;
       font-weight: 600;
       margin: 0 5px;
       cursor: pointer;
@@ -388,8 +374,8 @@
     }
   
     .tab-buttons-mobile button.active {
-      background: var(--white);
-      color: var(--primary-color);
+      background: #ffffff;
+      color: #1a56db;
     }
   
     .right-section {

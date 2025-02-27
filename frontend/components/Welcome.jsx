@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/welcome.css';
-import logoImage from '../images/evuriro-logo.png'; // You'll need to create/add this logo
+import logoImage from '../images/Screenshot 2025-02-27 235912.png'; // You'll need to create/add this logo
 
 const Welcome = () => {
   const [activeTab, setActiveTab] = useState('signin');
@@ -83,6 +83,11 @@ const Welcome = () => {
   const handleGuestLogin = () => {
     console.log('Logging in as guest');
     // Implement guest login logic
+  };
+
+  const handleSocialLogin = (provider) => {
+    console.log(`Logging in with ${provider}`);
+    // Will handle OAuth authentication with the selected provider
   };
 
   const toggleLanguage = (lang) => {
@@ -204,13 +209,25 @@ const Welcome = () => {
                 <div className="social-login">
                   <p>{text.continueWith}</p>
                   <div className="social-icons">
-                    <button className="social-btn facebook">
+                    <button 
+                      type="button"
+                      className="social-btn facebook"
+                      onClick={() => handleSocialLogin('facebook')}
+                    >
                       <i className="facebook-icon"></i>
                     </button>
-                    <button className="social-btn google">
+                    <button 
+                      type="button"
+                      className="social-btn google"
+                      onClick={() => handleSocialLogin('google')}
+                    >
                       <i className="google-icon"></i>
                     </button>
-                    <button className="social-btn apple">
+                    <button 
+                      type="button"
+                      className="social-btn apple"
+                      onClick={() => handleSocialLogin('apple')}
+                    >
                       <i className="apple-icon"></i>
                     </button>
                   </div>
@@ -278,13 +295,25 @@ const Welcome = () => {
                 <div className="social-login">
                   <p>{text.continueWith}</p>
                   <div className="social-icons">
-                    <button className="social-btn facebook">
+                    <button 
+                      type="button"
+                      className="social-btn facebook"
+                      onClick={() => handleSocialLogin('facebook')}
+                    >
                       <i className="facebook-icon"></i>
                     </button>
-                    <button className="social-btn google">
+                    <button 
+                      type="button"
+                      className="social-btn google" 
+                      onClick={() => handleSocialLogin('google')}
+                    >
                       <i className="google-icon"></i>
                     </button>
-                    <button className="social-btn apple">
+                    <button 
+                      type="button"
+                      className="social-btn apple"
+                      onClick={() => handleSocialLogin('apple')}
+                    >
                       <i className="apple-icon"></i>
                     </button>
                   </div>
