@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/welcome.css';
-import logoImage from '../assets/evuriro-logo.png'; // You'll need to create/add this logo
+import logoImage from '../images/evuriro-logo.png'; // You'll need to create/add this logo
 
 const Welcome = () => {
   const [activeTab, setActiveTab] = useState('signin');
