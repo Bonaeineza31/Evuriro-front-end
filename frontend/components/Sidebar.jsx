@@ -40,6 +40,10 @@ const Sidebar = () => {
   };
 
   const text = content[language];
+  const toggleLanguage = (lang) => {
+    setLanguage(lang);
+  };
+
 
   // We'll get the language from a shared context in a real implementation
   // This is just for demonstration
@@ -59,6 +63,7 @@ const Sidebar = () => {
       >
         {isCollapsed ? '→' : '←'}
       </button>
+      
 
       <div className="sidebar-menu">
         <Link to="/dashboard" className="sidebar-item">

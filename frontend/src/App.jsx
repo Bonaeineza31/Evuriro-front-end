@@ -7,14 +7,14 @@ import './App.css';
 // Import pages
 import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
-import Appointments from '../pages/Appointments';
-import Teleconsultation from '../pages/Teleconsultation';
-import MedicalRecords from '../pages/MedicalRecords';
-import NearbyHospitals from '../pages/NearbyHospitals';
-import ConnectDevice from '../pages/ConnectDevice';
-import Settings from '../pages/Settings';
-import HelpCenter from '../pages/HelpCenter';
-import NotFound from '../pages/NotFound';
+// import Appointments from '../pages/Appointments';
+// import Teleconsultation from '../pages/Teleconsultation';
+// import MedicalRecords from '../pages/MedicalRecords';
+// import NearbyHospitals from '../pages/NearbyHospitals';
+// import ConnectDevice from '../pages/ConnectDevice';
+// import Settings from '../pages/Settings';
+// import HelpCenter from '../pages/HelpCenter';
+// import NotFound from '../pages/NotFound';
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -36,14 +36,14 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
       <main className="content">
         <Routes>
           <Route path="/dashboard" element={<Dashboard language={language} />} />
-          <Route path="/appointments" element={<Appointments language={language} />} />
+          {/* <Route path="/appointments" element={<Appointments language={language} />} />
           <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
           <Route path="/records" element={<MedicalRecords language={language} />} />
           <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
           <Route path="/connect-device" element={<ConnectDevice language={language} />} />
           <Route path="/settings" element={<Settings language={language} />} />
           <Route path="/help" element={<HelpCenter language={language} />} />
-          <Route path="*" element={<NotFound language={language} />} />
+          <Route path="*" element={<NotFound language={language} />} /> */}
         </Routes>
       </main>
     </div>
@@ -85,17 +85,17 @@ const App = () => {
           </RequireAuth>
         }>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
+          {/* <Route path="/appointments" element={<Appointments />} />
           <Route path="/teleconsult" element={<Teleconsultation />} />
           <Route path="/records" element={<MedicalRecords />} />
           <Route path="/hospitals" element={<NearbyHospitals />} />
           <Route path="/connect-device" element={<ConnectDevice />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/help" element={<HelpCenter />} />
+          <Route path="/help" element={<HelpCenter />} /> */}
         </Route>
 
         {/* Not Found */}
-        <Route path="*" element={<NotFound />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>
   );
