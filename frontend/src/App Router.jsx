@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Welcome from './Welcome';
-import Dashboard from './Dashboard'; // You'll need to create this component
+import Welcome from '../components/Welcome';
+import Dashboard from '../pages/Dashboard'; // You'll need to create this component
 
 // Protected route component to check authentication
 const ProtectedRoute = ({ children }) => {
