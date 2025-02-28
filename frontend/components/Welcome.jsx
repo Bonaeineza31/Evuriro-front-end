@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import '../styles/welcome.css';
 import logoImage from '../images/Screenshot 2025-02-27 235912.png'; // You'll need to create/add this logo
 
 const Welcome = () => {
   const [activeTab, setActiveTab] = useState('signin');
+  const navigate = useNavigate();
   const [language, setLanguage] = useState('english');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,17 +74,43 @@ const Welcome = () => {
     e.preventDefault();
     console.log('Sign In:', { email, password, rememberMe });
     // Connect to authentication API here
+    if (email && password) {
+      // Store authentication state (could use Context API or Redux in a real app)
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', email);
+      
+      // Navigate to dashboard
+      navigate('/dashboard');
+    } else {
+      // Handle invalid credentials
+      alert('Please enter valid credentials');
+    }
   };
+
 
   const handleSignUp = (e) => {
     e.preventDefault();
     console.log('Sign Up:', { fullName, email, password, agreeToTerms });
-    // Connect to registration API here
+    
+    if (fullName && email && password && agreeToTerms) {
+      // In a real app, you would create the user account via API call
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userName', fullName);
+      
+      // Navigate to dashboard
+      navigate('/dashboard');
+    } else {
+      alert('Please fill all required fields');
+    }
   };
-
+  
+  // Also update your guest login
   const handleGuestLogin = () => {
     console.log('Logging in as guest');
-    // Implement guest login logic
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userRole', 'guest');
+    navigate('/dashboard');
   };
 
   const handleSocialLogin = (provider) => {
