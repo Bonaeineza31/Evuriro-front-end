@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import '../styles/Teleconsultation.css';
 
+
+
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
+//   const TeleconControls = ({ isMicOn, isVideoOn, toggleMic, toggleVideo, endCall })
+  const [isMicOn, setIsMicOn] = useState(true);
+//   const [isVideoOn, setIsVideoOn] = useState(true);
+
+  // Functions to toggle mic & video
+  const toggleMic = () => setIsMicOn((prev) => !prev);
+  const toggleVideo = () => setIsVideoOn((prev) => !prev);
+  const endCall = () => console.log("Call Ended");
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'Dr. Sarah Johnson', text: 'Hello! I can see you have been experiencing some symptoms. How are you feeling today?', time: '10:01 AM' }

@@ -699,13 +699,7 @@
       background-color: #64748b;
   }
   
-  /* Font Awesome Icons */
-  .telecon-icon-mic::before { content: "\f130"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
-  .telecon-icon-mic-off::before { content: "\f131"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
-  .telecon-icon-video::before { content: "\f03d"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
-  .telecon-icon-video-off::before { content: "\f4e2"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
-  .telecon-icon-screen::before { content: "\f108"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
-  .telecon-icon-phone::before { content: "\f095"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+ 
   
 
   /* Chat panel styles */
