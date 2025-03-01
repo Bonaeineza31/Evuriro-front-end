@@ -84,6 +84,7 @@ const App = () => {
             <AuthenticatedLayout language={language} handleLanguageChange={handleLanguageChange} />
           </RequireAuth>
         }>
+          <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           {/* <Route path="/appointments" element={<Appointments />} />
           <Route path="/teleconsult" element={<Teleconsultation />} />
