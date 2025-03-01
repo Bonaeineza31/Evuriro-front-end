@@ -327,8 +327,8 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
         // After 2 seconds (reduced from 3), redirect to dashboard
         setTimeout(() => {
           navigate('/dashboard');
-        }, 2000);
-      }, 800); // Reduced from 1000ms to 800ms for faster feedback
+        }, 700);
+      }, 400); // Reduced from 1000ms to 800ms for faster feedback
     };
   const goBack = () => {
     setStep(1);
