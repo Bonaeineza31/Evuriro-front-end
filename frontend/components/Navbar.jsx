@@ -37,7 +37,6 @@ const Navbar = () => {
       emergencyContact: 'Emergency Contact',
       help: 'Help Center',
       search: 'Search...',
-      appointments: 'Appointments',
       searchDoctor: 'Find a Doctor',
       darkMode: 'Dark Mode'
     },
@@ -52,7 +51,6 @@ const Navbar = () => {
       emergencyContact: 'Contact d\'urgence',
       help: 'Centre d\'aide',
       search: 'Rechercher...',
-      appointments: 'Rendez-vous',
       searchDoctor: 'Trouver un médecin',
       darkMode: 'Mode sombre'
     },
@@ -67,7 +65,6 @@ const Navbar = () => {
       emergencyContact: 'Umubare w\'ubutabazi',
       help: 'Ivuriro ry\'ubufasha',
       search: 'Gushakisha...',
-      appointments: 'Gahunda',
       searchDoctor: 'Gushaka umuganga',
       darkMode: 'Ibara ry\'umukara'
     }
@@ -146,7 +143,6 @@ const Navbar = () => {
           <Link to="/teleconsult" className="navbar-item">{text.teleconsultation}</Link>
           <Link to="/records" className="navbar-item">{text.records}</Link>
           <Link to="/hospitals" className="navbar-item">{text.nearbyHospitals}</Link>
-          <Link to="/appointments" className="navbar-item">{text.appointments}</Link>
           <Link to="/find-doctor" className="navbar-item">{text.searchDoctor}</Link>
         </div>
 
