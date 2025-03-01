@@ -186,18 +186,6 @@ const Navbar = () => {
             </span>
           </div>
 
-          <div className="dark-mode-toggle">
-            <label className="switch">
-              <input 
-                type="checkbox" 
-                checked={isDarkMode}
-                onChange={() => setIsDarkMode(!isDarkMode)}
-              />
-              <span className="slider round"></span>
-            </label>
-            <span className="dark-mode-label">{text.darkMode}</span>
-          </div>
-
           <div className="navbar-profile" ref={dropdownRef}>
             <div className="profile-avatar" onClick={toggleDropdown}>
               {user.avatar ? (
