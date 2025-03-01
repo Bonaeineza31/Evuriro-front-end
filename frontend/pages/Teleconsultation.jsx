@@ -65,6 +65,7 @@ const Teleconsultation = () => {
   const [isVideoOn, setIsVideoOn] = useState(true);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
 
+
   // Mock data
   const upcomingAppointment = {
     doctorName: 'Dr. Sarah Johnson',
