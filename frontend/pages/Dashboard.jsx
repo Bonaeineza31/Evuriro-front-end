@@ -238,7 +238,7 @@ const Dashboard = ({ language }) => {
         const [systolic, diastolic] = value.split('/').map(Number);
         return (systolic > 140 || diastolic > 90) ? 'warning' : 'normal';
       case 'temperature':
-        return value < 36 || value > 37.5 ? 'warning' : 'normal';
+        return value < 30 || value > 38.5 ? 'warning' : 'normal';
       case 'oxygenLevel':
         return value < 95 ? 'warning' : 'normal';
       default:

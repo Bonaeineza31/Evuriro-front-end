@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
 import '../styles/Teleconsultation.css';
+import sarah
 
-
+const HeartIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+    </svg>
+  );
+  
+  const BloodPressureIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v20M4 12h16"></path>
+    </svg>
+  );
+  
+  const TemperatureIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
+    </svg>
+  );
+  
+  const OxygenIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M8 12h8M12 8v8"></path>
+    </svg>
+  );
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
@@ -48,7 +72,7 @@ const Teleconsultation = () => {
     date: 'March 1, 2025',
     time: '10:00 AM',
     status: 'Scheduled',
-    image: 'https://cdn.example.com/doctor-sarah.jpg',
+    image: sarah,
   };
 
   const patientVitals = {
