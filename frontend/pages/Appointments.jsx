@@ -2,6 +2,137 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Appointments.css';
 
+
+
+
+const LANGUAGES = [
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'French' },
+    { code: 'rw', name: 'Kinyarwanda' }
+  ];
+  
+  // Translations object
+  const translations = {
+    en: {
+      scheduleAppointment: 'Schedule an Appointment',
+      findHealthcare: 'Find available healthcare professionals and book your next visit',
+      searchPlaceholder: 'Search by doctor name or keywords',
+      allSpecialties: 'All Specialties',
+      inPerson: 'In-Person',
+      virtual: 'Virtual',
+      clearFilters: 'Clear Filters',
+      noResults: 'No doctors found matching your criteria. Try adjusting your filters.',
+      select: 'Select',
+      backToSearch: 'Back to doctor search',
+      virtualAppointment: 'Virtual Appointment',
+      inPersonVisit: 'In-Person Visit',
+      conflicts: 'Scheduling Conflicts',
+      conflictsDesc: 'You already have the following appointment(s) on this date:',
+      selectDate: 'Select Date',
+      location: 'Location',
+      checkAvailability: 'Check Availability',
+      checkingAvailability: 'Checking availability...',
+      selectTime: 'Select Time',
+      reasonForVisit: 'Reason for Visit',
+      reasonPlaceholder: 'Briefly describe your symptoms or reason for this appointment',
+      insuranceProvider: 'Insurance Provider',
+      insurancePlaceholder: 'e.g. Blue Cross Blue Shield',
+      memberId: 'Member ID',
+      memberIdPlaceholder: 'e.g. XYZ123456789',
+      appointmentSummary: 'Appointment Summary',
+      doctor: 'Doctor',
+      specialty: 'Specialty',
+      date: 'Date',
+      time: 'Time',
+      type: 'Type',
+      notSelected: 'Not selected',
+      processing: 'Processing...',
+      confirmAppointment: 'Confirm Appointment',
+      appointmentScheduled: 'Your appointment has been scheduled!',
+      redirecting: 'Redirecting to dashboard...',
+      successMessage: 'Your appointment with {doctorName} has been scheduled for {date} at {time}.'
+    },
+    fr: {
+      scheduleAppointment: 'Planifier un rendez-vous',
+      findHealthcare: 'Trouvez des professionnels de santé disponibles et réservez votre prochaine visite',
+      searchPlaceholder: 'Rechercher par nom de médecin ou mots-clés',
+      allSpecialties: 'Toutes les spécialités',
+      inPerson: 'En personne',
+      virtual: 'Virtuel',
+      clearFilters: 'Effacer les filtres',
+      noResults: 'Aucun médecin ne correspond à vos critères. Essayez de modifier vos filtres.',
+      select: 'Sélectionner',
+      backToSearch: 'Retour à la recherche de médecin',
+      virtualAppointment: 'Rendez-vous virtuel',
+      inPersonVisit: 'Visite en personne',
+      conflicts: 'Conflits d\'horaire',
+      conflictsDesc: 'Vous avez déjà le(s) rendez-vous suivant(s) à cette date:',
+      selectDate: 'Sélectionner une date',
+      location: 'Lieu',
+      checkAvailability: 'Vérifier la disponibilité',
+      checkingAvailability: 'Vérification de la disponibilité...',
+      selectTime: 'Sélectionner l\'heure',
+      reasonForVisit: 'Motif de la visite',
+      reasonPlaceholder: 'Décrivez brièvement vos symptômes ou la raison de ce rendez-vous',
+      insuranceProvider: 'Assureur',
+      insurancePlaceholder: 'ex. Assurance Maladie',
+      memberId: 'Numéro d\'adhérent',
+      memberIdPlaceholder: 'ex. XYZ123456789',
+      appointmentSummary: 'Résumé du rendez-vous',
+      doctor: 'Docteur',
+      specialty: 'Spécialité',
+      date: 'Date',
+      time: 'Heure',
+      type: 'Type',
+      notSelected: 'Non sélectionné',
+      processing: 'Traitement en cours...',
+      confirmAppointment: 'Confirmer le rendez-vous',
+      appointmentScheduled: 'Votre rendez-vous a été planifié!',
+      redirecting: 'Redirection vers le tableau de bord...',
+      successMessage: 'Votre rendez-vous avec {doctorName} a été programmé pour le {date} à {time}.'
+    },
+    rw: {
+      scheduleAppointment: 'Gufata Gahunda',
+      findHealthcare: 'Shaka abaganga bahari maze ufate gahunda y\'ubutaha',
+      searchPlaceholder: 'Shakisha izina ry\'umuganga cyangwa amagambo',
+      allSpecialties: 'Impuguke zose',
+      inPerson: 'Imbonankubone',
+      virtual: 'Kuri interineti',
+      clearFilters: 'Gusiba ibisahani',
+      noResults: 'Nta muganga uhuye n\'ibyo ushaka. Gerageza guhindura ibisahani.',
+      select: 'Hitamo',
+      backToSearch: 'Garuka ku ishakiro ry\'abaganga',
+      virtualAppointment: 'Gahunda kuri interineti',
+      inPersonVisit: 'Gusura mu maso',
+      conflicts: 'Amakimbirane y\'ingengabihe',
+      conflictsDesc: 'Ufite gahunda zikurikira kuri iyi tariki:',
+      selectDate: 'Hitamo itariki',
+      location: 'Ahantu',
+      checkAvailability: 'Reba ko bihari',
+      checkingAvailability: 'Kureba ko bihari...',
+      selectTime: 'Hitamo igihe',
+      reasonForVisit: 'Impamvu yo gusura',
+      reasonPlaceholder: 'Sobanura mu buryo bugufi ibimenyetso byawe cyangwa impamvu y\'iyi gahunda',
+      insuranceProvider: 'Utanga ubwishingizi',
+      insurancePlaceholder: 'urugero. RSSB',
+      memberId: 'Nimero y\'umunyamuryango',
+      memberIdPlaceholder: 'urugero. XYZ123456789',
+      appointmentSummary: 'Incamake ya gahunda',
+      doctor: 'Umuganga',
+      specialty: 'Ubuhanga',
+      date: 'Itariki',
+      time: 'Igihe',
+      type: 'Ubwoko',
+      notSelected: 'Ntabwo hahitamo',
+      processing: 'Gutunganya...',
+      confirmAppointment: 'Emeza gahunda',
+      appointmentScheduled: 'Gahunda yawe yateguwe!',
+      redirecting: 'Kuyobora ku rubuga...',
+      successMessage: 'Gahunda yawe na {doctorName} yateguwe ku {date} saa {time}.'
+    }
+  };
+
+
 // Mock data for demonstration purposes
 const SPECIALTIES = [
   'Cardiology',
@@ -67,6 +198,7 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [language, setLanguage] = useState('en');
   const [bookingConflicts, setBookingConflicts] = useState([]);
   
   // Format today's date for min date attribute
@@ -173,21 +305,27 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
     
     // Simulate API call to save appointment
     setTimeout(() => {
-      // Add appointment to state/context that manages appointments
-      if (addAppointment) {
-        addAppointment(newAppointment);
-      }
-      
-      setSuccessMessage(`Your appointment with ${selectedDoctor.name} has been scheduled for ${formatDate(selectedDate)} at ${selectedTime}.`);
-      setLoading(false);
-      
-      // After 3 seconds, redirect to dashboard
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 3000);
-    }, 1000);
-  };
-  
+        // Add appointment to state/context that manages appointments
+        if (addAppointment) {
+          addAppointment(newAppointment);
+        }
+        
+        // Create localized success message based on selected language
+        const message = t.successMessage
+          .replace('{doctorName}', selectedDoctor.name)
+          .replace('{date}', formatDate(selectedDate))
+          .replace('{time}', selectedTime);
+        
+        setSuccessMessage(message);
+        setSchedulingSuccess(true);
+        setLoading(false);
+        
+        // After 2 seconds (reduced from 3), redirect to dashboard
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
+      }, 800); // Reduced from 1000ms to 800ms for faster feedback
+    };
   const goBack = () => {
     setStep(1);
   };
