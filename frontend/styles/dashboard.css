@@ -11,7 +11,6 @@ body, html {
 .dashboard-page {
   padding: 20px;
   color: #333;
-  max-width: 100%;
   width: 100%;
   box-sizing: border-box;
 }
@@ -30,6 +29,7 @@ body, html {
   color: #2563eb;
   font-size: 24px;
   font-weight: 600;
+  margin-top: 0;
 }
 
 .dashboard-grid {
@@ -75,15 +75,13 @@ body, html {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  display: flex;
-  align-items: center;
 }
 
 .view-all-btn:hover {
   text-decoration: underline;
 }
 
-/* Vitals Section - Updated with modern styling */
+/* Vitals Section */
 .vitals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -91,6 +89,7 @@ body, html {
 }
 
 .vital-item {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 12px;
@@ -103,16 +102,36 @@ body, html {
   background-color: #f0f5ff;
 }
 
+.vital-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.vital-status.normal {
+  background-color: #10b981; /* green */
+}
+
+.vital-status.warning {
+  background-color: #f59e0b; /* amber */
+}
+
+.vital-status.critical {
+  background-color: #ef4444; /* red */
+}
+
 .vital-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #e0e7ff;
   margin-right: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2563eb;
 }
 
 .vital-info {
@@ -127,9 +146,96 @@ body, html {
 }
 
 .vital-value {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  color: #1e293b;
+}
+
+/* Vital Actions */
+.vital-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.update-vitals-btn, .connect-device-btn {
+  background-color: #f0f5ff;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #2563eb;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.update-vitals-btn:hover, .connect-device-btn:hover {
+  background-color: #dbeafe;
+}
+
+/* Trends Visualization */
+.vital-trends {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.trends-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.trends-header h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
+  margin: 0;
+}
+
+.trends-period-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.period-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.period-btn.active {
+  background-color: #e0e7ff;
+  color: #4338ca;
+  font-weight: 500;
+}
+
+.trend-chart {
+  height: 120px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.chart-placeholder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.chart-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  clip-path: polygon(0% 80%, 10% 60%, 20% 75%, 30% 50%, 40% 60%, 50% 30%, 60% 40%, 70% 20%, 80% 30%, 90% 10%, 100% 20%, 100% 100%, 0% 100%);
 }
 
 /* Appointment Section */
@@ -153,26 +259,24 @@ body, html {
 }
 
 .appointment-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #e0e7ff;
   margin-right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2563eb;
 }
 
 .appointment-details h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #1e293b;
 }
 
 .appointment-details p {
-  margin: 6px 0;
+  margin: 4px 0;
   color: #64748b;
   font-size: 14px;
 }
@@ -183,11 +287,6 @@ body, html {
   margin-top: 8px;
   font-size: 12px;
   color: #64748b;
-  align-items: center;
-}
-
-.appointment-time svg {
-  color: #94a3b8;
 }
 
 .no-appointments {
@@ -205,99 +304,9 @@ body, html {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  margin-top: 12px;
+  margin-top: 16px;
   transition: background-color 0.2s;
 }
 
 .book-now-btn:hover {
-  background-color: #1d4ed8;
-}
-
-/* Quick Actions */
-.action-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
-}
-
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  background-color: #f8fafc;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.action-btn:hover {
-  background-color: #f0f5ff;
-  transform: translateY(-2px);
-}
-
-.action-btn svg {
-  margin-bottom: 10px;
-  color: #2563eb;
-}
-
-.action-btn span {
-  font-size: 14px;
-  font-weight: 500;
-  color: #1e293b;
-}
-
-/* Recent Activity */
-.activity-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.activity-item {
-  display: flex;
-  padding: 12px;
-  border-radius: 8px;
-  background-color: #f8fafc;
-  margin-bottom: 6px;
-}
-
-.activity-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #e0e7ff;
-  margin-right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.activity-details {
-  flex: 1;
-}
-
-.activity-text {
-  font-size: 14px;
-  margin: 0;
-  color: #1e293b;
-}
-
-.activity-time {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 4px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .vitals-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-}
+  background-color: #1d4ed8
