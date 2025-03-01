@@ -329,21 +329,6 @@
     color: #6b7280;
   }
   
-  .telecon-icon-heart::before {
-    content: "❤️";
-  }
-  
-  .telecon-icon-pressure::before {
-    content: "📊";
-  }
-  
-  .telecon-icon-temperature::before {
-    content: "🌡️";
-  }
-  
-  .telecon-icon-oxygen::before {
-    content: "💨";
-  }
   
   .telecon-vital-data {
     display: flex;
