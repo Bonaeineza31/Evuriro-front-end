@@ -294,6 +294,9 @@ const Teleconsultation = () => {
                 <div className="telecon-vital-item">
                   <i className="telecon-icon-heart"></i>
                   <div className="telecon-vital-data">
+                  <div className="vital-icon">
+                  <HeartIcon />
+                </div>
                     <span className="telecon-vital-label">Heart Rate</span>
                     <span className="telecon-vital-value">{patientVitals.heartRate}</span>
                   </div>
