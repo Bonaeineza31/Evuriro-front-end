@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Appointments.css';
-
-
+import sarah from "../images/Screenshot 2025-03-01 223549.png"
+import chen from "../images/Screenshot 2025-03-01 223501.png"
+import priya from "../images/Screenshot 2025-03-01 223641.png"
+import james from "../images/Screenshot 2025-03-01 224911.png"
+import emily from "../images/Screenshot 2025-03-01 224927.png"
+import david from "../images/Screenshot 2025-03-01 224939.png"
 
 
 const LANGUAGES = [
@@ -148,12 +152,12 @@ const SPECIALTIES = [
 ];
 
 const MOCK_DOCTORS = [
-  { id: 1, name: 'Dr. Sarah Johnson', specialty: 'Cardiology', avatar: '/avatars/doctor1.jpg', rating: 4.9, reviews: 128, hospital: 'Central Medical Center' },
-  { id: 2, name: 'Dr. Michael Chen', specialty: 'Cardiology', avatar: '/avatars/doctor2.jpg', rating: 4.7, reviews: 93, hospital: 'Riverside Hospital' },
-  { id: 3, name: 'Dr. Priya Patel', specialty: 'Internal Medicine', avatar: '/avatars/doctor3.jpg', rating: 4.8, reviews: 156, hospital: 'City General Hospital' },
-  { id: 4, name: 'Dr. James Wilson', specialty: 'Internal Medicine', avatar: '/avatars/doctor4.jpg', rating: 4.6, reviews: 112, hospital: 'Central Medical Center' },
-  { id: 5, name: 'Dr. Emily Rodriguez', specialty: 'Dermatology', avatar: '/avatars/doctor5.jpg', rating: 4.9, reviews: 204, hospital: 'Wellness Medical Group' },
-  { id: 6, name: 'Dr. David Thompson', specialty: 'Neurology', avatar: '/avatars/doctor6.jpg', rating: 4.8, reviews: 87, hospital: 'Neuroscience Institute' }
+  { id: 1, name: 'Dr. Sarah Johnson', specialty: 'Cardiology', avatar: sarah, rating: 4.9, reviews: 128, hospital: 'Central Medical Center' },
+  { id: 2, name: 'Dr. Michael Chen', specialty: 'Cardiology', avatar: chen, rating: 4.7, reviews: 93, hospital: 'Riverside Hospital' },
+  { id: 3, name: 'Dr. Priya Patel', specialty: 'Internal Medicine', avatar: priya, rating: 4.8, reviews: 156, hospital: 'City General Hospital' },
+  { id: 4, name: 'Dr. James Wilson', specialty: 'Internal Medicine', avatar: james, rating: 4.6, reviews: 112, hospital: 'Central Medical Center' },
+  { id: 5, name: 'Dr. Emily Rodriguez', specialty: 'Dermatology', avatar: emily, rating: 4.9, reviews: 204, hospital: 'Wellness Medical Group' },
+  { id: 6, name: 'Dr. David Thompson', specialty: 'Neurology', avatar: david, rating: 4.8, reviews: 87, hospital: 'Neuroscience Institute' }
 ];
 
 // Generate available time slots for demo
