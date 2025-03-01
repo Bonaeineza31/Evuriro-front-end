@@ -7,7 +7,7 @@ import './App.css';
 // Import pages
 import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
-// import Appointments from '../pages/Appointments';
+import Appointments from '../pages/Appointments';
 // import Teleconsultation from '../pages/Teleconsultation';
 // import MedicalRecords from '../pages/MedicalRecords';
 // import NearbyHospitals from '../pages/NearbyHospitals';
@@ -36,8 +36,8 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
       <main className="content">
         <Routes>
           <Route path="/dashboard" element={<Dashboard language={language} />} />
-          {/* <Route path="/appointments" element={<Appointments language={language} />} />
-          <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
+         <Route path="/appointments" element={<Appointments language={language} />} />
+          {/*<Route path="/teleconsult" element={<Teleconsultation language={language} />} />
           <Route path="/records" element={<MedicalRecords language={language} />} />
           <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
           <Route path="/connect-device" element={<ConnectDevice language={language} />} />
@@ -86,8 +86,8 @@ const App = () => {
         }>
           <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/appointments" element={<Appointments />} />
-          <Route path="/teleconsult" element={<Teleconsultation />} />
+          <Route path="/appointments" element={<Appointments />} />
+          {/*<Route path="/teleconsult" element={<Teleconsultation />} />
           <Route path="/records" element={<MedicalRecords />} />
           <Route path="/hospitals" element={<NearbyHospitals />} />
           <Route path="/connect-device" element={<ConnectDevice />} />
