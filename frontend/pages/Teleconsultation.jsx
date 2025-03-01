@@ -304,6 +304,9 @@ const Teleconsultation = () => {
                 <div className="telecon-vital-item">
                   <i className="telecon-icon-pressure"></i>
                   <div className="telecon-vital-data">
+                  <div className="vital-icon">
+                  <BloodPressureIcon />
+                 </div>
                     <span className="telecon-vital-label">Blood Pressure</span>
                     <span className="telecon-vital-value">{patientVitals.bloodPressure}</span>
                   </div>
@@ -311,6 +314,9 @@ const Teleconsultation = () => {
                 <div className="telecon-vital-item">
                   <i className="telecon-icon-temperature"></i>
                   <div className="telecon-vital-data">
+                  <div className="vital-icon">
+                  <TemperatureIcon />
+                </div>
                     <span className="telecon-vital-label">Temperature</span>
                     <span className="telecon-vital-value">{patientVitals.temperature}</span>
                   </div>
@@ -318,6 +324,9 @@ const Teleconsultation = () => {
                 <div className="telecon-vital-item">
                   <i className="telecon-icon-oxygen"></i>
                   <div className="telecon-vital-data">
+                  <div className="vital-icon">
+                  <OxygenIcon />
+                </div>
                     <span className="telecon-vital-label">Oxygen Level</span>
                     <span className="telecon-vital-value">{patientVitals.oxygenLevel}</span>
                   </div>
