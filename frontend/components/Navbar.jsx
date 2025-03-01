@@ -86,7 +86,7 @@ const Navbar = () => {
 
         <div className="navbar-notifications">
           <span className="notification-icon">
-            {user.unreadNotifications > 0 && (
+            {user.unreadNotifications > 3 && (
               <span className="notification-badge">{user.unreadNotifications}</span>
             )}
           </span>
@@ -106,7 +106,7 @@ const Navbar = () => {
             <p className="user-name">{user.name}</p>
             <Link to="/profile" className="dropdown-item">{text.profile}</Link>
             <Link to="/settings" className="dropdown-item">{text.settings}</Link>
-            <Link to="/logout" className="dropdown-item logout">{text.logout}</Link>
+            <Link to="/welcome" className="dropdown-item logout">{text.logout}</Link>
           </div>
         </div>
 
