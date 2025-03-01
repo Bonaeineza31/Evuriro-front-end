@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/dashboard.css';
+import { Link } from "react-router-dom"
 
 // Icons for vitals and actions
 const HeartIcon = () => (
@@ -394,10 +395,10 @@ const Dashboard = ({ language }) => {
           <section className="dashboard-card quick-actions">
             <h2>{text.quickActions}</h2>
             <div className="action-buttons">
-              <button className="action-btn schedule-btn">
+              <Link to = "/appointments" className="action-btn schedule-btn">
                 <CalendarIcon />
                 <span>{text.scheduleBtn}</span>
-              </button>
+              </Link>
               <button className="action-btn teleconsult-btn">
                 <VideoIcon />
                 <span>{text.teleconsultBtn}</span>

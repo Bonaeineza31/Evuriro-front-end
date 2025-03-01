@@ -333,6 +333,10 @@ body, html {
   transition: all 0.2s;
   cursor: pointer;
 }
+a.action-btn {
+  text-decoration: none;
+}
+
 
 .action-btn:hover {
   background-color: #f0f5ff;
