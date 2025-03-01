@@ -37,8 +37,8 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
         <Routes>
           <Route path="/dashboard" element={<Dashboard language={language} />} />
          <Route path="/appointments" element={<Appointments language={language} />} />
-          {/*<Route path="/teleconsult" element={<Teleconsultation language={language} />} />
-          <Route path="/records" element={<MedicalRecords language={language} />} />
+          <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
+         {/* <Route path="/records" element={<MedicalRecords language={language} />} />
           <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
           <Route path="/connect-device" element={<ConnectDevice language={language} />} />
           <Route path="/settings" element={<Settings language={language} />} />
@@ -87,8 +87,8 @@ const App = () => {
           <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/appointments" element={<Appointments />} />
-          {/*<Route path="/teleconsult" element={<Teleconsultation />} />
-          <Route path="/records" element={<MedicalRecords />} />
+          <Route path="/teleconsult" element={<Teleconsultation />} />
+          {/*<Route path="/records" element={<MedicalRecords />} />
           <Route path="/hospitals" element={<NearbyHospitals />} />
           <Route path="/connect-device" element={<ConnectDevice />} />
           <Route path="/settings" element={<Settings />} />
