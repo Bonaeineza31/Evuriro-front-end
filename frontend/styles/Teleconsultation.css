@@ -607,115 +607,107 @@
   }
   
   /* Video call styles */
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'); /* Font Awesome */
+
   .telecon-video-container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #1f2937;
-    padding: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    height: 60vh;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #1e293b; /* Dark Blue Grey */
+      padding: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      height: 60vh;
+      border-top: 3px solid #3b82f6; /* Subtle blue highlight */
   }
   
   .telecon-main-video {
-    flex-grow: 1;
-    position: relative;
-    margin-bottom: 10px;
+      flex-grow: 1;
+      position: relative;
+      margin-bottom: 10px;
   }
   
   .telecon-self-video {
-    position: absolute;
-    width: 150px;
-    height: 100px;
-    bottom: 60px;
-    right: 20px;
-    z-index: 1010;
+      position: absolute;
+      width: 150px;
+      height: 100px;
+      bottom: 60px;
+      right: 20px;
+      z-index: 1010;
+      border-radius: 8px;
+      border: 2px solid #3b82f6; /* Blue accent */
   }
   
   .telecon-video-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 500;
-    border-radius: 8px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 500;
+      border-radius: 8px;
+      background-color: #334155; /* Soft Grey Blue */
   }
   
   .telecon-video-placeholder.doctor {
-    background-color: #374151;
+      background-color: #475569; /* Muted Grey */
   }
   
   .telecon-video-placeholder.self {
-    background-color: #4b5563;
+      background-color: #64748b; /* Slightly lighter grey */
   }
   
   .telecon-call-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
   }
   
   .telecon-control-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    background-color: #374151;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      background-color: #334155; /* Grey Blue */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
   }
   
   .telecon-control-btn:hover {
-    background-color: #4b5563;
+      background-color: #475569; /* Slightly lighter grey */
+      transform: scale(1.05);
   }
   
   .telecon-control-btn.active {
-    background-color: #dc2626;
+      background-color: #2563eb; /* Blue */
   }
   
   .telecon-control-btn.end {
-    background-color: #dc2626;
+      background-color: #475569; /* Neutral grey */
   }
   
   .telecon-control-btn.end:hover {
-    background-color: #b91c1c;
+      background-color: #64748b;
   }
   
-  .telecon-icon-mic::before {
-    content: "🎙️";
-  }
+  /* Font Awesome Icons */
+  .telecon-icon-mic::before { content: "\f130"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+  .telecon-icon-mic-off::before { content: "\f131"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+  .telecon-icon-video::before { content: "\f03d"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+  .telecon-icon-video-off::before { content: "\f4e2"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+  .telecon-icon-screen::before { content: "\f108"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+  .telecon-icon-phone::before { content: "\f095"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
   
-  .telecon-icon-mic-off::before {
-    content: "🔇";
-  }
-  
-  .telecon-icon-video::before {
-    content: "📹";
-  }
-  
-  .telecon-icon-video-off::before {
-    content: "🚫";
-  }
-  
-  .telecon-icon-screen::before {
-    content: "💻";
-  }
-  
-  .telecon-icon-phone::before {
-    content: "📞";
-  }
-  
+
   /* Chat panel styles */
   .telecon-chat-panel {
     position: fixed;
