@@ -5,7 +5,7 @@
   text-align: center;
 } */
 /* General reset and base styles */
-* {
+ *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -42,19 +42,19 @@ body {
 }
 
 /* Main content that sits next to the sidebar */
-.content {
+ .content {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
-}
+} 
 
 /* Page title styling */
-.page-title {
+ .page-title {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 24px;
   color: #1a202c;
-}
+}  
 
 /* Card styling for content sections */
 .card {
@@ -70,10 +70,10 @@ body {
   font-weight: 600;
   margin-bottom: 16px;
   color: #2d3748;
-}
+} 
 
 /* Mobile responsiveness */
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .app-container {
     flex-direction: column;
     padding-bottom: 60px; /* Space for mobile sidebar/navbar */
@@ -82,7 +82,7 @@ body {
   .content {
     padding: 16px;
   }
-}
+} 
 
 /* Animation for page transitions */
 .page-transition-enter {
@@ -98,22 +98,22 @@ body {
 
 .page-transition-exit {
   opacity: 1;
-}
+} */
 
-.page-transition-exit-active {
+ .page-transition-exit-active {
   opacity: 0;
   transition: opacity 300ms;
 }
 
 /* Language specific font adjustments */
-html[lang="kinyarwanda"] body {
+ html[lang="kinyarwanda"] body {
   font-family: 'Noto Sans', 'Inter', sans-serif;
-}
+} 
 
 /* High contrast mode (accessibility) */
-.high-contrast-mode {
+ .high-contrast-mode {
   filter: invert(1) hue-rotate(180deg);
-}
+} 
 
 .high-contrast-mode img,
 .high-contrast-mode video {

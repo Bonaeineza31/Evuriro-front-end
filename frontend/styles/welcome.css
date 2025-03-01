@@ -15,6 +15,7 @@
     flex-direction: column;
     min-height: 100vh;
     position: relative;
+    margin-left: 60px;
   }
   
   .language-selector {
