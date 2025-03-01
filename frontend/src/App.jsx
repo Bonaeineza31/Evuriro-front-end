@@ -8,7 +8,7 @@ import './App.css';
 import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
 import Appointments from '../pages/Appointments';
-// import Teleconsultation from '../pages/Teleconsultation';
+import Teleconsultation from '../pages/Teleconsultation';
 // import MedicalRecords from '../pages/MedicalRecords';
 // import NearbyHospitals from '../pages/NearbyHospitals';
 // import ConnectDevice from '../pages/ConnectDevice';
