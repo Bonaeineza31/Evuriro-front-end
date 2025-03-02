@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
 import './App.css';
-import { ThemeProvider } from '../context/ThemeContext';
+import { ThemeProvider } from '../pages/Theme';
 
 // Import pages
 import Welcome from '../components/Welcome';
