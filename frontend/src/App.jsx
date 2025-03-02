@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
 import './App.css';
+import { ThemeProvider } from '../context/ThemeContext';
 
 // Import pages
 import Welcome from '../components/Welcome';
@@ -28,22 +29,22 @@ const RequireAuth = ({ children }) => {
 };
 
 // Layout Component for Authenticated Users
-const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
+const AuthenticatedLayout = () => (
   <div className="app">
-    <Navbar language={language} onLanguageChange={handleLanguageChange} />
+    <Navbar />
     <div className="app-container">
-      <Sidebar language={language} />
+      <Sidebar />
       <main className="content">
         <Routes>
-          <Route path="/dashboard" element={<Dashboard language={language} />} />
-         <Route path="/appointments" element={<Appointments language={language} />} />
-          <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
-         <Route path="/records" element={<MedicalRecords language={language} />} />
-          <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
-          <Route path="/connect-device" element={<ConnectDevice language={language} />} />
-          <Route path="/settings" element={<Settings language={language} />} />
-          {/*<Route path="/help" element={<HelpCenter language={language} />} />
-          <Route path="*" element={<NotFound language={language} />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/appointments" element={<Appointments />} />
+          <Route path="/teleconsult" element={<Teleconsultation />} />
+          <Route path="/records" element={<MedicalRecords />} />
+          <Route path="/hospitals" element={<NearbyHospitals />} />
+          <Route path="/connect-device" element={<ConnectDevice />} />
+          <Route path="/settings" element={<Settings />} />
+          {/*<Route path="/help" element={<HelpCenter />} />
+          <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </main>
     </div>
@@ -51,54 +52,32 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
 );
 
 const App = () => {
-  const [language, setLanguage] = useState('english');
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('preferredLanguage', newLanguage);
-  };
-
   return (
-    <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/welcome" element={<Welcome />} />
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/welcome" element={<Welcome />} />
 
-        {/* Redirect Root */}
-        <Route path="/" element={
-          localStorage.getItem('isAuthenticated') === 'true' 
-            ? <Navigate to="/dashboard" replace /> 
-            : <Navigate to="/welcome" replace />
-        } />
+          {/* Redirect Root */}
+          <Route path="/" element={
+            localStorage.getItem('isAuthenticated') === 'true' 
+              ? <Navigate to="/dashboard" replace /> 
+              : <Navigate to="/welcome" replace />
+          } />
 
-        {/* Protected Routes with Layout */}
-        <Route element={
-          <RequireAuth>
-            <AuthenticatedLayout language={language} handleLanguageChange={handleLanguageChange} />
-          </RequireAuth>
-        }>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/teleconsult" element={<Teleconsultation />} />
-         <Route path="/records" element={<MedicalRecords />} />
-           <Route path="/hospitals" element={<NearbyHospitals />} />
-          <Route path="/connect-device" element={<ConnectDevice />} />
-          <Route path="/settings" element={<Settings />} />
-         {/* <Route path="/help" element={<HelpCenter />} /> */}
-        </Route>
+          {/* Protected Routes with Layout */}
+          <Route path="/*" element={
+            <RequireAuth>
+              <AuthenticatedLayout />
+            </RequireAuth>
+          } />
 
-        {/* Not Found */}
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Routes>
-    </Router>
+          {/* Not Found */}
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 
