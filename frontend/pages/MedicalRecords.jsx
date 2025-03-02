@@ -2,90 +2,90 @@ import React, { useState, useEffect } from 'react';
 import '../styles/medicalrecord.css';
 
 // Translation data
-const translations = {
-  en: {
-    title: "Medical Records",
-    searchPlaceholder: "Search your records...",
-    tabs: {
-      recent: "Recent",
-      labResults: "Lab Results",
-      medications: "Medications",
-      diagnoses: "Diagnoses",
-      visits: "Visits"
-    },
-    buttons: {
-      viewDetails: "View Details",
-      download: "Download",
-      viewReport: "View Report",
-      requestRefill: "Request Refill",
-      setReminder: "Set Reminder",
-      learnMore: "Learn More",
-      trackSymptoms: "Track Symptoms",
-      viewFullReport: "View Full Report",
-      scheduleFollowUp: "Schedule Follow-up",
-      downloadAll: "Download All Records",
-      shareProvider: "Share with Provider",
-      print: "Print Records"
-    },
-    summary: {
-      activeMedications: "Active Medications",
-      recentLabResults: "Recent Lab Results",
-      activeConditions: "Active Conditions",
-      upcomingAppointment: "Upcoming Appointment"
-    },
-    details: {
-      results: "Results:",
-      refillsRemaining: "Refills Remaining:",
-      ends: "Ends:",
-      notes: "Notes:",
-      diagnosedBy: "By:",
-      prescribed: "Prescribed:",
-      reason: "Reason:",
-      summary: "Summary:"
-    }
-  },
-  rw: {
-    title: "Inyandiko z'Ubuvuzi",
-    searchPlaceholder: "Shakisha inyandiko zawe...",
-    tabs: {
-      recent: "Vuba aha",
-      labResults: "Ibyavuye mu ipimwa",
-      medications: "Imiti",
-      diagnoses: "Indwara",
-      visits: "Gusura"
-    },
-    buttons: {
-      viewDetails: "Reba Ibisobanuro",
-      download: "Kuramo",
-      viewReport: "Reba Raporo",
-      requestRefill: "Saba Kongera",
-      setReminder: "Shyiraho Urwibutso",
-      learnMore: "Menya Byinshi",
-      trackSymptoms: "Kurikirana Ibimenyetso",
-      viewFullReport: "Reba Raporo Yuzuye",
-      scheduleFollowUp: "Tegura Gukurikirana",
-      downloadAll: "Kuramo Inyandiko Zose",
-      shareProvider: "Gusangiza Umuganga",
-      print: "Gucapa Inyandiko"
-    },
-    summary: {
-      activeMedications: "Imiti Ikoreshwa",
-      recentLabResults: "Ibipimo Vuba",
-      activeConditions: "Indwara Ziriho",
-      upcomingAppointment: "Gahunda Itegerejwe"
-    },
-    details: {
-      results: "Ibisubizo:",
-      refillsRemaining: "Kongera Bisigaye:",
-      ends: "Birangira:",
-      notes: "Inyandiko:",
-      diagnosedBy: "Byakozwe na:",
-      prescribed: "Byanditswe:",
-      reason: "Impamvu:",
-      summary: "Incamake:"
-    }
-  }
-};
+// const translations = {
+//   en: {
+//     title: "Medical Records",
+//     searchPlaceholder: "Search your records...",
+//     tabs: {
+//       recent: "Recent",
+//       labResults: "Lab Results",
+//       medications: "Medications",
+//       diagnoses: "Diagnoses",
+//       visits: "Visits"
+//     },
+//     buttons: {
+//       viewDetails: "View Details",
+//       download: "Download",
+//       viewReport: "View Report",
+//       requestRefill: "Request Refill",
+//       setReminder: "Set Reminder",
+//       learnMore: "Learn More",
+//       trackSymptoms: "Track Symptoms",
+//       viewFullReport: "View Full Report",
+//       scheduleFollowUp: "Schedule Follow-up",
+//       downloadAll: "Download All Records",
+//       shareProvider: "Share with Provider",
+//       print: "Print Records"
+//     },
+//     summary: {
+//       activeMedications: "Active Medications",
+//       recentLabResults: "Recent Lab Results",
+//       activeConditions: "Active Conditions",
+//       upcomingAppointment: "Upcoming Appointment"
+//     },
+//     details: {
+//       results: "Results:",
+//       refillsRemaining: "Refills Remaining:",
+//       ends: "Ends:",
+//       notes: "Notes:",
+//       diagnosedBy: "By:",
+//       prescribed: "Prescribed:",
+//       reason: "Reason:",
+//       summary: "Summary:"
+//     }
+//   },
+//   rw: {
+//     title: "Inyandiko z'Ubuvuzi",
+//     searchPlaceholder: "Shakisha inyandiko zawe...",
+//     tabs: {
+//       recent: "Vuba aha",
+//       labResults: "Ibyavuye mu ipimwa",
+//       medications: "Imiti",
+//       diagnoses: "Indwara",
+//       visits: "Gusura"
+//     },
+//     buttons: {
+//       viewDetails: "Reba Ibisobanuro",
+//       download: "Kuramo",
+//       viewReport: "Reba Raporo",
+//       requestRefill: "Saba Kongera",
+//       setReminder: "Shyiraho Urwibutso",
+//       learnMore: "Menya Byinshi",
+//       trackSymptoms: "Kurikirana Ibimenyetso",
+//       viewFullReport: "Reba Raporo Yuzuye",
+//       scheduleFollowUp: "Tegura Gukurikirana",
+//       downloadAll: "Kuramo Inyandiko Zose",
+//       shareProvider: "Gusangiza Umuganga",
+//       print: "Gucapa Inyandiko"
+//     },
+//     summary: {
+//       activeMedications: "Imiti Ikoreshwa",
+//       recentLabResults: "Ibipimo Vuba",
+//       activeConditions: "Indwara Ziriho",
+//       upcomingAppointment: "Gahunda Itegerejwe"
+//     },
+//     details: {
+//       results: "Ibisubizo:",
+//       refillsRemaining: "Kongera Bisigaye:",
+//       ends: "Birangira:",
+//       notes: "Inyandiko:",
+//       diagnosedBy: "Byakozwe na:",
+//       prescribed: "Byanditswe:",
+//       reason: "Impamvu:",
+//       summary: "Incamake:"
+//     }
+//   }
+// };
 
 const MedicalRecords = () => {
   // State for different categories of medical records

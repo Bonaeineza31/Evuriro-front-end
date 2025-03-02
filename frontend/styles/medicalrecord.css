@@ -447,3 +447,123 @@
       display: none;
     }
   }
+  /* Language selector styles */
+.med-language-selector {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  
+  .med-language-btn {
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .med-language-btn.med-active {
+    background-color: #1976d2;
+    color: white;
+    border-color: #1976d2;
+  }
+  
+  /* Modal styles */
+  .med-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .med-modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .med-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .med-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .med-modal-body {
+    padding: 20px;
+  }
+  
+  .med-modal-item {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .med-modal-item:last-child {
+    border-bottom: none;
+  }
+  
+  .med-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .med-modal-footer button {
+    padding: 8px 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Button states */
+  .med-btn-downloading {
+    background-color: #f5f5f5 !important;
+    color: #666 !important;
+    cursor: wait !important;
+  }
+  
+  .med-btn-completed {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .med-language-selector {
+      margin-bottom: 10px;
+    }
+    
+    .med-language-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    
+    .med-modal-content {
+      width: 95%;
+    }
+  }
