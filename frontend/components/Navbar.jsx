@@ -144,7 +144,7 @@ const Navbar = () => {
           <Link to="/dashboard" className="navbar-item">Dashboard</Link>
           <Link to="/teleconsult" className="navbar-item">Teleconsultation</Link>
           <Link to="/records" className="navbar-item">Records</Link>
-          <Link to="/hospitals" className="navbar-item">{text.nearbyHospitals}</Link>
+          <Link to="/hospitals" className="navbar-item">Nearby Hospitals</Link>
           <Link to="/find-doctor" className="navbar-item">{text.searchDoctor}</Link>
         </div>
 
