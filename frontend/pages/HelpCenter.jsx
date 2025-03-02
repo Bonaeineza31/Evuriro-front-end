@@ -1,13 +1,19 @@
-// HelpCenter.jsx
 import React, { useState } from 'react';
 import { FaSearch, FaCalendarAlt, FaHeadset, FaFileInvoiceDollar, 
          FaNotesMedical, FaShieldAlt, FaBook, FaVideo, 
-         FaMobile, FaClipboardList } from 'react-icons/fa';
+         FaMobile, FaClipboardList, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import '../styles/helpcenter.css';
 
 const HelpCenter = () => {
   const [activeCategory, setActiveCategory] = useState('appointment');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactFormData, setContactFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
   const categories = [
     { id: 'appointment', name: 'Appointments', icon: <FaCalendarAlt /> },
@@ -90,6 +96,34 @@ const HelpCenter = () => {
     ]
   };
 
+  const handleContactFormChange = (e) => {
+    const { name, value } = e.target;
+    setContactFormData({
+      ...contactFormData,
+      [name]: value
+    });
+  };
+
+  const handleContactFormSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically handle the form submission,
+    // such as sending the data to a server
+    alert('Your message has been sent. Our support team will get back to you shortly.');
+    setContactFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+    setShowContactForm(false);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Implement any additional search functionality here
+    console.log('Searching for:', searchQuery);
+  };
+
   const filteredFaqs = searchQuery ? 
     Object.values(faqs).flat().filter(faq => 
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -102,17 +136,18 @@ const HelpCenter = () => {
       <div className="help-center-header">
         <h1>Help Center</h1>
         <p>Find answers to your questions and get support for your teleconsultation</p>
-        <div className="search-bar">
+        <form className="search-bar" onSubmit={handleSearch}>
           <input 
             type="text" 
             placeholder="Search for help..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            className="help-search-input"
           />
-          <button className="search-button">
+          <button type="submit" className="help-search-button">
             <FaSearch className="search-icon" /> Search
           </button>
-        </div>
+        </form>
       </div>
 
       <div className="help-center-content">
@@ -136,7 +171,10 @@ const HelpCenter = () => {
           
           <div className="contact-support">
             <h3>Need more help?</h3>
-            <button className="contact-button">
+            <button 
+              className="contact-button"
+              onClick={() => setShowContactForm(true)}
+            >
               <FaHeadset className="button-icon" /> Contact Support
             </button>
             <p className="support-hours">Available 24/7</p>
@@ -194,6 +232,72 @@ const HelpCenter = () => {
           </a>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      {showContactForm && (
+        <div className="contact-form-modal">
+          <div className="contact-form-container">
+            <div className="contact-form-header">
+              <h3><FaHeadset /> Contact Support</h3>
+              <button 
+                className="close-button"
+                onClick={() => setShowContactForm(false)}
+              >
+                <FaTimes />
+              </button>
+            </div>
+            <form onSubmit={handleContactFormSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={contactFormData.name}
+                  onChange={handleContactFormChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={contactFormData.email}
+                  onChange={handleContactFormChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={contactFormData.subject}
+                  onChange={handleContactFormChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={contactFormData.message}
+                  onChange={handleContactFormChange}
+                  required
+                  rows="5"
+                ></textarea>
+              </div>
+              <button type="submit" className="submit-button">
+                <FaPaperPlane className="button-icon" /> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
