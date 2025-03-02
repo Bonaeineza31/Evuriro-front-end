@@ -1,192 +1,280 @@
 /* Settings.css */
+:root {
+  --primary-color: #4a90e2;
+  --text-color: #333;
+  --background-color: #f9f9f9;
+  --card-background: #fff;
+  --border-color: #e1e1e1;
+  --success-color: #28a745;
+  --cancel-color: #6c757d;
+  --checkbox-size: 18px;
+  --toggle-height: 24px;
+  --toggle-width: 48px;
+  --toggle-slider-size: 20px;
+}
+
+/* Dark theme variables */
+.dark {
+  --text-color: #f0f0f0;
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --border-color: #333;
+}
+
+body.dark {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 .settings-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.settings-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.settings-card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.settings-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Toggle switch styling */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--toggle-slider-size);
+  width: var(--toggle-slider-size);
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(var(--toggle-width) - var(--toggle-slider-size) - 8px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Checkbox container styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--checkbox-size);
+  width: var(--checkbox-size);
+  background-color: #eee;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Language selector */
+.language-selector {
+  display: flex;
+  gap: 10px;
+}
+
+.language-btn {
+  padding: 8px 15px;
+  border: 1px solid var(--border-color);
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.language-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Action buttons */
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancel, 
+.btn-save {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn-cancel {
+  background-color: var(--cancel-color);
+  color: white;
+}
+
+.btn-save {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+.btn-save:hover {
+  background-color: #218838;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 10px;
   }
   
   .settings-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 15px;
   }
   
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group input[type="tel"],
-  .form-group input[type="date"],
-  .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: var(--input-bg);
-    color: var(--text-primary);
-  }
-  
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-  }
-  
-  .toggle-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .toggle {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    background-color: #ccc;
-    border-radius: 15px;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .toggle.active {
-    background-color: #2196F3;
-  }
-  
-  .toggle-handle {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.3s;
-  }
-  
-  .toggle.active .toggle-handle {
-    transform: translateX(30px);
+  .language-selector {
+    flex-direction: column;
   }
   
   .settings-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
   }
   
-  .btn-cancel, .btn-save {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  .btn-cancel {
-    background-color: var(--btn-secondary-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-  }
-  
+  .btn-cancel, 
   .btn-save {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
+    width: 100%;
   }
-  
-  /* Theme variables - light mode (default) */
-  :root {
-    --primary-color: #3498db;
-    --text-primary: #333;
-    --text-secondary: #666;
-    --card-bg: #fff;
-    --border-color: #ddd;
-    --input-bg: #fff;
-    --btn-secondary-bg: #f4f4f4;
-    --background: #f8f8f8;
-  }
-  
-  /* Dark mode theme variables */
-  body.dark {
-    --primary-color: #3498db;
-    --text-primary: #f0f0f0;
-    --text-secondary: #ccc;
-    --card-bg: #2c2c2c;
-    --border-color: #444;
-    --input-bg: #383838;
-    --btn-secondary-bg: #444;
-    --background: #1a1a1a;
-  }
-  
-  /* Apply theme variables to body */
-  body {
-    background-color: var(--background);
-    color: var(--text-primary);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .settings-container {
-      padding: 10px;
-    }
-    
-    .settings-card {
-      padding: 15px;
-    }
-    
-    .settings-actions {
-      flex-direction: column;
-    }
-    
-    .btn-cancel, .btn-save {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  }
-  
-  /* Accessibility styles for focus states */
-  input:focus, 
-  select:focus, 
-  button:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-  }
-  
-  /* Error state styles */
-  .input-error {
-    border-color: #e74c3c !important;
-  }
-  
-  .error-message {
-    color: #e74c3c;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  /* Success message styles */
-  .success-message {
-    background-color: #2ecc71;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+}
