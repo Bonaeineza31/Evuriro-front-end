@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/settings.css';
+import './Settings.css';
 
 const Settings = () => {
   // User profile state
@@ -86,18 +86,21 @@ const Settings = () => {
       });
     }
   };
-  // Inside your Settings component, add this useEffect
-useEffect(() => {
+
+  // Load theme preference from localStorage on component mount
+  useEffect(() => {
     // Check if user has a saved theme preference
     const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedLanguage = localStorage.getItem('language') || 'en';
     setPreferences(prev => ({
       ...prev,
-      theme: savedTheme
+      theme: savedTheme,
+      language: savedLanguage
     }));
     document.body.className = savedTheme;
   }, []);
   
-  // Modify the toggleTheme function to save to localStorage
+  // Toggle theme function
   const toggleTheme = () => {
     const newTheme = preferences.theme === 'light' ? 'dark' : 'light';
     setPreferences({
@@ -110,22 +113,181 @@ useEffect(() => {
     localStorage.setItem('theme', newTheme);
   };
 
+  // Change language function
+  const changeLanguage = (lang) => {
+    setPreferences({
+      ...preferences,
+      language: lang
+    });
+    // Save to localStorage
+    localStorage.setItem('language', lang);
+  };
+
   // Save changes handler
   const saveChanges = () => {
-    // Here you would send the updated profile and preferences to your backend
+    // Here you would send the updated profile and preferences to backend
     console.log('Saving profile:', profile);
     console.log('Saving preferences:', preferences);
     alert('Settings saved successfully!');
   };
 
+  // Get translations based on selected language
+  const getTranslation = (key) => {
+    const translations = {
+      'en': {
+        'settings': 'Settings',
+        'personalInfo': 'Personal Information',
+        'firstName': 'First Name',
+        'lastName': 'Last Name',
+        'email': 'Email',
+        'phone': 'Phone Number',
+        'dob': 'Date of Birth',
+        'gender': 'Gender',
+        'male': 'Male',
+        'female': 'Female',
+        'other': 'Other',
+        'preferNotToSay': 'Prefer not to say',
+        'idNumber': 'ID Number',
+        'address': 'Address',
+        'streetAddress': 'Street Address',
+        'city': 'City',
+        'country': 'Country',
+        'emergencyContact': 'Emergency Contact',
+        'name': 'Name',
+        'relationship': 'Relationship',
+        'appearance': 'Appearance',
+        'theme': 'Theme',
+        'light': 'Light',
+        'dark': 'Dark',
+        'language': 'Language',
+        'notifications': 'Notification Preferences',
+        'emailNotifications': 'Email Notifications',
+        'smsNotifications': 'SMS Notifications',
+        'appNotifications': 'App Notifications',
+        'appointmentReminders': 'Appointment Reminders',
+        'medicationReminders': 'Medication Reminders',
+        'resultUpdates': 'Test Result Updates',
+        'privacy': 'Privacy Settings',
+        'shareData': 'Share data with healthcare providers',
+        'researchUse': 'Allow anonymous data use for research',
+        'publicProfile': 'Show my profile to other users',
+        'accessibility': 'Accessibility',
+        'fontSize': 'Font Size',
+        'small': 'Small',
+        'medium': 'Medium',
+        'large': 'Large',
+        'highContrast': 'High Contrast Mode',
+        'screenReader': 'Screen Reader Compatibility',
+        'cancel': 'Cancel',
+        'save': 'Save Changes'
+      },
+      'fr': {
+        'settings': 'Paramètres',
+        'personalInfo': 'Informations Personnelles',
+        'firstName': 'Prénom',
+        'lastName': 'Nom de Famille',
+        'email': 'E-mail',
+        'phone': 'Numéro de Téléphone',
+        'dob': 'Date de Naissance',
+        'gender': 'Genre',
+        'male': 'Homme',
+        'female': 'Femme',
+        'other': 'Autre',
+        'preferNotToSay': 'Je préfère ne pas dire',
+        'idNumber': 'Numéro d\'Identification',
+        'address': 'Adresse',
+        'streetAddress': 'Adresse',
+        'city': 'Ville',
+        'country': 'Pays',
+        'emergencyContact': 'Contact d\'Urgence',
+        'name': 'Nom',
+        'relationship': 'Relation',
+        'appearance': 'Apparence',
+        'theme': 'Thème',
+        'light': 'Clair',
+        'dark': 'Sombre',
+        'language': 'Langue',
+        'notifications': 'Préférences de Notification',
+        'emailNotifications': 'Notifications par E-mail',
+        'smsNotifications': 'Notifications par SMS',
+        'appNotifications': 'Notifications de l\'Application',
+        'appointmentReminders': 'Rappels de Rendez-vous',
+        'medicationReminders': 'Rappels de Médicaments',
+        'resultUpdates': 'Mises à Jour des Résultats',
+        'privacy': 'Paramètres de Confidentialité',
+        'shareData': 'Partager les données avec les professionnels de santé',
+        'researchUse': 'Autoriser l\'utilisation anonyme des données pour la recherche',
+        'publicProfile': 'Montrer mon profil aux autres utilisateurs',
+        'accessibility': 'Accessibilité',
+        'fontSize': 'Taille de Police',
+        'small': 'Petit',
+        'medium': 'Moyen',
+        'large': 'Grand',
+        'highContrast': 'Mode Contraste Élevé',
+        'screenReader': 'Compatibilité avec les Lecteurs d\'Écran',
+        'cancel': 'Annuler',
+        'save': 'Enregistrer les Modifications'
+      },
+      'kin': {
+        'settings': 'Igenamiterere',
+        'personalInfo': 'Amakuru Bwite',
+        'firstName': 'Izina',
+        'lastName': 'Irindi Zina',
+        'email': 'Imeri',
+        'phone': 'Telefoni',
+        'dob': 'Itariki y\'Amavuko',
+        'gender': 'Igitsina',
+        'male': 'Gabo',
+        'female': 'Gore',
+        'other': 'Ikindi',
+        'preferNotToSay': 'Sinkunda kubivuga',
+        'idNumber': 'Nomero y\'Irangamuntu',
+        'address': 'Aderesi',
+        'streetAddress': 'Aho Utuye',
+        'city': 'Umujyi',
+        'country': 'Igihugu',
+        'emergencyContact': 'Uwo Guhamagara mu Bihe Bikomeye',
+        'name': 'Izina',
+        'relationship': 'Isano',
+        'appearance': 'Ishusho',
+        'theme': 'Isura',
+        'light': 'Cyera',
+        'dark': 'Umukara',
+        'language': 'Ururimi',
+        'notifications': 'Ibyo Kumenyeshwa',
+        'emailNotifications': 'Kumenyeshwa kuri Imeri',
+        'smsNotifications': 'Kumenyeshwa kuri SMS',
+        'appNotifications': 'Kumenyeshwa ku Porogaramu',
+        'appointmentReminders': 'Urwibutso rw\'Igihe cyo Gusura Muganga',
+        'medicationReminders': 'Urwibutso rwo Gufata Imiti',
+        'resultUpdates': 'Amakuru y\'Ibisubizo',
+        'privacy': 'Amabwiriza y\'Ibanga',
+        'shareData': 'Gusangira amakuru n\'abaganga',
+        'researchUse': 'Kwemerera gukoresha amakuru mu bushakashatsi',
+        'publicProfile': 'Kwerekana umwirondoro wanjye ku bandi',
+        'accessibility': 'Uburyo bwo Kugera ku Makuru',
+        'fontSize': 'Ingano y\'Imyandiko',
+        'small': 'Muto',
+        'medium': 'Hagati',
+        'large': 'Munini',
+        'highContrast': 'Ishusho Igaragara Cyane',
+        'screenReader': 'Ibifasha Abasomyi b\'Ishashho',
+        'cancel': 'Kureka',
+        'save': 'Kubika Impinduka'
+      }
+    };
+    
+    return translations[preferences.language][key] || key;
+  };
+
   return (
-    <div className="settings-container">
-      <h1>Account Settings</h1>
+    <div className={`settings-container ${preferences.theme}`}>
+      <h1>{getTranslation('settings')}</h1>
       
       <div className="settings-card">
-        <h2>Personal Information</h2>
+        <h2>{getTranslation('personalInfo')}</h2>
         <div className="form-group">
-          <label>First Name</label>
+          <label>{getTranslation('firstName')}</label>
           <input 
             type="text" 
             name="firstName" 
@@ -134,7 +296,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Last Name</label>
+          <label>{getTranslation('lastName')}</label>
           <input 
             type="text" 
             name="lastName" 
@@ -143,7 +305,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Email</label>
+          <label>{getTranslation('email')}</label>
           <input 
             type="email" 
             name="email" 
@@ -152,7 +314,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Phone Number</label>
+          <label>{getTranslation('phone')}</label>
           <input 
             type="tel" 
             name="phone" 
@@ -161,7 +323,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Date of Birth</label>
+          <label>{getTranslation('dob')}</label>
           <input 
             type="date" 
             name="dateOfBirth" 
@@ -170,20 +332,20 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Gender</label>
+          <label>{getTranslation('gender')}</label>
           <select 
             name="gender" 
             value={profile.gender} 
             onChange={handleProfileChange}
           >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-            <option value="Prefer not to say">Prefer not to say</option>
+            <option value="Male">{getTranslation('male')}</option>
+            <option value="Female">{getTranslation('female')}</option>
+            <option value="Other">{getTranslation('other')}</option>
+            <option value="Prefer not to say">{getTranslation('preferNotToSay')}</option>
           </select>
         </div>
         <div className="form-group">
-          <label>ID Number</label>
+          <label>{getTranslation('idNumber')}</label>
           <input 
             type="text" 
             name="idNumber" 
@@ -194,9 +356,9 @@ useEffect(() => {
       </div>
 
       <div className="settings-card">
-        <h2>Address</h2>
+        <h2>{getTranslation('address')}</h2>
         <div className="form-group">
-          <label>Street Address</label>
+          <label>{getTranslation('streetAddress')}</label>
           <input 
             type="text" 
             name="address" 
@@ -205,7 +367,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>City</label>
+          <label>{getTranslation('city')}</label>
           <input 
             type="text" 
             name="city" 
@@ -214,7 +376,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Country</label>
+          <label>{getTranslation('country')}</label>
           <input 
             type="text" 
             name="country" 
@@ -225,9 +387,9 @@ useEffect(() => {
       </div>
 
       <div className="settings-card">
-        <h2>Emergency Contact</h2>
+        <h2>{getTranslation('emergencyContact')}</h2>
         <div className="form-group">
-          <label>Name</label>
+          <label>{getTranslation('name')}</label>
           <input 
             type="text" 
             name="emergencyContact.name" 
@@ -236,7 +398,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Relationship</label>
+          <label>{getTranslation('relationship')}</label>
           <input 
             type="text" 
             name="emergencyContact.relationship" 
@@ -245,7 +407,7 @@ useEffect(() => {
           />
         </div>
         <div className="form-group">
-          <label>Phone Number</label>
+          <label>{getTranslation('phone')}</label>
           <input 
             type="tel" 
             name="emergencyContact.phone" 
@@ -256,168 +418,206 @@ useEffect(() => {
       </div>
 
       <div className="settings-card">
-        <h2>Appearance</h2>
+        <h2>{getTranslation('appearance')}</h2>
         <div className="form-group">
-          <label>Theme</label>
+          <label>{getTranslation('theme')}</label>
           <div className="toggle-container">
-            <span>Light</span>
-            <div className={`toggle ${preferences.theme === 'dark' ? 'active' : ''}`} onClick={toggleTheme}>
-              <div className="toggle-handle"></div>
-            </div>
-            <span>Dark</span>
+            <span>{getTranslation('light')}</span>
+            <label className="switch">
+              <input 
+                type="checkbox" 
+                checked={preferences.theme === 'dark'} 
+                onChange={toggleTheme}
+              />
+              <span className="slider round"></span>
+            </label>
+            <span>{getTranslation('dark')}</span>
           </div>
         </div>
         <div className="form-group">
-          <label>Language</label>
-          <select 
-            name="language" 
-            value={preferences.language} 
-            onChange={handlePreferenceChange}
-          >
-            <option value="en">English</option>
-            <option value="fr">French</option>
-            <option value="kin">Kinyarwanda</option>
-          </select>
+          <label>{getTranslation('language')}</label>
+          <div className="language-selector">
+            <button 
+              className={`language-btn ${preferences.language === 'en' ? 'active' : ''}`}
+              onClick={() => changeLanguage('en')}
+            >
+              English
+            </button>
+            <button 
+              className={`language-btn ${preferences.language === 'fr' ? 'active' : ''}`}
+              onClick={() => changeLanguage('fr')}
+            >
+              Français
+            </button>
+            <button 
+              className={`language-btn ${preferences.language === 'kin' ? 'active' : ''}`}
+              onClick={() => changeLanguage('kin')}
+            >
+              Kinyarwanda
+            </button>
+          </div>
         </div>
       </div>
 
       <div className="settings-card">
-        <h2>Notification Preferences</h2>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="email-notifications" 
-            name="notifications.email" 
-            checked={preferences.notifications.email} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="email-notifications">Email Notifications</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="sms-notifications" 
-            name="notifications.sms"
-            checked={preferences.notifications.sms} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="sms-notifications">SMS Notifications</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="app-notifications" 
-            name="notifications.app" 
-            checked={preferences.notifications.app} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="app-notifications">App Notifications</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="appointment-reminders" 
-            name="notifications.appointmentReminders" 
-            checked={preferences.notifications.appointmentReminders} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="appointment-reminders">Appointment Reminders</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="medication-reminders" 
-            name="notifications.medicationReminders" 
-            checked={preferences.notifications.medicationReminders} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="medication-reminders">Medication Reminders</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="result-updates" 
-            name="notifications.resultUpdates" 
-            checked={preferences.notifications.resultUpdates} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="result-updates">Test Result Updates</label>
-        </div>
-      </div>
-
-      <div className="settings-card">
-        <h2>Privacy Settings</h2>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="share-data" 
-            name="privacy.shareDataWithProviders" 
-            checked={preferences.privacy.shareDataWithProviders} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="share-data">Share data with healthcare providers</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="research-use" 
-            name="privacy.allowResearchUse" 
-            checked={preferences.privacy.allowResearchUse} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="research-use">Allow anonymous data use for research</label>
-        </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="public-profile" 
-            name="privacy.showProfilePublicly" 
-            checked={preferences.privacy.showProfilePublicly} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="public-profile">Show my profile to other users</label>
-        </div>
-      </div>
-
-      <div className="settings-card">
-        <h2>Accessibility</h2>
+        <h2>{getTranslation('notifications')}</h2>
         <div className="form-group">
-          <label>Font Size</label>
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.email" 
+              checked={preferences.notifications.email} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('emailNotifications')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.sms" 
+              checked={preferences.notifications.sms} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('smsNotifications')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.app" 
+              checked={preferences.notifications.app} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('appNotifications')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.appointmentReminders" 
+              checked={preferences.notifications.appointmentReminders} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('appointmentReminders')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.medicationReminders" 
+              checked={preferences.notifications.medicationReminders} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('medicationReminders')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="notifications.resultUpdates" 
+              checked={preferences.notifications.resultUpdates} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('resultUpdates')}
+          </label>
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <h2>{getTranslation('privacy')}</h2>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="privacy.shareDataWithProviders" 
+              checked={preferences.privacy.shareDataWithProviders} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('shareData')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="privacy.allowResearchUse" 
+              checked={preferences.privacy.allowResearchUse} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('researchUse')}
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="privacy.showProfilePublicly" 
+              checked={preferences.privacy.showProfilePublicly} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('publicProfile')}
+          </label>
+        </div>
+      </div>
+
+      <div className="settings-card">
+        <h2>{getTranslation('accessibility')}</h2>
+        <div className="form-group">
+          <label>{getTranslation('fontSize')}</label>
           <select 
             name="accessibility.fontSize" 
             value={preferences.accessibility.fontSize} 
             onChange={handlePreferenceChange}
           >
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+            <option value="small">{getTranslation('small')}</option>
+            <option value="medium">{getTranslation('medium')}</option>
+            <option value="large">{getTranslation('large')}</option>
           </select>
         </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="high-contrast" 
-            name="accessibility.highContrast" 
-            checked={preferences.accessibility.highContrast} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="high-contrast">High Contrast Mode</label>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="accessibility.highContrast" 
+              checked={preferences.accessibility.highContrast} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('highContrast')}
+          </label>
         </div>
-        <div className="form-group checkbox-group">
-          <input 
-            type="checkbox" 
-            id="screen-reader" 
-            name="accessibility.screenReader" 
-            checked={preferences.accessibility.screenReader} 
-            onChange={handlePreferenceChange} 
-          />
-          <label htmlFor="screen-reader">Screen Reader Compatibility</label>
+        <div className="form-group">
+          <label className="checkbox-container">
+            <input 
+              type="checkbox" 
+              name="accessibility.screenReader" 
+              checked={preferences.accessibility.screenReader} 
+              onChange={handlePreferenceChange} 
+            />
+            <span className="checkmark"></span>
+            {getTranslation('screenReader')}
+          </label>
         </div>
       </div>
 
       <div className="settings-actions">
-        <button className="btn-cancel">Cancel</button>
-        <button className="btn-save" onClick={saveChanges}>Save Changes</button>
+        <button className="btn-cancel">{getTranslation('cancel')}</button>
+        <button className="btn-save" onClick={saveChanges}>{getTranslation('save')}</button>
       </div>
     </div>
   );
