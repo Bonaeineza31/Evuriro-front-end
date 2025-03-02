@@ -126,7 +126,7 @@
   
   .contact-button {
     width: 100%;
-    background-color: #ff5722;
+    background-color: grey;
     color: white;
     border: none;
     padding: 0.8rem;
@@ -140,7 +140,7 @@
   }
   
   .contact-button:hover {
-    background-color: grey;
+    background-color: orangered;
   }
   
   .button-icon {
