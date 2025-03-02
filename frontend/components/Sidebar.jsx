@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
+import { useTheme } from '../context/ThemeContext';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [language, setLanguage] = useState('english');
+  const { theme, toggleTheme, language, changeLanguage } = useTheme();
 
   const content = {
-    english: {
+    en: {
       dashboard: 'Dashboard',
       appointments: 'Appointments',
       teleconsultation: 'Teleconsultation',
@@ -15,9 +16,11 @@ const Sidebar = () => {
       nearbyHospitals: 'Nearby Hospitals',
       deviceConnection: 'Connect Device',
       settings: 'Settings',
-      help: 'Help Center'
+      help: 'Help Center',
+      darkMode: 'Dark Mode',
+      lightMode: 'Light Mode'
     },
-    french: {
+    fr: {
       dashboard: 'Tableau de bord',
       appointments: 'Rendez-vous',
       teleconsultation: 'Téléconsultation',
@@ -25,9 +28,11 @@ const Sidebar = () => {
       nearbyHospitals: 'Hôpitaux à proximité',
       deviceConnection: 'Connecter Appareil',
       settings: 'Paramètres',
-      help: 'Centre d\'aide'
+      help: 'Centre d\'aide',
+      darkMode: 'Mode Sombre',
+      lightMode: 'Mode Clair'
     },
-    kinyarwanda: {
+    kin: {
       dashboard: 'Ikibaho',
       appointments: 'Gahunda',
       teleconsultation: 'Kuvura hakoreshejwe ikoranabuhanga',
@@ -35,25 +40,13 @@ const Sidebar = () => {
       nearbyHospitals: 'Ibitaro biri hafi',
       deviceConnection: 'Guhuza igikoresho',
       settings: 'Igenamiterere',
-      help: 'Ivuriro ry\'ubufasha'
+      help: 'Ivuriro ry\'ubufasha',
+      darkMode: 'Imiterere y\'Umukara',
+      lightMode: 'Imiterere y\'Urumuri'
     }
   };
 
-  const text = content[language];
-  const toggleLanguage = (lang) => {
-    setLanguage(lang);
-  };
-
-
-  // We'll get the language from a shared context in a real implementation
-  // This is just for demonstration
-  React.useEffect(() => {
-    // Syncing language with navbar
-    const languageFromStorage = localStorage.getItem('preferredLanguage');
-    if (languageFromStorage) {
-      setLanguage(languageFromStorage);
-    }
-  }, []);
+  const text = content[language] || content.en;
 
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -64,49 +57,87 @@ const Sidebar = () => {
         {isCollapsed ? '→' : '←'}
       </button>
       
-
       <div className="sidebar-menu">
         <Link to="/dashboard" className="sidebar-item">
           <span className="sidebar-icon dashboard-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.dashboard}</span>}
         </Link>
-
+        
         <Link to="/appointments" className="sidebar-item">
           <span className="sidebar-icon appointments-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.appointments}</span>}
         </Link>
-
+        
         <Link to="/teleconsult" className="sidebar-item">
           <span className="sidebar-icon teleconsult-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.teleconsultation}</span>}
         </Link>
-
+        
         <Link to="/records" className="sidebar-item">
           <span className="sidebar-icon records-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.medicalRecords}</span>}
         </Link>
-
+        
         <Link to="/hospitals" className="sidebar-item">
           <span className="sidebar-icon hospitals-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.nearbyHospitals}</span>}
         </Link>
-
+        
         <Link to="/connect-device" className="sidebar-item">
           <span className="sidebar-icon device-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.deviceConnection}</span>}
         </Link>
-
+        
         <div className="sidebar-divider"></div>
-
+        
         <Link to="/settings" className="sidebar-item">
           <span className="sidebar-icon settings-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.settings}</span>}
         </Link>
-
+        
         <Link to="/help" className="sidebar-item">
           <span className="sidebar-icon help-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.help}</span>}
         </Link>
+      </div>
+      
+      {/* Theme toggle at bottom */}
+      <div className="sidebar-footer">
+        <button 
+          className="theme-toggle-button"
+          onClick={toggleTheme}
+          title={theme === 'light' ? text.darkMode : text.lightMode}
+        >
+          <span className={`sidebar-icon ${theme === 'light' ? 'moon-icon' : 'sun-icon'}`}></span>
+          {!isCollapsed && (
+            <span className="sidebar-text">
+              {theme === 'light' ? text.darkMode : text.lightMode}
+            </span>
+          )}
+        </button>
+        
+        {!isCollapsed && (
+          <div className="language-buttons">
+            <button 
+              className={`language-button ${language === 'en' ? 'active' : ''}`}
+              onClick={() => changeLanguage('en')}
+            >
+              EN
+            </button>
+            <button 
+              className={`language-button ${language === 'fr' ? 'active' : ''}`}
+              onClick={() => changeLanguage('fr')}
+            >
+              FR
+            </button>
+            <button 
+              className={`language-button ${language === 'kin' ? 'active' : ''}`}
+              onClick={() => changeLanguage('kin')}
+            >
+              KIN
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
