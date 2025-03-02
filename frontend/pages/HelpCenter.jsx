@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaSearch, FaCalendarAlt, FaHeadset, FaFileInvoiceDollar, 
          FaNotesMedical, FaShieldAlt, FaBook, FaVideo, 
          FaMobile, FaClipboardList } from 'react-icons/fa';
-import './HelpCenter.css';
+import '../styles/helpcenter.css';
 
 const HelpCenter = () => {
   const [activeCategory, setActiveCategory] = useState('appointment');
