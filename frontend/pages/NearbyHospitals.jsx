@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/layout.css';
+import '../styles/nearbyhospitals.css';
 
 const NearbyHospitals = () => {
   const [hospitals, setHospitals] = useState([]);
