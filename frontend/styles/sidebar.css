@@ -611,3 +611,148 @@ body.dark-mode .sidebar-item:hover,
     height: 32px;
   }
 }
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .sidebar-menu {
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .sidebar-item {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .sidebar-item .sidebar-text {
+    font-size: 12px;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+  
+  .sidebar-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .theme-toggle-button {
+    width: auto;
+    padding: 8px;
+  }
+  
+  .language-buttons {
+    margin-top: 0;
+  }
+}
+
+/* For extra small screens */
+@media (max-width: 480px) {
+  .sidebar-menu {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .sidebar-item {
+    width: 30%;
+    min-width: 70px;
+    flex-direction: column;
+    padding: 8px 4px;
+  }
+  
+  .sidebar-icon {
+    margin-bottom: 4px;
+  }
+  
+  .sidebar-divider {
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .sidebar.collapsed {
+    height: auto;
+  }
+  
+  .sidebar.collapsed .sidebar-menu {
+    flex-direction: row;
+  }
+  
+  .sidebar.collapsed .sidebar-item {
+    width: auto;
+  }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .sidebar-menu {
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+  
+  .sidebar-item {
+    width: 33.33%;
+    box-sizing: border-box;
+  }
+  
+  .sidebar-footer {
+    position: relative;
+  }
+}
+
+/* Ensure responsiveness with larger screens */
+@media (min-width: 1200px) {
+  .sidebar {
+    width: 280px;
+  }
+  
+  .sidebar-item {
+    padding: 14px 18px;
+  }
+  
+  .sidebar-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .sidebar-text {
+    font-size: 16px;
+  }
+}
+
+/* Prevent overflow issues in various screen sizes */
+.sidebar-menu::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+  background-color: var(--border-light);
+  border-radius: 4px;
+}
+
+body.dark-mode .sidebar-menu::-webkit-scrollbar-thumb,
+.sidebar.dark-mode .sidebar-menu::-webkit-scrollbar-thumb {
+  background-color: var(--border-dark);
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Ensure smooth transition between states */
+.sidebar-item,
+.sidebar-icon,
+.sidebar-text,
+.collapse-button,
+.theme-toggle-button,
+.language-button {
+  will-change: transform, opacity;
+}
