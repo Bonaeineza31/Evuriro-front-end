@@ -148,7 +148,7 @@ body {
 }
 
 /* Dark mode */
-body.dark-mode {
+/* body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
@@ -165,17 +165,16 @@ body.dark-mode {
   transition: margin-left 0.3s ease;
 }
 
-/* When sidebar is collapsed */
 .sidebar.collapsed + .main-content {
   margin-left: 60px;
 }
 
-/* Handle links in dark mode */
+
 body.dark-mode a {
   color: var(--primary-dark);
 }
 
-/* Handle form elements in dark mode */
+
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode textarea,
@@ -185,10 +184,10 @@ body.dark-mode button {
   border-color: var(--border-dark);
 }
 
-/* Cards and panels in dark mode */
+
 body.dark-mode .card,
 body.dark-mode .panel,
 body.dark-mode .container {
   background-color: var(--component-bg-dark);
   border-color: var(--border-dark);
-}
+} */
