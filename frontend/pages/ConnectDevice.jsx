@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/connectdevice.css';
+
 import { 
   FaHeartbeat, 
   FaThermometerHalf, 
@@ -9,7 +10,7 @@ import {
   FaWifi, 
   FaCheckCircle,
   FaExclamationTriangle
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
 const ConnectDevice = () => {
   const [isScanning, setIsScanning] = useState(false);
