@@ -477,3 +477,202 @@ body.dark-theme .language-button:focus {
     border: 2px solid CanvasText;
   }
 }
+@media (max-width: 991px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .sidebar.collapsed {
+    width: 50px;
+  }
+  
+  .sidebar-text {
+    font-size: 13px;
+  }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    overflow-x: auto;
+    height: auto;
+  }
+  
+  .sidebar-item {
+    flex-direction: column;
+    padding: 8px;
+    text-align: center;
+    margin: 0 4px;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar-text {
+    font-size: 10px;
+  }
+  
+  .sidebar-divider,
+  .collapse-button {
+    display: none;
+  }
+  
+  .sidebar-footer {
+    display: none;
+  }
+  
+  /* Mobile menu with overflow indicator */
+  .sidebar-menu {
+    position: relative;
+    padding-right: 50px; /* Space for the more button */
+  }
+  
+  /* Create a floating action button for theme/language on mobile */
+  .mobile-settings-button {
+    display: flex;
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1a56db;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 101;
+    border: none;
+    cursor: pointer;
+  }
+  
+  body.dark-theme .mobile-settings-button {
+    background: #3182ce;
+  }
+  
+  /* Mobile dropdown menu */
+  .mobile-dropdown {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 102;
+  }
+  
+  body.dark-theme .mobile-dropdown {
+    background: #1a202c;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mobile-dropdown.active {
+    display: block;
+  }
+  
+  .mobile-dropdown .theme-toggle-button {
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .mobile-dropdown .language-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .sidebar-text {
+    font-size: 9px;
+  }
+  
+  .sidebar-item {
+    padding: 6px 4px;
+  }
+  
+  .sidebar-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Show only critical navigation items */
+  .sidebar-item:nth-child(n+5) {
+    display: none;
+  }
+  
+  /* Adjust the more menu button */
+  .sidebar-menu::after {
+    padding: 6px 8px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .sidebar-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .sidebar-text {
+    font-size: 8px;
+  }
+  
+  /* Show only essential items */
+  .sidebar-item:nth-child(n+4) {
+    display: none;
+  }
+}
+
+/* For devices with notches or punch-holes, ensure safe area */
+@supports (padding: max(0px)) {
+  .sidebar {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+  }
+  
+  .mobile-settings-button {
+    bottom: calc(80px + env(safe-area-inset-bottom, 0));
+    right: max(20px, env(safe-area-inset-right, 20px));
+  }
+}
+
+/* Orientation changes */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .sidebar {
+    height: 100%;
+    width: 60px;
+  }
+  
+  .sidebar-item {
+    padding: 8px 0;
+  }
+  
+  .sidebar-text {
+    display: none;
+  }
+  
+  .sidebar-icon {
+    margin-bottom: 0;
+  }
+}
