@@ -160,14 +160,14 @@
   }
   
   /* Language specific styles */
-  :root[lang="en"] {
+  /* :root[lang="en"] {
     /* English specific variables if needed */
-  }
+  /* }  */
   
-  :root[lang="fr"] {
+  /* :root[lang="fr"] { */
     /* French specific variables if needed */
-  }
+  /* } */
   
-  :root[lang="kin"] {
+  /* :root[lang="kin"] { */
     /* Kinyarwanda specific variables if needed */
-  }
+  /* } */
