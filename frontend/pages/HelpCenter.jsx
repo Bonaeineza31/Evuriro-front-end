@@ -1,5 +1,8 @@
 // HelpCenter.jsx
 import React, { useState } from 'react';
+import { FaSearch, FaCalendarAlt, FaHeadset, FaFileInvoiceDollar, 
+         FaNotesMedical, FaShieldAlt, FaBook, FaVideo, 
+         FaMobile, FaClipboardList } from 'react-icons/fa';
 import './HelpCenter.css';
 
 const HelpCenter = () => {
@@ -7,11 +10,11 @@ const HelpCenter = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { id: 'appointment', name: 'Appointments' },
-    { id: 'technical', name: 'Technical Support' },
-    { id: 'billing', name: 'Billing & Insurance' },
-    { id: 'medical', name: 'Medical Questions' },
-    { id: 'privacy', name: 'Privacy & Security' }
+    { id: 'appointment', name: 'Appointments', icon: <FaCalendarAlt /> },
+    { id: 'technical', name: 'Technical Support', icon: <FaHeadset /> },
+    { id: 'billing', name: 'Billing & Insurance', icon: <FaFileInvoiceDollar /> },
+    { id: 'medical', name: 'Medical Questions', icon: <FaNotesMedical /> },
+    { id: 'privacy', name: 'Privacy & Security', icon: <FaShieldAlt /> }
   ];
 
   const faqs = {
@@ -106,7 +109,9 @@ const HelpCenter = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="search-button">Search</button>
+          <button className="search-button">
+            <FaSearch className="search-icon" /> Search
+          </button>
         </div>
       </div>
 
@@ -123,6 +128,7 @@ const HelpCenter = () => {
                   setSearchQuery('');
                 }}
               >
+                <span className="category-icon">{category.icon}</span>
                 {category.name}
               </li>
             ))}
@@ -130,13 +136,25 @@ const HelpCenter = () => {
           
           <div className="contact-support">
             <h3>Need more help?</h3>
-            <button className="contact-button">Contact Support</button>
+            <button className="contact-button">
+              <FaHeadset className="button-icon" /> Contact Support
+            </button>
             <p className="support-hours">Available 24/7</p>
           </div>
         </div>
 
         <div className="faq-section">
-          <h2>{searchQuery ? 'Search Results' : categories.find(c => c.id === activeCategory).name}</h2>
+          <h2>
+            {searchQuery 
+              ? 'Search Results' 
+              : <>
+                  <span className="category-icon-header">
+                    {categories.find(c => c.id === activeCategory).icon}
+                  </span>
+                  {categories.find(c => c.id === activeCategory).name}
+                </>
+            }
+          </h2>
           
           <div className="faq-list">
             {filteredFaqs.length > 0 ? (
@@ -159,19 +177,19 @@ const HelpCenter = () => {
         <h3>Quick Links</h3>
         <div className="links-container">
           <a href="#" className="quick-link">
-            <span className="link-icon">📝</span>
+            <FaBook className="link-icon" />
             User Guide
           </a>
           <a href="#" className="quick-link">
-            <span className="link-icon">🎥</span>
+            <FaVideo className="link-icon" />
             Video Tutorials
           </a>
           <a href="#" className="quick-link">
-            <span className="link-icon">📱</span>
+            <FaMobile className="link-icon" />
             Device Setup
           </a>
           <a href="#" className="quick-link">
-            <span className="link-icon">📋</span>
+            <FaClipboardList className="link-icon" />
             Appointment Checklist
           </a>
         </div>
