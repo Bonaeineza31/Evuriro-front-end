@@ -86,8 +86,18 @@ const Settings = () => {
       });
     }
   };
-
-  // Theme toggle handler
+  // Inside your Settings component, add this useEffect
+useEffect(() => {
+    // Check if user has a saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setPreferences(prev => ({
+      ...prev,
+      theme: savedTheme
+    }));
+    document.body.className = savedTheme;
+  }, []);
+  
+  // Modify the toggleTheme function to save to localStorage
   const toggleTheme = () => {
     const newTheme = preferences.theme === 'light' ? 'dark' : 'light';
     setPreferences({
@@ -96,12 +106,9 @@ const Settings = () => {
     });
     // Apply theme to the entire application
     document.body.className = newTheme;
+    // Save to localStorage
+    localStorage.setItem('theme', newTheme);
   };
-
-  // Apply theme on component mount and theme changes
-  useEffect(() => {
-    document.body.className = preferences.theme;
-  }, [preferences.theme]);
 
   // Save changes handler
   const saveChanges = () => {
