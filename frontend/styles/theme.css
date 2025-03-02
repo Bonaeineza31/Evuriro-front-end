@@ -1,173 +1,211 @@
-/* ThemeStyles.css - Global theme variables and styles */
+/* Base theme variables */
+:root {
+  /* Light theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --accent-color: #3b82f6;
+  --border-color: #e5e7eb;
+  
+  /* Card and interactive elements */
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --hover-bg: #f3f4f6;
+  --form-bg: #ffffff;
+  --button-primary-bg: #3b82f6;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #f3f4f6;
+  --button-secondary-text: #4b5563;
+  
+  /* Status colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
 
-/* Light Theme (Default) */
-:root[data-theme="light"] {
-    /* Core colors */
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --accent-color: #f39c12;
-    --danger-color: #e74c3c;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --info-color: #3498db;
-    
-    /* Background colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --bg-tertiary: #f1f2f3;
-    --navbar-bg: #ffffff;
-    --sidebar-bg: #ffffff;
-    --card-bg: #ffffff;
-    --modal-bg: #ffffff;
-    --dropdown-bg: #ffffff;
-    
-    /* Text colors */
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-muted: #999999;
-    --text-light: #ffffff;
-    
-    /* Border colors */
-    --border-color: #e0e0e0;
-    --divider-color: #eeeeee;
-    
-    /* Form element colors */
-    --input-bg: #ffffff;
-    --input-border: #cccccc;
-    --input-focus-border: #3498db;
-    --input-placeholder: #999999;
-    
-    /* Button colors */
-    --btn-primary-bg: #3498db;
-    --btn-primary-text: #ffffff;
-    --btn-secondary-bg: #f4f4f4;
-    --btn-secondary-text: #333333;
-    
-    /* Shadow */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
+/* Dark theme */
+[data-theme="dark"] {
+  /* Dark theme */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --accent-color: #60a5fa;
+  --border-color: #374151;
   
-  /* Dark Theme */
-  :root[data-theme="dark"] {
-    /* Core colors */
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --accent-color: #f39c12;
-    --danger-color: #e74c3c;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --info-color: #3498db;
-    
-    /* Background colors */
-    --bg-primary: #121212;
-    --bg-secondary: #1e1e1e;
-    --bg-tertiary: #2c2c2c;
-    --navbar-bg: #1a1a1a;
-    --sidebar-bg: #1a1a1a;
-    --card-bg: #2c2c2c;
-    --modal-bg: #2c2c2c;
-    --dropdown-bg: #2c2c2c;
-    
-    /* Text colors */
-    --text-primary: #f0f0f0;
-    --text-secondary: #cccccc;
-    --text-muted: #999999;
-    --text-light: #ffffff;
-    
-    /* Border colors */
-    --border-color: #444444;
-    --divider-color: #3a3a3a;
-    
-    /* Form element colors */
-    --input-bg: #383838;
-    --input-border: #555555;
-    --input-focus-border: #3498db;
-    --input-placeholder: #888888;
-    
-    /* Button colors */
-    --btn-primary-bg: #3498db;
-    --btn-primary-text: #ffffff;
-    --btn-secondary-bg: #444444;
-    --btn-secondary-text: #f0f0f0;
-    
-    /* Shadow */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-  }
+  /* Card and interactive elements */
+  --card-bg: #1f2937;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --hover-bg: #374151;
+  --form-bg: #1f2937;
+  --button-primary-bg: #60a5fa;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #374151;
+  --button-secondary-text: #d1d5db;
   
-  /* Global styles */
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Navbar styles */
-  .navbar {
-    background-color: var(--navbar-bg);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    color: var(--text-primary);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* Sidebar styles */
-  .sidebar {
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
-    color: var(--text-primary);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* Card styles */
-  .card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-    color: var(--text-primary);
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  }
-  
-  /* Input styles */
-  input, select, textarea {
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
-    color: var(--text-primary);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--input-focus-border);
-    outline: none;
-  }
-  
-  /* Button styles */
-  button.btn-primary {
-    background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-  }
-  
-  button.btn-secondary {
-    background-color: var(--btn-secondary-bg);
-    color: var(--btn-secondary-text);
-  }
-  
-  /* Language specific styles */
-  /* :root[lang="en"] {
-    /* English specific variables if needed */
-  /* }  */
-  
-  /* :root[lang="fr"] { */
-    /* French specific variables if needed */
-  /* } */
-  
-  /* :root[lang="kin"] { */
-    /* Kinyarwanda specific variables if needed */
-  /* } */
+  /* Status colors remain consistent for accessibility */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #60a5fa;
+}
+
+/* Apply theme to base elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Links */
+a {
+  color: var(--accent-color);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button.primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+button.primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button.secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+button.secondary:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Card elements */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Form elements */
+input, select, textarea {
+  background-color: var(--form-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+tr:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Status indicators */
+.status-success {
+  color: var(--success);
+}
+
+.status-warning {
+  color: var(--warning);
+}
+
+.status-error {
+  color: var(--error);
+}
+
+.status-info {
+  color: var(--info);
+}
+
+/* When body has dark-mode class, apply dark mode styles */
+body.dark-mode {
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --accent-color: var(--accent-dark);
+  --border-color: var(--border-dark);
+  --card-bg: var(--bg-secondary-dark);
+  --hover-bg: var(--hover-dark);
+  --form-bg: var(--bg-secondary-dark);
+}
+
+/* High contrast mode for accessibility */
+body.high-contrast {
+  --bg-primary: #000000;
+  --bg-secondary: #222222;
+  --text-primary: #ffffff;
+  --text-secondary: #dddddd;
+  --accent-color: #ffff00;
+  --border-color: #ffffff;
+  --card-bg: #111111;
+  --hover-bg: #333333;
+}
+
+/* Transition all color changes for smoothness */
+*, *::before, *::after {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
