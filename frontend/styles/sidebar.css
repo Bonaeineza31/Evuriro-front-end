@@ -402,4 +402,212 @@ body.dark-mode .language-selector button:hover,
 .sidebar.dark-mode .language-selector button:hover {
   background-color: var(--bg-secondary-dark);
 }
+.language-selector button.active {
+  background-color: var(--accent-light);
+  color: white;
+  border-color: var(--accent-light);
+}
 
+body.dark-mode .language-selector button.active,
+.sidebar.dark-mode .language-selector button.active {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+/* Additional responsive tweaks */
+@media (max-width: 576px) {
+  .sidebar-item {
+    padding: 10px 12px;
+  }
+  
+  .sidebar-icon {
+    margin-right: 8px;
+  }
+  
+  .language-buttons {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .sidebar-footer {
+    padding: 12px;
+  }
+}
+
+/* Handle extremely small screens */
+@media (max-width: 360px) {
+  .sidebar {
+    width: 100%;
+  }
+  
+  .sidebar-item {
+    padding: 8px;
+    justify-content: center;
+  }
+  
+  .sidebar-text {
+    display: none;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .sidebar.collapsed {
+    width: 60px;
+  }
+  
+  .sidebar-item {
+    padding: 10px 12px;
+  }
+}
+
+/* Transitions for smooth theme switching */
+.sidebar,
+.sidebar-item,
+.sidebar-divider,
+.collapse-button,
+.theme-toggle-button,
+.language-button {
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Accessibility improvements */
+.sidebar-item:focus,
+.collapse-button:focus,
+.theme-toggle-button:focus,
+.language-button:focus {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+body.dark-mode .sidebar-item:focus,
+body.dark-mode .collapse-button:focus,
+body.dark-mode .theme-toggle-button:focus,
+body.dark-mode .language-button:focus,
+.sidebar.dark-mode .sidebar-item:focus,
+.sidebar.dark-mode .collapse-button:focus,
+.sidebar.dark-mode .theme-toggle-button:focus,
+.sidebar.dark-mode .language-button:focus {
+  outline-color: var(--accent-dark);
+}
+
+/* Enhanced hover effects */
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Handle RTL languages */
+.rtl .sidebar {
+  left: auto;
+  right: 0;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rtl .sidebar.dark-mode,
+body.rtl.dark-mode .sidebar {
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.rtl .collapse-button {
+  left: -12px;
+  right: auto;
+}
+
+.rtl .sidebar-icon {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+/* Animation for sidebar item hover */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sidebar-item:active {
+  animation: pulse 0.3s ease;
+}
+
+/* Handle printing */
+@media print {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Fix for Firefox specific issue with mask images */
+@-moz-document url-prefix() {
+  .sidebar-icon {
+    background-color: currentColor;
+  }
+}
+
+/* Ensure collapsed state works properly in all browsers */
+.sidebar.collapsed .sidebar-menu {
+  align-items: center;
+}
+
+.sidebar.collapsed .sidebar-item {
+  justify-content: center;
+  width: 40px;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .sidebar-footer {
+  align-items: center;
+  padding: 16px 0;
+}
+
+.sidebar.collapsed .theme-toggle-button {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.sidebar.collapsed .language-buttons {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card-like effect for sidebar items on hover */
+.sidebar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .sidebar-item:hover,
+.sidebar.dark-mode .sidebar-item:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional touch device optimizations */
+@media (hover: none) {
+  .sidebar-item {
+    padding: 14px 16px; /* Larger touch targets */
+  }
+  
+  .collapse-button {
+    width: 32px;
+    height: 32px;
+  }
+}
