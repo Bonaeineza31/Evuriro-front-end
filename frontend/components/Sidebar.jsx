@@ -6,15 +6,6 @@ import { useTheme } from '../pages/Theme';
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { theme, toggleTheme, language, changeLanguage } = useTheme();
-  
-  // Apply dark-mode class to the body element whenever theme changes
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }, [theme]);
 
   const content = {
     en: {
@@ -58,7 +49,7 @@ const Sidebar = () => {
   const text = content[language] || content.en;
 
   return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${theme === 'dark' ? 'dark-mode' : ''}`}>
+    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <button 
         className="collapse-button"
         onClick={() => setIsCollapsed(!isCollapsed)}
