@@ -8,11 +8,11 @@ export const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const [language, setLanguage] = useState('en');
-
+  
   useEffect(() => {
     // Load saved preferences from localStorage on initial load
     const savedTheme = localStorage.getItem('theme') || 'light';
-    const savedLanguage = localStorage.getItem('language') || 'en';
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
     
     setTheme(savedTheme);
     setLanguage(savedLanguage);
@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }) => {
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.documentElement.setAttribute('lang', savedLanguage);
   }, []);
-
+  
   // Function to toggle theme
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -33,18 +33,18 @@ export const ThemeProvider = ({ children }) => {
     // Apply to the root element
     document.documentElement.setAttribute('data-theme', newTheme);
   };
-
+  
   // Function to change language
   const changeLanguage = (lang) => {
     setLanguage(lang);
     
     // Save to localStorage
-    localStorage.setItem('language', lang);
+    localStorage.setItem('preferredLanguage', lang);
     
     // Apply to the root element
     document.documentElement.setAttribute('lang', lang);
   };
-
+  
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, language, changeLanguage }}>
       {children}
