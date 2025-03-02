@@ -1,103 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/medicalrecord.css';
-
-// Translation data
-// const translations = {
-//   en: {
-//     title: "Medical Records",
-//     searchPlaceholder: "Search your records...",
-//     tabs: {
-//       recent: "Recent",
-//       labResults: "Lab Results",
-//       medications: "Medications",
-//       diagnoses: "Diagnoses",
-//       visits: "Visits"
-//     },
-//     buttons: {
-//       viewDetails: "View Details",
-//       download: "Download",
-//       viewReport: "View Report",
-//       requestRefill: "Request Refill",
-//       setReminder: "Set Reminder",
-//       learnMore: "Learn More",
-//       trackSymptoms: "Track Symptoms",
-//       viewFullReport: "View Full Report",
-//       scheduleFollowUp: "Schedule Follow-up",
-//       downloadAll: "Download All Records",
-//       shareProvider: "Share with Provider",
-//       print: "Print Records"
-//     },
-//     summary: {
-//       activeMedications: "Active Medications",
-//       recentLabResults: "Recent Lab Results",
-//       activeConditions: "Active Conditions",
-//       upcomingAppointment: "Upcoming Appointment"
-//     },
-//     details: {
-//       results: "Results:",
-//       refillsRemaining: "Refills Remaining:",
-//       ends: "Ends:",
-//       notes: "Notes:",
-//       diagnosedBy: "By:",
-//       prescribed: "Prescribed:",
-//       reason: "Reason:",
-//       summary: "Summary:"
-//     }
-//   },
-//   rw: {
-//     title: "Inyandiko z'Ubuvuzi",
-//     searchPlaceholder: "Shakisha inyandiko zawe...",
-//     tabs: {
-//       recent: "Vuba aha",
-//       labResults: "Ibyavuye mu ipimwa",
-//       medications: "Imiti",
-//       diagnoses: "Indwara",
-//       visits: "Gusura"
-//     },
-//     buttons: {
-//       viewDetails: "Reba Ibisobanuro",
-//       download: "Kuramo",
-//       viewReport: "Reba Raporo",
-//       requestRefill: "Saba Kongera",
-//       setReminder: "Shyiraho Urwibutso",
-//       learnMore: "Menya Byinshi",
-//       trackSymptoms: "Kurikirana Ibimenyetso",
-//       viewFullReport: "Reba Raporo Yuzuye",
-//       scheduleFollowUp: "Tegura Gukurikirana",
-//       downloadAll: "Kuramo Inyandiko Zose",
-//       shareProvider: "Gusangiza Umuganga",
-//       print: "Gucapa Inyandiko"
-//     },
-//     summary: {
-//       activeMedications: "Imiti Ikoreshwa",
-//       recentLabResults: "Ibipimo Vuba",
-//       activeConditions: "Indwara Ziriho",
-//       upcomingAppointment: "Gahunda Itegerejwe"
-//     },
-//     details: {
-//       results: "Ibisubizo:",
-//       refillsRemaining: "Kongera Bisigaye:",
-//       ends: "Birangira:",
-//       notes: "Inyandiko:",
-//       diagnosedBy: "Byakozwe na:",
-//       prescribed: "Byanditswe:",
-//       reason: "Impamvu:",
-//       summary: "Incamake:"
-//     }
-//   }
-// };
 
 const MedicalRecords = () => {
   // State for different categories of medical records
   const [activeTab, setActiveTab] = useState('recent');
   const [searchQuery, setSearchQuery] = useState('');
-  const [language, setLanguage] = useState('en');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [downloadStatus, setDownloadStatus] = useState({});
-  
-  // Get translations based on selected language
-  const t = translations[language];
   
   // Sample medical data
   const medicalData = {
@@ -167,16 +77,12 @@ const MedicalRecords = () => {
 
   // Handle download all
   const handleDownloadAll = () => {
-    alert(language === 'en' ? 
-      'Downloading all medical records as PDF...' : 
-      'Kumanura inyandiko zose z ubuvuzi nka PDF...');
+    alert('Downloading all medical records as PDF...');
   };
 
   // Handle share with provider
   const handleShareWithProvider = () => {
-    alert(language === 'en' ? 
-      'Please select a healthcare provider to share your records with.' : 
-      'Hitamo umuganga wo gusangiza inyandiko zawe.');
+    alert('Please select a healthcare provider to share your records with.');
   };
 
   // Handle print records
@@ -186,16 +92,12 @@ const MedicalRecords = () => {
 
   // Handle request refill
   const handleRequestRefill = (medication) => {
-    alert(language === 'en' ? 
-      `Requesting refill for ${medication.name} ${medication.dosage}` : 
-      `Gusaba kongera ${medication.name} ${medication.dosage}`);
+    alert(`Requesting refill for ${medication.name} ${medication.dosage}`);
   };
 
   // Handle set reminder
   const handleSetReminder = (medication) => {
-    alert(language === 'en' ? 
-      `Setting reminder for ${medication.name} ${medication.dosage}` : 
-      `Gushyiraho urwibutso rwa ${medication.name} ${medication.dosage}`);
+    alert(`Setting reminder for ${medication.name} ${medication.dosage}`);
   };
 
   // Handle learn more
@@ -205,16 +107,12 @@ const MedicalRecords = () => {
 
   // Handle track symptoms
   const handleTrackSymptoms = (diagnosis) => {
-    alert(language === 'en' ? 
-      `Opening symptom tracker for ${diagnosis.name}` : 
-      `Gufungura igikoresho cyo gukurikirana ibimenyetso bya ${diagnosis.name}`);
+    alert(`Opening symptom tracker for ${diagnosis.name}`);
   };
 
   // Handle schedule follow-up
   const handleScheduleFollowUp = (visit) => {
-    alert(language === 'en' ? 
-      `Scheduling follow-up appointment with ${visit.doctor}` : 
-      `Gutegura gahunda yo gukurikirana na ${visit.doctor}`);
+    alert(`Scheduling follow-up appointment with ${visit.doctor}`);
   };
 
   const renderRecentRecords = () => {
@@ -234,7 +132,7 @@ const MedicalRecords = () => {
                 className="med-btn-view"
                 onClick={() => handleViewDetails(record)}
               >
-                {t.buttons.viewDetails}
+                View Details
               </button>
               <button 
                 className={`med-btn-download ${downloadStatus[record.id] ? 'med-btn-' + downloadStatus[record.id] : ''}`}
@@ -242,7 +140,7 @@ const MedicalRecords = () => {
                 disabled={downloadStatus[record.id] === 'downloading'}
               >
                 {downloadStatus[record.id] === 'downloading' ? '...' : 
-                 downloadStatus[record.id] === 'completed' ? '✓' : t.buttons.download}
+                 downloadStatus[record.id] === 'completed' ? '✓' : 'Download'}
               </button>
             </div>
           </div>
@@ -264,7 +162,7 @@ const MedicalRecords = () => {
             <p className="med-record-doctor">{lab.doctor}</p>
             <p className="med-record-description">{lab.description}</p>
             <div className="med-record-results">
-              <h4>{t.details.results}</h4>
+              <h4>Results:</h4>
               <p>{lab.results}</p>
             </div>
             <div className="med-record-actions">
@@ -272,7 +170,7 @@ const MedicalRecords = () => {
                 className="med-btn-view"
                 onClick={() => handleViewDetails(lab)}
               >
-                {t.buttons.viewReport}
+                View Report
               </button>
               <button 
                 className={`med-btn-download ${downloadStatus[lab.id] ? 'med-btn-' + downloadStatus[lab.id] : ''}`}
@@ -280,7 +178,7 @@ const MedicalRecords = () => {
                 disabled={downloadStatus[lab.id] === 'downloading'}
               >
                 {downloadStatus[lab.id] === 'downloading' ? '...' : 
-                 downloadStatus[lab.id] === 'completed' ? '✓' : t.buttons.download}
+                 downloadStatus[lab.id] === 'completed' ? '✓' : 'Download'}
               </button>
             </div>
           </div>
@@ -298,25 +196,25 @@ const MedicalRecords = () => {
               <h3>{med.name}</h3>
               <span className="med-dosage">{med.dosage}</span>
             </div>
-            <p className="med-record-date">{t.details.prescribed} {med.date}</p>
-            <p className="med-record-doctor">{t.details.diagnosedBy} {med.prescriber}</p>
+            <p className="med-record-date">Prescribed: {med.date}</p>
+            <p className="med-record-doctor">By: {med.prescriber}</p>
             <p className="med-record-instructions">{med.instructions}</p>
             <div className="med-record-details">
-              <p><span>{t.details.refillsRemaining}</span> {med.refills}</p>
-              <p><span>{t.details.ends}</span> {med.endDate}</p>
+              <p><span>Refills Remaining:</span> {med.refills}</p>
+              <p><span>Ends:</span> {med.endDate}</p>
             </div>
             <div className="med-record-actions">
               <button 
                 className="med-btn-refill"
                 onClick={() => handleRequestRefill(med)}
               >
-                {t.buttons.requestRefill}
+                Request Refill
               </button>
               <button 
                 className="med-btn-reminder"
                 onClick={() => handleSetReminder(med)}
               >
-                {t.buttons.setReminder}
+                Set Reminder
               </button>
             </div>
           </div>
@@ -335,9 +233,9 @@ const MedicalRecords = () => {
               <span className={`med-status ${diagnosis.status.toLowerCase().replace(' ', '-')}`}>{diagnosis.status}</span>
             </div>
             <p className="med-record-date">Diagnosed: {diagnosis.date}</p>
-            <p className="med-record-doctor">{t.details.diagnosedBy} {diagnosis.doctor}</p>
+            <p className="med-record-doctor">By: {diagnosis.doctor}</p>
             <div className="med-record-notes">
-              <h4>{t.details.notes}</h4>
+              <h4>Notes:</h4>
               <p>{diagnosis.notes}</p>
             </div>
             <div className="med-record-actions">
@@ -345,13 +243,13 @@ const MedicalRecords = () => {
                 className="med-btn-info"
                 onClick={() => handleLearnMore(diagnosis)}
               >
-                {t.buttons.learnMore}
+                Learn More
               </button>
               <button 
                 className="med-btn-track"
                 onClick={() => handleTrackSymptoms(diagnosis)}
               >
-                {t.buttons.trackSymptoms}
+                Track Symptoms
               </button>
             </div>
           </div>
@@ -370,9 +268,9 @@ const MedicalRecords = () => {
               <span className="med-visit-date">{visit.date}</span>
             </div>
             <p className="med-record-doctor">{visit.doctor}</p>
-            <p className="med-record-reason">{t.details.reason} {visit.reason}</p>
+            <p className="med-record-reason">Reason: {visit.reason}</p>
             <div className="med-record-summary">
-              <h4>{t.details.summary}</h4>
+              <h4>Summary:</h4>
               <p>{visit.summary}</p>
             </div>
             <div className="med-record-actions">
@@ -380,13 +278,13 @@ const MedicalRecords = () => {
                 className="med-btn-view"
                 onClick={() => handleViewDetails(visit)}
               >
-                {t.buttons.viewFullReport}
+                View Full Report
               </button>
               <button 
                 className="med-btn-follow"
                 onClick={() => handleScheduleFollowUp(visit)}
               >
-                {t.buttons.scheduleFollowUp}
+                Schedule Follow-up
               </button>
             </div>
           </div>
@@ -443,25 +341,11 @@ const MedicalRecords = () => {
   return (
     <div className="med-records-container">
       <div className="med-records-header">
-        <h1>{t.title}</h1>
-        <div className="med-language-selector">
-          <button 
-            className={`med-language-btn ${language === 'en' ? 'med-active' : ''}`} 
-            onClick={() => setLanguage('en')}
-          >
-            English
-          </button>
-          <button 
-            className={`med-language-btn ${language === 'rw' ? 'med-active' : ''}`} 
-            onClick={() => setLanguage('rw')}
-          >
-            Kinyarwanda
-          </button>
-        </div>
+        <h1>Medical Records</h1>
         <div className="med-search-container">
           <input 
             type="text" 
-            placeholder={t.searchPlaceholder}
+            placeholder="Search your records..."
             className="med-search-input"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -478,50 +362,50 @@ const MedicalRecords = () => {
           className={`med-tab ${activeTab === 'recent' ? 'med-active' : ''}`}
           onClick={() => setActiveTab('recent')}
         >
-          {t.tabs.recent}
+          Recent
         </button>
         <button 
           className={`med-tab ${activeTab === 'lab-results' ? 'med-active' : ''}`}
           onClick={() => setActiveTab('lab-results')}
         >
-          {t.tabs.labResults}
+          Lab Results
         </button>
         <button 
           className={`med-tab ${activeTab === 'medications' ? 'med-active' : ''}`}
           onClick={() => setActiveTab('medications')}
         >
-          {t.tabs.medications}
+          Medications
         </button>
         <button 
           className={`med-tab ${activeTab === 'diagnoses' ? 'med-active' : ''}`}
           onClick={() => setActiveTab('diagnoses')}
         >
-          {t.tabs.diagnoses}
+          Diagnoses
         </button>
         <button 
           className={`med-tab ${activeTab === 'visits' ? 'med-active' : ''}`}
           onClick={() => setActiveTab('visits')}
         >
-          {t.tabs.visits}
+          Visits
         </button>
       </div>
 
       <div className="med-records-summary">
         <div className="med-summary-card">
           <h3>{filteredData.medications.length}</h3>
-          <p>{t.summary.activeMedications}</p>
+          <p>Active Medications</p>
         </div>
         <div className="med-summary-card">
           <h3>{filteredData.labResults.length}</h3>
-          <p>{t.summary.recentLabResults}</p>
+          <p>Recent Lab Results</p>
         </div>
         <div className="med-summary-card">
           <h3>{filteredData.diagnoses.length}</h3>
-          <p>{t.summary.activeConditions}</p>
+          <p>Active Conditions</p>
         </div>
         <div className="med-summary-card med-alert">
           <h3>1</h3>
-          <p>{t.summary.upcomingAppointment}</p>
+          <p>Upcoming Appointment</p>
         </div>
       </div>
 
@@ -534,19 +418,19 @@ const MedicalRecords = () => {
           className="med-btn-primary"
           onClick={handleDownloadAll}
         >
-          {t.buttons.downloadAll}
+          Download All Records
         </button>
         <button 
           className="med-btn-secondary"
           onClick={handleShareWithProvider}
         >
-          {t.buttons.shareProvider}
+          Share with Provider
         </button>
         <button 
           className="med-btn-secondary"
           onClick={handlePrintRecords}
         >
-          {t.buttons.print}
+          Print Records
         </button>
       </div>
 
