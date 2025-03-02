@@ -10,7 +10,7 @@ import Dashboard from '../pages/Dashboard';
 import Appointments from '../pages/Appointments';
 import Teleconsultation from '../pages/Teleconsultation';
 import MedicalRecords from '../pages/MedicalRecords';
-// import NearbyHospitals from '../pages/NearbyHospitals';
+import NearbyHospitals from '../pages/NearbyHospitals';
 // import ConnectDevice from '../pages/ConnectDevice';
 // import Settings from '../pages/Settings';
 // import HelpCenter from '../pages/HelpCenter';
@@ -39,8 +39,8 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
          <Route path="/appointments" element={<Appointments language={language} />} />
           <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
          <Route path="/records" element={<MedicalRecords language={language} />} />
-          {/* <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
-          <Route path="/connect-device" element={<ConnectDevice language={language} />} />
+          <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
+          {/*<Route path="/connect-device" element={<ConnectDevice language={language} />} />
           <Route path="/settings" element={<Settings language={language} />} />
           <Route path="/help" element={<HelpCenter language={language} />} />
           <Route path="*" element={<NotFound language={language} />} /> */}
@@ -89,8 +89,8 @@ const App = () => {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/teleconsult" element={<Teleconsultation />} />
          <Route path="/records" element={<MedicalRecords />} />
-           {/*<Route path="/hospitals" element={<NearbyHospitals />} />
-          <Route path="/connect-device" element={<ConnectDevice />} />
+           <Route path="/hospitals" element={<NearbyHospitals />} />
+          {/*<Route path="/connect-device" element={<ConnectDevice />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<HelpCenter />} /> */}
         </Route>
