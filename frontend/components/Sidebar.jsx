@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../pages/Theme';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
