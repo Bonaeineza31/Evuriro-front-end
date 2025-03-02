@@ -14,7 +14,7 @@ import MedicalRecords from '../pages/MedicalRecords';
 import NearbyHospitals from '../pages/NearbyHospitals';
 import ConnectDevice from '../pages/ConnectDevice';
 import Settings from '../pages/Settings';
-// import HelpCenter from '../pages/HelpCenter';
+import HelpCenter from '../pages/HelpCenter';
 // import NotFound from '../pages/NotFound';
 
 // Authentication guard
@@ -43,8 +43,8 @@ const AuthenticatedLayout = () => (
           <Route path="/hospitals" element={<NearbyHospitals />} />
           <Route path="/connect-device" element={<ConnectDevice />} />
           <Route path="/settings" element={<Settings />} />
-          {/*<Route path="/help" element={<HelpCenter />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="/help" element={<HelpCenter />} />
+          {/*<Route path="*" element={<NotFound />} /> */}
         </Routes>
       </main>
     </div>
