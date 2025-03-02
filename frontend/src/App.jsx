@@ -88,8 +88,8 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/teleconsult" element={<Teleconsultation />} />
-          {/*<Route path="/records" element={<MedicalRecords />} />
-          <Route path="/hospitals" element={<NearbyHospitals />} />
+         <Route path="/records" element={<MedicalRecords />} />
+           {/*<Route path="/hospitals" element={<NearbyHospitals />} />
           <Route path="/connect-device" element={<ConnectDevice />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<HelpCenter />} /> */}
