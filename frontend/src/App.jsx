@@ -9,7 +9,7 @@ import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
 import Appointments from '../pages/Appointments';
 import Teleconsultation from '../pages/Teleconsultation';
-// import MedicalRecords from '../pages/MedicalRecords';
+import MedicalRecords from '../pages/MedicalRecords';
 // import NearbyHospitals from '../pages/NearbyHospitals';
 // import ConnectDevice from '../pages/ConnectDevice';
 // import Settings from '../pages/Settings';
@@ -38,8 +38,8 @@ const AuthenticatedLayout = ({ language, handleLanguageChange }) => (
           <Route path="/dashboard" element={<Dashboard language={language} />} />
          <Route path="/appointments" element={<Appointments language={language} />} />
           <Route path="/teleconsult" element={<Teleconsultation language={language} />} />
-         {/* <Route path="/records" element={<MedicalRecords language={language} />} />
-          <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
+         <Route path="/records" element={<MedicalRecords language={language} />} />
+          {/* <Route path="/hospitals" element={<NearbyHospitals language={language} />} />
           <Route path="/connect-device" element={<ConnectDevice language={language} />} />
           <Route path="/settings" element={<Settings language={language} />} />
           <Route path="/help" element={<HelpCenter language={language} />} />
