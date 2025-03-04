@@ -1,8 +1,8 @@
 
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LanguageContext, LanguageSelector } from './LanguageSelector';
-import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg
+import { LanguageContext, LanguageSelector } from '../src/Languages';
+import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg'
 import '../styles/welcome.css';
 
 const Welcome = () => {
