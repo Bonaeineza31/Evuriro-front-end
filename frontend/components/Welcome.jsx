@@ -68,6 +68,45 @@ const Welcome = () => {
       enterDetails: 'Uzuza amakuru yawe bwite'
     }
   };
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    console.log('Sign In:', { email, password, rememberMe });
+    
+    // In a real app, you would validate credentials against your API
+    if (email && password) {
+      // Save authentication state and user info
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('preferredLanguage', language);
+      
+      // Redirect to dashboard
+      navigate('/dashboard');
+    } else {
+      alert('Please enter valid credentials');
+    }
+  };
+
+  // Define handleSignUp method
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    console.log('Sign Up:', { fullName, email, password, agreeToTerms });
+    
+    if (fullName && email && password && agreeToTerms) {
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userName', fullName);
+      localStorage.setItem('preferredLanguage', language);
+      
+      navigate('/dashboard');
+    } else {
+      alert('Please fill all required fields');
+    }
+  };
+
+  // Language toggle function
+  const toggleLanguage = (lang) => {
+    setLanguage(lang);
+  };
 
   const text = content[language];
 
@@ -162,9 +201,9 @@ const Welcome = () => {
                 </div>
 
                 <button type="submit" className="submit-btn">{text.signIn}</button>
-                <button type="button" className="guest-btn" onClick={handleGuestLogin}>
+                {/* <button type="button" className="guest-btn" onClick={handleGuestLogin}>
                   {text.guest}
-                </button>
+                </button> */}
 
                 <div className="separator">
                   <span>or</span>
@@ -215,7 +254,7 @@ const Welcome = () => {
                   />
                 </div>
 
-                <div className="form-group">
+               <form onSubmit={handleSignIn} className="signin-form">
                   <label htmlFor="signupEmail">{text.email}</label>
                   <input
                     type="email"
@@ -225,7 +264,7 @@ const Welcome = () => {
                     placeholder="example@mail.com"
                     required
                   />
-                </div>
+                </form>
 
                 <div className="form-group">
                   <label htmlFor="signupPassword">{text.password}</label>
