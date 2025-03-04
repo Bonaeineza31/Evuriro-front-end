@@ -1,13 +1,12 @@
-
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LanguageContext, LanguageSelector } from '../src/Languages';
-import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg'
+import { LanguageContext,LanguageSelector } from '../src/Languages';
+import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg';
 import '../styles/welcome.css';
 
 const Welcome = () => {
   const navigate = useNavigate();
-  const { language } = useContext(LanguageContext);
+  const { language, setLanguage } = useContext(LanguageContext);
   const [activeTab, setActiveTab] = useState('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -68,25 +67,28 @@ const Welcome = () => {
       enterDetails: 'Uzuza amakuru yawe bwite'
     }
   };
+
+  // Social login handler (placeholder)
+  const handleSocialLogin = (platform) => {
+    console.log(`Attempting to login with ${platform}`);
+    // Implement actual social login logic
+  };
+
   const handleSignIn = (e) => {
     e.preventDefault();
     console.log('Sign In:', { email, password, rememberMe });
     
-    // In a real app, you would validate credentials against your API
     if (email && password) {
-      // Save authentication state and user info
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userEmail', email);
       localStorage.setItem('preferredLanguage', language);
       
-      // Redirect to dashboard
       navigate('/dashboard');
     } else {
       alert('Please enter valid credentials');
     }
   };
 
-  // Define handleSignUp method
   const handleSignUp = (e) => {
     e.preventDefault();
     console.log('Sign Up:', { fullName, email, password, agreeToTerms });
@@ -103,47 +105,43 @@ const Welcome = () => {
     }
   };
 
-  // Language toggle function
-  const toggleLanguage = (lang) => {
-    setLanguage(lang);
-  };
-
   const text = content[language];
 
   return (
     <div className="welcome-container">
-      <LanguageSelector />
+      <div className="language-selector-container">
+        <LanguageSelector />
+      </div>
 
       <div className="welcome-content">
-        <div className="left-section" style={{
-          backgroundImage: `linear-gradient(rgba(30, 87, 153, 0.8), rgba(30, 87, 153, 0.8)), url(${doctorImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}>
-          {/* left side */}
+        <div 
+          className="left-section" 
+          style={{
+            backgroundImage: `linear-gradient(rgba(30, 87, 153, 0.8), rgba(30, 87, 153, 0.8)), url(${doctorImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="left-content">
             <h1>{text.welcome}</h1>
             <p>{text.enterDetails}</p>
             <div className="tab-buttons-mobile">
-            <div className="tab-buttons-mobile">
-            <button 
-              className={activeTab === 'signin' ? 'active' : ''} 
-              onClick={() => setActiveTab('signin')}
-            >
-              {text.signIn}
-            </button>
-            <button 
-              className={activeTab === 'signup' ? 'active' : ''} 
-              onClick={() => setActiveTab('signup')}
-            >
-              {text.signUp}
-            </button>
-          </div>
+              <button 
+                className={activeTab === 'signin' ? 'active' : ''} 
+                onClick={() => setActiveTab('signin')}
+              >
+                {text.signIn}
+              </button>
+              <button 
+                className={activeTab === 'signup' ? 'active' : ''} 
+                onClick={() => setActiveTab('signup')}
+              >
+                {text.signUp}
+              </button>
             </div>
           </div>
         </div>
 
-        {/* rigth side */}
         <div className="right-section">
           <div className="card">
             <div className="tab-buttons">
@@ -201,9 +199,6 @@ const Welcome = () => {
                 </div>
 
                 <button type="submit" className="submit-btn">{text.signIn}</button>
-                {/* <button type="button" className="guest-btn" onClick={handleGuestLogin}>
-                  {text.guest}
-                </button> */}
 
                 <div className="separator">
                   <span>or</span>
@@ -237,7 +232,7 @@ const Welcome = () => {
                 </div>
 
                 <p className="switch-form">
-                  {text.noAccount} <button onClick={() => setActiveTab('signup')}>{text.signUp}</button>
+                  {text.noAccount} <button type="button" onClick={() => setActiveTab('signup')}>{text.signUp}</button>
                 </p>
               </form>
             ) : (
@@ -254,7 +249,7 @@ const Welcome = () => {
                   />
                 </div>
 
-               <form onSubmit={handleSignIn} className="signin-form">
+                <div className="form-group">
                   <label htmlFor="signupEmail">{text.email}</label>
                   <input
                     type="email"
@@ -264,7 +259,7 @@ const Welcome = () => {
                     placeholder="example@mail.com"
                     required
                   />
-                </form>
+                </div>
 
                 <div className="form-group">
                   <label htmlFor="signupPassword">{text.password}</label>
@@ -323,7 +318,7 @@ const Welcome = () => {
                 </div>
 
                 <p className="switch-form">
-                  {text.haveAccount} <button onClick={() => setActiveTab('signin')}>{text.signIn}</button>
+                  {text.haveAccount} <button type="button" onClick={() => setActiveTab('signin')}>{text.signIn}</button>
                 </p>
               </form>
             )}
