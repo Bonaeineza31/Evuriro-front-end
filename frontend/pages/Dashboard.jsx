@@ -319,9 +319,9 @@ const Dashboard = ({ language }) => {
               <button className="update-vitals-btn" onClick={handleUpdateVitals}>
                 {text.updateVitals}
               </button>
-              <button className="connect-device-btn">
+             <Link to ="/connect-device" className="connect-device-btn">
                 {text.connectDevice}
-              </button>
+              </Link>
             </div>
             
             {/* Vital trends visualization */}
