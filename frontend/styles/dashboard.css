@@ -316,7 +316,7 @@ body, html {
 .action-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
   margin-top: 8px;
 }
 
@@ -328,7 +328,7 @@ body, html {
   background-color: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   gap: 10px;
   transition: all 0.2s;
   cursor: pointer;
