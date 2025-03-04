@@ -416,16 +416,30 @@ const Welcome = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}>
+          {/* left side */}
           <div className="left-content">
             <h1>{text.welcome}</h1>
             <p>{text.enterDetails}</p>
             <div className="tab-buttons-mobile">
-              {/* ... existing tab buttons ... */}
+            <div className="tab-buttons-mobile">
+            <button 
+              className={activeTab === 'signin' ? 'active' : ''} 
+              onClick={() => setActiveTab('signin')}
+            >
+              {text.signIn}
+            </button>
+            <button 
+              className={activeTab === 'signup' ? 'active' : ''} 
+              onClick={() => setActiveTab('signup')}
+            >
+              {text.signUp}
+            </button>
+          </div>
             </div>
           </div>
         </div>
 
-        {/* Right section remains the same as your original code */}
+        {/* rigth side */}
         <div className="right-section">
           <div className="card">
             <div className="tab-buttons">
