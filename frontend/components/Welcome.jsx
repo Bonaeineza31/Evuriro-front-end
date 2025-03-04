@@ -15,7 +15,59 @@ const Welcome = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
-  // ... (rest of your existing content object remains the same)
+  const content = {
+    english: {
+      welcome: 'Welcome Back!',
+      getStarted: 'Get Started',
+      signIn: 'Sign In',
+      signUp: 'Sign Up',
+      email: 'Email',
+      password: 'Password',
+      fullName: 'Full Name',
+      rememberMe: 'Remember me',
+      forgotPassword: 'Forgot password?',
+      haveAccount: 'Already have an account?',
+      noAccount: "Don't have an account?",
+      agreeTerms: 'I agree to the processing of Personal data',
+      continueWith: 'Sign in with',
+      guest: 'Continue as Guest',
+      enterDetails: 'Enter personal details to your account'
+    },
+    french: {
+      welcome: 'Bon Retour!',
+      getStarted: 'Commencer',
+      signIn: 'Se Connecter',
+      signUp: "S'inscrire",
+      email: 'E-mail',
+      password: 'Mot de passe',
+      fullName: 'Nom complet',
+      rememberMe: 'Se souvenir de moi',
+      forgotPassword: 'Mot de passe oublié?',
+      haveAccount: 'Vous avez déjà un compte?',
+      noAccount: "Vous n'avez pas de compte?",
+      agreeTerms: 'J\'accepte le traitement des données personnelles',
+      continueWith: 'Se connecter avec',
+      guest: 'Continuer en tant qu\'invité',
+      enterDetails: 'Entrez vos informations personnelles'
+    },
+    kinyarwanda: {
+      welcome: 'Murakaza Neza!',
+      getStarted: 'Tangira',
+      signIn: 'Injira',
+      signUp: 'Iyandikishe',
+      email: 'Imeri',
+      password: 'Ijambo ryibanga',
+      fullName: 'Amazina yombi',
+      rememberMe: 'Unyibuke',
+      forgotPassword: 'Wibagiwe ijambo ryibanga?',
+      haveAccount: 'Usanzwe ufite konti?',
+      noAccount: "Nta konti ufite?",
+      agreeTerms: 'Nemeye gutanga amakuru yanjye bwite',
+      continueWith: 'Injira ukoresheje',
+      guest: 'Komeza nk\'umushyitsi',
+      enterDetails: 'Uzuza amakuru yawe bwite'
+    }
+  };
 
   const text = content[language];
 
