@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
 import './App.css';
 import { ThemeProvider } from '../pages/Theme';
-import { LanguageProvider } from './LanguageSelector';
+import { LanguageProvider } from '../src/Languages';
 
 
 // Import pages
