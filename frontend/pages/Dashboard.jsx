@@ -399,10 +399,10 @@ const Dashboard = ({ language }) => {
                 <CalendarIcon />
                 <span>{text.scheduleBtn}</span>
               </Link>
-              <button className="action-btn teleconsult-btn">
+              <Link to = "/teleconsult" className="action-btn teleconsult-btn">
                 <VideoIcon />
                 <span>{text.teleconsultBtn}</span>
-              </button>
+              </Link>
               <button className="action-btn upload-btn">
                 <UploadIcon />
                 <span>{text.uploadBtn}</span>
