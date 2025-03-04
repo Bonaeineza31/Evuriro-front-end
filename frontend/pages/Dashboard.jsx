@@ -407,10 +407,10 @@ const Dashboard = ({ language }) => {
                 <UploadIcon />
                 <span>{text.uploadBtn}</span>
               </button>
-              <button className="action-btn hospital-btn">
+              <Link to ="/hospitals" className="action-btn hospital-btn">
                 <HospitalIcon />
                 <span>{text.findHospitalBtn}</span>
-              </button>
+              </Link>
             </div>
           </section>
           
@@ -442,6 +442,7 @@ const Dashboard = ({ language }) => {
           <div className="modal-content">
             <h2>{text.updateVitals}</h2>
             <div className="form-group">
+              
               <label>{text.heartRate}</label>
               <input 
                 type="number" 
