@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LanguageContext, LanguageSelector } from './LanguageSelector';
-import doctorImage from '../images/doctor-smiling.png'; // You'll need to add this image
+import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg
 import '../styles/welcome.css';
 
 const Welcome = () => {
