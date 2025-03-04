@@ -4,6 +4,8 @@ import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
 import './App.css';
 import { ThemeProvider } from '../pages/Theme';
+import { LanguageProvider } from './LanguageSelector';
+
 
 // Import pages
 import Welcome from '../components/Welcome';
@@ -53,6 +55,7 @@ const AuthenticatedLayout = () => (
 
 const App = () => {
   return (
+    <LanguageProvider>
     <ThemeProvider>
       <Router>
         <Routes>
@@ -78,6 +81,7 @@ const App = () => {
         </Routes>
       </Router>
     </ThemeProvider>
+    </LanguageProvider>
   );
 };
 
