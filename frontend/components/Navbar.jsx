@@ -264,7 +264,7 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-profile" ref={dropdownRef}>
-            <div className="profile-avatar" onClick={toggleDropdown}>
+            <div className="profile-avatar2" onClick={toggleDropdown}>
               {user.avatar ? (
                 <img src={user.avatar} alt={user.name} />
               ) : (
