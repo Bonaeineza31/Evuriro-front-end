@@ -125,7 +125,7 @@ body.dark-mode .search-button:hover {
   color: #555555;
   font-weight: 500;
   padding: 10px;
-  transition: color 0.3s;
+  /* transition: color 0.3s; */
   position: relative;
 }
 
@@ -133,9 +133,7 @@ body.dark-mode .navbar-item {
   color: #cbd5e0;
 }
 
-.navbar-item:hover {
-  color: #3498db;
-}
+
 
 body.dark-mode .navbar-item:hover {
   color: #60a5fa;
