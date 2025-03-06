@@ -1,50 +1,37 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import '../styles/theme.css';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// Create Theme Context
-export const ThemeContext = createContext();
+// Create context
+const ThemeContext = createContext();
 
-// Theme Provider Component
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
-  const [language, setLanguage] = useState('en');
+  // Check if there's a saved preference in localStorage
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedLanguage = localStorage.getItem('language') || 'en';
   
-  useEffect(() => {
-    // Load saved preferences from localStorage on initial load
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-    
-    setTheme(savedTheme);
-    setLanguage(savedLanguage);
-    
-    // Apply theme to the root element
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.documentElement.setAttribute('lang', savedLanguage);
-  }, []);
-  
-  // Function to toggle theme
+  const [theme, setTheme] = useState(savedTheme);
+  const [language, setLanguage] = useState(savedLanguage);
+
+  // Update theme and save to localStorage
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    
-    // Save to localStorage
     localStorage.setItem('theme', newTheme);
     
-    // Apply to the root element
+    // Apply to document element for global CSS access
     document.documentElement.setAttribute('data-theme', newTheme);
   };
-  
-  // Function to change language
+
+  // Change language and save to localStorage
   const changeLanguage = (lang) => {
     setLanguage(lang);
-    
-    // Save to localStorage
-    localStorage.setItem('preferredLanguage', lang);
-    
-    // Apply to the root element
-    document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('language', lang);
   };
-  
+
+  // Initialize theme on component mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, []);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, language, changeLanguage }}>
       {children}
@@ -52,7 +39,7 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the theme context
-export const useTheme = () => {
-  return useContext(ThemeContext);
-};
+// Custom hook to use theme context
+export const useTheme = () => useContext(ThemeContext);
+
+export default ThemeContext;
