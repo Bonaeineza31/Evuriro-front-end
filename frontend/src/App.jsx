@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
 import './App.css';
-import ThemeContext from '../pages/Theme';
+import {ThemeProvider} from '../pages/Theme';
 import { LanguageProvider } from '../src/Languages';
 
 
@@ -56,7 +56,7 @@ const AuthenticatedLayout = () => (
 const App = () => {
   return (
     <LanguageProvider>
-    <ThemeContext>
+    <ThemeProvider>
       <Router>
         <Routes>
           {/* Public Routes */}
@@ -80,7 +80,7 @@ const App = () => {
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>
-    </ThemeContext>
+    </ThemeProvider>
     </LanguageProvider>
   );
 };
