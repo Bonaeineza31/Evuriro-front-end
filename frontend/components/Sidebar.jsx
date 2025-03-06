@@ -116,28 +116,6 @@ const Sidebar = () => {
           )}
         </button>
         
-        {!isCollapsed && (
-          <div className="language-buttons">
-            <button 
-              className={`language-button ${language === 'en' ? 'active' : ''}`}
-              onClick={() => changeLanguage('en')}
-            >
-              EN
-            </button>
-            <button 
-              className={`language-button ${language === 'fr' ? 'active' : ''}`}
-              onClick={() => changeLanguage('fr')}
-            >
-              FR
-            </button>
-            <button 
-              className={`language-button ${language === 'kin' ? 'active' : ''}`}
-              onClick={() => changeLanguage('kin')}
-            >
-              KIN
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
