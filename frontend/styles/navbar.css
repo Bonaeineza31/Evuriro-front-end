@@ -125,7 +125,7 @@ body.dark-mode .search-button:hover {
   color: #555555;
   font-weight: 500;
   padding: 10px;
-  /* transition: color 0.3s; */
+  transition: color 0.3s;
   position: relative;
 }
 
@@ -135,11 +135,11 @@ body.dark-mode .navbar-item {
 
 
 
-body.dark-mode .navbar-item:hover {
+/* body.dark-mode .navbar-item:hover {
   color: #60a5fa;
-}
+} */
 
-.navbar-item:after {
+/* .navbar-item:after {
   content: '';
   position: absolute;
   width: 0;
@@ -148,11 +148,11 @@ body.dark-mode .navbar-item:hover {
   left: 50%;
   background-color: #3498db;
   transition: all 0.3s ease;
-}
+} */
 
-body.dark-mode .navbar-item:after {
+/* body.dark-mode .navbar-item:after {
   background-color: #60a5fa;
-}
+} */
 
 .navbar-item:hover:after {
   width: 100%;
