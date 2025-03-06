@@ -242,7 +242,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="language-selector">
+          <div className="language-selector2">
             <button
               className={language === 'english' ? 'active' : ''}
               onClick={() => toggleLanguage('english')}
