@@ -52,7 +52,6 @@ const Navbar = () => {
       help: 'Help Center',
       search: 'Search...',
       searchDoctor: 'Find a Doctor',
-      darkMode: 'Dark Mode',
       notifications: 'Notifications',
       viewAll: 'View All',
       markAllRead: 'Mark All as Read',
@@ -72,7 +71,6 @@ const Navbar = () => {
       help: 'Centre d\'aide',
       search: 'Rechercher...',
       searchDoctor: 'Trouver un médecin',
-      darkMode: 'Mode sombre',
       notifications: 'Notifications',
       viewAll: 'Voir tout',
       markAllRead: 'Marquer tout comme lu',
@@ -92,7 +90,6 @@ const Navbar = () => {
       help: 'Ivuriro ry\'ubufasha',
       search: 'Gushakisha...',
       searchDoctor: 'Gushaka umuganga',
-      darkMode: 'Ibara ry\'umukara',
       notifications: 'Imenyesha',
       viewAll: 'Reba byose',
       markAllRead: 'Gushyira byose nk\'ibisomwe',
@@ -158,7 +155,6 @@ const Navbar = () => {
 
   const handleEmergencyCall = () => {
     // Show emergency modal or redirect to emergency page
-    // For now, just show an alert
     alert(text.calling);
     // In a real app, you might want to:
     // 1. Open a modal with emergency contact options
@@ -170,42 +166,27 @@ const Navbar = () => {
     // Add logic to mark all notifications as read
     console.log('Marking all notifications as read');
   };
-
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem('darkMode') === 'true';
-  });
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-    localStorage.setItem('darkMode', isDarkMode);
-  }, [isDarkMode]);
   
   return (
     <LanguageContext.Provider value={{ language, setLanguage, content }}>
       <nav className="navbar">
-        <div className="navbar-logo">
-          <img src={logoImage} alt="Evuriro Logo" />
-          <h2>Evuriro</h2>
-        </div>
-       
-        <div className="navbar-search">
-          <form onSubmit={handleSearch}>
-            <input type="text" name="search" placeholder={text.search} />
-            <button type="submit" className="search-button custom-search-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </form>
+        <div className="navbar-left">
+          <div className="navbar-logo">
+            <img src={logoImage} alt="Evuriro Logo" />
+            <h2>Evuriro</h2>
+          </div>
+          
+          <div className="navbar-search">
+            <form onSubmit={handleSearch}>
+              <input type="text" name="search" placeholder={text.search} />
+              <button type="submit" className="search-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </div>
         </div>
 
         <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
@@ -217,39 +198,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
-          <div className="language-selector">
-            <button
-              className={language === 'english' ? 'active' : ''}
-              onClick={() => toggleLanguage('english')}
-            >
-              EN
-            </button>
-            <button
-              className={language === 'french' ? 'active' : ''}
-              onClick={() => toggleLanguage('french')}
-            >
-              FR
-            </button>
-            <button
-              className={language === 'kinyarwanda' ? 'active' : ''}
-              onClick={() => toggleLanguage('kinyarwanda')}
-            >
-              KIN
-            </button>
-          </div>
-          
-          <div className="dark-mode-toggle">
-            <span className="dark-mode-label">{text.darkMode}</span>
-            <label className="switch">
-              <input 
-                type="checkbox" 
-                checked={isDarkMode}
-                onChange={toggleDarkMode}
-              />
-              <span className="slider round"></span>
-            </label>
-          </div>
-          
           <button className="emergency-button" title={text.emergency} onClick={handleEmergencyCall}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -292,6 +240,27 @@ const Navbar = () => {
                 </div>
               </div>
             )}
+          </div>
+
+          <div className="language-selector">
+            <button
+              className={language === 'english' ? 'active' : ''}
+              onClick={() => toggleLanguage('english')}
+            >
+              EN
+            </button>
+            <button
+              className={language === 'french' ? 'active' : ''}
+              onClick={() => toggleLanguage('french')}
+            >
+              FR
+            </button>
+            <button
+              className={language === 'kinyarwanda' ? 'active' : ''}
+              onClick={() => toggleLanguage('kinyarwanda')}
+            >
+              KIN
+            </button>
           </div>
 
           <div className="navbar-profile" ref={dropdownRef}>
