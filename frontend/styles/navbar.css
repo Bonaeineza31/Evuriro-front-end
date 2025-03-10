@@ -1,21 +1,45 @@
+/* Theme Variables */
+:root {
+  --navbar-bg: white;
+  --navbar-text: #1e293b;
+  --navbar-border: #e2e8f0;
+  --navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --navbar-bg: #1e293b;
+  --navbar-text: #f8fafc;
+  --navbar-border: #475569;
+  --navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   height: 70px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--navbar-bg);
+  box-shadow: var(--navbar-shadow);
   position: sticky;
   top: 0;
   z-index: 100;
   transition: all 0.3s ease;
+  border-bottom: 1px solid var(--navbar-border);
 }
 
-body.dark-mode .navbar {
-  background-color: #1a202c;
+
+body[data-theme="dark"] .navbar {
+  background-color: #1e293b; /* Updated to match sidebar dark mode color */
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+body[data-theme="dark"] .navbar-item {
+  color: #e2e8f0; /* Updated to ensure visibility against dark background */
+
+}
+
 
 .navbar-left {
   display: flex;
@@ -122,16 +146,18 @@ body.dark-mode .search-button:hover {
 
 .navbar-item {
   text-decoration: none;
-  color: #555555;
+  color: var(--navbar-text);
   font-weight: 500;
   padding: 10px;
   transition: color 0.3s;
   position: relative;
 }
 
-body.dark-mode .navbar-item {
-  color: #cbd5e0;
+
+body[data-theme="dark"] .navbar-item:hover {
+  color: var(--accent-color);
 }
+
 
 
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useTheme,ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
-import './App.css';
-import {ThemeProvider} from '../pages/Theme';
+import './App.css';console.log('App Component Mounted');
+console.log('Authenticated:', localStorage.getItem('isAuthenticated'));
 import { LanguageProvider } from '../src/Languages';
-
 
 // Import pages
 import Welcome from '../components/Welcome';
@@ -31,56 +31,59 @@ const RequireAuth = ({ children }) => {
 };
 
 // Layout Component for Authenticated Users
-const AuthenticatedLayout = () => (
-  <div className="app">
-    <Navbar />
-    <div className="app-container">
-      <Sidebar />
-      <main className="content">
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/teleconsult" element={<Teleconsultation />} />
-          <Route path="/records" element={<MedicalRecords />} />
-          <Route path="/hospitals" element={<NearbyHospitals />} />
-          <Route path="/connect-device" element={<ConnectDevice />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/help" element={<HelpCenter />} />
-          {/*<Route path="*" element={<NotFound />} /> */}
-        </Routes>
-      </main>
+const AuthenticatedLayout = () => {
+  const { toggleTheme } = useTheme(); // Get the toggleTheme function from the theme context
+  return (
+    <div className="app">
+      <Navbar toggleTheme={toggleTheme} /> {/* Pass toggleTheme to Navbar */}
+      <div className="app-container">
+        <Sidebar />
+        <main className="content">
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/teleconsult" element={<Teleconsultation />} />
+            <Route path="/records" element={<MedicalRecords />} />
+            <Route path="/hospitals" element={<NearbyHospitals />} />
+            <Route path="/connect-device" element={<ConnectDevice />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/help" element={<HelpCenter />} />
+            {/*<Route path="*" element={<NotFound />} /> */}
+          </Routes>
+        </main>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const App = () => {
   return (
     <LanguageProvider>
-    <ThemeProvider>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/welcome" element={<Welcome />} />
+      <ThemeProvider>
+        <Router>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/welcome" element={<Welcome />} />
 
-          {/* Redirect Root */}
-          <Route path="/" element={
-            localStorage.getItem('isAuthenticated') === 'true' 
-              ? <Navigate to="/dashboard" replace /> 
-              : <Navigate to="/welcome" replace />
-          } />
+            {/* Redirect Root */}
+            <Route path="/" element={
+              localStorage.getItem('isAuthenticated') === 'true' 
+                ? <Navigate to="/dashboard" replace /> 
+                : <Navigate to="/welcome" replace />
+            } />
 
-          {/* Protected Routes with Layout */}
-          <Route path="/*" element={
-            <RequireAuth>
-              <AuthenticatedLayout />
-            </RequireAuth>
-          } />
+            {/* Protected Routes with Layout */}
+            <Route path="/*" element={
+              <RequireAuth>
+                <AuthenticatedLayout />
+              </RequireAuth>
+            } />
 
-          {/* Not Found */}
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
-      </Router>
-    </ThemeProvider>
+            {/* Not Found */}
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </LanguageProvider>
   );
 };

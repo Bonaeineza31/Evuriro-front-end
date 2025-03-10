@@ -29,8 +29,8 @@ export const ThemeProvider = ({ children }) => {
 
   // Initialize theme on component mount
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, []);
+    document.body.className = theme; // Set the body class to the current theme
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, language, changeLanguage }}>

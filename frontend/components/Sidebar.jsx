@@ -4,6 +4,7 @@ import '../styles/sidebar.css';
 import { useTheme } from '../pages/Theme';
 
 const Sidebar = () => {
+  
   const [isCollapsed, setIsCollapsed] = useState(window.innerWidth <= 768);
   const { theme, toggleTheme, language, changeLanguage } = useTheme();
   const location = useLocation();
@@ -76,7 +77,9 @@ const Sidebar = () => {
         {isCollapsed ? '→' : '←'}
       </button>
       
-      <div className="sidebar-menu">
+        <div className="sidebar-menu">
+
+
         <Link to="/dashboard" className={`sidebar-item ${isActive('/dashboard') ? 'active' : ''}`} data-tooltip={text.dashboard}>
           <span className="sidebar-icon dashboard-icon"></span>
           {!isCollapsed && <span className="sidebar-text">{text.dashboard}</span>}
@@ -149,6 +152,7 @@ const Sidebar = () => {
           )}
         </div> */}
       </div>
+
     </div>
   );
 };
