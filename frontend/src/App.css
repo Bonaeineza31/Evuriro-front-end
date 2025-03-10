@@ -1,11 +1,5 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
 /* General reset and base styles */
- *{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,8 +8,7 @@
 body {
   font-family: 'Inter', "-apple-system", "BlinkMacSystemFont", 'Segoe UI', "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f7fafc;
-  color: #2d3748;
+  /* Let theme.css handle colors */
 }
 
 .app {
@@ -47,38 +40,39 @@ body {
 }
 
 /* Main content that sits next to the sidebar */
- .content {
+.content {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
-} 
+}
 
 /* Page title styling */
- .page-title {
+.page-title {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 24px;
-  color: #1a202c;
-}  
+  color: var(--text-primary);
+}
 
-/* Card styling for content sections */
+/* Card styling for content sections - using theme variables */
 .card {
-  background-color: white;
+  background-color: var(--card-bg);
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   padding: 24px;
   margin-bottom: 24px;
+  border: 1px solid var(--border-color);
 }
 
 .card-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
-  color: #2d3748;
-} 
+  color: var(--text-primary);
+}
 
 /* Mobile responsiveness */
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   .app-container {
     flex-direction: column;
     padding-bottom: 60px; /* Space for mobile sidebar/navbar */
@@ -87,7 +81,7 @@ body {
   .content {
     padding: 16px;
   }
-} 
+}
 
 /* Animation for page transitions */
 .page-transition-enter {
@@ -103,66 +97,28 @@ body {
 
 .page-transition-exit {
   opacity: 1;
-} */
+}
 
- .page-transition-exit-active {
+.page-transition-exit-active {
   opacity: 0;
   transition: opacity 300ms;
 }
 
 /* Language specific font adjustments */
- html[lang="kinyarwanda"] body {
+html[lang="kinyarwanda"] body {
   font-family: 'Noto Sans', 'Inter', sans-serif;
-} 
+}
 
 /* High contrast mode (accessibility) */
- .high-contrast-mode {
-  filter: invert(1) hue-rotate(180deg);
-} 
-
-.high-contrast-mode img,
-.high-contrast-mode video {
+.high-contrast-mode {
   filter: invert(1) hue-rotate(180deg);
 }
 
-
-/* Base styles */
-:root {
-
-
-    --bg-primary: #ffffff;
-    --bg-secondary: #f3f4f6;
-    --text-primary: #1f2937;
-  
-  
-  
-    --bg-dark: #111827;
-    --bg-secondary:  #1e293b;
-    --text-primary:  #e2e8f0;
-    /* more variables... */
+.high-contrast-mode img, .high-contrast-mode video {
+  filter: invert(1) hue-rotate(180deg);
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dark mode */
- body.dark-mode {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-.app-container {
-  display: flex;
-  min-height: 100vh;
-}
-
+/* Main content layout */
 .main-content {
   flex: 1;
   margin-left: 250px;
@@ -173,26 +129,3 @@ body {
 .sidebar.collapsed + .main-content {
   margin-left: 60px;
 }
-
-
-body.dark-mode a {
-  color: var(--bg-dark);
-}
-
-
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea,
-body.dark-mode button {
-  background-color: var(--component-bg-dark);
-  color: var(--bg-dark);
-  border-color: var(--border-dark);
-}
-
-
-body.dark-mode .card,
-body.dark-mode .panel,
-body.dark-mode .container {
-  background-color: var(--component-bg-dark);
-  border-color: var(--border-dark);
-} 

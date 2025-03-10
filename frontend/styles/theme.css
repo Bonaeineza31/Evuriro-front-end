@@ -1,4 +1,3 @@
-/* Base theme variables */
 :root {
   /* Light theme */
   --bg-primary: #ffffff;
@@ -28,8 +27,8 @@
 /* Dark theme */
 [data-theme="dark"] {
   /* Dark theme */
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
+  --bg-primary:#111827;
+  --bg-secondary: #1e293b;
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --accent-color: #60a5fa;
@@ -178,19 +177,6 @@ tr:hover {
 
 .status-info {
   color: var(--info);
-}
-
-/* When body has dark-mode class, apply dark mode styles */
-body.dark-mode {
-  --bg-primary: var(--bg-primary-dark);
-  --bg-secondary: var(--bg-secondary-dark);
-  --text-primary: var(--text-primary-dark);
-  --text-secondary: var(--text-secondary-dark);
-  --accent-color: var(--accent-dark);
-  --border-color: var(--border-dark);
-  --card-bg: var(--bg-secondary-dark);
-  --hover-bg: var(--hover-dark);
-  --form-bg: var(--bg-secondary-dark);
 }
 
 /* High contrast mode for accessibility */
