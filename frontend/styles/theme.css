@@ -17,6 +17,12 @@
   --button-secondary-bg: #f3f4f6;
   --button-secondary-text: #4b5563;
   
+  /* Sidebar and navbar */
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #1f2937;
+  --sidebar-hover: #f3f4f6;
+  --navbar-bg: #ffffff;
+  
   /* Status colors */
   --success: #10b981;
   --warning: #f59e0b;
@@ -26,23 +32,29 @@
 
 /* Dark theme */
 [data-theme="dark"] {
-  /* Dark theme */
-  --bg-primary:#111827;
-  --bg-secondary: #1e293b;
+  /* Dark theme - using more navy blue than black */
+  --bg-primary: #1e293b;  /* Navy blue instead of black */
+  --bg-secondary: #334155; /* Lighter navy for secondary */
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --accent-color: #60a5fa;
-  --border-color: #374151;
+  --border-color: #475569;
   
   /* Card and interactive elements */
-  --card-bg: #1f2937;
+  --card-bg: #334155;     /* Slightly lighter than background */
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --hover-bg: #374151;
-  --form-bg: #1f2937;
+  --hover-bg: #475569;
+  --form-bg: #334155;
   --button-primary-bg: #60a5fa;
   --button-primary-text: #ffffff;
-  --button-secondary-bg: #374151;
+  --button-secondary-bg: #475569;
   --button-secondary-text: #d1d5db;
+  
+  /* Sidebar and navbar - matching navy blues */
+  --sidebar-bg: #1e293b;  /* Same as bg-primary */
+  --sidebar-text: #f9fafb;
+  --sidebar-hover: #334155;
+  --navbar-bg: #1e293b;   /* Same as bg-primary */
   
   /* Status colors remain consistent for accessibility */
   --success: #10b981;
@@ -179,6 +191,25 @@ tr:hover {
   color: var(--info);
 }
 
+/* Sidebar specific styling */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.sidebar a {
+  color: var(--sidebar-text);
+}
+
+.sidebar a:hover, .sidebar .nav-item:hover {
+  background-color: var(--sidebar-hover);
+}
+
+/* Navbar specific styling */
+.navbar {
+  background-color: var(--navbar-bg);
+}
+
 /* High contrast mode for accessibility */
 body.high-contrast {
   --bg-primary: #000000;
@@ -189,6 +220,10 @@ body.high-contrast {
   --border-color: #ffffff;
   --card-bg: #111111;
   --hover-bg: #333333;
+  --sidebar-bg: #000000;
+  --sidebar-text: #ffffff;
+  --sidebar-hover: #333333;
+  --navbar-bg: #000000;
 }
 
 /* Transition all color changes for smoothness */
