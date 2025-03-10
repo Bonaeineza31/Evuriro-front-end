@@ -27,11 +27,16 @@ body {
 /* Navbar is fixed at the top */
 .navbar {
   height: 70px;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Main content area */
@@ -123,18 +128,18 @@ body {
 
 /* Base styles */
 :root {
-  --bg-light: #f8f9fa;
-  --text-light: #212529;
-  --component-bg-light: #ffffff;
-  --border-light: #dee2e6;
+
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f4f6;
+    --text-primary: #1f2937;
   
-  --bg-dark: #121212;
-  --text-dark: #e9ecef;
-  --component-bg-dark: #1e1e1e;
-  --border-dark: #343a40;
   
-  --primary: #0077cc;
-  --primary-dark: #0099ff;
+  
+    --bg-dark: #111827;
+    --bg-secondary:  #1e293b;
+    --text-primary:  #e2e8f0;
+    /* more variables... */
 }
 
 body {
@@ -148,7 +153,7 @@ body {
 }
 
 /* Dark mode */
-/* body.dark-mode {
+ body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
@@ -171,7 +176,7 @@ body {
 
 
 body.dark-mode a {
-  color: var(--primary-dark);
+  color: var(--bg-dark);
 }
 
 
@@ -180,7 +185,7 @@ body.dark-mode select,
 body.dark-mode textarea,
 body.dark-mode button {
   background-color: var(--component-bg-dark);
-  color: var(--text-dark);
+  color: var(--bg-dark);
   border-color: var(--border-dark);
 }
 
@@ -190,4 +195,4 @@ body.dark-mode .panel,
 body.dark-mode .container {
   background-color: var(--component-bg-dark);
   border-color: var(--border-dark);
-} */
+} 
