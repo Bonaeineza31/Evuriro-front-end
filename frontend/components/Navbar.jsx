@@ -141,7 +141,15 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
   };
 
   const handleLogout = () => {
-    // Add any logout logic here (clear tokens, user data, etc.)
+    // Clear all authentication data from localStorage
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('isGuest');
+    
+    // Navigate to welcome page
     navigate('/welcome');
   };
 
@@ -157,16 +165,14 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
   const handleEmergencyCall = () => {
     // Show emergency modal or redirect to emergency page
     alert(text.calling);
-    // In a real app, you might want to:
-    // 1. Open a modal with emergency contact options
-    // 2. Directly call emergency services via a WebRTC integration
-    // 3. Send an emergency alert to registered healthcare providers
+
   };
 
   const markAllNotificationsAsRead = () => {
     // Add logic to mark all notifications as read
     console.log('Marking all notifications as read');
   };
+  
   
   return (
     <LanguageContext.Provider value={{ language, setLanguage, content }}>

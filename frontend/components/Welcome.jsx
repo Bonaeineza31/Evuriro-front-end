@@ -17,7 +17,7 @@ const Welcome = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // Get the API URL from environment variables
-  const API_URL = process.env.REACT_APP_API_URL || 'https://evuriro-backend.vercel.app';
+  const API_URL = import.meta.env.VITE_API_URL || 'https://evuriro-backend.vercel.app';
 
   const content = {
     english: {
@@ -83,25 +83,35 @@ const Welcome = () => {
   };
 
   // Social login handler (placeholder)
-  const handleSocialLogin = (platform) => {
-    console.log(`Attempting to login with ${platform}`);
-    // Implement actual social login logic with API
-  };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMessage('');
     
     try {
-      const response = await fetch(`${API_URL}/api/auth/login`, {
+      console.log("Connecting to:", `${API_URL}/user/login`);
+      
+      const response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include', // Include cookies if your backend uses them
+        body: JSON.stringify({ 
+          email, 
+          password 
+        }),
       });
+      
+      console.log("Login response status:", response.status);
+      
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const htmlResponse = await response.text();
+        console.error("Received non-JSON response:", htmlResponse.substring(0, 100) + "...");
+        throw new Error("Server returned HTML instead of JSON - check your API URL");
+      }
       
       const data = await response.json();
       
@@ -121,11 +131,11 @@ const Welcome = () => {
       
       // If the backend returns user data, store relevant info
       if (data.user) {
-        localStorage.setItem('userId', data.user._id);
-        localStorage.setItem('userName', data.user.fullName || '');
+        localStorage.setItem('userId', data.user.id);
+        localStorage.setItem('userName', data.user.name);
+        localStorage.setItem('userRole', data.user.role);
       }
       
-      // Navigate to dashboard after successful login
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
@@ -134,7 +144,7 @@ const Welcome = () => {
       setIsLoading(false);
     }
   };
-
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     
@@ -147,18 +157,27 @@ const Welcome = () => {
     setErrorMessage('');
     
     try {
-      const response = await fetch(`${API_URL}/api/auth/register`, {
+      const response = await fetch(`${API_URL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({ 
-          fullName, 
+          name: fullName,
           email, 
           password,
-          language // Send preferred language to backend
+          role: 'patient'
         }),
       });
+      
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const textResponse = await response.text();
+        console.error("Received non-JSON response:", textResponse.substring(0, 100) + "...");
+        throw new Error("Server returned HTML instead of JSON - check your API URL");
+      }
       
       const data = await response.json();
       
@@ -179,10 +198,10 @@ const Welcome = () => {
       
       // If the backend returns user data, store relevant info
       if (data.user) {
-        localStorage.setItem('userId', data.user._id);
+        localStorage.setItem('userId', data.user.id || data.user._id);
+        localStorage.setItem('userRole', data.user.role);
       }
       
-      // Navigate to dashboard after successful registration
       navigate('/dashboard');
     } catch (error) {
       console.error('Registration error:', error);
@@ -363,7 +382,7 @@ const Welcome = () => {
                 </p>
               </form>
             ) : (
-              <form onSubmit={handleSignUp} className="signup-form">
+              <form onSubmit={handleSignUp} className="signup-  ">
                 <div className="form-group">
                   <label htmlFor="fullName">{text.fullName}</label>
                   <input
