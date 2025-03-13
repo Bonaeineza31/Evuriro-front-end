@@ -2,8 +2,10 @@
 /* Custom styles for Medical Records component */
 
 .med-records-container {
-    background-color: #f8f9fa;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #f8f9fa;
     font-family: Arial, sans-serif;
     width: 100%;
     box-sizing: border-box;
