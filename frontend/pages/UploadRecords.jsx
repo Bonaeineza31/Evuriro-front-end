@@ -49,7 +49,6 @@ const UploadRecords = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Normally, you would create a FormData object and send it to your backend
       /*
       const formData = new FormData();
       files.forEach(file => {
@@ -60,7 +59,6 @@ const UploadRecords = () => {
       formData.append('doctor', doctor);
       formData.append('description', description);
       
-      // Example API call
       const response = await fetch('YOUR_BACKEND_API_URL/upload-records', {
         method: 'POST',
         body: formData,

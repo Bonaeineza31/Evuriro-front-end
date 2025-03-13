@@ -38,7 +38,7 @@ const AuthenticatedLayout = () => {
   const { toggleTheme } = useTheme(); // Get the toggleTheme function from the theme context
   return (
     <div className="app">
-      <Navbar toggleTheme={toggleTheme} /> {/* Pass toggleTheme to Navbar */}
+      <Navbar toggleTheme={toggleTheme} /> 
       <div className="app-container">
         <Sidebar />
         <main className="content">
