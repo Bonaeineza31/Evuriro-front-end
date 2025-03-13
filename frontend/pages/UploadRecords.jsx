@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './uploadRecords.css';
+import '../styles/uploadrecords.css';
 
 const UploadRecords = () => {
   const [files, setFiles] = useState([]);
