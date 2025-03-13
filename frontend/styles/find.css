@@ -1,0 +1,203 @@
+/* Find a Doctor Styles - Matching Evuriro's existing UI */
+
+.find-doctor-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .search-section {
+    margin-bottom: 30px;
+  }
+  
+  .search-section h1 {
+    color: #4285f4;
+    margin-bottom: 10px;
+  }
+  
+  .search-section p {
+    color: #656565;
+    margin-bottom: 20px;
+  }
+  
+  .search-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .search-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-options select {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: white;
+    min-width: 200px;
+  }
+  
+  .results-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .doctor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+  }
+  
+  .doctor-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .doctor-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .doctor-info {
+    padding: 15px;
+    flex: 1;
+  }
+  
+  .doctor-info h3 {
+    color: #4285f4;
+    margin-bottom: 5px;
+  }
+  
+  .specialty {
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .location {
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .stars {
+    color: #ffa41b;
+    letter-spacing: 2px;
+    margin-right: 5px;
+  }
+  
+  .rating-number {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .availability {
+    color: #4caf50;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .doctor-actions {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .schedule-button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .schedule-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .profile-button {
+    background-color: white;
+    color: #4285f4;
+    border: 1px solid #4285f4;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .profile-button:hover {
+    background-color: #f5f8ff;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .doctor-cards {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-options {
+      flex-direction: column;
+    }
+    
+    .filter-options select {
+      width: 100%;
+    }
+  }
