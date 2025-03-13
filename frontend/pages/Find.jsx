@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/find.css';
-import 
+import sarah from "../images/Screenshot 2025-03-01 223549.png"
+import chen from "../images/Screenshot 2025-03-01 223501.png"
+import priya from "../images/Screenshot 2025-03-01 223641.png"
+import james from "../images/Screenshot 2025-03-01 224911.png"
+import emily from "../images/Screenshot 2025-03-01 224927.png"
+import david from "../images/Screenshot 2025-03-01 224939.png"
 
 const Find = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,16 +22,16 @@ const Find = () => {
       location: 'Downtown Medical Center',
       rating: 4.8,
       availability: 'Available Today',
-      image: 'https://via.placeholder.com/150'
+      image: sarah
     },
     {
       id: 2,
-      name: 'Dr. Michael Smith',
+      name: 'Dr. Michael David',
       specialty: 'Internal Medicine',
       location: 'Westside Hospital',
       rating: 4.6,
       availability: 'Available Tomorrow',
-      image: 'https://via.placeholder.com/150'
+      image: david
     },
     {
       id: 3,
@@ -35,7 +40,7 @@ const Find = () => {
       location: 'Women\'s Health Clinic',
       rating: 4.9,
       availability: 'Available Today',
-      image: 'https://via.placeholder.com/150'
+      image: emily
     },
     {
       id: 4,
@@ -44,16 +49,16 @@ const Find = () => {
       location: 'Children\'s Hospital',
       rating: 4.7,
       availability: 'Available in 3 days',
-      image: 'https://via.placeholder.com/150'
+      image:chen
     },
     {
       id: 5,
-      name: 'Dr. Lisa Williams',
+      name: 'Dr. Priya Williams',
       specialty: 'Dermatology',
       location: 'Skin Care Center',
       rating: 4.5,
       availability: 'Available Tomorrow',
-      image: 'https://via.placeholder.com/150'
+      image: priya
     },
     {
       id: 6,
@@ -62,7 +67,7 @@ const Find = () => {
       location: 'Sports Medicine Clinic',
       rating: 4.8,
       availability: 'Available Today',
-      image: 'https://via.placeholder.com/150'
+      image: james
     }
   ];
 
