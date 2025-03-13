@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { useTheme,ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar'; 
+import Login from '../components/login'
 import './App.css';console.log('App Component Mounted');
 console.log('Authenticated:', localStorage.getItem('isAuthenticated'));
 import { LanguageProvider } from '../src/Languages';
@@ -41,6 +42,7 @@ const AuthenticatedLayout = () => {
         <main className="content">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/teleconsult" element={<Teleconsultation />} />
             <Route path="/records" element={<MedicalRecords />} />

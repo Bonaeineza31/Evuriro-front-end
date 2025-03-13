@@ -1,5 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { Notify } from 'notiflix';
 import { LanguageContext, LanguageSelector } from '../src/Languages';
 import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg';
 import '../styles/welcome.css';
@@ -8,16 +11,23 @@ const Welcome = () => {
   const navigate = useNavigate();
   const { language, setLanguage } = useContext(LanguageContext);
   const [activeTab, setActiveTab] = useState('signin');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Get the API URL from environment variables
-  const API_URL = import.meta.env.VITE_API_URL || 'https://evuriro-backend.vercel.app';
+  // Setup React Hook Form
+  const { 
+    register: registerSignIn, 
+    handleSubmit: handleSubmitSignIn,
+    formState: { errors: errorsSignIn }
+  } = useForm();
+
+  const { 
+    register: registerSignUp, 
+    handleSubmit: handleSubmitSignUp,
+    formState: { errors: errorsSignUp }
+  } = useForm();
 
   const content = {
     english: {
@@ -82,133 +92,103 @@ const Welcome = () => {
     }
   };
 
-  // Social login handler (placeholder)
-  const handleSignIn = async (e) => {
-    e.preventDefault();
+  // API URL
+  const API_URL = 'http://localhost:5006';
+
+  // Updated sign-in handler with React Hook Form and Axios
+  const onSubmitSignIn = async (data) => {
     setIsLoading(true);
     setErrorMessage('');
     
     try {
       console.log("Connecting to:", `${API_URL}/user/login`);
       
-      const response = await fetch(`${API_URL}/user/login`, {
-        method: 'POST',
+      const response = await axios.post(`${API_URL}/user/login`, {
+        email: data.email,
+        password: data.password
+      }, {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify({ 
-          email, 
-          password 
-        }),
+        withCredentials: true // equivalent to credentials: 'include'
       });
       
-      console.log("Login response status:", response.status);
+      console.log("Login response:", response);
       
-      // Check if response is JSON
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        const htmlResponse = await response.text();
-        console.error("Received non-JSON response:", htmlResponse.substring(0, 100) + "...");
-        throw new Error("Server returned HTML instead of JSON - check your API URL");
-      }
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to sign in');
-      }
+      const userToken = response.data;
       
       // Store user data and token
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userEmail', data.email);
       localStorage.setItem('preferredLanguage', language);
       
       // If the backend returns a token, store it
-      if (data.token) {
-        localStorage.setItem('token', data.token);
+      if (userToken.token) {
+        localStorage.setItem('token', userToken.token);
       }
       
       // If the backend returns user data, store relevant info
-      if (data.user) {
-        localStorage.setItem('userId', data.user.id);
-        localStorage.setItem('userName', data.user.name);
-        localStorage.setItem('userRole', data.user.role);
+      if (userToken.user) {
+        localStorage.setItem('userId', userToken.user.id || userToken.user._id);
+        localStorage.setItem('userName', userToken.user.name);
+        localStorage.setItem('role', userToken.user.role);
       }
       
+      Notify.success('Login Successful');
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
-      setErrorMessage(error.message || text.errorOccurred);
+      const errorMsg = error.response?.data?.message || text.errorOccurred;
+      setErrorMessage(errorMsg);
+      Notify.failure(errorMsg);
     } finally {
       setIsLoading(false);
     }
   };
   
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    
-    if (!fullName || !email || !password || !agreeToTerms) {
-      setErrorMessage('Please fill all required fields');
-      return;
+  // Updated sign-up handler with React Hook Form and Axios
+  const onSubmitSignUp = async (data) => {
+    if (!agreeToTerms) {
+        setErrorMessage("Please agree to the terms");
+        return;
     }
-    
+
     setIsLoading(true);
-    setErrorMessage('');
-    
+    setErrorMessage("");
+
     try {
-      const response = await fetch(`${API_URL}/user/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({ 
-          name: fullName,
-          email, 
-          password,
-          role: 'patient'
-        }),
-      });
-      
-      // Check if response is JSON
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        const textResponse = await response.text();
-        console.error("Received non-JSON response:", textResponse.substring(0, 100) + "...");
-        throw new Error("Server returned HTML instead of JSON - check your API URL");
-      }
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to sign up');
-      }
-      
-      // Store user data and token
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userName', fullName);
-      localStorage.setItem('preferredLanguage', language);
-      
-      // If the backend returns a token, store it
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-      }
-      
-      // If the backend returns user data, store relevant info
-      if (data.user) {
-        localStorage.setItem('userId', data.user.id || data.user._id);
-        localStorage.setItem('userRole', data.user.role);
-      }
-      
-      navigate('/dashboard');
+        console.log("Sending signup request with data:", JSON.stringify(data, null, 2));
+
+        const response = await axios.post(`${API_URL}/user/register`, {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            role: "patient"
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        });
+
+        console.log("Register response:", response);
+
+        Notify.success("Registration Successful");
+        navigate("/dashboard");
     } catch (error) {
-      console.error('Registration error:', error);
-      setErrorMessage(error.message || text.errorOccurred);
+        console.error("Registration error:", error);
+        console.error("Error response:", error.response?.data);
+        setErrorMessage(error.response?.data?.message || "An error occurred");
+        Notify.failure(error.response?.data?.message || "An error occurred");
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
+};
+
+  // Handler for social login (placeholder)
+  const handleSocialLogin = (provider) => {
+    console.log(`Social login with ${provider}`);
   };
 
   // Handler for guest login
@@ -216,7 +196,7 @@ const Welcome = () => {
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('isGuest', 'true');
     localStorage.setItem('preferredLanguage', language);
-    navigate('/dashboard');
+    navigate('/login');
   };
 
   // Add effect to check if user is already logged in
@@ -294,18 +274,23 @@ const Welcome = () => {
             )}
 
             {activeTab === 'signin' ? (
-              <form onSubmit={handleSignIn} className="signin-form">
+              <form onSubmit={handleSubmitSignIn(onSubmitSignIn)} className="signin-form">
                 <div className="form-group">
                   <label htmlFor="email">{text.email}</label>
                   <input
                     type="email"
                     id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="example@mail.com"
-                    required
                     disabled={isLoading}
+                    {...registerSignIn('email', { 
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^\S+@\S+\.\S+$/,
+                        message: 'Invalid email format'
+                      }
+                    })}
                   />
+                  {errorsSignIn.email && <span className="error-text">{errorsSignIn.email.message}</span>}
                 </div>
 
                 <div className="form-group">
@@ -313,12 +298,17 @@ const Welcome = () => {
                   <input
                     type="password"
                     id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    required
                     disabled={isLoading}
+                    {...registerSignIn('password', { 
+                      required: 'Password is required',
+                      minLength: {
+                        value: 6,
+                        message: 'Password must be at least 6 characters'
+                      }
+                    })}
                   />
+                  {errorsSignIn.password && <span className="error-text">{errorsSignIn.password.message}</span>}
                 </div>
 
                 <div className="form-options">
@@ -382,18 +372,19 @@ const Welcome = () => {
                 </p>
               </form>
             ) : (
-              <form onSubmit={handleSignUp} className="signup-  ">
+              <form onSubmit={handleSubmitSignUp(onSubmitSignUp)} className="signup-form">
                 <div className="form-group">
                   <label htmlFor="fullName">{text.fullName}</label>
                   <input
                     type="text"
-                    id="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    id="name"
                     placeholder="John Doe"
-                    required
                     disabled={isLoading}
+                    {...registerSignUp('name', { 
+                      required: 'Full name is required'
+                    })}
                   />
+                  {errorsSignUp.name && <span className="error-text">{errorsSignUp.name.message}</span>}
                 </div>
 
                 <div className="form-group">
@@ -401,12 +392,17 @@ const Welcome = () => {
                   <input
                     type="email"
                     id="signupEmail"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="example@mail.com"
-                    required
                     disabled={isLoading}
+                    {...registerSignUp('email', { 
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^\S+@\S+\.\S+$/,
+                        message: 'Invalid email format'
+                      }
+                    })}
                   />
+                  {errorsSignUp.email && <span className="error-text">{errorsSignUp.email.message}</span>}
                 </div>
 
                 <div className="form-group">
@@ -414,12 +410,17 @@ const Welcome = () => {
                   <input
                     type="password"
                     id="signupPassword"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    required
                     disabled={isLoading}
+                    {...registerSignUp('password', { 
+                      required: 'Password is required',
+                      minLength: {
+                        value: 6,
+                        message: 'Password must be at least 6 characters'
+                      }
+                    })}
                   />
+                  {errorsSignUp.password && <span className="error-text">{errorsSignUp.password.message}</span>}
                 </div>
 
                 <div className="checkbox-group terms">
@@ -428,7 +429,6 @@ const Welcome = () => {
                     id="agreeTerms"
                     checked={agreeToTerms}
                     onChange={() => setAgreeToTerms(!agreeToTerms)}
-                    required
                     disabled={isLoading}
                   />
                   <label htmlFor="agreeTerms">{text.agreeTerms}</label>
