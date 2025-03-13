@@ -201,7 +201,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
           <Link to="/teleconsult" className="navbar-item">Teleconsultation</Link>
           <Link to="/records" className="navbar-item">Records</Link>
           <Link to="/hospitals" className="navbar-item">Nearby Hospitals</Link>
-          <Link to="/find-doctor" className="navbar-item">Find a Doctor</Link>
+          <Link to="/find" className="navbar-item">Find a Doctor</Link>
         </div>
 
           <div className="navbar-right">
