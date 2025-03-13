@@ -19,6 +19,7 @@ import ConnectDevice from '../pages/ConnectDevice';
 import Settings from '../pages/Settings';
 import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
+import UploadRecords from '../pages/UploadRecords';
 // import NotFound from '../pages/NotFound';
 
 // Authentication guard
@@ -51,6 +52,7 @@ const AuthenticatedLayout = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/help" element={<HelpCenter />} />
             <Route path="/find" element={<Find />} />
+            <Route path="/uploadrecord" element={<UploadRecords />} />
             {/*<Route path="*" element={<NotFound />} /> */}
           </Routes>
         </main>
