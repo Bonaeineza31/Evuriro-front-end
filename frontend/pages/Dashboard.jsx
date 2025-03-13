@@ -398,7 +398,7 @@ const Dashboard = ({ language }) => {
             <h2>{text.quickActions}</h2>
             <div className="action-buttons">
               <Link to = "/appointments" className="action-btn schedule-btn">
-                <Appointment />
+                <appointments />
                 <span>{text.scheduleBtn}</span>
               </Link>
               <Link to = "/teleconsult" className="action-btn teleconsult-btn">
