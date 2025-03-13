@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/dashboard.css';
 import { Link } from "react-router-dom"
+import UploadRecords from './UploadRecords';
+import Appointment from './Appointments';
 
 // Icons for vitals and actions
 const HeartIcon = () => (
@@ -396,7 +398,7 @@ const Dashboard = ({ language }) => {
             <h2>{text.quickActions}</h2>
             <div className="action-buttons">
               <Link to = "/appointments" className="action-btn schedule-btn">
-                <CalendarIcon />
+                <Appointment />
                 <span>{text.scheduleBtn}</span>
               </Link>
               <Link to = "/teleconsult" className="action-btn teleconsult-btn">
@@ -404,7 +406,7 @@ const Dashboard = ({ language }) => {
                 <span>{text.teleconsultBtn}</span>
               </Link>
               <button className="action-btn upload-btn">
-                <UploadIcon />
+                <UploadRecords />
                 <span>{text.uploadBtn}</span>
               </button>
               <Link to ="/hospitals" className="action-btn hospital-btn">
