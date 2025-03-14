@@ -374,7 +374,7 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="search-button">
+              <button className="search-button2">
                 <i className="fa fa-search"></i>
               </button>
             </div>
