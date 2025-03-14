@@ -84,19 +84,54 @@ const Teleconsultation = () => {
     image: sarah,
   };
 
-  const patientVitals = {
-    heartRate: '72 bpm',
+  const [patientVitals, setPatientVitals] = useState({
+    heartRate: '78 bpm',
     bloodPressure: '120/80 mmHg',
-    temperature: '36.6 °C',
+    temperature: '98.6°F',
     oxygenLevel: '98%'
-  };
+  });
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updatedVitals, setUpdatedVitals] = useState({
+    heartRate: '',
+    bloodPressure: '',
+    temperature: '',
+    oxygenLevel: ''
+  });
 
   // Missing function implementations
   const handleUploadVitals = () => {
-    // Implementation for uploading vitals
-    alert("Upload vitals functionality would be implemented here");
+    // Pre-fill the form with current values
+    setUpdatedVitals({
+      heartRate: patientVitals.heartRate.replace(' bpm', ''),
+      bloodPressure: patientVitals.bloodPressure.replace(' mmHg', ''),
+      temperature: patientVitals.temperature.replace('°F', ''),
+      oxygenLevel: patientVitals.oxygenLevel.replace('%', '')
+    });
+    setShowUpdateModal(true);
   };
-
+  
+  const handleCloseModal = () => {
+    setShowUpdateModal(false);
+  };
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedVitals(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  const handleSaveVitals = () => {
+    // Update the patient vitals with the new values
+    setPatientVitals({
+      heartRate: `${updatedVitals.heartRate} bpm`,
+      bloodPressure: `${updatedVitals.bloodPressure} mmHg`,
+      temperature: `${updatedVitals.temperature}°F`,
+      oxygenLevel: `${updatedVitals.oxygenLevel}%`
+    });
+    setShowUpdateModal(false);
+  };
+  
   const saveDoctorNotes = () => {
     // Implementation for saving doctor notes
     alert("Notes saved successfully!");
@@ -347,55 +382,112 @@ const Teleconsultation = () => {
           )}
 
           {activeTab === 'vitals' && (
-            <div className="telecon-vitals-info">
-              <h3>My Current Vitals</h3>
-              <div className="telecon-vitals-grid">
-              <div className="telecon-vital-item">
-                  <div className="telecon-vital-data">
-                    <div className="vital-icon">
-                      <HeartIcon />
-                    </div>
-                    <span className="telecon-vital-label">Heart Rate</span>
-                    <span className="telecon-vital-value">{patientVitals.heartRate}</span>
-                  </div>
-                </div>
-                <div className="telecon-vital-item">
-                  <div className="telecon-vital-data">
-                    <div className="vital-icon">
-                      <BloodPressureIcon />
-                    </div>
-                    <span className="telecon-vital-label">Blood Pressure</span>
-                    <span className="telecon-vital-value">{patientVitals.bloodPressure}</span>
-                  </div>
-                </div>
-                <div className="telecon-vital-item">
-                  <div className="telecon-vital-data">
-                    <div className="vital-icon">
-                      <TemperatureIcon />
-                    </div>
-                    <span className="telecon-vital-label">Temperature</span>
-                    <span className="telecon-vital-value">{patientVitals.temperature}</span>
-                  </div>
-                </div>
-                <div className="telecon-vital-item">
-                  <div className="telecon-vital-data">
-                    <div className="vital-icon">
-                      <OxygenIcon />
-                    </div>
-                    <span className="telecon-vital-label">Oxygen Level</span>
-                    <span className="telecon-vital-value">{patientVitals.oxygenLevel}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="telecon-vital-history">
-                <h4>Vitals History</h4>
-                <div className="telecon-chart-placeholder">
-                  <p>Vitals tracking chart would appear here</p>
-                </div>
-                <button className="telecon-btn-upload" onClick={handleUploadVitals}>Upload New Vitals</button>
-              </div>
-            </div>
+             <div className="telecon-vitals-info">
+             <h3>My Current Vitals</h3>
+             <div className="telecon-vitals-grid">
+               <div className="telecon-vital-item">
+                 <div className="telecon-vital-data">
+                   <div className="vital-icon">
+                     <HeartIcon />
+                   </div>
+                   <span className="telecon-vital-label">Heart Rate</span>
+                   <span className="telecon-vital-value">{patientVitals.heartRate}</span>
+                 </div>
+               </div>
+               <div className="telecon-vital-item">
+                 <div className="telecon-vital-data">
+                   <div className="vital-icon">
+                     <BloodPressureIcon />
+                   </div>
+                   <span className="telecon-vital-label">Blood Pressure</span>
+                   <span className="telecon-vital-value">{patientVitals.bloodPressure}</span>
+                 </div>
+               </div>
+               <div className="telecon-vital-item">
+                 <div className="telecon-vital-data">
+                   <div className="vital-icon">
+                     <TemperatureIcon />
+                   </div>
+                   <span className="telecon-vital-label">Temperature</span>
+                   <span className="telecon-vital-value">{patientVitals.temperature}</span>
+                 </div>
+               </div>
+               <div className="telecon-vital-item">
+                 <div className="telecon-vital-data">
+                   <div className="vital-icon">
+                     <OxygenIcon />
+                   </div>
+                   <span className="telecon-vital-label">Oxygen Level</span>
+                   <span className="telecon-vital-value">{patientVitals.oxygenLevel}</span>
+                 </div>
+               </div>
+             </div>
+             <div className="telecon-vital-history">
+               <h4>Vitals History</h4>
+               <div className="telecon-chart-placeholder">
+                 <p>Vitals tracking chart would appear here</p>
+               </div>
+               <button className="telecon-btn-upload" onClick={handleUploadVitals}>Upload New Vitals</button>
+             </div>
+           </div>
           )}
+           {showUpdateModal && (
+             <div className="vitals-update-modal-overlay">
+               <div className="vitals-update-modal">
+                 <h2>Update Vitals</h2>
+                 
+                 <div className="update-vital-field">
+                   <label htmlFor="heartRate">Heart Rate (bpm)</label>
+                   <input
+                     type="text"
+                     id="heartRate"
+                     name="heartRate"
+                     value={updatedVitals.heartRate}
+                     onChange={handleInputChange}
+                   />
+                 </div>
+                 
+                 <div className="update-vital-field">
+                   <label htmlFor="bloodPressure">Blood Pressure (mmHg)</label>
+                   <input
+                     type="text"
+                     id="bloodPressure"
+                     name="bloodPressure"
+                     value={updatedVitals.bloodPressure}
+                     onChange={handleInputChange}
+                   />
+                 </div>
+                 
+                 <div className="update-vital-field">
+                   <label htmlFor="temperature">Temperature (°F)</label>
+                   <input
+                     type="text"
+                     id="temperature"
+                     name="temperature"
+                     value={updatedVitals.temperature}
+                     onChange={handleInputChange}
+                   />
+                 </div>
+                 
+                 <div className="update-vital-field">
+                   <label htmlFor="oxygenLevel">Oxygen Level (%)</label>
+                   <input
+                     type="text"
+                     id="oxygenLevel"
+                     name="oxygenLevel"
+                     value={updatedVitals.oxygenLevel}
+                     onChange={handleInputChange}
+                   />
+                 </div>
+                 
+                 <div className="update-vital-actions">
+                   <button className="btn-cancel" onClick={handleCloseModal}>Cancel</button>
+                   <button className="btn-save" onClick={handleSaveVitals}>Save</button>
+                 </div>
+               </div>
+             </div>
+            )}
+          
 
           {activeTab === 'symptoms' && (
             <div className="telecon-symptoms-tracker">
