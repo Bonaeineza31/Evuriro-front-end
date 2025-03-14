@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Teleconsultation.css';
 import sarah from "../images/Screenshot 2025-03-01 223549.png"

@@ -96,7 +96,7 @@ body.dark-mode .navbar-search input::placeholder {
   color: #a0aec0;
 }
 
-.search-button {
+.search-button3 {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -108,15 +108,15 @@ body.dark-mode .navbar-search input::placeholder {
   padding: 6px;
 }
 
-.search-button:hover {
+.search-button3:hover {
   color: #3498db;
 }
 
-body.dark-mode .search-button {
+body.dark-mode .search-button3 {
   color: #a0aec0;
 }
 
-body.dark-mode .search-button:hover {
+body.dark-mode .search-button3:hover {
   color: #60a5fa;
 }
 
