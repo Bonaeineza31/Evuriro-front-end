@@ -297,4 +297,347 @@ const DoctorDashboard = () => {
                       <h4 className="patient-name">{appt.patient}</h4>
                       <p className="appointment-reason">{appt.reason}</p>
                     </div>
-                    <div className="appointment-actions"></div>
+                    <div className="appointment-actions">
+                      <button className="view-details-btn">View</button>
+                      {appt.isVideo && <button className="start-video-btn">Start</button>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="quick-actions">
+          <h3 className="section-title">Quick Actions</h3>
+          <div className="action-buttons">
+            <button 
+              className="action-btn"
+              onMouseEnter={() => setActiveTooltip('newPatient')}
+              onMouseLeave={() => setActiveTooltip(null)}
+              onClick={() => handleQuickAction('newPatient')}
+            >
+              <NewPatientIcon />
+              Register New Patient
+              {activeTooltip === 'newPatient' && 
+                <div className="tooltip">Add a new patient to the system</div>
+              }
+            </button>
+            
+            <button 
+              className="action-btn"
+              onMouseEnter={() => setActiveTooltip('prescription')}
+              onMouseLeave={() => setActiveTooltip(null)}
+              onClick={() => handleQuickAction('prescription')}
+            >
+              <PrescriptionIcon />
+              Write a new prescription
+              {activeTooltip === 'prescription' && 
+                <div className="tooltip">Create and send a new prescription</div>
+              }
+            </button>
+            
+            <button 
+              className="action-btn"
+              onMouseEnter={() => setActiveTooltip('labOrder')}
+              onMouseLeave={() => setActiveTooltip(null)}
+              onClick={() => handleQuickAction('labOrder')}
+            >
+              <LabOrderIcon />
+              Create Lab Order
+              {activeTooltip === 'labOrder' && 
+                <div className="tooltip">Order laboratory tests for patients</div>
+              }
+            </button>
+            
+            <button 
+              className="action-btn"
+              onMouseEnter={() => setActiveTooltip('statistics')}
+              onMouseLeave={() => setActiveTooltip(null)}
+              onClick={() => handleQuickAction('statistics')}
+            >
+              <StatisticsIcon />
+              View Statistics
+              {activeTooltip === 'statistics' && 
+                <div className="tooltip">View practice statistics and reports</div>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Modals */}
+      {activeModal === 'newPatient' && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Register New Patient</h3>
+              <button className="close-btn" onClick={closeModal}>
+                <CloseIcon />
+              </button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handleAddPatient}>
+                <div className="form-group">
+                  <label htmlFor="patientName">Full Name</label>
+                  <input type="text" id="patientName" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="patientDOB">Date of Birth</label>
+                  <input type="date" id="patientDOB" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="patientGender">Gender</label>
+                  <select id="patientGender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="patientContact">Contact Number</label>
+                  <input type="tel" id="patientContact" required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="patientEmail">Email Address</label>
+                  <input type="email" id="patientEmail" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="patientAddress">Address</label>
+                  <textarea id="patientAddress" rows="3"></textarea>
+                </div>
+                <div className="form-actions">
+                  <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
+                  <button type="submit" className="submit-btn">Register Patient</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeModal === 'prescription' && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Write New Prescription</h3>
+              <button className="close-btn" onClick={closeModal}>
+                <CloseIcon />
+              </button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handlePrescriptionSubmit}>
+                <div className="form-group">
+                  <label htmlFor="prescriptionPatient">Patient</label>
+                  <select 
+                    id="prescriptionPatient" 
+                    value={prescriptionPatient} 
+                    onChange={(e) => setPrescriptionPatient(e.target.value)}
+                    required
+                  >
+                    <option value="">Select Patient</option>
+                    {waitingPatients.map(patient => (
+                      <option key={patient.id} value={patient.name}>{patient.name}</option>
+                    ))}
+                    {upcomingAppointments.map(appt => (
+                      <option key={appt.id} value={appt.patient}>{appt.patient}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="medication">Medication</label>
+                  <input 
+                    type="text" 
+                    id="medication" 
+                    value={medication} 
+                    onChange={(e) => setMedication(e.target.value)}
+                    required 
+                  />
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="dosage">Dosage</label>
+                    <input 
+                      type="text" 
+                      id="dosage" 
+                      value={dosage} 
+                      onChange={(e) => setDosage(e.target.value)}
+                      required 
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="frequency">Frequency</label>
+                    <input 
+                      type="text" 
+                      id="frequency" 
+                      value={frequency} 
+                      onChange={(e) => setFrequency(e.target.value)}
+                      required 
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="duration">Duration</label>
+                  <input 
+                    type="text" 
+                    id="duration" 
+                    value={duration} 
+                    onChange={(e) => setDuration(e.target.value)}
+                    required 
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="prescriptionNotes">Special Instructions</label>
+                  <textarea id="prescriptionNotes" rows="3"></textarea>
+                </div>
+                <div className="form-actions">
+                  <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
+                  <button type="submit" className="submit-btn">Send Prescription</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeModal === 'labOrder' && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Create Lab Order</h3>
+              <button className="close-btn" onClick={closeModal}>
+                <CloseIcon />
+              </button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handleLabOrderSubmit}>
+                <div className="form-group">
+                  <label htmlFor="labOrderPatient">Patient</label>
+                  <select 
+                    id="labOrderPatient" 
+                    value={selectedPatient} 
+                    onChange={(e) => setSelectedPatient(e.target.value)}
+                    required
+                  >
+                    <option value="">Select Patient</option>
+                    {waitingPatients.map(patient => (
+                      <option key={patient.id} value={patient.name}>{patient.name}</option>
+                    ))}
+                    {upcomingAppointments.map(appt => (
+                      <option key={appt.id} value={appt.patient}>{appt.patient}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Test Types</label>
+                  <div className="checkbox-group">
+                    <label className="checkbox-label">
+                      <input 
+                        type="checkbox" 
+                        value="Blood Test" 
+                        onChange={handleTestTypeChange}
+                        checked={testTypes.includes('Blood Test')} 
+                      />
+                      Blood Test
+                    </label>
+                    <label className="checkbox-label">
+                      <input 
+                        type="checkbox" 
+                        value="Urinalysis" 
+                        onChange={handleTestTypeChange}
+                        checked={testTypes.includes('Urinalysis')}  
+                      />
+                      Urinalysis
+                    </label>
+                    <label className="checkbox-label">
+                      <input 
+                        type="checkbox" 
+                        value="ECG" 
+                        onChange={handleTestTypeChange}
+                        checked={testTypes.includes('ECG')}  
+                      />
+                      ECG
+                    </label>
+                    <label className="checkbox-label">
+                      <input 
+                        type="checkbox" 
+                        value="X-Ray" 
+                        onChange={handleTestTypeChange}
+                        checked={testTypes.includes('X-Ray')}  
+                      />
+                      X-Ray
+                    </label>
+                    <label className="checkbox-label">
+                      <input 
+                        type="checkbox" 
+                        value="MRI" 
+                        onChange={handleTestTypeChange}
+                        checked={testTypes.includes('MRI')}  
+                      />
+                      MRI
+                    </label>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="specialInstructions">Special Instructions</label>
+                  <textarea 
+                    id="specialInstructions" 
+                    value={specialInstructions}
+                    onChange={(e) => setSpecialInstructions(e.target.value)}
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div className="form-actions">
+                  <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
+                  <button type="submit" className="submit-btn">Send Lab Order</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeModal === 'statistics' && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Practice Statistics</h3>
+              <button className="close-btn" onClick={closeModal}>
+                <CloseIcon />
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="statistics-summary">
+                <div className="stat-item">
+                  <h4>Patients Seen Today</h4>
+                  <p className="stat-number">8</p>
+                </div>
+                <div className="stat-item">
+                  <h4>Average Visit Duration</h4>
+                  <p className="stat-number">18 mins</p>
+                </div>
+                <div className="stat-item">
+                  <h4>Lab Orders Today</h4>
+                  <p className="stat-number">3</p>
+                </div>
+                <div className="stat-item">
+                  <h4>Prescriptions Written</h4>
+                  <p className="stat-number">12</p>
+                </div>
+              </div>
+              <div className="stat-actions">
+                <button className="view-detailed-btn" onClick={handleViewStatistics}>
+                  View Detailed Reports
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default DoctorDashboard;
