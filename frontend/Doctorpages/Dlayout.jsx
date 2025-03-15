@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import Dnavbar from '../Doctorpages/Dnavabr'
-import  Dsidebar from '../Doctorpages/Dsidebar';
+import Dnavbar from '../Doctorpages/Dnavabr';
+import Dsidebar from '../Doctorpages/Dsidebar';
 import '../Dstyles/Dlayout.css';
 
-const Layout = ({ children }) => {
+const DashboardLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
-
+  
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle('dark-mode');
   };
-
+  
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
-      <Dnavbar />
+      <Dnavbar toggleDarkMode={toggleDarkMode} />
       <div className="content-container">
         <Dsidebar />
         <main className="main-content">
@@ -24,4 +24,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default DashboardLayout;
