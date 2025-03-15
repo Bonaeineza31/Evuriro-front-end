@@ -20,6 +20,7 @@ import Settings from '../pages/Settings';
 import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
+import Dnavabr from '../pages/Doctorpages/Dnavabr'
 // import NotFound from '../pages/NotFound';
 
 // Authentication guard
@@ -54,6 +55,12 @@ const AuthenticatedLayout = () => {
             <Route path="/find" element={<Find />} />
             <Route path="/uploadrecord" element={<UploadRecords />} />
             {/*<Route path="*" element={<NotFound />} /> */}
+            
+            
+
+            {/*dashboard for doctor*/}
+            <Route path ='/dnavbar' element={<Dnavabr/>}/>
+
           </Routes>
         </main>
       </div>
