@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../Dstyles/DoctorDashboard.css';
-import Smith from '../images/Screenshot 2025-03-01 224911.png'
+import Smith from '../images/Screenshot 2025-03-01 224911.png';
 
 // Custom SVG icons
 const PatientWaitingIcon = () => (
@@ -77,6 +77,13 @@ const VideoIndicatorIcon = () => (
   </svg>
 );
 
+const CloseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+);
+
 const DoctorDashboard = () => {
   // Dynamic doctor name from login - would come from auth context in a real app
   const [doctorName, setDoctorName] = useState("Dr. Smith");
@@ -107,11 +114,76 @@ const DoctorDashboard = () => {
 
   // For quick action button tooltip/overlay
   const [activeTooltip, setActiveTooltip] = useState(null);
+  
+  // For modal management
+  const [activeModal, setActiveModal] = useState(null);
+  
+  // For lab order form
+  const [selectedPatient, setSelectedPatient] = useState('');
+  const [testTypes, setTestTypes] = useState([]);
+  const [specialInstructions, setSpecialInstructions] = useState('');
+  
+  // For prescription form
+  const [prescriptionPatient, setPrescriptionPatient] = useState('');
+  const [medication, setMedication] = useState('');
+  const [dosage, setDosage] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [duration, setDuration] = useState('');
 
   // Function to handle quick action clicks
   const handleQuickAction = (action) => {
-    alert(`${action} action selected`);
+    setActiveModal(action);
     setActiveTooltip(null);
+  };
+  
+  // Function to close modal
+  const closeModal = () => {
+    setActiveModal(null);
+  };
+  
+  // Function to handle lab order submission
+  const handleLabOrderSubmit = (e) => {
+    e.preventDefault();
+    alert(`Lab order for ${selectedPatient} submitted successfully!`);
+    setSelectedPatient('');
+    setTestTypes([]);
+    setSpecialInstructions('');
+    closeModal();
+  };
+  
+  // Function to handle prescription submission
+  const handlePrescriptionSubmit = (e) => {
+    e.preventDefault();
+    alert(`Prescription for ${prescriptionPatient} submitted successfully!`);
+    setPrescriptionPatient('');
+    setMedication('');
+    setDosage('');
+    setFrequency('');
+    setDuration('');
+    closeModal();
+  };
+  
+  // Handle checkbox change for test types
+  const handleTestTypeChange = (e) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setTestTypes([...testTypes, value]);
+    } else {
+      setTestTypes(testTypes.filter(type => type !== value));
+    }
+  };
+  
+  // Function to add patient (simplified)
+  const handleAddPatient = (e) => {
+    e.preventDefault();
+    alert('New patient registered successfully!');
+    closeModal();
+  };
+  
+  // Function to view statistics (simplified)
+  const handleViewStatistics = () => {
+    alert('Statistics view would open here');
+    closeModal();
   };
 
   return (
@@ -225,80 +297,4 @@ const DoctorDashboard = () => {
                       <h4 className="patient-name">{appt.patient}</h4>
                       <p className="appointment-reason">{appt.reason}</p>
                     </div>
-                    <div className="appointment-actions">
-                      <button className="view-btn">View</button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          {/* Quick Actions */}
-          <div className="panel">
-            <div className="panel-header">
-              <h3 className="panel-title">Quick Actions</h3>
-            </div>
-            <div className="panel-content">
-              <div className="quick-actions-grid">
-                <div 
-                  className="quick-action-btn"
-                  onMouseEnter={() => setActiveTooltip('newPatient')}
-                  onMouseLeave={() => setActiveTooltip(null)}
-                  onClick={() => handleQuickAction('New Patient')}
-                >
-                  <NewPatientIcon />
-                  <span>New Patient</span>
-                  {activeTooltip === 'newPatient' && (
-                    <div className="tooltip">Register a new patient</div>
-                  )}
-                </div>
-                
-                <div 
-                  className="quick-action-btn"
-                  onMouseEnter={() => setActiveTooltip('prescription')}
-                  onMouseLeave={() => setActiveTooltip(null)}
-                  onClick={() => handleQuickAction('Write Prescription')}
-                >
-                  <PrescriptionIcon />
-                  <span>Prescription</span>
-                  {activeTooltip === 'prescription' && (
-                    <div className="tooltip">Write a new prescription</div>
-                  )}
-                </div>
-                
-                <div 
-                  className="quick-action-btn"
-                  onMouseEnter={() => setActiveTooltip('labOrder')}
-                  onMouseLeave={() => setActiveTooltip(null)}
-                  onClick={() => handleQuickAction('Lab Order')}
-                >
-                  <LabOrderIcon />
-                  <span>Lab Order</span>
-                  {activeTooltip === 'labOrder' && (
-                    <div className="tooltip">Create a new laboratory order</div>
-                  )}
-                </div>
-                
-                <div 
-                  className="quick-action-btn"
-                  onMouseEnter={() => setActiveTooltip('stats')}
-                  onMouseLeave={() => setActiveTooltip(null)}
-                  onClick={() => handleQuickAction('View Statistics')}
-                >
-                  <StatisticsIcon />
-                  <span>Statistics</span>
-                  {activeTooltip === 'stats' && (
-                    <div className="tooltip">View your performance statistics</div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default DoctorDashboard;
+                    <div className="appointment-actions"></div>
