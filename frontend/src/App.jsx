@@ -23,7 +23,7 @@ import UploadRecords from '../pages/UploadRecords';
 // Import Doctor Dashboard Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 // Import the DashboardLayout instead of individual components
-import DashboardLayout from '../Doctorpages/DashboardLayout';
+import DashboardLayout from '../Doctorpages/Dlayout';
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
