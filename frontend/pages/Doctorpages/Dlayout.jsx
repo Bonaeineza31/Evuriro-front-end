@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Dnavbar from '../Doctorpages/Dnavabr';
-import  from './Sidebar';
-import './Layout.css';
+import  Dsidebar from '../Doctorpages/Dsidebar';
+import '../Dstyles/Dlayout.css';
 
 const Layout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
