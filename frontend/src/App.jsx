@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useTheme, ThemeProvider } from '../pages/Theme'; 
-import Sidebar from '../components/Sidebar';
-import Navbar from '../components/Navbar';
+import { ThemeProvider } from '../pages/Theme';
 import './App.css';
 
 import { LanguageProvider } from '../src/Languages';
@@ -20,10 +18,9 @@ import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
 
-// Import Doctor Dashboard Components
+// Import Doctor Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
-// Import the DashboardLayout instead of individual components
-import DashboardLayout from '../Doctorpages/Dlayout';
+import Dlayout from '../Doctorpages/Dlayout'; // Make sure to import the correct component
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -38,11 +35,9 @@ const RequireAuth = ({ children }) => {
 
 // Layout Component for Authenticated Users (Patient)
 const AuthenticatedLayout = () => {
-  const { toggleTheme } = useTheme();
-  
   return (
     <div className="app">
-      <Navbar toggleTheme={toggleTheme} />
+      <Navbar />
       
       <div className="app-container">
         <Sidebar />
@@ -65,22 +60,7 @@ const AuthenticatedLayout = () => {
   );
 };
 
-// Doctor routes component - no layout here, we'll use the DashboardLayout within each route
-const DoctorRoutes = () => {
-  return (
-    <Routes>
-      <Route path="dashboard" element={
-        <DashboardLayout>
-          <DoctorDashboard />
-        </DashboardLayout>
-      } />
-      {/* Add more doctor-specific routes here, each wrapped in DashboardLayout */}
-    </Routes>
-  );
-};
-
 const App = () => {
-  // Check if the user is a doctor or patient
   const userRole = localStorage.getItem('role') || 'patient';
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   
@@ -108,10 +88,19 @@ const App = () => {
               </RequireAuth>
             } />
             
-            {/* Doctor Protected Routes */}
+            {/* Doctor Protected Routes - Use Dlayout component directly */}
             <Route path="/doctor/*" element={
               <RequireAuth>
-                {userRole === 'doctor' ? <DoctorRoutes /> : <Navigate to="/dashboard" replace />}
+                {userRole === 'doctor' ? (
+                  <Dlayout>
+                    <Routes>
+                      <Route path="dashboard" element={<DoctorDashboard />} />
+                      {/* Add more doctor routes here */}
+                    </Routes>
+                  </Dlayout>
+                ) : (
+                  <Navigate to="/dashboard" replace />
+                )}
               </RequireAuth>
             } />
           </Routes>
