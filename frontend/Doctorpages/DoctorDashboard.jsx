@@ -1,16 +1,89 @@
 import React, { useState } from 'react';
-import { FaUserClock, FaCalendarCheck, FaVideo, FaFileMedical, FaBell, FaSearch, FaUserMd, FaClipboardList, FaFilePrescription, FaChartLine } from 'react-icons/fa';
-import '../Dstyles/DoctorDashboard.css';
+import '../styles/DoctorDashboard.css';
+
+// Custom SVG icons
+const PatientWaitingIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="7" r="4"></circle>
+    <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+  </svg>
+);
+
+const AppointmentIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+);
+
+const TeleconsultIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+  </svg>
+);
+
+const FilesIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+    <polyline points="14 2 14 8 20 8"></polyline>
+  </svg>
+);
+
+const NewPatientIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+    <circle cx="8.5" cy="7" r="4"></circle>
+    <line x1="20" y1="8" x2="20" y2="14"></line>
+    <line x1="23" y1="11" x2="17" y2="11"></line>
+  </svg>
+);
+
+const PrescriptionIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 15h18v6H3v-6z"></path>
+    <path d="M4 10h16v5H4v-5z"></path>
+    <path d="M5 5h14v5H5V5z"></path>
+    <line x1="12" y1="6" x2="12" y2="4"></line>
+    <line x1="8" y1="6" x2="8" y2="4"></line>
+    <line x1="16" y1="6" x2="16" y2="4"></line>
+  </svg>
+);
+
+const LabOrderIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+    <path d="M14 2v6h6"></path>
+    <path d="M9 15h6"></path>
+    <path d="M9 11h6"></path>
+  </svg>
+);
+
+const StatisticsIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="20" x2="18" y2="10"></line>
+    <line x1="12" y1="20" x2="12" y2="4"></line>
+    <line x1="6" y1="20" x2="6" y2="14"></line>
+  </svg>
+);
+
+const VideoIndicatorIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+  </svg>
+);
 
 const DoctorDashboard = () => {
   // Dynamic doctor name from login - would come from auth context in a real app
   const [doctorName, setDoctorName] = useState("Dr. Smith");
   const [notifications, setNotifications] = useState(3);
   const currentDate = new Date().toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
     month: 'long', 
-    day: 'numeric' 
+    day: 'numeric',
+    year: 'numeric'
   });
 
   // Sample upcoming appointments
@@ -41,62 +114,17 @@ const DoctorDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      {/* Top Navigation */}
-      <nav className="dashboard-nav">
-        <div className="nav-content">
-          <div className="logo-container">
-            <div className="logo-icon">
-              <FaUserMd size={24} />
-            </div>
-            <h1 className="logo-text">MediPortal</h1>
-          </div>
-          
-          <div className="user-controls">
-            <div className="notification-bell">
-              <button 
-                className="bell-button"
-                onClick={() => alert(`You have ${notifications} new notifications`)}
-              >
-                <FaBell size={20} />
-                {notifications > 0 && (
-                  <span className="notification-badge">
-                    {notifications}
-                  </span>
-                )}
-              </button>
-            </div>
-            <div className="user-info">
-              <p className="user-name">{doctorName}</p>
-              <p className="user-role">Cardiologist</p>
-            </div>
-            <img 
-              src="/api/placeholder/40/40" 
-              alt="Doctor profile" 
-              className="user-avatar"
-            />
-          </div>
-        </div>
-      </nav>
-
+    <div className="evuriro-dashboard">
       {/* Main Content */}
-      <div className="dashboard-main">
+      <div className="dashboard-content">
         {/* Welcome Banner */}
         <div className="welcome-banner">
-          <div className="banner-content">
+          <h2 className="welcome-heading">Welcome back, {doctorName.split(' ')[1]}</h2>
+          <div className="doctor-info">
+            <img src="/api/placeholder/40/40" alt="Doctor profile" className="doctor-avatar" />
             <div>
-              <h2 className="welcome-heading">Welcome back, {doctorName.split(' ')[1]}</h2>
-              <p className="current-date">{currentDate}</p>
-            </div>
-            <div className="search-container">
-              <div className="search-box">
-                <input 
-                  type="text" 
-                  placeholder="Search patients..." 
-                  className="search-input"
-                />
-                <FaSearch className="search-icon" />
-              </div>
+              <p className="doctor-title">{doctorName}</p>
+              <p className="doctor-specialty">Cardiologist</p>
             </div>
           </div>
         </div>
@@ -104,8 +132,8 @@ const DoctorDashboard = () => {
         {/* Stats Overview */}
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-icon blue">
-              <FaUserClock />
+            <div className="stat-icon-container">
+              <PatientWaitingIcon />
             </div>
             <div className="stat-info">
               <h3 className="stat-label">Waiting</h3>
@@ -114,8 +142,8 @@ const DoctorDashboard = () => {
           </div>
           
           <div className="stat-card">
-            <div className="stat-icon green">
-              <FaCalendarCheck />
+            <div className="stat-icon-container">
+              <AppointmentIcon />
             </div>
             <div className="stat-info">
               <h3 className="stat-label">Today's Appointments</h3>
@@ -124,8 +152,8 @@ const DoctorDashboard = () => {
           </div>
           
           <div className="stat-card">
-            <div className="stat-icon purple">
-              <FaVideo />
+            <div className="stat-icon-container">
+              <TeleconsultIcon />
             </div>
             <div className="stat-info">
               <h3 className="stat-label">Teleconsultations</h3>
@@ -134,8 +162,8 @@ const DoctorDashboard = () => {
           </div>
           
           <div className="stat-card">
-            <div className="stat-icon amber">
-              <FaFileMedical />
+            <div className="stat-icon-container">
+              <FilesIcon />
             </div>
             <div className="stat-info">
               <h3 className="stat-label">Patient Files</h3>
@@ -150,7 +178,7 @@ const DoctorDashboard = () => {
           <div className="panel">
             <div className="panel-header">
               <h3 className="panel-title">
-                <FaUserClock className="panel-icon" />
+                <PatientWaitingIcon />
                 Waiting Patients
               </h3>
               <button className="view-all-btn">View All</button>
@@ -179,7 +207,7 @@ const DoctorDashboard = () => {
           <div className="panel">
             <div className="panel-header">
               <h3 className="panel-title">
-                <FaCalendarCheck className="panel-icon" />
+                <AppointmentIcon />
                 Today's Appointments
               </h3>
               <button className="view-all-btn">View All</button>
@@ -190,7 +218,7 @@ const DoctorDashboard = () => {
                   <li key={appt.id} className="appointment-item">
                     <div className="appointment-time">
                       {appt.time}
-                      {appt.isVideo && <FaVideo className="video-icon" />}
+                      {appt.isVideo && <span className="video-indicator"><VideoIndicatorIcon /></span>}
                     </div>
                     <div className="appointment-details">
                       <h4 className="patient-name">{appt.patient}</h4>
@@ -208,10 +236,7 @@ const DoctorDashboard = () => {
           {/* Quick Actions */}
           <div className="panel">
             <div className="panel-header">
-              <h3 className="panel-title">
-                <FaClipboardList className="panel-icon" />
-                Quick Actions
-              </h3>
+              <h3 className="panel-title">Quick Actions</h3>
             </div>
             <div className="panel-content">
               <div className="quick-actions-grid">
@@ -221,10 +246,10 @@ const DoctorDashboard = () => {
                   onMouseLeave={() => setActiveTooltip(null)}
                   onClick={() => handleQuickAction('New Patient')}
                 >
-                  <FaUserMd />
+                  <NewPatientIcon />
                   <span>New Patient</span>
                   {activeTooltip === 'newPatient' && (
-                    <div className="tooltip">Register a new patient to the system</div>
+                    <div className="tooltip">Register a new patient</div>
                   )}
                 </div>
                 
@@ -234,7 +259,7 @@ const DoctorDashboard = () => {
                   onMouseLeave={() => setActiveTooltip(null)}
                   onClick={() => handleQuickAction('Write Prescription')}
                 >
-                  <FaFilePrescription />
+                  <PrescriptionIcon />
                   <span>Prescription</span>
                   {activeTooltip === 'prescription' && (
                     <div className="tooltip">Write a new prescription</div>
@@ -247,7 +272,7 @@ const DoctorDashboard = () => {
                   onMouseLeave={() => setActiveTooltip(null)}
                   onClick={() => handleQuickAction('Lab Order')}
                 >
-                  <FaFileMedical />
+                  <LabOrderIcon />
                   <span>Lab Order</span>
                   {activeTooltip === 'labOrder' && (
                     <div className="tooltip">Create a new laboratory order</div>
@@ -260,7 +285,7 @@ const DoctorDashboard = () => {
                   onMouseLeave={() => setActiveTooltip(null)}
                   onClick={() => handleQuickAction('View Statistics')}
                 >
-                  <FaChartLine />
+                  <StatisticsIcon />
                   <span>Statistics</span>
                   {activeTooltip === 'stats' && (
                     <div className="tooltip">View your performance statistics</div>
