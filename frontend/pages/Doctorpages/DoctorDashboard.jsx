@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from './Layout';
 import { FaUserClock, FaCalendarCheck, FaVideo, FaFileMedical } from 'react-icons/fa';
-import './DoctorDashboard.css';
+import '../Dstyles/DoctorDashboard.css';
 import PatientQueue from './components/PatientQueue';
 import AppointmentList from './components/AppointmentList';
 import PatientStats from './components/PatientStats';
