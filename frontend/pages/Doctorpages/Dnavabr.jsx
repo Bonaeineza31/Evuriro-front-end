@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaSearch, FaBell, FaUser } from 'react-icons/fa';
-import './Navbar.css';
+import '../Dstyles/Dnavabar.css';
 
 const Navbar = () => {
   return (
