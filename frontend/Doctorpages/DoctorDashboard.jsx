@@ -2,10 +2,10 @@ import React from 'react';
 import Dlayout from '../Doctorpages/Dlayout';
 import { FaUserClock, FaCalendarCheck, FaVideo, FaFileMedical } from 'react-icons/fa';
 import '../Dstyles/DoctorDashboard.css';
-import PatientQueue from './components/PatientQueue';
-import AppointmentList from './components/AppointmentList';
-import PatientStats from './components/PatientStats';
-import QuickActions from './components/QuickActions';
+// import PatientQueue from './components/PatientQueue';
+// import AppointmentList from './components/AppointmentList';
+// import PatientStats from './components/PatientStats';
+// import QuickActions from './components/QuickActions';
 
 const DoctorDashboard = () => {
   return (

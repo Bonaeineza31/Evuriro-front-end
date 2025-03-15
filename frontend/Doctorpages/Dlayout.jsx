@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dnavbar from '../Doctorpages/Dnavabr';
+import Dnavbar from '../Doctorpages/Dnavabr'
 import  Dsidebar from '../Doctorpages/Dsidebar';
 import '../Dstyles/Dlayout.css';
 

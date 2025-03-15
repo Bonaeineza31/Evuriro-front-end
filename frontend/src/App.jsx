@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useTheme, ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
 import Sidebar from '../components/Sidebar';
@@ -48,16 +48,16 @@ const AuthenticatedLayout = () => {
         <Sidebar />
         <main className="content">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/appointments" element={<Appointments />} />
-            <Route path="/teleconsult" element={<Teleconsultation />} />
-            <Route path="/records" element={<MedicalRecords />} />
-            <Route path="/hospitals" element={<NearbyHospitals />} />
-            <Route path="/connect-device" element={<ConnectDevice />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/find" element={<Find />} />
-            <Route path="/uploadrecord" element={<UploadRecords />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="teleconsult" element={<Teleconsultation />} />
+            <Route path="records" element={<MedicalRecords />} />
+            <Route path="hospitals" element={<NearbyHospitals />} />
+            <Route path="connect-device" element={<ConnectDevice />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="help" element={<HelpCenter />} />
+            <Route path="find" element={<Find />} />
+            <Route path="uploadrecord" element={<UploadRecords />} />
           </Routes>
         </main>
       </div>
@@ -77,7 +77,7 @@ const DoctorLayout = () => {
         <Dsidebar />
         <main className="content">
           <Routes>
-            <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+            <Route path="dashboard" element={<DoctorDashboard />} />
             {/* Add more doctor-specific routes here */}
           </Routes>
         </main>
@@ -88,7 +88,7 @@ const DoctorLayout = () => {
 
 const App = () => {
   // Check if the user is a doctor or patient
-  const userRole = localStorage.getItem('userRole') || 'patient';
+  const userRole = localStorage.getItem('role') || 'patient';
   
   return (
     <LanguageProvider>
@@ -102,13 +102,13 @@ const App = () => {
             <Route path="/" element={
               localStorage.getItem('isAuthenticated') === 'true'
                 ? userRole === 'doctor' 
-                  ? <Navigate to="/Doctorpages/DoctorDashboard" replace />
+                  ? <Navigate to="/Doctordashboard" replace />
                   : <Navigate to="/dashboard" replace />
                 : <Navigate to="/welcome" replace />
             } />
             
             {/* Patient Protected Routes */}
-            <Route path="/*" element={
+            <Route path="/patient/*" element={
               <RequireAuth>
                 <AuthenticatedLayout />
               </RequireAuth>
