@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useTheme,ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
+import { useTheme, ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
 import Sidebar from '../components/Sidebar';
-import Navbar from '../components/Navbar'; 
+import Navbar from '../components/Navbar';
 import './App.css';
-console.log('App Component Mounted');
-console.log('Authenticated:', localStorage.getItem('isAuthenticated'));
+
 import { LanguageProvider } from '../src/Languages';
 
 // Import pages
@@ -20,26 +19,31 @@ import Settings from '../pages/Settings';
 import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
-import Dnavabr from '../pages/Doctorpages/Dnavabr'
-// import NotFound from '../pages/NotFound';
+
+// Import Doctor Dashboard Components
+import Dnavbar from '../pages/Doctorpages/Dnavabr';
+import Dsidebar from '../pages/Doctorpages/Dsidebar';
+import DoctorDashboard from '../pages/Doctorpages/DoctorDashboard';
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
   const location = useLocation();
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-
+  
   if (!isAuthenticated) {
     return <Navigate to="/welcome" state={{ from: location }} replace />;
   }
   return children;
 };
 
-// Layout Component for Authenticated Users
+// Layout Component for Authenticated Users (Patient)
 const AuthenticatedLayout = () => {
   const { toggleTheme } = useTheme(); // Get the toggleTheme function from the theme context
+  
   return (
     <div className="app">
-      <Navbar toggleTheme={toggleTheme} /> 
+      <Navbar toggleTheme={toggleTheme} />
+      
       <div className="app-container">
         <Sidebar />
         <main className="content">
@@ -54,13 +58,27 @@ const AuthenticatedLayout = () => {
             <Route path="/help" element={<HelpCenter />} />
             <Route path="/find" element={<Find />} />
             <Route path="/uploadrecord" element={<UploadRecords />} />
-            {/*<Route path="*" element={<NotFound />} /> */}
-            
-            
+          </Routes>
+        </main>
+      </div>
+    </div>
+  );
+};
 
-            {/*dashboard for doctor*/}
-            <Route path ='/dnavbar' element={<Dnavabr/>}/>
-
+// Layout Component for Doctor Users
+const DoctorLayout = () => {
+  const { toggleTheme } = useTheme();
+  
+  return (
+    <div className="app doctor-app">
+      <Dnavbar toggleTheme={toggleTheme} />
+      
+      <div className="app-container">
+        <Dsidebar />
+        <main className="content">
+          <Routes>
+            <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+            {/* Add more doctor-specific routes here */}
           </Routes>
         </main>
       </div>
@@ -69,6 +87,9 @@ const AuthenticatedLayout = () => {
 };
 
 const App = () => {
+  // Check if the user is a doctor or patient
+  const userRole = localStorage.getItem('userRole') || 'patient';
+  
   return (
     <LanguageProvider>
       <ThemeProvider>
@@ -76,23 +97,29 @@ const App = () => {
           <Routes>
             {/* Public Routes */}
             <Route path="/welcome" element={<Welcome />} />
-
+            
             {/* Redirect Root */}
             <Route path="/" element={
-              localStorage.getItem('isAuthenticated') === 'true' 
-                ? <Navigate to="/dashboard" replace /> 
+              localStorage.getItem('isAuthenticated') === 'true'
+                ? userRole === 'doctor' 
+                  ? <Navigate to="/Doctorpages/DoctorDashboard" replace />
+                  : <Navigate to="/dashboard" replace />
                 : <Navigate to="/welcome" replace />
             } />
-
-            {/* Protected Routes with Layout */}
+            
+            {/* Patient Protected Routes */}
             <Route path="/*" element={
               <RequireAuth>
                 <AuthenticatedLayout />
               </RequireAuth>
             } />
-
-            {/* Not Found */}
-            {/* <Route path="*" element={<NotFound />} /> */}
+            
+            {/* Doctor Protected Routes */}
+            <Route path="/doctor/*" element={
+              <RequireAuth>
+                <DoctorLayout />
+              </RequireAuth>
+            } />
           </Routes>
         </Router>
       </ThemeProvider>

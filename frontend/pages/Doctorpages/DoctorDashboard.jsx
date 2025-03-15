@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
+import Dlayout from '../Doctorpages/Dlayout';
 import { FaUserClock, FaCalendarCheck, FaVideo, FaFileMedical } from 'react-icons/fa';
 import '../Dstyles/DoctorDashboard.css';
 import PatientQueue from './components/PatientQueue';
@@ -9,7 +9,7 @@ import QuickActions from './components/QuickActions';
 
 const DoctorDashboard = () => {
   return (
-    <Layout>
+    <Dlayout>
       <div className="dashboard-header">
         <h1>Welcome, Dr. Smith</h1>
         <p className="date">March 15, 2025</p>
@@ -74,7 +74,7 @@ const DoctorDashboard = () => {
           <PatientStats />
         </div>
       </div>
-    </Layout>
+    </Dlayout>
   );
 };
 
