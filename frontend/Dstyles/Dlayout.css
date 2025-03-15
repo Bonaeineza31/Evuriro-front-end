@@ -1,11 +1,13 @@
 .app-container {
     min-height: 100vh;
     background-color: #f8fafc;
+    display: flex;
+    flex-direction: column;
   }
   
   .content-container {
     display: flex;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 70px);
   }
   
   .main-content {

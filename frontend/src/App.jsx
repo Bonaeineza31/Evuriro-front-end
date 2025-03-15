@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useTheme, ThemeProvider } from '../pages/Theme'; // Import the useTheme hook
+import { useTheme, ThemeProvider } from '../pages/Theme'; 
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import './App.css';
@@ -38,7 +38,7 @@ const RequireAuth = ({ children }) => {
 
 // Layout Component for Authenticated Users (Patient)
 const AuthenticatedLayout = () => {
-  const { toggleTheme } = useTheme(); // Get the toggleTheme function from the theme context
+  const { toggleTheme } = useTheme();
   
   return (
     <div className="app">
@@ -48,16 +48,16 @@ const AuthenticatedLayout = () => {
         <Sidebar />
         <main className="content">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/appointments" element={<Appointments />} />
-            <Route path="/teleconsult" element={<Teleconsultation />} />
-            <Route path="/records" element={<MedicalRecords />} />
-            <Route path="/hospitals" element={<NearbyHospitals />} />
-            <Route path="/connect-device" element={<ConnectDevice />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/find" element={<Find />} />
-            <Route path="/uploadrecord" element={<UploadRecords />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="teleconsult" element={<Teleconsultation />} />
+            <Route path="records" element={<MedicalRecords />} />
+            <Route path="hospitals" element={<NearbyHospitals />} />
+            <Route path="connect-device" element={<ConnectDevice />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="help" element={<HelpCenter />} />
+            <Route path="find" element={<Find />} />
+            <Route path="uploadrecord" element={<UploadRecords />} />
           </Routes>
         </main>
       </div>
@@ -77,7 +77,7 @@ const DoctorLayout = () => {
         <Dsidebar />
         <main className="content">
           <Routes>
-            <Route path="/Ddashboard" element={<DoctorDashboard />} />
+            <Route path="dashboard" element={<DoctorDashboard />} />
             {/* Add more doctor-specific routes here */}
           </Routes>
         </main>
@@ -103,7 +103,7 @@ const App = () => {
             <Route path="/" element={
               isAuthenticated
                 ? userRole === 'doctor' 
-                  ? <Navigate to="/doctor/Ddashboard" replace />
+                  ? <Navigate to="/doctor/dashboard" replace />
                   : <Navigate to="/dashboard" replace />
                 : <Navigate to="/welcome" replace />
             } />
