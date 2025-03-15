@@ -21,9 +21,9 @@ import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
 
 // Import Doctor Dashboard Components
-import Dnavbar from '../Doctorpages/Dnavabr';
-import Dsidebar from '../Doctorpages/Dsidebar';
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
+// Import the DashboardLayout instead of individual components
+import DashboardLayout from '../Doctorpages/DashboardLayout';
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -65,24 +65,17 @@ const AuthenticatedLayout = () => {
   );
 };
 
-// Layout Component for Doctor Users
-const DoctorLayout = () => {
-  const { toggleTheme } = useTheme();
-  
+// Doctor routes component - no layout here, we'll use the DashboardLayout within each route
+const DoctorRoutes = () => {
   return (
-    <div className="app doctor-app">
-      <Dnavbar toggleTheme={toggleTheme} />
-      
-      <div className="app-container">
-        <Dsidebar />
-        <main className="content">
-          <Routes>
-            <Route path="dashboard" element={<DoctorDashboard />} />
-            {/* Add more doctor-specific routes here */}
-          </Routes>
-        </main>
-      </div>
-    </div>
+    <Routes>
+      <Route path="dashboard" element={
+        <DashboardLayout>
+          <DoctorDashboard />
+        </DashboardLayout>
+      } />
+      {/* Add more doctor-specific routes here, each wrapped in DashboardLayout */}
+    </Routes>
   );
 };
 
@@ -118,7 +111,7 @@ const App = () => {
             {/* Doctor Protected Routes */}
             <Route path="/doctor/*" element={
               <RequireAuth>
-                {userRole === 'doctor' ? <DoctorLayout /> : <Navigate to="/dashboard" replace />}
+                {userRole === 'doctor' ? <DoctorRoutes /> : <Navigate to="/dashboard" replace />}
               </RequireAuth>
             } />
           </Routes>
