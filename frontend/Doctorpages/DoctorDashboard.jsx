@@ -59,19 +59,19 @@ const DoctorDashboard = () => {
       
       <div className="dashboard-grid">
         <div className="grid-item">
-          <PatientQueue />
+          {/* <PatientQueue /> */}
         </div>
         
         <div className="grid-item">
-          <AppointmentList />
+          {/* <AppointmentList /> */}
         </div>
         
         <div className="grid-item">
-          <QuickActions />
+          {/* <QuickActions /> */}
         </div>
         
         <div className="grid-item">
-          <PatientStats />
+          {/* <PatientStats /> */}
         </div>
       </div>
     </Dlayout>
