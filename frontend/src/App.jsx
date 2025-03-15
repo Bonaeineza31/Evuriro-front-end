@@ -21,9 +21,9 @@ import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
 
 // Import Doctor Dashboard Components
-import Dnavbar from '../pages/Doctorpages/Dnavabr';
-import Dsidebar from '../pages/Doctorpages/Dsidebar';
-import DoctorDashboard from '../pages/Doctorpages/DoctorDashboard';
+import Dnavbar from '../Doctorpages/Dnavabr';
+import Dsidebar from '../Doctorpages/Dsidebar';
+import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -48,16 +48,16 @@ const AuthenticatedLayout = () => {
         <Sidebar />
         <main className="content">
           <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="appointments" element={<Appointments />} />
-            <Route path="teleconsult" element={<Teleconsultation />} />
-            <Route path="records" element={<MedicalRecords />} />
-            <Route path="hospitals" element={<NearbyHospitals />} />
-            <Route path="connect-device" element={<ConnectDevice />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="help" element={<HelpCenter />} />
-            <Route path="find" element={<Find />} />
-            <Route path="uploadrecord" element={<UploadRecords />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/teleconsult" element={<Teleconsultation />} />
+            <Route path="/records" element={<MedicalRecords />} />
+            <Route path="/hospitals" element={<NearbyHospitals />} />
+            <Route path="/connect-device" element={<ConnectDevice />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/help" element={<HelpCenter />} />
+            <Route path="/find" element={<Find />} />
+            <Route path="/uploadrecord" element={<UploadRecords />} />
           </Routes>
         </main>
       </div>
@@ -77,7 +77,7 @@ const DoctorLayout = () => {
         <Dsidebar />
         <main className="content">
           <Routes>
-            <Route path="dashboard" element={<DoctorDashboard />} />
+            <Route path="/Ddashboard" element={<DoctorDashboard />} />
             {/* Add more doctor-specific routes here */}
           </Routes>
         </main>
@@ -89,6 +89,7 @@ const DoctorLayout = () => {
 const App = () => {
   // Check if the user is a doctor or patient
   const userRole = localStorage.getItem('role') || 'patient';
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   
   return (
     <LanguageProvider>
@@ -100,24 +101,24 @@ const App = () => {
             
             {/* Redirect Root */}
             <Route path="/" element={
-              localStorage.getItem('isAuthenticated') === 'true'
+              isAuthenticated
                 ? userRole === 'doctor' 
-                  ? <Navigate to="/Doctordashboard" replace />
+                  ? <Navigate to="/doctor/Ddashboard" replace />
                   : <Navigate to="/dashboard" replace />
                 : <Navigate to="/welcome" replace />
             } />
             
             {/* Patient Protected Routes */}
-            <Route path="/patient/*" element={
+            <Route path="/*" element={
               <RequireAuth>
-                <AuthenticatedLayout />
+                {userRole === 'doctor' ? <Navigate to="/doctor/dashboard" replace /> : <AuthenticatedLayout />}
               </RequireAuth>
             } />
             
             {/* Doctor Protected Routes */}
             <Route path="/doctor/*" element={
               <RequireAuth>
-                <DoctorLayout />
+                {userRole === 'doctor' ? <DoctorLayout /> : <Navigate to="/dashboard" replace />}
               </RequireAuth>
             } />
           </Routes>
