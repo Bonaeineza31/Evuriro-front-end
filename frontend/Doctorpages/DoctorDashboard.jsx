@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/DoctorDashboard.css';
+import Smith from '../images/Screenshot 2025-03-01 224911.png'
 
 // Custom SVG icons
 const PatientWaitingIcon = () => (
@@ -121,7 +122,7 @@ const DoctorDashboard = () => {
         <div className="welcome-banner">
           <h2 className="welcome-heading">Welcome back, {doctorName.split(' ')[1]}</h2>
           <div className="doctor-info">
-            <img src="/api/placeholder/40/40" alt="Doctor profile" className="doctor-avatar" />
+            <img src={Smith} alt="Doctor profile" className="doctor-avatar" />
             <div>
               <p className="doctor-title">{doctorName}</p>
               <p className="doctor-specialty">Cardiologist</p>
