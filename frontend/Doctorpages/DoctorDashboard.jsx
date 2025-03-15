@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/DoctorDashboard.css';
+import '../Dstyles/DoctorDashboard.css';
 import Smith from '../images/Screenshot 2025-03-01 224911.png'
 
 // Custom SVG icons
