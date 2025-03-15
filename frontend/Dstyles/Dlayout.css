@@ -1,39 +1,39 @@
 .app-container {
-    min-height: 100vh;
-    background-color: #f8fafc;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .content-container {
-    display: flex;
-    height: calc(100vh - 70px);
-  }
-  
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-  }
-  
-  /* Dark mode styles */
-  .app-container.dark-mode {
-    background-color: #1e293b;
-    color: #f8fafc;
-  }
-  
-  .app-container.dark-mode .sidebar,
-  .app-container.dark-mode .navbar {
-    background-color: #334155;
-    color: #f8fafc;
-    border-color: #475569;
-  }
-  
-  .app-container.dark-mode .menu-item:hover {
-    background-color: #475569;
-  }
-  
-  .app-container.dark-mode .menu-item.active {
-    background-color: #3b82f6;
-    color: white;
-  }
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Dark mode styles */
+.app-container.dark-mode {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.app-container.dark-mode .sidebar,
+.app-container.dark-mode .navbar {
+  background-color: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+.app-container.dark-mode .menu-item:hover {
+  background-color: #475569;
+}
+
+.app-container.dark-mode .menu-item.active {
+  background-color: #3b82f6;
+  color: white;
+}
