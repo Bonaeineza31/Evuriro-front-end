@@ -93,7 +93,7 @@ const Welcome = () => {
   };
 
   // API URL
-  const API_URL = 'http://localhost:5006';
+  const API_URL = 'https://evuriro-backend.vercel.app';
 
   // Updated sign-in handler with React Hook Form and Axios
   const onSubmitSignIn = async (data) => {
