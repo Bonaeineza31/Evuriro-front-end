@@ -1,0 +1,100 @@
+.dashboard-header {
+    margin-bottom: 24px;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 24px;
+    color: #1e40af;
+    margin: 0 0 4px 0;
+  }
+  
+  .date {
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  .stats-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .stat-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stat-icon {
+    background-color: #e0f2fe;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    color: #2563eb;
+    font-size: 20px;
+  }
+  
+  .stat-content h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  .stat-value {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1e40af;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .grid-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Dark mode overrides */
+  .app-container.dark-mode .stat-card {
+    background-color: #334155;
+  }
+  
+  .app-container.dark-mode .stat-icon {
+    background-color: #1e293b;
+    color: #60a5fa;
+  }
+  
+  .app-container.dark-mode .stat-content h3 {
+    color: #cbd5e1;
+  }
+  
+  .app-container.dark-mode .stat-value {
+    color: #93c5fd;
+  }
+  
+  .app-container.dark-mode .grid-item {
+    background-color: #334155;
+  }
+  
+  .app-container.dark-mode .dashboard-header h1 {
+    color: #93c5fd;
+  }
+  
+  .app-container.dark-mode .date {
+    color: #cbd5e1;
+  }
