@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaUserClock, FaCalendarCheck, FaVideo, FaFileMedical, FaBell, FaSearch, FaUserMd, FaClipboardList, FaFilePrescription, FaChartLine } from 'react-icons/fa';
-import '../styles/DoctorDashboard.css';
+import '../Dstyles/DoctorDashboard.css';
 
 const DoctorDashboard = () => {
   // Dynamic doctor name from login - would come from auth context in a real app
