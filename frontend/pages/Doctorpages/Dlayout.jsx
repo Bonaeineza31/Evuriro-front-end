@@ -13,9 +13,9 @@ const Layout = ({ children }) => {
 
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
-      <Navbar />
+      <Dnavbar />
       <div className="content-container">
-        <Sidebar />
+        <Dsidebar />
         <main className="main-content">
           {children}
         </main>
