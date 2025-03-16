@@ -20,6 +20,8 @@ import UploadRecords from '../pages/UploadRecords';
 
 // Import Doctor Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
+import Patient from '../Doctorpages/Patient'
+import DoctorAppointment from '../Doctorpages/Dappointment'
 import Dlayout from '../Doctorpages/Dlayout'; // Make sure to import the correct component
 
 // Authentication guard
@@ -95,7 +97,8 @@ const App = () => {
                   <Dlayout>
                     <Routes>
                       <Route path="dashboard" element={<DoctorDashboard />} />
-                      {/* Add more doctor routes here */}
+                     <Route path='/patient' element={<Patient />} />
+                     <Route path='/dappointment' element={<DoctorAppointment />} />
                     </Routes>
                   </Dlayout>
                 ) : (
