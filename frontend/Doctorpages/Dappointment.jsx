@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './DAppointment.css';
+import '../Dstyles/Dappointment.css';
 
-const DAppointment = () => {
+const Dappointment = () => {
   // Sample appointment data
   const [appointments, setAppointments] = useState([
     { 
@@ -214,4 +214,4 @@ const DAppointment = () => {
   );
 };
 
-export default DAppointment;
+export default Dappointment;

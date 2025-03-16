@@ -96,9 +96,9 @@ const App = () => {
                 {userRole === 'doctor' ? (
                   <Dlayout>
                     <Routes>
-                      <Route path="dashboard" element={<DoctorDashboard />} />
+                      <Route path="/dashboard" element={<DoctorDashboard />} />
                      <Route path='/patient' element={<Patient />} />
-                     <Route path='/dappointment' element={<DoctorAppointment />} />
+                     <Route path="dappointment" element={<DoctorAppointment />} />
                     </Routes>
                   </Dlayout>
                 ) : (

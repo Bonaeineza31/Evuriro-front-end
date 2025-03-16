@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Patient.css';
+import '../Dstyles/patient.css';
 import { FaCalendarAlt, FaChartLine, FaUserMd, FaFileMedical, FaHospital, FaExclamationTriangle, FaCheck, FaPlus, FaTimes, FaEdit, FaSave } from 'react-icons/fa';
 
 const HeartIcon = () => (
