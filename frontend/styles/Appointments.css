@@ -71,11 +71,11 @@
     min-width: 200px;
 }
   
-.appointment-type-toggle {
+.appointment-type-toggle2 {
     display: flex;
 }
   
-.appointment-type-toggle button {
+.appointment-type-toggle2 button {
     padding: 10px 15px;
     background-color: #f0f0f0;
     border: 1px solid #ddd;
@@ -83,21 +83,21 @@
     font-weight: 500;
 }
   
-.appointment-type-toggle button:first-child {
+.appointment-type-toggle2 button:first-child {
     border-radius: 6px 0 0 6px;
 }
   
-.appointment-type-toggle button:last-child {
+.appointment-type-toggle2 button:last-child {
     border-radius: 0 6px 6px 0;
 }
   
-.appointment-type-toggle button.active {
+.appointment-type-toggle2 button.active {
     background-color: #2563eb;
     color: white;
     border-color: #2563eb;
 }
   
-.clear-filters-btn {
+.clear-filters-btn2 {
     padding: 10px 15px;
     background-color: transparent;
     border: 1px solid #ddd;
@@ -106,7 +106,7 @@
     color: #666;
 }
   
-.clear-filters-btn:hover {
+.clear-filters-btn2:hover {
     background-color: #f0f0f0;
 }
   

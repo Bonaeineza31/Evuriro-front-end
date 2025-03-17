@@ -391,7 +391,7 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
                 ))}
               </select>
               
-              <div className="appointment-type-toggle">
+              <div className="appointment-type-toggle2">
                 <button
                   className={appointmentType === 'in-person' ? 'active' : ''}
                   onClick={() => setAppointmentType('in-person')}
@@ -406,7 +406,7 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
                 </button>
               </div>
               
-              <button onClick={clearFilters} className="clear-filters-btn">
+              <button onClick={clearFilters} className="clear-filters-btn2">
                 Clear Filters
               </button>
             </div>
