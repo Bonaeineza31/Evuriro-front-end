@@ -412,30 +412,30 @@ const Appointment = ({ addAppointment, existingAppointments = [] }) => {
             </div>
           </div>
           
-          <div className="doctors-list">
+          <div className="doctors-list2">
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map(doctor => (
-                <div key={doctor.id} className="doctor-card" onClick={() => handleDoctorSelect(doctor)}>
-                  <div className="doctor-avatar">
+                <div key={doctor.id} className="doctor-card2" onClick={() => handleDoctorSelect(doctor)}>
+                  <div className="doctor-avatar2">
                     <img src={doctor.avatar} alt={doctor.name} className="avatar-placeholder" />
                   </div>
-                  <div className="doctor-info">
+                  <div className="doctor-info2">
                     <h3>{doctor.name}</h3>
                     <p className="specialty">{doctor.specialty}</p>
                     <p className="hospital">{doctor.hospital}</p>
                     <div className="doctor-rating">
                       <span className="stars">{'★'.repeat(Math.round(doctor.rating))}</span>
-                      <span className="rating-number">{doctor.rating} ({doctor.reviews} reviews)</span>
+                      <span className="rating-number2">{doctor.rating} ({doctor.reviews} reviews)</span>
                     </div>
                     {appointmentType === 'virtual' && (
-                      <span className="virtual-badge">Virtual Available</span>
+                      <span className="virtual-badge2">Virtual Available</span>
                     )}
                   </div>
-                  <button className="select-doctor-btn">Select</button>
+                  <button className="select-doctor-btn2">Select</button>
                 </div>
               ))
             ) : (
-              <div className="no-results">
+              <div className="no-results2">
                 <p>No doctors found matching your criteria. Try adjusting your filters.</p>
               </div>
             )}
