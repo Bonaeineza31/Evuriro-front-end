@@ -68,7 +68,7 @@ const Sidebar = () => {
   const text = content[language] || content.en;
 
   return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${theme === 'dark' ? 'dark' : ''}`}>
+    <div className={`sidebar2 ${isCollapsed ? 'collapsed' : ''} ${theme === 'dark' ? 'dark' : ''}`}>
       <button 
         className="collapse-button"
         onClick={() => setIsCollapsed(!isCollapsed)}
@@ -77,7 +77,7 @@ const Sidebar = () => {
         {isCollapsed ? '→' : '←'}
       </button>
       
-        <div className="sidebar-menu">
+        <div className="sidebar-menu2">
 
 
         <Link to="/dashboard" className={`sidebar-item ${isActive('/dashboard') ? 'active' : ''}`} data-tooltip={text.dashboard}>
