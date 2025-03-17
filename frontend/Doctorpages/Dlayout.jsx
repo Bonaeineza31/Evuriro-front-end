@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Dnavbar from '../Doctorpages/Dnavabr'; // Fixed typo: 'Dnavabr' -> 'Dnavbar'
 import Dsidebar from '../Doctorpages/Dsidebar';
 import '../Dstyles/Dlayout.css';
+import { Outlet } from 'react-router-dom';
 
 const DashboardLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -17,7 +18,7 @@ const DashboardLayout = ({ children }) => {
       <div className="content-container">
         <Dsidebar />
         <main className="main-content">
-          {children}
+          <Outlet/>
         </main>
       </div>
     </div>
