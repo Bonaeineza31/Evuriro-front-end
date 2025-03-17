@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DoctorSettings.css';
+import '../Dstyles/Dsetting.css';
 
 const DoctorSettings = () => {
   // State for all settings
