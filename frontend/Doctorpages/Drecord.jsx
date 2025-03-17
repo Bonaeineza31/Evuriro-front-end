@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './DmedicalRecords.css';
+import '../Dstyles/Drecords.css';
 import { FaSearch, FaFilter, FaPlus, FaFileDownload, FaFilePdf, FaFileExcel, FaTrash, FaEdit, FaEye, FaHistory, FaCalendarAlt, FaChartLine, FaStethoscope, FaList, FaUserMd, FaHeartbeat, FaLungs, FaFileMedical } from 'react-icons/fa';
 
 const DmedicalRecords = () => {
