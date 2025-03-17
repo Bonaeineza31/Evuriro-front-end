@@ -911,3 +911,84 @@ const DoctorSettings = () => {
                   >
                     Light
                   </button>
+                  <button 
+                    type="button" 
+                    className={`theme-btn ${preferences.theme === 'dark' ? 'active' : ''}`}
+                    onClick={() => setPreferences({...preferences, theme: 'dark'})}
+                  >
+                    Dark
+                  </button>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="teleconsultPlatform">Teleconsult Platform</label>
+                  <select 
+                    id="teleconsultPlatform" 
+                    name="teleconsultPlatform" 
+                    value={preferences.teleconsultPlatform}
+                    onChange={handlePreferencesChange}
+                  >
+                    <option value="integrated">Integrated (Evriro)</option>
+                    <option value="zoom">Zoom</option>
+                    <option value="teams">Microsoft Teams</option>
+                    <option value="google">Google Meet</option>
+                  </select>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="defaultView">Default Dashboard View</label>
+                  <select 
+                    id="defaultView" 
+                    name="defaultView" 
+                    value={preferences.defaultView}
+                    onChange={handlePreferencesChange}
+                  >
+                    <option value="appointments">Appointments</option>
+                    <option value="patients">Patients</option>
+                    <option value="calendar">Calendar</option>
+                    <option value="analytics">Analytics</option>
+                  </select>
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="recordsPerPage">Records Per Page</label>
+                  <input 
+                    type="number" 
+                    id="recordsPerPage" 
+                    name="recordsPerPage" 
+                    value={preferences.recordsPerPage}
+                    onChange={handlePreferencesChange}
+                    min="5"
+                    max="100"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="autoSaveInterval">Auto-Save Interval (minutes)</label>
+                  <input 
+                    type="number" 
+                    id="autoSaveInterval" 
+                    name="autoSaveInterval" 
+                    value={preferences.autoSaveInterval}
+                    onChange={handlePreferencesChange}
+                    min="1"
+                    max="30"
+                  />
+                </div>
+              </div>
+              
+              <div className="form-actions">
+                <button type="submit" className="btn-primary">Save Changes</button>
+                <button type="button" className="btn-secondary" onClick={toggleTheme}>
+                  Toggle Theme
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DoctorSettings;
