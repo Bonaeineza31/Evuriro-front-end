@@ -11,7 +11,7 @@ import {
   FaChevronDown, 
   FaChevronRight 
 } from 'react-icons/fa';
-import './DHelp.css';
+import '../Dstyles/Dhelp.css';
 
 const DHelp = () => {
   const [searchQuery, setSearchQuery] = useState('');
