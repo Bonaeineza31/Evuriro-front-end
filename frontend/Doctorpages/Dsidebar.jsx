@@ -34,8 +34,8 @@ const Dsidebar = () => {
     { icon: <FaHome />, label: 'Dashboard', path: '/doctor/dashboard', mobileVisible: true },
     { icon: <FaUserMd />, label: 'Patients', path: '/doctor/patient', mobileVisible: true },
     { icon: <FaCalendarAlt />, label: 'Appointments', path: '/doctor/dappointment', mobileVisible: true },
-    { icon: <FaVideo />, label: 'Teleconsultation', path: '/doctor/teleconsult', mobileVisible: true },
-    { icon: <FaFileMedical />, label: 'Medical Records', path: '/doctor/drecords', mobileVisible: false },
+    { icon: <FaVideo />, label: 'Teleconsultation', path: '/doctor/dteleconsult', mobileVisible: true },
+    { icon: <FaFileMedical />, label: 'Medical Records', path: '/doctor/drecord', mobileVisible: false },
     { icon: <FaHospital />, label: 'Hospitals', path: '/doctor/dhospital', mobileVisible: false },
     { icon: <FaCog />, label: 'Settings', path: '/doctor/settings', mobileVisible: false },
     { icon: <FaQuestionCircle />, label: 'Help Center', path: '/doctor/help', mobileVisible: false }
