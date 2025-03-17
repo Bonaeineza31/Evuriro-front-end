@@ -176,7 +176,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
   
   return (
     <LanguageContext.Provider value={{ language, setLanguage, content }}>
-      <nav className="navbar">
+      <nav className="navbar2">
         <div className="navbar-left">
           <div className="navbar-logo">
             <img src={logoImage} alt="Evuriro Logo" />
