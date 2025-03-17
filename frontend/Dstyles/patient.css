@@ -600,4 +600,301 @@
   padding-bottom: 8px;
   border-bottom: 1px solid #e2e8f0;
 }
+/* Record section styles */
+.record-section {
+  margin-bottom: 30px;
+}
+
+.record-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1e3a8a;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Patient record detail styles */
+.record-detail {
+  padding: 10px 0;
+}
+
+.detail-row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  width: 120px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.detail-value {
+  flex: 1;
+}
+
+/* Allergies list styles */
+.allergies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.allergies-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.allergies-list li:last-child {
+  border-bottom: none;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: #64748b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: #eef2ff;
+}
+
+.btn-outline-sm {
+  background-color: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-sm:hover {
+  background-color: #eef2ff;
+}
+
+.btn-danger-sm {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-danger-sm:hover {
+  background-color: #dc2626;
+}
+
+.btn-sm {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-sm:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background-color: #f1f5f9;
+  color: #1e3a8a;
+}
+
+/* Print/Download button */
+.btn-primary .icon-left, 
+.btn-secondary .icon-left, 
+.btn-outline .icon-left,
+.btn-outline-sm .icon-left {
+  margin-right: 6px;
+}
+
+/* Empty state styles */
+.empty-state {
+  padding: 30px 20px;
+  text-align: center;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+/* Margin utilities */
+.mt-4 {
+  margin-top: 25px;
+}
+
+/* Full records container styles */
+.full-records-container {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 5px 0;
+}
+
+/* Icons styling */
+.icon-left {
+  margin-right: 6px;
+}
+
+/* Language toggle styles */
+.language-toggle {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  gap: 5px;
+}
+
+.language-btn {
+  padding: 5px 10px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.language-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print styling */
+@media print {
+  .patient-container {
+    background-color: white;
+    padding: 0;
+  }
+  
+  .patient-nav, 
+  .patient-actions, 
+  .btn-primary, 
+  .btn-secondary, 
+  .btn-outline,
+  .btn-outline-sm,
+  .btn-sm,
+  .btn-icon,
+  .modal-footer,
+  .section-header button {
+    display: none;
+  }
+  
+  .patient-content,
+  .modal-container {
+    box-shadow: none;
+    border: none;
+  }
+  
+  .modal-overlay {
+    position: static;
+    background: none;
+  }
+  
+  .modal-container {
+    max-width: 100%;
+    max-height: none;
+  }
+  
+  .full-records-container {
+    max-height: none;
+    overflow: visible;
+  }
+}
 
