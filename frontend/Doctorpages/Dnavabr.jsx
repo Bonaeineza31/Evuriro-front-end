@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaSearch, FaBell, FaUser, FaCog, FaUserCircle, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import '../Dstyles/Dnavbar.css';
+import '../Dstyles/Dnavabar.css';
 
-const Dnavbar = () => {
+const Dnavabr = () => {
   const navigate = useNavigate();
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [activeLanguage, setActiveLanguage] = useState('EN');
@@ -173,4 +173,4 @@ const Dnavbar = () => {
   );
 };
 
-export default Dnavbar;
+export default Dnavabr;
