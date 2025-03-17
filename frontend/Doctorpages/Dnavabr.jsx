@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaSearch, FaBell, FaUser, FaCog, FaUserCircle, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './Dnavbar.css';
+import '../Dstyles/Dnavbar.css';
 
 const Dnavbar = () => {
   const navigate = useNavigate();
