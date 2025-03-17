@@ -392,22 +392,22 @@ const Dashboard = ({ language }) => {
           </section>
           
           {/* Quick actions section */}
-          <section className="dashboard-card quick-actions">
+          <section className="dashboard-card quick-actions2">
             <h2>{text.quickActions}</h2>
-            <div className="action-buttons">
-              <Link to = "/appointments" className="action-btn schedule-btn">
+            <div className="action-buttons2">
+              <Link to = "/appointments" className="action-btn2 schedule-btn">
                 <CalendarIcon />
                 <span>{text.scheduleBtn}</span>
               </Link>
-              <Link to = "/teleconsult" className="action-btn teleconsult-btn">
+              <Link to = "/teleconsult" className="action-btn2 teleconsult-btn">
                 <VideoIcon />
                 <span>{text.teleconsultBtn}</span>
               </Link>
-              <Link to = "/uploadrecord" className="action-btn upload-btn" >
+              <Link to = "/uploadrecord" className="action-btn2 upload-btn" >
                 <UploadIcon />
                 <span>{text.uploadBtn}</span>
               </Link>
-              <Link to ="/hospitals" className="action-btn hospital-btn">
+              <Link to ="/hospitals" className="action-btn2 hospital-btn">
                 <HospitalIcon />
                 <span>{text.findHospitalBtn}</span>
               </Link>
