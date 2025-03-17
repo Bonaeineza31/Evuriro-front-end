@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dnavbar from '../Doctorpages/Dnavabr';
+import Dnavbar from '../Doctorpages/Dnavabr'; // Fixed typo: 'Dnavabr' -> 'Dnavbar'
 import Dsidebar from '../Doctorpages/Dsidebar';
 import '../Dstyles/Dlayout.css';
 

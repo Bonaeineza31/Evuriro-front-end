@@ -5,7 +5,7 @@ import './App.css';
 
 import { LanguageProvider } from '../src/Languages';
 
-// Import Patient pages
+// Import pages
 import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
 import Appointments from '../pages/Appointments';
@@ -26,7 +26,7 @@ import Sidebar from '../components/Sidebar';
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 import Patient from '../Doctorpages/Patient';
 import DoctorAppointment from '../Doctorpages/Dappointment';
-import Dlayout from '../Doctorpages/Dlayout';
+import DashboardLayout from '../Doctorpages/Dlayout'; // Make sure this matches your file name
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -100,14 +100,14 @@ const App = () => {
             <Route path="/doctor/*" element={
               <RequireAuth>
                 {userRole === 'doctor' ? (
-                  <Dlayout>
+                  <DashboardLayout>
                     <Routes>
                       <Route path="dashboard" element={<DoctorDashboard />} />
                       <Route path="patient" element={<Patient />} />
                       <Route path="dappointment" element={<DoctorAppointment />} />
                       <Route path="*" element={<Navigate to="dashboard" replace />} />
                     </Routes>
-                  </Dlayout>
+                  </DashboardLayout>
                 ) : (
                   <Navigate to="/dashboard" replace />
                 )}
