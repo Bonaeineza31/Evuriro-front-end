@@ -38,7 +38,7 @@ const Dsidebar = () => {
     { icon: <FaFileMedical />, label: 'Medical Records', path: '/doctor/drecords', mobileVisible: false },
     { icon: <FaHospital />, label: 'Hospitals', path: '/doctor/dhospital', mobileVisible: false },
     { icon: <FaCog />, label: 'Settings', path: '/doctor/dsetting', mobileVisible: false },
-    { icon: <FaQuestionCircle />, label: 'Help Center', path: '/doctor/help', mobileVisible: false }
+    { icon: <FaQuestionCircle />, label: 'Help Center', path: '/doctor/dhelp', mobileVisible: false }
   ];
 
   // Filter items based on screen size if needed
