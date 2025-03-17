@@ -1,0 +1,568 @@
+/* DmedicalRecords.css */
+/* Main Container */
+.dmr-container {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    color: #333;
+    background-color: #f7f9fc;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+  }
+  
+  /* Alert/Notification */
+  .dmr-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    max-width: 350px;
+  }
+  
+  .dmr-alert-success {
+    background-color: #e7f5ed;
+    border-left: 4px solid #1e9e5a;
+    color: #1e7a46;
+  }
+  
+  .dmr-alert-error {
+    background-color: #fdeded;
+    border-left: 4px solid #d73343;
+    color: #a3242f;
+  }
+  
+  .dmr-alert-info {
+    background-color: #e7f1fb;
+    border-left: 4px solid #2175d9;
+    color: #1a5aa8;
+  }
+  
+  .dmr-alert p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Header Styles */
+  .dmr-header {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+  }
+  
+  .dmr-header h2 {
+    margin: 0 0 15px 0;
+    color: #1a3a70;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  
+  .dmr-header-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  @media (min-width: 992px) {
+    .dmr-header-actions {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  
+  .dmr-search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .dmr-search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f5f7fa;
+    border-radius: 6px;
+    padding: 0 15px;
+    border: 1px solid #e1e5eb;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .dmr-search-bar svg {
+    color: #8796a8;
+    margin-right: 10px;
+  }
+  
+  .dmr-search-bar input {
+    border: none;
+    background: transparent;
+    height: 40px;
+    flex: 1;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .dmr-filter-options {
+    display: flex;
+    align-items: center;
+    background-color: #f5f7fa;
+    border-radius: 6px;
+    padding: 0 15px;
+    border: 1px solid #e1e5eb;
+  }
+  
+  .dmr-filter-options svg {
+    color: #8796a8;
+    margin-right: 10px;
+  }
+  
+  .dmr-filter-options select {
+    border: none;
+    background: transparent;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    padding-right: 25px;
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  .dmr-view-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .dmr-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #f5f7fa;
+    border: 1px solid #e1e5eb;
+    color: #8796a8;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .dmr-view-btn.active {
+    background-color: #2175d9;
+    color: #fff;
+    border-color: #2175d9;
+  }
+  
+  .dmr-action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .dmr-add-btn, .dmr-export-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .dmr-add-btn {
+    background-color: #2175d9;
+    color: #fff;
+    border: none;
+  }
+  
+  .dmr-add-btn:hover {
+    background-color: #1a5aa8;
+  }
+  
+  .dmr-export-btn {
+    background-color: #fff;
+    color: #2175d9;
+    border: 1px solid #2175d9;
+  }
+  
+  .dmr-export-btn:hover {
+    background-color: #e7f1fb;
+  }
+  
+  /* Content Layout */
+  .dmr-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .dmr-sidebar {
+    display: none;
+    flex-shrink: 0;
+    width: 220px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+  }
+  
+  @media (min-width: 992px) {
+    .dmr-sidebar {
+      display: block;
+    }
+  }
+  
+  .dmr-sidebar h3 {
+    margin: 0 0 15px 0;
+    color: #1a3a70;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .dmr-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dmr-category-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 5px;
+  }
+  
+  .dmr-category-list li:hover {
+    background-color: #f5f7fa;
+  }
+  
+  .dmr-category-active {
+    background-color: #e7f1fb !important;
+    color: #2175d9;
+    font-weight: 500;
+  }
+  
+  .dmr-category-icon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .dmr-main {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 0; /* Prevent overflow issues */
+  }
+  
+  /* Table View */
+  .dmr-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .dmr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .dmr-table th {
+    background-color: #f5f7fa;
+    color: #4a5568;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #e1e5eb;
+    white-space: nowrap;
+  }
+  
+  .dmr-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e1e5eb;
+    vertical-align: top;
+  }
+  
+  .dmr-sortable {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .dmr-sortable:hover {
+    background-color: #e7f1fb;
+  }
+  
+  .dmr-sort-indicator {
+    margin-left: 5px;
+    color: #2175d9;
+  }
+  
+  .dmr-patient-cell {
+    min-width: 150px;
+  }
+  
+  .dmr-patient-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dmr-patient-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  
+  .dmr-patient-id {
+    font-size: 12px;
+    color: #6c757d;
+  }
+  
+  .dmr-diagnosis-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .dmr-category-icon-small {
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+  }
+  
+  .dmr-action-cell {
+    white-space: nowrap;
+    text-align: right;
+  }
+  
+  .dmr-action-cell button {
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .dmr-view-btn {
+    color: #2175d9;
+  }
+  
+  .dmr-view-btn:hover {
+    background-color: #e7f1fb;
+  }
+  
+  .dmr-edit-btn {
+    color: #4c7a34;
+  }
+  
+  .dmr-edit-btn:hover {
+    background-color: #edf5ea;
+  }
+  
+  .dmr-delete-btn {
+    color: #d73343;
+  }
+  
+  .dmr-delete-btn:hover {
+    background-color: #fdeded;
+  }
+  
+  .dmr-status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .dmr-status-active {
+    background-color: #e7f5ed;
+    color: #1e9e5a;
+  }
+  
+  .dmr-status-completed {
+    background-color: #e7f1fb;
+    color: #2175d9;
+  }
+  
+  .dmr-record-row.dmr-completed {
+    background-color: #f9fbfd;
+  }
+  
+  .dmr-priority-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .dmr-priority-high {
+    background-color: #fdeded;
+    color: #d73343;
+  }
+  
+  .dmr-priority-medium {
+    background-color: #fff5e6;
+    color: #ff9f43;
+  }
+  
+  .dmr-priority-normal {
+    background-color: #e7f5ed;
+    color: #1e9e5a;
+  }
+  
+  .dmr-priority-low {
+    background-color: #e7f1fb;
+    color: #2175d9;
+  }
+  
+  .dmr-no-records {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+    font-style: italic;
+  }
+  
+  /* Card View */
+  .dmr-card-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .dmr-record-card {
+    border-radius: 8px;
+    border: 1px solid #e1e5eb;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  
+  .dmr-record-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .dmr-record-card.dmr-completed {
+    background-color: #f9fbfd;
+    border: 1px dashed #d1d8e0;
+  }
+  
+  .dmr-card-header {
+    padding: 15px;
+    border-bottom: 1px solid #e1e5eb;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .dmr-card-patient {
+    flex: 1;
+  }
+  
+  .dmr-card-patient h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .dmr-card-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+  
+  .dmr-card-body {
+    padding: 15px;
+  }
+  
+  .dmr-card-diagnosis {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e5eb;
+  }
+  
+  .dmr-category-icon-med {
+    font-size: 20px;
+    padding: 8px;
+    background-color: #f5f7fa;
+    border-radius: 6px;
+    color: #4a5568;
+  }
+  
+  .dmr-card-diagnosis h5 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .dmr-card-diagnosis p {
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .dmr-card-dates {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e5eb;
+  }
+  
+  .dmr-card-dates label {
+    display: block;
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 3px;
+  }
+  
+  .dmr-card-dates p {
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .dmr-card-treatment h5 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+ 

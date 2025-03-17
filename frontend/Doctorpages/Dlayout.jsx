@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dnavbar from '../Doctorpages/Dnavabr'; // Fixed typo: 'Dnavabr' -> 'Dnavbar'
+import Dnavbar from '../Doctorpages/Dnavabr';
 import Dsidebar from '../Doctorpages/Dsidebar';
 import '../Dstyles/Dlayout.css';
 import { Outlet } from 'react-router-dom';
@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }) => {
       <div className="content-container">
         <Dsidebar />
         <main className="main-content">
-          <Outlet/>
+          <Outlet />
         </main>
       </div>
     </div>
