@@ -1,0 +1,261 @@
+.help-center-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .help-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e1e4e8;
+  }
+  
+  .help-icon {
+    font-size: 28px;
+    color: #1e88e5;
+    margin-right: 15px;
+  }
+  
+  .help-header h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 0;
+  }
+  
+  .search-container {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .search-input:focus {
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+  }
+  
+  .help-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .help-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .help-section h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .help-section h2 svg {
+    color: #1e88e5;
+  }
+  
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .faq-item {
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .faq-question {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    font-weight: 500;
+    gap: 10px;
+    transition: background-color 0.2s;
+  }
+  
+  .faq-question:hover {
+    background-color: #e9ecef;
+  }
+  
+  .faq-answer {
+    padding: 15px;
+    background-color: #ffffff;
+    line-height: 1.6;
+    color: #495057;
+    border-top: 1px solid #e1e4e8;
+  }
+  
+  .no-results {
+    padding: 15px;
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .tutorials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  
+  .tutorial-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .tutorial-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tutorial-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2c3e50;
+  }
+  
+  .tutorial-description {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 12px;
+  }
+  
+  .tutorial-button {
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+  }
+  
+  .tutorial-button:hover {
+    background-color: #1976d2;
+  }
+  
+  .shortcuts-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .shortcut-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e1e4e8;
+  }
+  
+  .shortcut-key {
+    background-color: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: monospace;
+    margin-right: 12px;
+    color: #495057;
+    min-width: 60px;
+    text-align: center;
+  }
+  
+  .shortcut-description {
+    color: #495057;
+  }
+  
+  .support-section {
+    background-color: #e8f4fd;
+  }
+  
+  .support-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .support-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1;
+    justify-content: center;
+    min-width: 200px;
+  }
+  
+  .support-button:hover {
+    background-color: #1976d2;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .help-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .help-section:first-child {
+      grid-column: span 2;
+    }
+    
+    .support-section {
+      grid-column: span 2;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .tutorials-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .support-options {
+      flex-direction: column;
+    }
+  }
