@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaSearch, FaPhone, FaMapMarkerAlt, FaFilter, FaHospital, FaStethoscope, FaAmbulance, FaBed, FaStar, FaCircle } from 'react-icons/fa';
-import './Dhospital.css';
+import '../Dstyles/Dhospital.css';
 
 const Dhospital = () => {
   const [activeView, setActiveView] = useState('nearby');

@@ -26,6 +26,7 @@ import Sidebar from '../components/Sidebar';
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 import Patient from '../Doctorpages/Patient';
 import DoctorAppointment from '../Doctorpages/Dappointment';
+import DoctorHospitals from '../Doctorpages/Dhopsital'
 import DashboardLayout from '../Doctorpages/Dlayout'; // Make sure this matches your file name
 
 // Authentication guard
@@ -105,9 +106,9 @@ const App = () => {
           <Route path="dashboard" element={<DoctorDashboard />} />
           <Route path="patient" element={<Patient />} />
           <Route path="dappointment" element={<DoctorAppointment />} />
+          <Route path="dhospital" element={<DoctorHospitals />} />
           {/* <Route path="teleconsult" element={<DoctorTeleconsultation />} />
           <Route path="records" element={<DoctorMedicalRecords />} />
-          <Route path="hospitals" element={<DoctorHospitals />} />
           <Route path="settings" element={<DoctorSettings />} />
           <Route path="help" element={<DoctorHelpCenter />} /> */}
           <Route path="*" element={<Navigate to="dashboard" replace />} />
