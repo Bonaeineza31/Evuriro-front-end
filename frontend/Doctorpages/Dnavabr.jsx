@@ -1,8 +1,24 @@
 import React from 'react';
 import { FaSearch, FaBell, FaUser } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Add this import
 import '../Dstyles/Dnavabar.css';
 
-const Navbar = () => {
+const Dnavbar = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+  
+  const handleLogout = () => {
+    // Clear all authentication data from localStorage
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('isGuest');
+    
+    // Navigate to welcome page
+    navigate('/welcome');
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -36,9 +52,12 @@ const Navbar = () => {
           <span>FR</span>
           <span>KIN</span>
         </div>
+        <button onClick={handleLogout} className="dropdown-item logout">
+          logout
+        </button>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default Dnavbar;
