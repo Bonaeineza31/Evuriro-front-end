@@ -98,21 +98,26 @@ const App = () => {
             
             {/* Doctor Protected Routes */}
             <Route path="/doctor/*" element={
-              <RequireAuth>
-                {userRole === 'doctor' ? (
-                  <DashboardLayout>
-                    <Routes>
-                      <Route path="dashboard" element={<DoctorDashboard />} />
-                      <Route path="patient" element={<Patient />} />
-                      <Route path="dappointment" element={<DoctorAppointment />} />
-                      <Route path="*" element={<Navigate to="dashboard" replace />} />
-                    </Routes>
-                  </DashboardLayout>
-                ) : (
-                  <Navigate to="/dashboard" replace />
-                )}
-              </RequireAuth>
-            } />
+       <RequireAuth>
+         {userRole === 'doctor' ? (
+         <DashboardLayout>
+        <Routes>
+          <Route path="dashboard" element={<DoctorDashboard />} />
+          <Route path="patient" element={<Patient />} />
+          <Route path="dappointment" element={<DoctorAppointment />} />
+          {/* <Route path="teleconsult" element={<DoctorTeleconsultation />} />
+          <Route path="records" element={<DoctorMedicalRecords />} />
+          <Route path="hospitals" element={<DoctorHospitals />} />
+          <Route path="settings" element={<DoctorSettings />} />
+          <Route path="help" element={<DoctorHelpCenter />} /> */}
+          <Route path="*" element={<Navigate to="dashboard" replace />} />
+        </Routes>
+      </DashboardLayout>
+    ) : (
+      <Navigate to="/dashboard" replace />
+    )}
+  </RequireAuth>
+} />
           </Routes>
         </Router>
       </ThemeProvider>
