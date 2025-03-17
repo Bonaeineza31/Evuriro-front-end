@@ -5,7 +5,7 @@ import './App.css';
 
 import { LanguageProvider } from '../src/Languages';
 
-// Import pages
+// Import Patient pages
 import Welcome from '../components/Welcome';
 import Dashboard from '../pages/Dashboard';
 import Appointments from '../pages/Appointments';
@@ -18,15 +18,15 @@ import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
 
+// Import Patient Layout Components
+import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
+
 // Import Doctor Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 import Patient from '../Doctorpages/Patient';
 import DoctorAppointment from '../Doctorpages/Dappointment';
 import Dlayout from '../Doctorpages/Dlayout';
-
-// Import Layout Components
-import Navbar from '../components/Navbar'; // Make sure this path is correct
-import Sidebar from '../components/Sidebar'; // Make sure this path is correct
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -40,11 +40,10 @@ const RequireAuth = ({ children }) => {
 };
 
 // Layout Component for Authenticated Users (Patient)
-const AuthenticatedLayout = () => {
+const PatientLayout = () => {
   return (
     <div className="app">
       <Navbar />
-      
       <div className="app-container">
         <Sidebar />
         <main className="content">
@@ -93,7 +92,7 @@ const App = () => {
               <RequireAuth>
                 {userRole === 'doctor' 
                   ? <Navigate to="/doctor/dashboard" replace /> 
-                  : <AuthenticatedLayout />}
+                  : <PatientLayout />}
               </RequireAuth>
             } />
             
