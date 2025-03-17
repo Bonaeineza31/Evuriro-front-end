@@ -20,9 +20,13 @@ import UploadRecords from '../pages/UploadRecords';
 
 // Import Doctor Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
-import Patient from '../Doctorpages/Patient'
-import DoctorAppointment from '../Doctorpages/Dappointment'
-import Dlayout from '../Doctorpages/Dlayout'; // Make sure to import the correct component
+import Patient from '../Doctorpages/Patient';
+import DoctorAppointment from '../Doctorpages/Dappointment';
+import Dlayout from '../Doctorpages/Dlayout';
+
+// Import Layout Components
+import Navbar from '../components/Navbar'; // Make sure this path is correct
+import Sidebar from '../components/Sidebar'; // Make sure this path is correct
 
 // Authentication guard
 const RequireAuth = ({ children }) => {
@@ -55,6 +59,7 @@ const AuthenticatedLayout = () => {
             <Route path="help" element={<HelpCenter />} />
             <Route path="find" element={<Find />} />
             <Route path="uploadrecord" element={<UploadRecords />} />
+            <Route path="*" element={<Navigate to="dashboard" replace />} />
           </Routes>
         </main>
       </div>
@@ -86,19 +91,22 @@ const App = () => {
             {/* Patient Protected Routes */}
             <Route path="/*" element={
               <RequireAuth>
-                {userRole === 'doctor' ? <Navigate to="/doctor/dashboard" replace /> : <AuthenticatedLayout />}
+                {userRole === 'doctor' 
+                  ? <Navigate to="/doctor/dashboard" replace /> 
+                  : <AuthenticatedLayout />}
               </RequireAuth>
             } />
             
-            {/* Doctor Protected Routes - Use Dlayout component directly */}
+            {/* Doctor Protected Routes */}
             <Route path="/doctor/*" element={
               <RequireAuth>
                 {userRole === 'doctor' ? (
                   <Dlayout>
                     <Routes>
-                      <Route path="/dashboard" element={<DoctorDashboard />} />
-                     <Route path='/patient' element={<Patient />} />
-                     <Route path="dappointment" element={<DoctorAppointment />} />
+                      <Route path="dashboard" element={<DoctorDashboard />} />
+                      <Route path="patient" element={<Patient />} />
+                      <Route path="dappointment" element={<DoctorAppointment />} />
+                      <Route path="*" element={<Navigate to="dashboard" replace />} />
                     </Routes>
                   </Dlayout>
                 ) : (
