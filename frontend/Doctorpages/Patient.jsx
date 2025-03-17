@@ -369,6 +369,390 @@ const Patient = () => {
   };
 
   // Function to process medication refill
-  const processMedicationRefill = (medicationName) => {
-    showToast(`Refill for ${medicationName} has been processed`);
-  };
+ // Function to process medication refill
+ const processMedicationRefill = (medicationName) => {
+  showToast(`Refill for ${medicationName} has been processed`);
+};
+
+return (
+  <div className="patient-container">
+    {/* Notification toast */}
+    {showNotification && (
+      <div className="notification-toast">
+        <div className="notification-content">
+          <FaCheck className="notification-icon" />
+          <span>{notificationMessage}</span>
+        </div>
+      </div>
+    )}
+    
+    {/* Schedule Appointment Modal */}
+    {showAppointmentModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Schedule Appointment</h3>
+            <button className="modal-close" onClick={() => setShowAppointmentModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Date</label>
+              <input 
+                type="date" 
+                value={newAppointment.date} 
+                onChange={(e) => setNewAppointment({...newAppointment, date: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Time</label>
+              <input 
+                type="time" 
+                value={newAppointment.time} 
+                onChange={(e) => setNewAppointment({...newAppointment, time: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Type</label>
+              <select 
+                value={newAppointment.type} 
+                onChange={(e) => setNewAppointment({...newAppointment, type: e.target.value})}
+                className="form-control"
+              >
+                <option value="Follow-up">Follow-up</option>
+                <option value="Consultation">Consultation</option>
+                <option value="Test Results">Test Results</option>
+                <option value="Procedure">Procedure</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Doctor</label>
+              <select 
+                value={newAppointment.doctor} 
+                onChange={(e) => setNewAppointment({...newAppointment, doctor: e.target.value})}
+                className="form-control"
+              >
+                <option value="Dr. Smith">Dr. Smith</option>
+                <option value="Dr. Johnson">Dr. Johnson</option>
+                <option value="Dr. Brown">Dr. Brown</option>
+              </select>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowAppointmentModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={saveAppointment}>Schedule</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* Message Patient Modal */}
+    {showMessageModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Message Patient</h3>
+            <button className="modal-close" onClick={() => setShowMessageModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Subject</label>
+              <input 
+                type="text" 
+                value={newMessage.subject} 
+                onChange={(e) => setNewMessage({...newMessage, subject: e.target.value})}
+                className="form-control"
+                placeholder="Enter subject"
+              />
+            </div>
+            <div className="form-group">
+              <label>Message</label>
+              <textarea 
+                value={newMessage.message} 
+                onChange={(e) => setNewMessage({...newMessage, message: e.target.value})}
+                className="form-control"
+                rows="5"
+                placeholder="Enter your message"
+              ></textarea>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowMessageModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={submitMessage}>Send Message</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* Add Allergy Modal */}
+    {showAllergyModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Add Allergy</h3>
+            <button className="modal-close" onClick={() => setShowAllergyModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Allergy Name</label>
+              <input 
+                type="text" 
+                value={newAllergy} 
+                onChange={(e) => setNewAllergy(e.target.value)}
+                className="form-control"
+                placeholder="Enter allergy name"
+              />
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowAllergyModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={saveAllergy}>Add Allergy</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* Add Medical Record Modal */}
+    {showMedicalRecordModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Add Medical Record</h3>
+            <button className="modal-close" onClick={() => setShowMedicalRecordModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Date</label>
+              <input 
+                type="date" 
+                value={newMedicalRecord.date} 
+                onChange={(e) => setNewMedicalRecord({...newMedicalRecord, date: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Diagnosis</label>
+              <input 
+                type="text" 
+                value={newMedicalRecord.diagnosis} 
+                onChange={(e) => setNewMedicalRecord({...newMedicalRecord, diagnosis: e.target.value})}
+                className="form-control"
+                placeholder="Enter diagnosis"
+              />
+            </div>
+            <div className="form-group">
+              <label>Doctor</label>
+              <select 
+                value={newMedicalRecord.doctor} 
+                onChange={(e) => setNewMedicalRecord({...newMedicalRecord, doctor: e.target.value})}
+                className="form-control"
+              >
+                <option value="Dr. Smith">Dr. Smith</option>
+                <option value="Dr. Johnson">Dr. Johnson</option>
+                <option value="Dr. Brown">Dr. Brown</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Notes</label>
+              <textarea 
+                value={newMedicalRecord.notes} 
+                onChange={(e) => setNewMedicalRecord({...newMedicalRecord, notes: e.target.value})}
+                className="form-control"
+                rows="3"
+                placeholder="Enter additional notes"
+              ></textarea>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowMedicalRecordModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={saveMedicalRecord}>Add Record</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* Add Medication Modal */}
+    {showMedicationModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Add Medication</h3>
+            <button className="modal-close" onClick={() => setShowMedicationModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Medication Name</label>
+              <input 
+                type="text" 
+                value={newMedication.name} 
+                onChange={(e) => setNewMedication({...newMedication, name: e.target.value})}
+                className="form-control"
+                placeholder="Enter medication name"
+              />
+            </div>
+            <div className="form-group">
+              <label>Dosage</label>
+              <input 
+                type="text" 
+                value={newMedication.dosage} 
+                onChange={(e) => setNewMedication({...newMedication, dosage: e.target.value})}
+                className="form-control"
+                placeholder="e.g. 10mg"
+              />
+            </div>
+            <div className="form-group">
+              <label>Frequency</label>
+              <select 
+                value={newMedication.frequency} 
+                onChange={(e) => setNewMedication({...newMedication, frequency: e.target.value})}
+                className="form-control"
+              >
+                <option value="Once daily">Once daily</option>
+                <option value="Twice daily">Twice daily</option>
+                <option value="Three times daily">Three times daily</option>
+                <option value="Four times daily">Four times daily</option>
+                <option value="As needed">As needed</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Start Date</label>
+              <input 
+                type="date" 
+                value={newMedication.startDate} 
+                onChange={(e) => setNewMedication({...newMedication, startDate: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>End Date (leave blank for ongoing)</label>
+              <input 
+                type="date" 
+                value={newMedication.endDate} 
+                onChange={(e) => setNewMedication({...newMedication, endDate: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Notes</label>
+              <textarea 
+                value={newMedication.notes} 
+                onChange={(e) => setNewMedication({...newMedication, notes: e.target.value})}
+                className="form-control"
+                rows="2"
+                placeholder="Enter additional notes"
+              ></textarea>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowMedicationModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={saveMedication}>Add Medication</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* Order Lab Test Modal */}
+    {showLabTestModal && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Order Lab Test</h3>
+            <button className="modal-close" onClick={() => setShowLabTestModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Test Name</label>
+              <select 
+                value={newLabTest.test} 
+                onChange={(e) => setNewLabTest({...newLabTest, test: e.target.value})}
+                className="form-control"
+              >
+                <option value="">Select a test</option>
+                <option value="Complete Blood Count">Complete Blood Count</option>
+                <option value="Lipid Panel">Lipid Panel</option>
+                <option value="Urinalysis">Urinalysis</option>
+                <option value="Blood Glucose">Blood Glucose</option>
+                <option value="Liver Function">Liver Function</option>
+                <option value="Kidney Function">Kidney Function</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Date</label>
+              <input 
+                type="date" 
+                value={newLabTest.date} 
+                onChange={(e) => setNewLabTest({...newLabTest, date: e.target.value})}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Priority</label>
+              <select 
+                value={newLabTest.priority} 
+                onChange={(e) => setNewLabTest({...newLabTest, priority: e.target.value})}
+                className="form-control"
+              >
+                <option value="Normal">Normal</option>
+                <option value="Urgent">Urgent</option>
+                <option value="STAT">STAT</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Instructions/Notes</label>
+              <textarea 
+                value={newLabTest.notes} 
+                onChange={(e) => setNewLabTest({...newLabTest, notes: e.target.value})}
+                className="form-control"
+                rows="3"
+                placeholder="Enter any special instructions"
+              ></textarea>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="btn-secondary" onClick={() => setShowLabTestModal(false)}>Cancel</button>
+            <button className="btn-primary" onClick={saveLabTest}>Order Test</button>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    {/* View Medical Record Modal */}
+    {showViewRecordModal && currentViewingRecord && (
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <h3>Medical Record Details</h3>
+            <button className="modal-close" onClick={() => setShowViewRecordModal(false)}>
+              <FaTimes />
+            </button>
+          </div>
+          <div className="modal-body">
+            <div className="record-detail">
+              <div className="detail-row">
+                <span className="detail-label">Date:</span>
+                <span className="detail-value">{currentViewingRecord.date}</span>
+              </div>
+              <div className="detail-row">
+                <span className="detail-label">Diagnosis:</span>
+                <span className="detail-value">{currentViewingRecord.diagnosis}</span>
+              </div>
+              <div className="detail-row">
+                <span className="detail-label">Doctor:</span>
+                <span className="detail-value">{currentViewingRecord.doctor}</span>
+              </div>
+              <div className="detail-row">
+                <span className="detail-label">Notes:</span>
+                <span className="detail-value">{currentViewing
