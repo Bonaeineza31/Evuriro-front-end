@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaHome,
   FaCalendarAlt,
@@ -8,7 +8,8 @@ import {
   FaUserMd,
   FaCog,
   FaQuestionCircle,
-  FaMoon
+  FaMoon,
+  FaBars
 } from 'react-icons/fa';
 import '../Dstyles/Dsidebar.css';
 import { Link, useLocation } from 'react-router-dom';
@@ -16,22 +17,39 @@ import { Link, useLocation } from 'react-router-dom';
 const Dsidebar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
+  // Detect screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Define menu items - add 'mobileVisible' property to control which ones show on mobile
   const menuItems = [
-    { icon: <FaHome />, label: 'Dashboard', path: '/doctor/dashboard' },
-    { icon: <FaUserMd />, label: 'Patients', path: '/doctor/patient' },
-    { icon: <FaCalendarAlt />, label: 'Appointments', path: '/doctor/dappointment' },
-    { icon: <FaVideo />, label: 'Teleconsultation', path: '/doctor/teleconsult' },
-    { icon: <FaFileMedical />, label: 'Medical Records', path: '/doctor/records' },
-    { icon: <FaHospital />, label: 'Hospitals', path: '/doctor/hospitals' },
-    { icon: <FaCog />, label: 'Settings', path: '/doctor/settings' },
-    { icon: <FaQuestionCircle />, label: 'Help Center', path: '/doctor/help' }
+    { icon: <FaHome />, label: 'Dashboard', path: '/doctor/dashboard', mobileVisible: true },
+    { icon: <FaUserMd />, label: 'Patients', path: '/doctor/patient', mobileVisible: true },
+    { icon: <FaCalendarAlt />, label: 'Appointments', path: '/doctor/dappointment', mobileVisible: true },
+    { icon: <FaVideo />, label: 'Teleconsultation', path: '/doctor/teleconsult', mobileVisible: true },
+    { icon: <FaFileMedical />, label: 'Medical Records', path: '/doctor/records', mobileVisible: false },
+    { icon: <FaHospital />, label: 'Hospitals', path: '/doctor/hospitals', mobileVisible: false },
+    { icon: <FaCog />, label: 'Settings', path: '/doctor/settings', mobileVisible: false },
+    { icon: <FaQuestionCircle />, label: 'Help Center', path: '/doctor/help', mobileVisible: false }
   ];
+
+  // Filter items based on screen size if needed
+  const displayedItems = isMobile
+    ? menuItems.filter(item => item.mobileVisible)
+    : menuItems;
   
   return (
     <div className="sidebar">
       <div className="menu-items">
-        {menuItems.map((item, index) => (
+        {displayedItems.map((item, index) => (
           <Link 
             to={item.path} 
             key={index}
@@ -47,12 +65,14 @@ const Dsidebar = () => {
           </Link>
         ))}
       </div>
-      <div className="sidebar-footer">
-        <div className="dark-mode-toggle">
-          <FaMoon />
-          <span>Dark Mode</span>
+      {!isMobile && (
+        <div className="sidebar-footer">
+          <div className="dark-mode-toggle">
+            <FaMoon />
+            <span>Dark Mode</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
