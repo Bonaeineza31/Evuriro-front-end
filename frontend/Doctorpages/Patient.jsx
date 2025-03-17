@@ -755,4 +755,630 @@ return (
               </div>
               <div className="detail-row">
                 <span className="detail-label">Notes:</span>
-                <span className="detail-value">{currentViewing
+                <span className="detail-value">{currentViewingRecord.notes || "No additional notes"}</span>
+      </div>
+    </div>
+  </div>
+  <div className="modal-footer">
+    <button className="btn-secondary" onClick={() => setShowViewRecordModal(false)}>Close</button>
+    <button className="btn-primary" onClick={() => window.print()}>
+      <FaDownload className="icon-left" /> Print/Download
+    </button>
+  </div>
+</div>
+</div>
+)}
+
+{/* View Full Records Modal */}
+{showViewFullRecordsModal && (
+<div className="modal-overlay">
+  <div className="modal-container modal-large">
+    <div className="modal-header">
+      <h3>Complete Medical Records</h3>
+      <button className="modal-close" onClick={() => setShowViewFullRecordsModal(false)}>
+        <FaTimes />
+      </button>
+    </div>
+    <div className="modal-body">
+      <div className="full-records-container">
+        <div className="record-section">
+          <h4>Patient Information</h4>
+          <div className="record-detail">
+            <div className="detail-row">
+              <span className="detail-label">Name:</span>
+              <span className="detail-value">{patientData.name}</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Age:</span>
+              <span className="detail-value">{patientData.age}</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Gender:</span>
+              <span className="detail-value">{patientData.gender}</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Patient ID:</span>
+              <span className="detail-value">{patientData.patientId}</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Contact:</span>
+              <span className="detail-value">{patientData.contact}</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Insurance:</span>
+              <span className="detail-value">{patientData.insurance}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="record-section">
+          <h4>Medical History</h4>
+          <table className="records-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Doctor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {patientData.medicalHistory.map((record, index) => (
+                <tr key={index}>
+                  <td>{record.date}</td>
+                  <td>{record.diagnosis}</td>
+                  <td>{record.doctor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="record-section">
+          <h4>Medications</h4>
+          <table className="records-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {patientData.medications.map((med, index) => (
+                <tr key={index}>
+                  <td>{med.name}</td>
+                  <td>{med.dosage}</td>
+                  <td>{med.frequency}</td>
+                  <td>{med.startDate}</td>
+                  <td>{med.endDate || "Ongoing"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="record-section">
+          <h4>Lab Results</h4>
+          <table className="records-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Test</th>
+                <th>Status</th>
+                <th>Results</th>
+              </tr>
+            </thead>
+            <tbody>
+              {patientData.labResults.map((lab, index) => (
+                <tr key={index}>
+                  <td>{lab.date}</td>
+                  <td>{lab.test}</td>
+                  <td>{lab.status}</td>
+                  <td>{lab.results || "Pending"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="record-section">
+          <h4>Allergies</h4>
+          <ul className="allergies-list">
+            {patientData.allergies.map((allergy, index) => (
+              <li key={index}>{allergy}</li>
+            ))}
+          </ul>
+        </div>
+        
+        <div className="record-section">
+          <h4>Notes</h4>
+          <p>{patientData.notes}</p>
+        </div>
+      </div>
+    </div>
+    <div className="modal-footer">
+      <button className="btn-secondary" onClick={() => setShowViewFullRecordsModal(false)}>Close</button>
+      <button className="btn-primary" onClick={() => window.print()}>
+        <FaDownload className="icon-left" /> Print/Download
+      </button>
+    </div>
+  </div>
+</div>
+)}
+
+{/* Patient header */}
+<div className="patient-header">
+  <div className="patient-info">
+    <h1>{patientData.name}</h1>
+    <div className="patient-meta">
+      <span>{patientData.age} yrs • {patientData.gender}</span>
+      <span>ID: {patientData.patientId}</span>
+      <span>{patientData.contact}</span>
+      <span>Insurance: {patientData.insurance}</span>
+    </div>
+  </div>
+  <div className="patient-actions">
+    <button className="btn-primary" onClick={handleScheduleAppointment}>
+      <FaCalendarAlt className="icon-left" /> Schedule Appointment
+    </button>
+    <button className="btn-secondary" onClick={handleSendMessage}>
+      <FaUserMd className="icon-left" /> Message Patient
+    </button>
+    <button className="btn-outline" onClick={viewFullRecords}>
+      <FaFileMedical className="icon-left" /> View Full Records
+    </button>
+  </div>
+</div>
+
+{/* Patient navigation */}
+<div className="patient-nav">
+  <button 
+    className={`nav-btn ${activeTab === 'overview' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('overview')}
+  >
+    Overview
+  </button>
+  <button 
+    className={`nav-btn ${activeTab === 'appointments' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('appointments')}
+  >
+    Appointments
+  </button>
+  <button 
+    className={`nav-btn ${activeTab === 'medicalHistory' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('medicalHistory')}
+  >
+    Medical History
+  </button>
+  <button 
+    className={`nav-btn ${activeTab === 'medications' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('medications')}
+  >
+    Medications
+  </button>
+  <button 
+    className={`nav-btn ${activeTab === 'labResults' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('labResults')}
+  >
+    Lab Results
+  </button>
+  <button 
+    className={`nav-btn ${activeTab === 'notes' ? 'active' : ''}`} 
+    onClick={() => setActiveTab('notes')}
+  >
+    Notes
+  </button>
+</div>
+
+{/* Patient content */}
+<div className="patient-content">
+  {/* Overview tab */}
+  {activeTab === 'overview' && (
+    <div className="overview-tab">
+      <div className="overview-section">
+        <h3>Vitals</h3>
+        <div className="vitals-grid">
+          <div className="vital-card">
+            <HeartIcon />
+            <div className="vital-info">
+              <span className="vital-label">Heart Rate</span>
+              <span className="vital-value">{patientData.vitals.heartRate} <small>bpm</small></span>
+            </div>
+          </div>
+          <div className="vital-card">
+            <BloodPressureIcon />
+            <div className="vital-info">
+              <span className="vital-label">Blood Pressure</span>
+              <span className="vital-value">{patientData.vitals.bloodPressure} <small>mmHg</small></span>
+            </div>
+          </div>
+          <div className="vital-card">
+            <TemperatureIcon />
+            <div className="vital-info">
+              <span className="vital-label">Temperature</span>
+              <span className="vital-value">{patientData.vitals.temperature} <small>°C</small></span>
+            </div>
+          </div>
+          <div className="vital-card">
+            <OxygenIcon />
+            <div className="vital-info">
+              <span className="vital-label">Oxygen Level</span>
+              <span className="vital-value">{patientData.vitals.oxygenLevel} <small>%</small></span>
+            </div>
+          </div>
+          <div className="vital-card">
+            <WeightIcon />
+            <div className="vital-info">
+              <span className="vital-label">Weight</span>
+              <span className="vital-value">{patientData.vitals.weight} <small>kg</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="overview-section">
+        <div className="section-header">
+          <h3>Upcoming Appointments</h3>
+          <button className="btn-outline-sm" onClick={handleScheduleAppointment}>
+            <FaPlus className="icon-left" /> Schedule
+          </button>
+        </div>
+        <div className="appointments-list">
+          {patientData.upcomingAppointments.map((appointment, index) => (
+            <div className="appointment-card" key={index}>
+              <div className="appointment-date">
+                <FaCalendarAlt className="icon-left" />
+                <span>{appointment.date}</span>
+              </div>
+              <div className="appointment-details">
+                <span className="appointment-time">{appointment.time}</span>
+                <span className="appointment-type">{appointment.type}</span>
+                <span className="appointment-doctor">{appointment.doctor}</span>
+              </div>
+              <div className="appointment-actions">
+                <button className="btn-icon" title="Edit Appointment">
+                  <FaEdit />
+                </button>
+                <button className="btn-icon" title="Cancel Appointment">
+                  <FaTimes />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="overview-section">
+        <div className="section-header">
+          <h3>Recent Medical History</h3>
+          <button className="btn-outline-sm" onClick={handleAddMedicalRecord}>
+            <FaPlus className="icon-left" /> Add Record
+          </button>
+        </div>
+        <div className="medical-history-list">
+          {patientData.medicalHistory.slice(0, 3).map((record, index) => (
+            <div className="medical-record-card" key={index} onClick={() => viewMedicalRecord(record)}>
+              <div className="record-date">{record.date}</div>
+              <div className="record-diagnosis">{record.diagnosis}</div>
+              <div className="record-doctor">{record.doctor}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="overview-section">
+        <div className="section-header">
+          <h3>Current Medications</h3>
+          <button className="btn-outline-sm" onClick={handleAddMedication}>
+            <FaPlus className="icon-left" /> Add Medication
+          </button>
+        </div>
+        <div className="medications-list">
+          {patientData.medications.map((medication, index) => (
+            <div className="medication-card" key={index}>
+              <div className="medication-name">{medication.name}</div>
+              <div className="medication-details">
+                <span>{medication.dosage}</span>
+                <span>{medication.frequency}</span>
+                <span>{medication.startDate} - {medication.endDate || "Ongoing"}</span>
+              </div>
+              <div className="medication-actions">
+                <button className="btn-sm" onClick={() => processMedicationRefill(medication.name)}>Refill</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="overview-section">
+        <div className="section-header">
+          <h3>Allergies</h3>
+          <button className="btn-outline-sm" onClick={handleAddAllergy}>
+            <FaPlus className="icon-left" /> Add Allergy
+          </button>
+        </div>
+        <div className="allergies-badges">
+          {patientData.allergies.map((allergy, index) => (
+            <div className="allergy-badge" key={index}>
+              <FaExclamationTriangle className="icon-left" />
+              <span>{allergy}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="overview-section">
+        <div className="section-header">
+          <h3>Recent Lab Results</h3>
+          <button className="btn-outline-sm" onClick={handleOrderLabTest}>
+            <FaPlus className="icon-left" /> Order Test
+          </button>
+        </div>
+        <div className="lab-results-list">
+          {patientData.labResults.map((result, index) => (
+            <div className="lab-result-card" key={index}>
+              <div className="result-date">{result.date}</div>
+              <div className="result-test">{result.test}</div>
+              <div className={`result-status ${result.status.toLowerCase()}`}>{result.status}</div>
+              <div className="result-value">{result.results || "Pending"}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+  
+{/* Appointments tab */}
+{activeTab === 'appointments' && (
+    <div className="appointments-tab">
+      <div className="section-header">
+        <h3>Upcoming Appointments</h3>
+        <button className="btn-primary" onClick={handleScheduleAppointment}>
+          <FaPlus className="icon-left" /> Schedule Appointment
+        </button>
+      </div>
+      <div className="appointments-list-full">
+        {patientData.upcomingAppointments.length > 0 ? (
+          patientData.upcomingAppointments.map((appointment, index) => (
+            <div className="appointment-card-full" key={index}>
+              <div className="appointment-main-info">
+                <div className="appointment-date">
+                  <FaCalendarAlt className="icon-left" />
+                  <span>{appointment.date}</span>
+                </div>
+                <div className="appointment-time">{appointment.time}</div>
+              </div>
+              <div className="appointment-secondary-info">
+                <span className="appointment-type">{appointment.type}</span>
+                <span className="appointment-doctor">{appointment.doctor}</span>
+              </div>
+              <div className="appointment-actions">
+                <button className="btn-outline-sm">Reschedule</button>
+                <button className="btn-danger-sm">Cancel</button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="empty-state">
+            <p>No upcoming appointments scheduled.</p>
+          </div>
+        )}
+      </div>
+      
+      <div className="section-header mt-4">
+        <h3>Past Appointments</h3>
+      </div>
+      <div className="appointments-list-full">
+        <div className="appointment-card-full past">
+          <div className="appointment-main-info">
+            <div className="appointment-date">
+              <FaCalendarAlt className="icon-left" />
+              <span>10/03/2025</span>
+            </div>
+            <div className="appointment-time">09:30 AM</div>
+          </div>
+          <div className="appointment-secondary-info">
+            <span className="appointment-type">Consultation</span>
+            <span className="appointment-doctor">Dr. Smith</span>
+          </div>
+          <div className="appointment-status completed">
+            <FaCheck className="icon-left" /> Completed
+          </div>
+        </div>
+        <div className="appointment-card-full past">
+          <div className="appointment-main-info">
+            <div className="appointment-date">
+              <FaCalendarAlt className="icon-left" />
+              <span>05/02/2025</span>
+            </div>
+            <div className="appointment-time">11:00 AM</div>
+          </div>
+          <div className="appointment-secondary-info">
+            <span className="appointment-type">Follow-up</span>
+            <span className="appointment-doctor">Dr. Johnson</span>
+          </div>
+          <div className="appointment-status completed">
+            <FaCheck className="icon-left" /> Completed
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+  
+  {/* Medical History tab */}
+  {activeTab === 'medicalHistory' && (
+    <div className="medical-history-tab">
+      <div className="section-header">
+        <h3>Medical History</h3>
+        <button className="btn-primary" onClick={handleAddMedicalRecord}>
+          <FaPlus className="icon-left" /> Add Medical Record
+        </button>
+      </div>
+      <div className="records-table-container">
+        <table className="records-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Diagnosis</th>
+              <th>Doctor</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {patientData.medicalHistory.map((record, index) => (
+              <tr key={index}>
+                <td>{record.date}</td>
+                <td>{record.diagnosis}</td>
+                <td>{record.doctor}</td>
+                <td>
+                  <button className="btn-icon" onClick={() => viewMedicalRecord(record)} title="View Details">
+                    <FaFileMedical />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+  
+  {/* Medications tab */}
+  {activeTab === 'medications' && (
+    <div className="medications-tab">
+      <div className="section-header">
+        <h3>Medications</h3>
+        <button className="btn-primary" onClick={handleAddMedication}>
+          <FaPlus className="icon-left" /> Add Medication
+        </button>
+      </div>
+      <div className="records-table-container">
+        <table className="records-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Dosage</th>
+              <th>Frequency</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {patientData.medications.map((medication, index) => (
+              <tr key={index}>
+                <td>{medication.name}</td>
+                <td>{medication.dosage}</td>
+                <td>{medication.frequency}</td>
+                <td>{medication.startDate}</td>
+                <td>{medication.endDate || "Ongoing"}</td>
+                <td>
+                  <button className="btn-sm" onClick={() => processMedicationRefill(medication.name)}>Refill</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
+      <div className="section-header mt-4">
+        <h3>Allergies</h3>
+        <button className="btn-outline" onClick={handleAddAllergy}>
+          <FaPlus className="icon-left" /> Add Allergy
+        </button>
+      </div>
+      <div className="allergies-large">
+        {patientData.allergies.map((allergy, index) => (
+          <div className="allergy-item" key={index}>
+            <FaExclamationTriangle className="icon-left" />
+            <span>{allergy}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+  
+  {/* Lab Results tab */}
+  {activeTab === 'labResults' && (
+    <div className="lab-results-tab">
+      <div className="section-header">
+        <h3>Lab Results</h3>
+        <button className="btn-primary" onClick={handleOrderLabTest}>
+          <FaPlus className="icon-left" /> Order Lab Test
+        </button>
+      </div>
+      <div className="records-table-container">
+        <table className="records-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Test</th>
+              <th>Status</th>
+              <th>Results</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {patientData.labResults.map((result, index) => (
+              <tr key={index} className={result.status === 'Pending' ? 'pending-row' : ''}>
+                <td>{result.date}</td>
+                <td>{result.test}</td>
+                <td>
+                  <span className={`status-badge ${result.status.toLowerCase()}`}>
+                    {result.status}
+                  </span>
+                </td>
+                <td>{result.results || "—"}</td>
+                <td>
+                  {result.status === 'Completed' && (
+                    <button className="btn-icon" title="View Details">
+                      <FaFileMedical />
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+  
+  {/* Notes tab */}
+  {activeTab === 'notes' && (
+    <div className="notes-tab">
+      <div className="section-header">
+        <h3>Patient Notes</h3>
+        {!isEditingNotes ? (
+          <button className="btn-outline" onClick={() => setIsEditingNotes(true)}>
+            <FaEdit className="icon-left" /> Edit Notes
+          </button>
+        ) : (
+          <button className="btn-primary" onClick={saveNotes}>
+            <FaSave className="icon-left" /> Save Notes
+          </button>
+        )}
+      </div>
+      <div className="notes-content">
+        {!isEditingNotes ? (
+          <div className="notes-text">{patientData.notes}</div>
+        ) : (
+          <textarea 
+            value={editedNotes} 
+            onChange={(e) => setEditedNotes(e.target.value)}
+            className="notes-editor"
+            rows="8"
+          ></textarea>
+        )}
+      </div>
+    </div>
+  )}
+</div>
+</div>
+);
+};
+
+export default Patient;
+        
