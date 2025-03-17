@@ -18,15 +18,17 @@ import HelpCenter from '../pages/HelpCenter';
 import Find from '../pages/Find';
 import UploadRecords from '../pages/UploadRecords';
 
-// Import Layout Components
-import Layout from '../components/Layout'; // Your patient layout component
-import DashboardLayout from '../Doctorpages/Dlayout'; // Doctor layout component
+// Import Patient Layout Components
+import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 
 // Import Doctor Components
 import DoctorDashboard from '../Doctorpages/DoctorDashboard';
 import Patient from '../Doctorpages/Patient';
 import DoctorAppointment from '../Doctorpages/Dappointment';
 import DoctorHospitals from '../Doctorpages/Dhopsital';
+import DashboardLayout from '../Doctorpages/Dlayout';
+import DoctorMedicalRecords from '../Doctorpages/Drecords';
 
 // Authentication guard with role checking
 const RequireAuth = ({ children, requiredRole }) => {
@@ -50,6 +52,33 @@ const RequireAuth = ({ children, requiredRole }) => {
   }
   
   return children;
+};
+
+// Layout Component for Authenticated Users (Patient)
+const PatientLayout = () => {
+  return (
+    <div className="app">
+      <Navbar />
+      <div className="app-container">
+        <Sidebar />
+        <main className="content">
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="teleconsult" element={<Teleconsultation />} />
+            <Route path="records" element={<MedicalRecords />} />
+            <Route path="hospitals" element={<NearbyHospitals />} />
+            <Route path="connect-device" element={<ConnectDevice />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="help" element={<HelpCenter />} />
+            <Route path="find" element={<Find />} />
+            <Route path="uploadrecord" element={<UploadRecords />} />
+            <Route path="*" element={<Navigate to="dashboard" replace />} />
+          </Routes>
+        </main>
+      </div>
+    </div>
+  );
 };
 
 // Role verification component
@@ -98,40 +127,30 @@ const App = () => {
               } />
               
               {/* Patient Protected Routes */}
-              <Route path="/" element={
+              <Route path="/*" element={
                 <RequireAuth requiredRole="patient">
-                  <Layout />
+                  <PatientLayout />
                 </RequireAuth>
-              }>
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="appointments" element={<Appointments />} />
-                <Route path="teleconsult" element={<Teleconsultation />} />
-                <Route path="records" element={<MedicalRecords />} />
-                <Route path="hospitals" element={<NearbyHospitals />} />
-                <Route path="connect-device" element={<ConnectDevice />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="help" element={<HelpCenter />} />
-                <Route path="find" element={<Find />} />
-                <Route path="uploadrecord" element={<UploadRecords />} />
-                <Route path="*" element={<Navigate to="dashboard" replace />} />
-              </Route>
+              } />
               
               {/* Doctor Protected Routes */}
-              <Route path="/doctor" element={
+              <Route path="/doctor/*" element={
                 <RequireAuth requiredRole="doctor">
-                  <DashboardLayout />
+                  <DashboardLayout>
+                    <Routes>
+                      <Route path="dashboard" element={<DoctorDashboard />} />
+                      <Route path="patient" element={<Patient />} />
+                      <Route path="dappointment" element={<DoctorAppointment />} />
+                      <Route path="dhospital" element={<DoctorHospitals />} />
+                      <Route path="drecords" element={<DoctorMedicalRecords />} />
+                      {/* <Route path="teleconsult" element={<DoctorTeleconsultation />} />
+                      <Route path="settings" element={<DoctorSettings />} />
+                      <Route path="help" element={<DoctorHelpCenter />} /> */}
+                      <Route path="*" element={<Navigate to="dashboard" replace />} />
+                    </Routes>
+                  </DashboardLayout>
                 </RequireAuth>
-              }>
-                <Route path="dashboard" element={<DoctorDashboard />} />
-                <Route path="patient" element={<Patient />} />
-                <Route path="dappointment" element={<DoctorAppointment />} />
-                <Route path="dhospital" element={<DoctorHospitals />} />
-                {/* <Route path="teleconsult" element={<DoctorTeleconsultation />} />
-                <Route path="records" element={<DoctorMedicalRecords />} />
-                <Route path="settings" element={<DoctorSettings />} />
-                <Route path="help" element={<DoctorHelpCenter />} /> */}
-                <Route path="*" element={<Navigate to="dashboard" replace />} />
-              </Route>
+              } />
             </Routes>
           </RoleRouter>
         </Router>
