@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './DAppointment.css';
+import '../Dstyles/Dappointment.css';
 
 const DAppointment = () => {
   // Sample appointment data for different tabs
