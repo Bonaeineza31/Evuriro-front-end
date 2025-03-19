@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './dteleconsult.css';
+import '../Dstyles/Dteleconsultation.css';
 
 const DoctorTeleconsult = () => {
   const [isCameraOn, setIsCameraOn] = useState(false);
