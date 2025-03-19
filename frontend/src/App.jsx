@@ -30,7 +30,7 @@ import DashboardLayout from '../Doctorpages/Dlayout';
 import DoctorMedicalRecords from '../Doctorpages/Drecord';
 import DoctorSettings from '../Doctorpages/Dsetting';
 import DoctorHelpCenter from '../Doctorpages/Dhelp';
-import DoctorTeleconsultation from '../Doctorpages/Dteleconsult';
+import DoctorTeleconsultation from '../Doctorpages/Dteleconsultation';
 
 // Authentication guard with role checking
 const RequireAuth = ({ children, requiredRole }) => {
