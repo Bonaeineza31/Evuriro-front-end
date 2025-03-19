@@ -19,13 +19,13 @@
   margin-right: 0.75rem; /* Reduced margin */
 }
 
-.logo-icon {
-  font-size: 1.25rem; /* Smaller icon */
+.logo-icon-img {
+  font-size: 0.75rem; /* Smaller icon */
   margin-right: 0.35rem; /* Reduced margin */
 }
 
 .logo-text {
-  font-size: 1.15rem; /* Smaller text */
+  font-size: 1.15rem; 
   font-weight: 600;
   color: #1a56db; /* More professional blue */
   letter-spacing: 0.3px; /* Reduced spacing */
@@ -38,8 +38,8 @@
   background-color: #f5f7fa;
   border-radius: 20px; /* Smaller radius */
   padding: 0.35rem;
-  margin-right: 6rem;
-  
+  margin-right: 0.75rem;
+  margin-left:19rem;
   flex: 0 1 280px; /* Slightly smaller */
 }
 
