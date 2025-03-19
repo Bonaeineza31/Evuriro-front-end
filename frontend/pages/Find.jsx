@@ -132,23 +132,23 @@ const Find = () => {
   };
 
   return (
-    <div className="find-doctor-container">
-      <div className="search-section">
+    <div className="find-doctor-container3">
+      <div className="search-section3">
         <h1>Find a Doctor</h1>
         <p>Search for specialists, primary care physicians, and more</p>
         
-        <div className="search-filters">
-          <div className="search-bar">
+        <div className="search-filters3">
+          <div className="search-bar3">
             <input
               type="text"
               placeholder="Search by doctor name or specialty"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="search-button">Search</button>
+            <button className="search-button3">Search</button>
           </div>
           
-          <div className="filter-options">
+          <div className="filter-options3">
             <select value={specialty} onChange={(e) => setSpecialty(e.target.value)}>
               {specialties.map((spec) => (
                 <option key={spec} value={spec}>{spec}</option>
@@ -170,16 +170,16 @@ const Find = () => {
         </div>
       </div>
       
-      <div className="results-section">
+      <div className="results-section3">
         <h2>Available Doctors ({sortedDoctors.length})</h2>
         
-        <div className="doctor-cards">
+        <div className="doctor-cards3">
           {sortedDoctors.map((doctor) => (
-            <div className="doctor-card" key={doctor.id}>
-              <div className="doctor-image">
+            <div className="doctor-card3" key={doctor.id}>
+              <div className="doctor-image3">
                 <img src={doctor.image} alt={doctor.name} />
               </div>
-              <div className="doctor-info">
+              <div className="doctor-info3">
                 <h3>{doctor.name}</h3>
                 <p className="specialty">{doctor.specialty}</p>
                 <p className="location">{doctor.location}</p>
