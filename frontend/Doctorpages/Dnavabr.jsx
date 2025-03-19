@@ -73,19 +73,19 @@ const Dnavabr = () => {
         </div>
         <div 
           className="menu-item"
-          onClick={() => handleNavigation('/teleconsultation')}
+          onClick={() => handleNavigation('dteleconsult')}
         >
           Teleconsultation
         </div>
         <div 
           className="menu-item"
-          onClick={() => handleNavigation('/records')}
+          onClick={() => handleNavigation('drecords')}
         >
           Records
         </div>
         <div 
           className="menu-item"
-          onClick={() => handleNavigation('/hospitals')}
+          onClick={() => handleNavigation('dhospital')}
         >
           Hospitals
         </div>
