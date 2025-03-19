@@ -189,15 +189,15 @@ const Find = () => {
                 </div>
                 <p className="availability">{doctor.availability}</p>
               </div>
-              <div className="doctor-actions">
+              <div className="doctor-actions3">
                 <button 
-                  className="schedule-button"
+                  className="schedule-button3"
                   onClick={() => handleScheduleAppointment(doctor)}
                 >
                   Schedule Appointment
                 </button>
                 <button 
-                  className="profile-button"
+                  className="profile-button3"
                   onClick={() => handleViewProfile(doctor)}
                 >
                   View Profile
