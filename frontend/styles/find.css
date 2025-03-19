@@ -189,11 +189,11 @@
   
   /* Responsive styles */
   @media (max-width: 768px) {
-    .doctor-cards {
+    .doctor-cards3 {
       grid-template-columns: 1fr;
     }
     
-    .filter-options {
+    .filter-options3 {
       flex-direction: column;
     }
     

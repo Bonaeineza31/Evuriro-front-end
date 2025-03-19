@@ -4,6 +4,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Teleconsultation.css';
+import { 
+  FaVideo, FaVideoSlash, FaMicrophone, FaMicrophoneSlash, 
+  FaPhoneAlt, FaPhoneSlash, FaFilePrescription, FaHistory,
+} from 'react-icons/fa';
+import { MdScreenShare, MdStopScreenShare } from 'react-icons/md';
 import sarah from "../images/Screenshot 2025-03-01 223549.png"
 
 // SVG Icons
@@ -90,6 +95,9 @@ const Teleconsultation = () => {
     temperature: '98.6°F',
     oxygenLevel: '98%'
   });
+  const [isCameraOn, setIsCameraOn] = useState(false);
+    const [timer, setTimer] = useState(0);
+    const [isCallActive, setIsCallActive] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updatedVitals, setUpdatedVitals] = useState({
     heartRate: '',
@@ -97,6 +105,7 @@ const Teleconsultation = () => {
     temperature: '',
     oxygenLevel: ''
   });
+  const timerRef = useRef(null);
 
   // Missing function implementations
   const handleUploadVitals = () => {
@@ -158,6 +167,8 @@ const Teleconsultation = () => {
     }
   };
 
+
+
   // Modified Start Call Function
   const handleStartCall = async () => {
     setCallStatus('connecting');
@@ -174,6 +185,7 @@ const Teleconsultation = () => {
     if (localStream) {
       localStream.getTracks().forEach(track => track.stop());
     }
+
     
     // Reset all call-related states
     setCallStatus('ready');
@@ -184,6 +196,7 @@ const Teleconsultation = () => {
     setIsMuted(false);
     setIsVideoOn(true);
     setIsScreenSharing(false);
+ 
   };
 
   // Toggle Video Functionality
@@ -243,11 +256,97 @@ const Teleconsultation = () => {
     setSymptoms(updatedSymptoms);
   };
 
+  // Add this with the other state definitions
+const [showPrescriptionForm, setShowPrescriptionForm] = useState(false);
+
   const toggleChecklistItem = (index) => {
     const updatedChecklist = [...checklist];
     updatedChecklist[index].checked = !updatedChecklist[index].checked;
     setChecklist(updatedChecklist);
   };
+  // Add these functions to the component
+const togglePrescriptionForm = () => {
+  setShowPrescriptionForm(!showPrescriptionForm);
+};
+
+const togglePatientHistory = () => {
+  // Set the active tab to 'history'
+  setActiveTab('history');
+};
+
+useEffect(() => {
+    if (isCallActive && isCameraOn) {
+      startCamera();
+    } else if (!isCallActive || !isCameraOn) {
+      stopCamera();
+    }
+  }, [isCallActive, isCameraOn]);
+
+  useEffect(() => {
+    if (isCallActive) {
+      timerRef.current = setInterval(() => {
+        setTimer(prevTimer => prevTimer + 1);
+      }, 1000);
+    } else {
+      clearInterval(timerRef.current);
+      setTimer(0);
+    }
+    
+    return () => clearInterval(timerRef.current);
+  }, [isCallActive]);
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: true, 
+        audio: isMicOn 
+      });
+      if (localVideoRef.current) {
+        localVideoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      alert("Failed to access camera and microphone. Please check permissions.");
+    }
+  };
+
+  const stopCamera = () => {
+    if (localVideoRef.current && localVideoRef.current.srcObject) {
+      const tracks = localVideoRef.current.srcObject.getTracks();
+      tracks.forEach(track => track.stop());
+      localVideoRef.current.srcObject = null;
+    }
+  };
+
+  const startCall = () => {
+    setIsCallActive(true);
+    setIsCameraOn(true);
+  };
+
+  const endCall = () => {
+    setIsCallActive(false);
+    setShowPrescriptionForm(false);
+    setIsScreenSharing(false);
+  };
+
+  const toggleCamera = () => {
+    setIsCameraOn(!isCameraOn);
+  };
+
+  const toggleScreenShare = () => {
+    // In a real implementation, this would use the Screen Capture API
+    setIsScreenSharing(!isScreenSharing);
+    // Just a mockup for demonstration
+    alert(isScreenSharing ? "Screen sharing stopped" : "Screen sharing started");
+  };
+
+
 
   // Render Method
   return (
@@ -700,35 +799,86 @@ const Teleconsultation = () => {
           )}
 
           {/* Call Controls */}
-          <div className="telecon-call-controls">
-            <button 
-              className={`telecon-control-btn mute ${isMuted ? 'active' : ''}`}
-              onClick={toggleMic}
-            >
-              <i className={`telecon-icon-${isMuted ? 'mic-off' : 'mic'}`}></i>
-              {isMuted ? 'Unmute' : 'Mute'}
-            </button>
-            <button 
-              className={`telecon-control-btn video ${!isVideoOn ? 'active' : ''}`}
-              onClick={toggleVideo}
-            >
-              <i className={`telecon-icon-${isVideoOn ? 'video' : 'video-off'}`}></i>
-              {isVideoOn ? 'Stop Video' : 'Start Video'}
-            </button>
-            <button 
-              className={`telecon-control-btn share ${isScreenSharing ? 'active' : ''}`}
-              onClick={() => setIsScreenSharing(!isScreenSharing)}
-            >
-              <i className="telecon-icon-screen"></i>
-              {isScreenSharing ? 'Stop Sharing' : 'Share Screen'}
-            </button>
-            <button className="telecon-control-btn end" onClick={handleEndCall}>
-              <i className="telecon-icon-phone"></i>
-              End Call
-            </button>
-          </div>
-        </div>
+         <div className="call-controls">
+                     <button 
+                       className={`control-btn ${isMicOn ? 'active' : 'inactive'}`}
+                       onClick={toggleMic}
+                       disabled={!isCallActive}
+                       title="Toggle Microphone"
+                     >
+                       {isMicOn ? <FaMicrophone /> : <FaMicrophoneSlash />}
+                     </button>
+                     <button 
+                       className={`control-btn ${isCameraOn ? 'active' : 'inactive'}`}
+                       onClick={toggleCamera}
+                       disabled={!isCallActive}
+                       title="Toggle Camera"
+                     >
+                       {isCameraOn ? <FaVideo /> : <FaVideoSlash />}
+                     </button>
+                     <button 
+                       className={`control-btn ${isScreenSharing ? 'active' : 'inactive'}`}
+                       onClick={toggleScreenShare}
+                       disabled={!isCallActive}
+                       title="Share Screen"
+                     >
+                       {isScreenSharing ? <MdStopScreenShare /> : <MdScreenShare />}
+                     </button>
+                     {!isCallActive ? (
+                       <button 
+                         className="start-call-btn"
+                         onClick={startCall}
+                         title="Start Call"
+                       >
+                         <FaPhoneAlt /> Start Call
+                       </button>
+                     ) : (
+                       <button 
+                         className="end-call-btn"
+                         onClick={endCall}
+                         title="End Call"
+                       >
+                         <FaPhoneSlash /> End Call
+                       </button>
+                     )}
+                     {/* <button 
+                       className="prescription-btn"
+                       onClick={togglePrescriptionForm}
+                       disabled={!isCallActive}
+                       title="Add Prescription"
+                     >
+                       <FaFilePrescription /> Prescription
+                     </button>
+                     <button 
+                       className="patient-history-btn"
+                       onClick={togglePatientHistory}
+                       title="View Patient History"
+                     >
+                       <FaHistory /> History
+                     </button> */}
+                   </div>
+                 </div>
+         
       )}
+      
+{showPrescriptionForm && (
+  <div className="prescription-form-container">
+    <div className="prescription-form">
+      <h3>Write Prescription</h3>
+      <button 
+        className="close-prescription-form" 
+        onClick={() => setShowPrescriptionForm(false)}
+      >
+        ×
+      </button>
+      <textarea 
+        placeholder="Write prescription details here..."
+        rows="4"
+      ></textarea>
+      <button className="submit-prescription">Submit Prescription</button>
+    </div>
+  </div>
+)}
 
       {showChat && (
         <div className="telecon-chat-panel">
@@ -767,4 +917,3 @@ const Teleconsultation = () => {
 };
 
 export default Teleconsultation;
-                
