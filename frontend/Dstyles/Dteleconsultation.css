@@ -548,4 +548,296 @@
     color: #2563eb;
   }
   
+  .stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .video-container {
+      height: 350px;
+    }
+    
+    .consultation-sidebar {
+      width: 280px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .teleconsult-container {
+      flex-direction: column;
+    }
+    
+    .teleconsult-main {
+      height: auto;
+    }
+    
+    .consultation-sidebar {
+      width: 100%;
+      height: auto;
+      border-left: none;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .show-sidebar-btn {
+      bottom: 20px;
+      top: auto;
+      right: 20px;
+      transform: none;
+    }
+    
+    .video-container {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .main-video {
+      height: 300px;
+    }
+    
+    .doctor-video-container {
+      height: 150px;
+    }
+    
+    .call-controls {
+      padding-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .teleconsult-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .patient-info {
+      align-items: flex-start;
+    }
+    
+    .call-controls {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .control-btn {
+      width: 42px;
+      height: 42px;
+      font-size: 16px;
+    }
+    
+    .prescription-form-container,
+    .patient-history-container {
+      padding: 16px;
+      max-width: 95%;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Accessibility improvements */
+  .control-btn:focus,
+  .start-call-btn:focus,
+  .end-call-btn:focus,
+  .prescription-btn:focus,
+  .patient-history-btn:focus,
+  .save-notes-btn:focus,
+  .attachment-btn:focus,
+  .toggle-sidebar-btn:focus,
+  .show-sidebar-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Hover effects */
+  .appointment-card:active {
+    transform: scale(0.98);
+  }
+  
+  .control-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+  
+  .prescription-btn:active,
+  .patient-history-btn:active,
+  .start-call-btn:active,
+  .end-call-btn:active {
+    transform: scale(0.97);
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .teleconsult-container {
+      background-color: #1e293b;
+      color: #f1f5f9;
+    }
+    
+    .teleconsult-header {
+      border-bottom-color: #334155;
+    }
+    
+    .teleconsult-header h2 {
+      color: #60a5fa;
+    }
+    
+    .consultation-notes,
+    .consultation-sidebar,
+    .prescription-form-container,
+    .patient-history-container {
+      background-color: #0f172a;
+      color: #f1f5f9;
+    }
+    
+    .notes-header h3,
+    .sidebar-header h3,
+    .doctor-stats h3,
+    .patient-history-container h3,
+    .prescription-form-container h3 {
+      color: #e2e8f0;
+    }
+    
+    .consultation-notes textarea,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background-color: #1e293b;
+      border-color: #475569;
+      color: #f1f5f9;
+    }
+    
+    .video-placeholder,
+    .appointment-card,
+    .stat-item {
+      background-color: #334155;
+    }
+    
+    .history-table th {
+      background-color: #334155;
+      color: #e2e8f0;
+    }
+    
+    .history-table td {
+      border-color: #475569;
+    }
+    
+    .cancel-btn {
+      background-color: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+    
+    .show-sidebar-btn {
+      background-color: #1e293b;
+      color: #e2e8f0;
+    }
+    
+    .appointment-card:hover {
+      background-color: #475569;
+    }
+    
+    .patient-name-tag,
+    .doctor-name-tag {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  
+  /* Custom scrollbar */
+  .teleconsult-main::-webkit-scrollbar,
+  .consultation-sidebar::-webkit-scrollbar,
+  .prescription-form-container::-webkit-scrollbar,
+  .patient-history-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .teleconsult-main::-webkit-scrollbar-track,
+  .consultation-sidebar::-webkit-scrollbar-track,
+  .prescription-form-container::-webkit-scrollbar-track,
+  .patient-history-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  
+  .teleconsult-main::-webkit-scrollbar-thumb,
+  .consultation-sidebar::-webkit-scrollbar-thumb,
+  .prescription-form-container::-webkit-scrollbar-thumb,
+  .patient-history-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+  }
+  
+  .teleconsult-main::-webkit-scrollbar-thumb:hover,
+  .consultation-sidebar::-webkit-scrollbar-thumb:hover,
+  .prescription-form-container::-webkit-scrollbar-thumb:hover,
+  .patient-history-container::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+  
+  /* Animation for buttons */
+  .control-btn,
+  .start-call-btn,
+  .end-call-btn,
+  .prescription-btn,
+  .patient-history-btn,
+  .save-notes-btn,
+  .attachment-btn {
+    transition: all 0.2s ease;
+  }
+  
+  /* Loading indicator for video */
+  .video-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Print styles */
+  @media print {
+    .teleconsult-container {
+      display: block;
+      background-color: white;
+    }
+    
+    .video-section,
+    .call-controls,
+    .consultation-sidebar,
+    .show-sidebar-btn {
+      display: none;
+    }
+    
+    .consultation-notes {
+      box-shadow: none;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .prescription-form-container {
+      position: static;
+      max-width: 100%;
+      box-shadow: none;
+      border: 1px solid #e5e7eb;
+      page-break-inside: avoid;
+    }
+  }
  
