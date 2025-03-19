@@ -30,6 +30,7 @@ import DashboardLayout from '../Doctorpages/Dlayout';
 import DoctorMedicalRecords from '../Doctorpages/Drecord';
 import DoctorSettings from '../Doctorpages/Dsetting';
 import DoctorHelpCenter from '../Doctorpages/Dhelp';
+import DoctorTeleconsultation from '../Doctorpages/Dteleconsult';
 
 // Authentication guard with role checking
 const RequireAuth = ({ children, requiredRole }) => {
@@ -102,7 +103,7 @@ const App = () => {
               <Route path="drecords" element={<DoctorMedicalRecords />} />
               <Route path="dsetting" element={<DoctorSettings />} />
               <Route path="dhelp" element={<DoctorHelpCenter />} /> 
-              {/* <Route path="teleconsult" element={<DoctorTeleconsultation />} />*/}
+              <Route path="dteleconsult" element={<DoctorTeleconsultation />} />
               
               <Route path="*" element={<Navigate to="/doctor/dashboard" replace />} />
             </Route>
