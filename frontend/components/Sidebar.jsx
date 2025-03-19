@@ -4,9 +4,9 @@ import '../styles/sidebar.css';
 import { useTheme } from '../pages/Theme';
 
 const Sidebar = () => {
-  
   const [isCollapsed, setIsCollapsed] = useState(window.innerWidth <= 768);
-  const { theme, toggleTheme, language, changeLanguage } = useTheme();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const { theme, toggleTheme, language } = useTheme();
   const location = useLocation();
 
   // Check if current path matches link path
@@ -14,17 +14,24 @@ const Sidebar = () => {
     return location.pathname === path;
   };
 
-  // Handle responsive collapse on window resize
+  // Handle responsive behavior on window resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Only auto-collapse on initial mobile detection
+      if (mobile && !isMobile) {
         setIsCollapsed(true);
+      } else if (!mobile && isMobile) {
+        // Optional: expand when returning to desktop
+        // setIsCollapsed(false);
       }
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   const content = {
     en: {
@@ -67,92 +74,76 @@ const Sidebar = () => {
 
   const text = content[language] || content.en;
 
+  const menuItems = [
+    { path: '/dashboard', icon: 'dashboard-icon', text: text.dashboard },
+    { path: '/appointments', icon: 'appointments-icon', text: text.appointments },
+    { path: '/teleconsult', icon: 'teleconsult-icon', text: text.teleconsultation },
+    { path: '/records', icon: 'records-icon', text: text.medicalRecords },
+    { path: '/hospitals', icon: 'hospitals-icon', text: text.nearbyHospitals },
+    { path: '/connect-device', icon: 'device-icon', text: text.deviceConnection },
+  ];
+
+  const bottomItems = [
+    { path: '/settings', icon: 'settings-icon', text: text.settings },
+    { path: '/help', icon: 'help-icon', text: text.help },
+  ];
+
   return (
-    <div className={`sidebar2 ${isCollapsed ? 'collapsed' : ''} ${theme === 'dark' ? 'dark' : ''}`}>
-      <button 
-        className="collapse-button"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-      >
-        {isCollapsed ? '→' : '←'}
-      </button>
-      
-        <div className="sidebar-menu2">
-
-
-        <Link to="/dashboard" className={`sidebar-item ${isActive('/dashboard') ? 'active' : ''}`} data-tooltip={text.dashboard}>
-          <span className="sidebar-icon dashboard-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.dashboard}</span>}
-        </Link>
-        
-        <Link to="/appointments" className={`sidebar-item ${isActive('/appointments') ? 'active' : ''}`} data-tooltip={text.appointments}>
-          <span className="sidebar-icon appointments-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.appointments}</span>}
-        </Link>
-        
-        <Link to="/teleconsult" className={`sidebar-item ${isActive('/teleconsult') ? 'active' : ''}`} data-tooltip={text.teleconsultation}>
-          <span className="sidebar-icon teleconsult-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.teleconsultation}</span>}
-        </Link>
-        
-        <Link to="/records" className={`sidebar-item ${isActive('/records') ? 'active' : ''}`} data-tooltip={text.medicalRecords}>
-          <span className="sidebar-icon records-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.medicalRecords}</span>}
-        </Link>
-        
-        <Link to="/hospitals" className={`sidebar-item ${isActive('/hospitals') ? 'active' : ''}`} data-tooltip={text.nearbyHospitals}>
-          <span className="sidebar-icon hospitals-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.nearbyHospitals}</span>}
-        </Link>
-        
-        <Link to="/connect-device" className={`sidebar-item ${isActive('/connect-device') ? 'active' : ''}`} data-tooltip={text.deviceConnection}>
-          <span className="sidebar-icon device-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.deviceConnection}</span>}
-        </Link>
-        
-        <div className="sidebar-divider"></div>
-        
-        <Link to="/settings" className={`sidebar-item ${isActive('/settings') ? 'active' : ''}`} data-tooltip={text.settings}>
-          <span className="sidebar-icon settings-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.settings}</span>}
-        </Link>
-        
-        <Link to="/help" className={`sidebar-item ${isActive('/help') ? 'active' : ''}`} data-tooltip={text.help}>
-          <span className="sidebar-icon help-icon"></span>
-          {!isCollapsed && <span className="sidebar-text">{text.help}</span>}
-        </Link>
-      </div>
-      
-      {/* Theme toggle at bottom */}
-      <div className="sidebar-footer">
+    <div className={`sidebar2 ${isCollapsed ? 'collapsed' : ''} ${theme === 'dark' ? 'dark' : ''} ${isMobile ? 'mobile' : ''}`}>
+      {!isMobile && (
         <button 
-          className="theme-toggle-button"
-          onClick={toggleTheme}
-          title={theme === 'light' ? text.darkMode : text.lightMode}
+          className="collapse-button"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
-          <span className={`sidebar-icon ${theme === 'light' ? 'moon-icon' : 'sun-icon'}`}></span>
-          {!isCollapsed && (
-            <span className="sidebar-text">
-              {theme === 'light' ? text.darkMode : text.lightMode}
-            </span>
-          )}
+          {isCollapsed ? '→' : '←'}
         </button>
+      )}
+      
+      <div className="sidebar-menu2">
+        {menuItems.map((item) => (
+          <Link 
+            key={item.path}
+            to={item.path} 
+            className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`} 
+            data-tooltip={item.text}
+          >
+            <span className={`sidebar-icon ${item.icon}`}></span>
+            {(!isCollapsed || isMobile) && <span className="sidebar-text">{item.text}</span>}
+          </Link>
+        ))}
         
-        {/* <div className="language-selector">
-          {!isCollapsed && (
-            <select 
-              value={language} 
-              onChange={(e) => changeLanguage(e.target.value)}
-              className="language-select"
-            >
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-              <option value="kin">Kinyarwanda</option>
-            </select>
-          )}
-        </div> */}
+        {!isMobile && <div className="sidebar-divider"></div>}
+        
+        {bottomItems.map((item) => (
+          <Link 
+            key={item.path}
+            to={item.path} 
+            className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`} 
+            data-tooltip={item.text}
+          >
+            <span className={`sidebar-icon ${item.icon}`}></span>
+            {(!isCollapsed || isMobile) && <span className="sidebar-text">{item.text}</span>}
+          </Link>
+        ))}
       </div>
-
+      
+      {!isMobile && (
+        <div className="sidebar-footer">
+          <button 
+            className="theme-toggle-button"
+            onClick={toggleTheme}
+            title={theme === 'light' ? text.darkMode : text.lightMode}
+          >
+            <span className={`sidebar-icon ${theme === 'light' ? 'moon-icon' : 'sun-icon'}`}></span>
+            {!isCollapsed && (
+              <span className="sidebar-text">
+                {theme === 'light' ? text.darkMode : text.lightMode}
+              </span>
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
