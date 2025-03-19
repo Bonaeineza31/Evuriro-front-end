@@ -13,14 +13,11 @@ export const ThemeProvider = ({ children }) => {
 
   // Update theme and save to localStorage
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Apply to document element for global CSS access
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
   };
-
   // Change language and save to localStorage
   const changeLanguage = (lang) => {
     setLanguage(lang);
