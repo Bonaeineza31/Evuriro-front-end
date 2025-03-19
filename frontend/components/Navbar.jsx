@@ -183,10 +183,10 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
             <h2>Evuriro</h2>
           </div>
           
-          <div className="navbar-search">
+          <div className="navbar-search4">
             <form onSubmit={handleSearch}>
               <input type="text" name="search" placeholder="search" />
-              <button type="submit" className="search-button3">
+              <button type="submit" className="search-button4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
