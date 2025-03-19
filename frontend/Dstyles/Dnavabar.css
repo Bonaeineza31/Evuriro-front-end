@@ -32,17 +32,18 @@
 }
 
 /* More compact search bar */
-.search-bar {
+.search-bar2 {
   display: flex;
   align-items: center;
   background-color: #f5f7fa;
   border-radius: 20px; /* Smaller radius */
   padding: 0.35rem;
-  margin-right: 0.75rem;
+  margin-right: 6rem;
+  
   flex: 0 1 280px; /* Slightly smaller */
 }
 
-.search-bar input {
+.search-bar2 input {
   border: none;
   background: transparent;
   width: 100%;
@@ -52,7 +53,7 @@
   color: #555;
 }
 
-.search-button {
+.search-button2 {
   background: transparent;
   border: none;
   color: #888;

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaSearch, FaBell, FaUser, FaCog, FaUserCircle, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../Dstyles/Dnavabar.css';
+import logo from '../images/Screenshot 2025-02-27 235912.png'
 
 const Dnavabr = () => {
   const navigate = useNavigate();
@@ -53,13 +54,13 @@ const Dnavabr = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => handleNavigation('/dashboard')}>
-        <span className="logo-icon">❤️</span>
+        <span className="logo-icon"><img src= {logo}/></span>
         <span className="logo-text">Evuriro</span>
       </div>
       
-      <div className="search-bar">
+      <div className="search-bar2">
         <input type="text" placeholder="Search" />
-        <button className="search-button">
+        <button className="search-button2">
           <FaSearch />
         </button>
       </div>
@@ -154,7 +155,7 @@ const Dnavabr = () => {
                 <span>Profile</span>
               </div>
               
-              <div className="dropdown-item" onClick={() => handleNavigation('/settings')}>
+              <div className="dropdown-item" onClick={() => handleNavigation('/dsetting')}>
                 <FaCog className="dropdown-icon" />
                 <span>Settings</span>
               </div>
