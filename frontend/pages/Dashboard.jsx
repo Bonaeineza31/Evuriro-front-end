@@ -64,6 +64,43 @@ const HospitalIcon = () => (
   </svg>
 );
 
+// New icons for recent activity
+const MedicationIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 3h6M9 21h6M8 12h8M12 8v8M20.5 16.5c0 3.3-2.7 5.9-6 5.9s-6-2.6-6-5.9c0-2.1 1.2-4 2.3-5.6.8-1.2 1.9-2.3 2.2-2.5.3-.3.5-.3.8-.3h1.4c.3 0 .5 0 .8.3.3.2 1.4 1.3 2.2 2.5 1.1 1.6 2.3 3.5 2.3 5.6z"></path>
+  </svg>
+);
+
+const AppointmentIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+    <line x1="16" x2="16" y1="2" y2="6"></line>
+    <line x1="8" x2="8" y1="2" y2="6"></line>
+    <line x1="3" x2="21" y1="10" y2="10"></line>
+    <path d="m9 16 2 2 4-4"></path>
+  </svg>
+);
+
+const TeleconsultIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m22 8-6 4 6 4V8Z"></path>
+    <rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect>
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 6 9 17l-5-5"></path>
+  </svg>
+);
+
+const ClockIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+);
+
 const Dashboard = ({ language }) => {
   // Add state for vitals
   const [vitals, setVitals] = useState({
@@ -84,6 +121,7 @@ const Dashboard = ({ language }) => {
       welcome: 'Welcome to Evuriro Health Dashboard',
       summary: 'Health Summary',
       appointments: 'Upcoming Appointments',
+      pastAppointments: 'Past Appointments',
       vitals: 'Latest Vitals',
       quickActions: 'Quick Actions',
       scheduleBtn: 'Schedule Appointment',
@@ -111,12 +149,17 @@ const Dashboard = ({ language }) => {
       month: 'Month',
       year: 'Year',
       save: 'Save',
+      cancel: 'Cancel',
+      completed: 'Completed',
+      upcoming: 'Upcoming',
+      reschedule: 'Reschedule',
       cancel: 'Cancel'
     },
     french: {
       welcome: 'Bienvenue sur le tableau de bord de santé Evuriro',
       summary: 'Résumé de Santé',
       appointments: 'Rendez-vous à venir',
+      pastAppointments: 'Rendez-vous passés',
       vitals: 'Constantes Vitales Récentes',
       quickActions: 'Actions Rapides',
       scheduleBtn: 'Planifier un Rendez-vous',
@@ -144,12 +187,17 @@ const Dashboard = ({ language }) => {
       month: 'Mois',
       year: 'Année',
       save: 'Sauvegarder',
+      cancel: 'Annuler',
+      completed: 'Terminé',
+      upcoming: 'À venir',
+      reschedule: 'Reprogrammer',
       cancel: 'Annuler'
     },
     kinyarwanda: {
       welcome: 'Murakaza neza kuri Evuriro dashbord y\'ubuzima',
       summary: 'Incamake y\'Ubuzima',
       appointments: 'Gahunda zizaza',
+      pastAppointments: 'Gahunda zashize',
       vitals: 'Ibipimo by\'ubuzima',
       quickActions: 'Ibikorwa byihuse',
       scheduleBtn: 'Gufata Gahunda',
@@ -177,6 +225,10 @@ const Dashboard = ({ language }) => {
       month: 'Ukwezi',
       year: 'Umwaka',
       save: 'Kubika',
+      cancel: 'Guhagarika',
+      completed: 'Byarangiye',
+      upcoming: 'Bizaza',
+      reschedule: 'Guhindura igihe',
       cancel: 'Guhagarika'
     }
   };
@@ -184,35 +236,72 @@ const Dashboard = ({ language }) => {
   // Default to English if language not available
   const text = content[language] || content.english;
 
-  // Mock appointments data
+  // Enhanced mock appointments data - upcoming appointments
   const mockAppointments = [
     {
       id: 1,
       doctor: 'Dr. Sarah Johnson',
       specialty: 'Cardiology',
-      date: '2025-03-01',
+      date: '2025-03-25',
       time: '10:00 AM',
-      type: 'In-person'
+      type: 'In-person',
+      status: 'upcoming'
+    },
+    {
+      id: 2,
+      doctor: 'Dr. Michael Chen',
+      specialty: 'Dermatology',
+      date: '2025-04-05',
+      time: '2:30 PM',
+      type: 'Teleconsultation',
+      status: 'upcoming'
     }
   ];
 
-  // Mock activities data
+  // Past appointments data
+  const pastAppointments = [
+    {
+      id: 3,
+      doctor: 'Dr. Emily Wilson',
+      specialty: 'General Practice',
+      date: '2025-02-15',
+      time: '11:00 AM',
+      type: 'In-person',
+      status: 'completed',
+      notes: 'Follow-up in 3 months'
+    },
+    {
+      id: 4,
+      doctor: 'Dr. Robert Smith',
+      specialty: 'Neurology',
+      date: '2025-01-28',
+      time: '9:15 AM',
+      type: 'Teleconsultation',
+      status: 'completed',
+      notes: 'Prescribed medication for migraine'
+    }
+  ];
+
+  // Enhanced mock activities data with appropriate icons
   const mockActivities = [
     {
       id: 1,
       type: 'Medication',
+      icon: <MedicationIcon />,
       description: 'Took blood pressure medication',
       time: '2 hours ago'
     },
     {
       id: 2,
       type: 'Appointment',
+      icon: <AppointmentIcon />,
       description: 'Booked appointment with Dr. Johnson',
       time: 'Yesterday'
     },
     {
       id: 3,
       type: 'Teleconsult',
+      icon: <TeleconsultIcon />,
       description: 'Completed teleconsultation with Dr. Smith',
       time: '3 days ago'
     }
@@ -244,6 +333,16 @@ const Dashboard = ({ language }) => {
       default:
         return 'normal';
     }
+  };
+
+  // Format date function
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
   };
 
   return (
@@ -357,27 +456,40 @@ const Dashboard = ({ language }) => {
             </div>
           </section>
           
-          {/* Upcoming appointments section */}
+          {/* Appointments section - improved */}
           <section className="dashboard-card appointments">
-            <div className="card-header">
-              <h2>{text.appointments}</h2>
+            <div className="tabs-container">
+              <div className="tabs">
+                <button className="tab-button active">{text.appointments}</button>
+                <button className="tab-button">{text.pastAppointments}</button>
+              </div>
               <button className="view-all-btn">{text.viewAll}</button>
             </div>
             
+            {/* Upcoming appointments list */}
             <div className="appointment-list">
               {mockAppointments.length > 0 ? (
                 mockAppointments.map(appointment => (
                   <div className="appointment-item" key={appointment.id}>
+                    <div className="appointment-status">
+                      <ClockIcon />
+                    </div>
                     <div className="appointment-icon">
-                      <CalendarIcon />
+                      {appointment.type === 'Teleconsultation' ? <VideoIcon /> : <CalendarIcon />}
                     </div>
                     <div className="appointment-details">
-                      <h3>{appointment.doctor}</h3>
-                      <p>{appointment.specialty}</p>
+                      <div className="appointment-header">
+                        <h3>{appointment.doctor}</h3>
+                        <span className="appointment-type">{appointment.type}</span>
+                      </div>
+                      <p className="specialty">{appointment.specialty}</p>
                       <div className="appointment-time">
-                        <span className="date">{new Date(appointment.date).toLocaleDateString()}</span>
+                        <span className="date">{formatDate(appointment.date)}</span>
                         <span className="time">{appointment.time}</span>
-                        <span className="type">{appointment.type}</span>
+                      </div>
+                      <div className="appointment-actions">
+                        <button className="action-btn reschedule-btn">{text.reschedule}</button>
+                        <button className="action-btn cancel-btn">{text.cancel}</button>
                       </div>
                     </div>
                   </div>
@@ -388,6 +500,36 @@ const Dashboard = ({ language }) => {
                   <button className="book-now-btn">{text.bookNow}</button>
                 </div>
               )}
+            </div>
+            
+            {/* Past appointments section (initially hidden) */}
+            <div className="appointment-list past-appointments" style={{display: 'none'}}>
+              {pastAppointments.map(appointment => (
+                <div className="appointment-item past" key={appointment.id}>
+                  <div className="appointment-status">
+                    <CheckIcon />
+                  </div>
+                  <div className="appointment-icon">
+                    {appointment.type === 'Teleconsultation' ? <VideoIcon /> : <CalendarIcon />}
+                  </div>
+                  <div className="appointment-details">
+                    <div className="appointment-header">
+                      <h3>{appointment.doctor}</h3>
+                      <span className="appointment-type">{appointment.type}</span>
+                    </div>
+                    <p className="specialty">{appointment.specialty}</p>
+                    <div className="appointment-time">
+                      <span className="date">{formatDate(appointment.date)}</span>
+                      <span className="time">{appointment.time}</span>
+                    </div>
+                    {appointment.notes && (
+                      <div className="appointment-notes">
+                        <p>{appointment.notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
           
@@ -414,7 +556,7 @@ const Dashboard = ({ language }) => {
             </div>
           </section>
           
-          {/* Recent activity section */}
+          {/* Recent activity section - improved with icons */}
           <section className="dashboard-card recent-activity">
             <div className="card-header">
               <h2>{text.recentActivity}</h2>
@@ -424,7 +566,9 @@ const Dashboard = ({ language }) => {
             <div className="activity-list">
               {mockActivities.map(activity => (
                 <div className="activity-item" key={activity.id}>
-                  <div className={`activity-icon ${activity.type.toLowerCase()}-icon`}></div>
+                  <div className="activity-icon">
+                    {activity.icon}
+                  </div>
                   <div className="activity-details">
                     <p className="activity-description">{activity.description}</p>
                     <span className="activity-time">{activity.time}</span>
@@ -442,7 +586,6 @@ const Dashboard = ({ language }) => {
           <div className="modal-content">
             <h2>{text.updateVitals}</h2>
             <div className="form-group">
-              
               <label>{text.heartRate}</label>
               <input 
                 type="number" 
