@@ -239,10 +239,70 @@ body, html {
 }
 
 /* Appointment Section */
+.dashboard-card.appointments {
+  height: 100%;
+  overflow: hidden;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-button.active {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+.view-all-btn {
+  font-size: 14px;
+  color: #2563eb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.view-all-btn:hover {
+  background-color: #e0e7ff;
+}
+
 .appointment-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow-y: auto;
+  max-height: calc(100% - 50px);
+  padding-right: 8px;
+}
+
+.appointment-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.appointment-list::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
 }
 
 .appointment-item {
@@ -250,12 +310,21 @@ body, html {
   padding: 16px;
   background-color: #f8fafc;
   border-radius: 10px;
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  position: relative;
+  border: 1px solid #e2e8f0;
 }
 
 .appointment-item:hover {
   transform: translateX(2px);
   background-color: #f0f5ff;
+  border-color: #bfdbfe;
+}
+
+.appointment-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .appointment-icon {
@@ -267,15 +336,37 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.appointment-details h3 {
+.appointment-details {
+  flex: 1;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.appointment-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
+  color: #1e293b;
 }
 
-.appointment-details p {
+.appointment-type {
+  font-size: 12px;
+  color: #2563eb;
+  background-color: #dbeafe;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.specialty {
   margin: 4px 0;
   color: #64748b;
   font-size: 14px;
@@ -283,16 +374,58 @@ body, html {
 
 .appointment-time {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 13px;
   color: #64748b;
 }
 
+.date {
+  font-weight: 500;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.reschedule-btn {
+  background-color: #f0f5ff;
+  color: #2563eb;
+}
+
+.reschedule-btn:hover {
+  background-color: #dbeafe;
+}
+
+.cancel-btn {
+  background-color: #fff1f2;
+  color: #e11d48;
+}
+
+.cancel-btn:hover {
+  background-color: #ffe4e6;
+}
+
+/* No appointments state */
 .no-appointments {
   text-align: center;
-  padding: 30px 0;
+  padding: 30px 20px;
   color: #94a3b8;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e1;
 }
 
 .book-now-btn {
@@ -310,6 +443,21 @@ body, html {
 
 .book-now-btn:hover {
   background-color: #1d4ed8;
+}
+
+/* Past appointments styling */
+.appointment-item.past {
+  opacity: 0.85;
+}
+
+.appointment-notes {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #64748b;
+  border-left: 2px solid #2563eb;
 }
 
 /* Quick Actions Section */
@@ -362,7 +510,6 @@ a.action-btn2 {
   display: flex;
   padding: 12px;
   border-radius: 10px;
-  background-color: #f8fafc;
   transition: background-color 0.2s;
 }
 
@@ -705,4 +852,210 @@ html[lang="rw"] .action-btn span {
 .scrollable::-webkit-scrollbar-thumb {
   background-color: #cbd5e1;
   border-radius: 3px;
+}
+/* Dark Mode Styles */
+[data-theme="dark"] {
+  /* Base background and text colors */
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+/* Dark mode for dashboard container */
+[data-theme="dark"] .dashboard-page {
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+/* Dark mode for cards */
+[data-theme="dark"] .dashboard-card {
+  background-color: #1f2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .dashboard-card h2 {
+  color: #60a5fa;
+}
+
+/* Dark mode for items in cards */
+[data-theme="dark"] .vital-item,
+[data-theme="dark"] .appointment-item,
+[data-theme="dark"] .activity-item,
+[data-theme="dark"] .action-btn2 {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .vital-item:hover,
+[data-theme="dark"] .appointment-item:hover,
+[data-theme="dark"] .activity-item:hover,
+[data-theme="dark"] .action-btn2:hover {
+  background-color: #4b5563;
+}
+
+/* Dark mode for text elements */
+[data-theme="dark"] .vital-name,
+[data-theme="dark"] .appointment-details p,
+[data-theme="dark"] .activity-time {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .vital-value,
+[data-theme="dark"] .appointment-details h3,
+[data-theme="dark"] .activity-description {
+  color: #f3f4f6;
+}
+
+/* Dark mode for icons */
+[data-theme="dark"] .vital-icon,
+[data-theme="dark"] .appointment-icon,
+[data-theme="dark"] .activity-icon {
+  background-color: #3b82f6;
+  color: #f3f4f6;
+}
+
+/* Dark mode for buttons */
+[data-theme="dark"] .update-vitals-btn,
+[data-theme="dark"] .connect-device-btn {
+  background-color: #2563eb;
+  border-color: #3b82f6;
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .update-vitals-btn:hover,
+[data-theme="dark"] .connect-device-btn:hover {
+  background-color: #1d4ed8;
+}
+
+[data-theme="dark"] .book-now-btn,
+[data-theme="dark"] .save-btn {
+  background-color: #2563eb;
+}
+
+[data-theme="dark"] .book-now-btn:hover,
+[data-theme="dark"] .save-btn:hover {
+  background-color: #1d4ed8;
+}
+
+[data-theme="dark"] .cancel-btn {
+  background-color: #374151;
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .cancel-btn:hover {
+  background-color: #4b5563;
+}
+
+/* Dark mode for status indicators */
+[data-theme="dark"] .health-status {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .status-text {
+  color: #e5e7eb;
+}
+
+/* Dark mode for charts and graphs */
+[data-theme="dark"] .trend-chart {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .chart-line {
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+/* Dark mode for period buttons */
+[data-theme="dark"] .period-btn {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .period-btn.active {
+  background-color: #2563eb;
+  color: #f3f4f6;
+}
+
+/* Dark mode for badges */
+[data-theme="dark"] .badge-blue {
+  background-color: #1e40af;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .badge-green {
+  background-color: #065f46;
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .badge-amber {
+  background-color: #78350f;
+  color: #fcd34d;
+}
+
+[data-theme="dark"] .badge-red {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Dark mode for scrollbars */
+[data-theme="dark"] .scrollable::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+[data-theme="dark"] .scrollable::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+}
+
+/* Dark mode for tabs in the appointment section */
+[data-theme="dark"] .tab-button {
+  background-color: #374151;
+  color: #9ca3af;
+  border: 1px solid #4b5563;
+}
+
+[data-theme="dark"] .tab-button.active {
+  background-color: #2563eb;
+  color: #f3f4f6;
+  border-color: #3b82f6;
+}
+
+/* Dark mode for appointment styles */
+[data-theme="dark"] .appointment-list {
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .reschedule-btn,
+[data-theme="dark"] .cancel-appointment-btn {
+  background-color: #374151;
+  border: 1px solid #4b5563;
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .reschedule-btn:hover {
+  background-color: #2563eb;
+}
+
+[data-theme="dark"] .cancel-appointment-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Dark mode for modal */
+[data-theme="dark"] .modal-content {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .modal-content h2 {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .form-group input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+[data-theme="dark"] .form-group input:focus {
+  border-color: #3b82f6;
 }
