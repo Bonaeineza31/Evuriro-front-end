@@ -241,12 +241,12 @@ const Welcome = () => {
                 {text.signUp}
               </button>
             </div>
-            <button 
+            {/* <button 
               onClick={handleGuestLogin} 
               className="guest-button"
             >
               {text.guest}
-            </button>
+            </button> */}
           </div>
         </div>
 
