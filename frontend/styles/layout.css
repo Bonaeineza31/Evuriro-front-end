@@ -1,23 +1,30 @@
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f7fa;
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark theme styling for layout */
+[data-theme="dark"] .content {
+  background-color: #111827; /* Dark background that matches your sidebar dark theme */
+  color: #e5e7eb; /* Light text color for dark background */
+}
+
+@media (max-width: 768px) {
   .main-container {
-    display: flex;
-    flex: 1;
+    flex-direction: column;
   }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-    background-color: #f5f7fa;
-    overflow-y: auto;
-  }
-  
-  @media (max-width: 768px) {
-    .main-container {
-      flex-direction: column;
-    }
-  }
+}
