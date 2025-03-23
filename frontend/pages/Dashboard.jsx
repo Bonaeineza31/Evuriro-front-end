@@ -8,8 +8,7 @@ import { Heart, Activity, Thermometer, Droplet, Scale, Calendar, Video, FileText
 const Dashboard = () => {
   // State for user data
   const [userData, setUserData] = useState({
-    firstName: 'Bonae',
-    lastName: 'Ineza',
+    name:'user',
     vitals: {
       heartRate: 72,
       bloodPressure: '120/80',
@@ -53,6 +52,21 @@ const Dashboard = () => {
       }
     ]
   });
+
+  useEffect(() => {
+    // Fetch user data from localStorage after login
+    const fetchUserData = () => {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
+      
+      // Update state with user's name from login/registration
+      setUserData(prevData => ({
+        ...prevData,
+        name: userInfo.name || 'User'
+      }));
+    };
+
+    fetchUserData();
+  }, []);
 
   // State for modals
   const [showUpdateVitals, setShowUpdateVitals] = useState(false);
