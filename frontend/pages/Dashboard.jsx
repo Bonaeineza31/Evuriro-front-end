@@ -8,7 +8,7 @@ import { Heart, Activity, Thermometer, Droplet, Scale, Calendar, Video, FileText
 const Dashboard = () => {
   // State for user data
   const [userData, setUserData] = useState({
-    name:'user',
+    name:'User',
     vitals: {
       heartRate: 72,
       bloodPressure: '120/80',
@@ -54,18 +54,15 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    // Fetch user data from localStorage after login
-    const fetchUserData = () => {
-      const userInfo = JSON.parse(localStorage.getItem('userInfo')) || {};
-      
-      // Update state with user's name from login/registration
+    // Get user name from localStorage
+    const userName = localStorage.getItem('userName');
+    
+    if (userName) {
       setUserData(prevData => ({
         ...prevData,
-        name: userInfo.name || 'user'
+        name: userName
       }));
-    };
-
-    fetchUserData();
+    }
   }, []);
 
   // State for modals
@@ -194,7 +191,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <h1 className="welcome-message">Welcome to Evuriro Health, {userData.firstName}</h1>
+      <h1 className="welcome-message">Welcome to Evuriro Health, {userData.name}</h1>
       
       <div className="dashboard-grid">
         {/* Health Summary */}
