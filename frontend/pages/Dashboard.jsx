@@ -61,7 +61,7 @@ const Dashboard = () => {
       // Update state with user's name from login/registration
       setUserData(prevData => ({
         ...prevData,
-        name: userInfo.name || 'User'
+        name: userInfo.name || 'user'
       }));
     };
 
