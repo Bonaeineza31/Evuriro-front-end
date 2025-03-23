@@ -237,7 +237,7 @@ const Dashboard = () => {
             <button className="btn primary" onClick={() => setShowUpdateVitals(true)}>
               Update Vitals
             </button>
-            <button className="btn secondary">Connect Device</button>
+            <Link to ="/connect-device" className="btn secondary">Connect Device</Link>
           </div>
           
           <div className="vital-history">
@@ -336,7 +336,7 @@ const Dashboard = () => {
               <Hospital size={24} />
               <span>Find Hospital</span>
             </Link>
-            <Link className="action-button">
+            <Link to ="/connect-device" className="action-button">
               <Wifi size={24} />
               <span>Connect Device</span>
             </Link>
