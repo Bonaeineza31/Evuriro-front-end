@@ -1,14 +1,14 @@
 /* Dashboard.css */
 :root {
-  --primary-color: #1d4ed8;
-  --primary-light: #3b82f6;
+  --primary-color: #2563eb;
+  --primary-light: #2563eb;
   --secondary-color: #6b7280;
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --danger-color: #ef4444;
   --light-bg: #f9fafb;
   --card-bg: #ffffff;
-  --text-primary: #111827;
+  --text-primary:  #2563eb;
   --text-secondary: #4b5563;
   --text-muted: #9ca3af;
   --border-color: #e5e7eb;
@@ -17,8 +17,8 @@
 }
 
 [data-theme="dark"] {
-  --primary-color: #3b82f6;
-  --primary-light: #60a5fa;
+  --primary-color: #2563eb;
+  --primary-light: #2563eb;
   --secondary-color: #9ca3af;
   --light-bg: #111827;
   --card-bg: #1f2937;
@@ -35,6 +35,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
+ 
 }
 
 .welcome-message {
@@ -59,19 +60,19 @@
 }
 
 .health-summary {
-  grid-column: span 4;
+  grid-column: span 4.8;
 }
 
 .appointments {
-  grid-column: span 4;
+  grid-column: span 7;
 }
 
 .quick-actions {
-  grid-column: span 4;
+  grid-column: span 1;
 }
 
 .recent-activity {
-  grid-column: span 4;
+  grid-column: span 4.5;
 }
 
 /* Cards */
