@@ -1,435 +1,582 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/dashboard.css';
-import { 
-  Calendar, 
-  Clock, 
-  Heart, 
-  Activity, 
-  Thermometer, 
-  Droplet, 
-  User, 
-  FileText, 
-  Upload, 
-  Phone, 
-  MapPin, 
-  Plus 
-} from 'lucide-react';
 
-const Dashboard = ({ user }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [vitals, setVitals] = useState({
-    heartRate: 72,
-    bloodPressure: '120/80',
-    temperature: 36.6,
-    oxygenLevel: 98,
-    weight: 70.5
+// Icons
+import { Heart, Activity, Thermometer, Droplet, Scale, Calendar, Video, FileText, Hospital, Smartphone, Clock } from 'lucide-react';
+
+const Dashboard = () => {
+  // State for user data
+  const [userData, setUserData] = useState({
+    firstName: 'Bonae',
+    lastName: 'Ineza',
+    vitals: {
+      heartRate: 72,
+      bloodPressure: '120/80',
+      temperature: 36.6,
+      oxygenLevel: 98,
+      weight: 70.5
+    },
+    appointments: [
+      {
+        id: 1,
+        doctor: 'Dr. Sarah Johnson',
+        specialty: 'Cardiology',
+        date: '25/03/2025',
+        time: '10:00 AM',
+        type: 'in-person'
+      },
+      {
+        id: 2,
+        doctor: 'Dr. Michael Chen',
+        specialty: 'Dermatology',
+        date: '05/04/2025',
+        time: '2:30 PM',
+        type: 'teleconsultation'
+      }
+    ],
+    recentActivity: [
+      {
+        id: 1,
+        action: 'Took blood pressure medication',
+        time: '2 hours ago'
+      },
+      {
+        id: 2,
+        action: 'Booked appointment with Dr. Johnson',
+        time: 'Yesterday'
+      },
+      {
+        id: 3,
+        action: 'Completed teleconsultation with Dr. Smith',
+        time: '3 days ago'
+      }
+    ]
   });
 
-  // Get first name for personalized greeting
-  const firstName = user?.name?.split(' ')[0] || 'User';
-  const lastName = user?.name?.split(' ')[1] || '';
+  // State for modals
+  const [showUpdateVitals, setShowUpdateVitals] = useState(false);
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  
+  // State for vitals form
+  const [vitalsForm, setVitalsForm] = useState({...userData.vitals});
 
-  useEffect(() => {
-    // Check if user prefers dark mode
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedMode = localStorage.getItem('darkMode') === 'true';
-    
-    setIsDarkMode(savedMode || prefersDark);
-    
-    document.body.setAttribute('data-theme', savedMode || prefersDark ? 'dark' : 'light');
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    document.body.setAttribute('data-theme', newMode ? 'dark' : 'light');
-    localStorage.setItem('darkMode', newMode);
+  // Handle vitals update
+  const handleVitalsChange = (e) => {
+    const { name, value } = e.target;
+    setVitalsForm({...vitalsForm, [name]: value});
   };
 
-  const appointments = [
-    {
-      doctor: 'Dr. Sarah Johnson',
-      specialty: 'Cardiology',
-      date: '25/03/2025',
-      time: '10:00 AM',
-      type: 'in-person'
-    },
-    {
-      doctor: 'Dr. Michael Chen',
-      specialty: 'Dermatology',
-      date: '05/04/2025',
-      time: '2:30 PM',
-      type: 'teleconsultation'
+  const saveVitals = () => {
+    setUserData({...userData, vitals: vitalsForm});
+    setShowUpdateVitals(false);
+  };
+
+  // Handle appointment booking
+  const [newAppointment, setNewAppointment] = useState({
+    doctor: '',
+    specialty: '',
+    date: '',
+    time: '',
+    type: 'in-person'
+  });
+
+  const handleAppointmentChange = (e) => {
+    const { name, value } = e.target;
+    setNewAppointment({...newAppointment, [name]: value});
+  };
+
+  const bookAppointment = () => {
+    // Add validation here
+    if (!newAppointment.doctor || !newAppointment.date || !newAppointment.time) {
+      alert('Please fill in all required fields');
+      return;
     }
-  ];
-
-  const recentActivity = [
-    {
-      action: 'Took blood pressure medication',
-      time: '2 hours ago'
-    },
-    {
-      action: 'Booked appointment with Dr. Johnson',
-      time: 'Yesterday'
-    },
-    {
-      action: 'Completed teleconsultation with Dr. Smith',
-      time: '3 days ago'
-    }
-  ];
-
-  // Mock data for health trends chart
-  const healthTrends = [65, 59, 80, 81, 56, 55, 72];
-
-  const updateVital = (key, value) => {
-    setVitals({
-      ...vitals,
-      [key]: value
+    
+    const appointment = {
+      id: userData.appointments.length + 1,
+      ...newAppointment
+    };
+    
+    setUserData({
+      ...userData, 
+      appointments: [...userData.appointments, appointment],
+      recentActivity: [
+        {
+          id: Date.now(),
+          action: `Booked appointment with ${appointment.doctor}`,
+          time: 'Just now'
+        },
+        ...userData.recentActivity
+      ]
     });
+    
+    setShowAppointmentModal(false);
+    setNewAppointment({
+      doctor: '',
+      specialty: '',
+      date: '',
+      time: '',
+      type: 'in-person'
+    });
+  };
+
+  // Handle appointment rescheduling
+  const openRescheduleModal = (appointment) => {
+    setSelectedAppointment(appointment);
+    setShowRescheduleModal(true);
+  };
+
+  const rescheduleAppointment = () => {
+    // Update the appointment with new date/time
+    const updatedAppointments = userData.appointments.map(apt => 
+      apt.id === selectedAppointment.id ? selectedAppointment : apt
+    );
+    
+    setUserData({
+      ...userData,
+      appointments: updatedAppointments,
+      recentActivity: [
+        {
+          id: Date.now(),
+          action: `Rescheduled appointment with ${selectedAppointment.doctor}`,
+          time: 'Just now'
+        },
+        ...userData.recentActivity
+      ]
+    });
+    
+    setShowRescheduleModal(false);
+    setSelectedAppointment(null);
+  };
+
+  const handleRescheduleChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedAppointment({...selectedAppointment, [name]: value});
+  };
+
+  // Cancel appointment
+  const cancelAppointment = (id) => {
+    if (window.confirm('Are you sure you want to cancel this appointment?')) {
+      const appointment = userData.appointments.find(apt => apt.id === id);
+      const updatedAppointments = userData.appointments.filter(apt => apt.id !== id);
+      
+      setUserData({
+        ...userData,
+        appointments: updatedAppointments,
+        recentActivity: [
+          {
+            id: Date.now(),
+            action: `Cancelled appointment with ${appointment.doctor}`,
+            time: 'Just now'
+          },
+          ...userData.recentActivity
+        ]
+      });
+    }
   };
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
-        <div className="logo">
-          <Heart className="logo-icon" />
-          <span>Evuriro</span>
-        </div>
-        <div className="search-bar">
-          <input type="search" placeholder="Search..." />
-          <button className="search-button">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </button>
-        </div>
-        <nav className="main-nav">
-          <Link to="/dashboard" className="active">Dashboard</Link>
-          <Link to="/teleconsultation">Teleconsultation</Link>
-          <Link to="/records">Records</Link>
-          <Link to="/hospitals">Nearby Hospitals</Link>
-          <Link to="/doctors">Find a Doctor</Link>
-        </nav>
-        <div className="header-actions">
-          <button className="icon-button notification-button">
-            <div className="notification-badge">2</div>
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-          </button>
-          <button className="icon-button">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-          </button>
-          <div className="user-profile">
-            <div className="avatar">
-              {lastName.charAt(0) || 'U'}
+      <h1 className="welcome-message">Welcome to Evuriro Health, {userData.firstName}</h1>
+      
+      <div className="dashboard-grid">
+        {/* Health Summary */}
+        <div className="dashboard-card health-summary">
+          <h2 className="card-title">Health Summary</h2>
+          <div className="vital-items">
+            <div className="vital-item">
+              <div className="vital-icon"><Heart size={20} /></div>
+              <div className="vital-info">
+                <span className="vital-label">Heart Rate</span>
+                <span className="vital-value">{userData.vitals.heartRate} bpm</span>
+              </div>
+              <div className="vital-status normal"></div>
             </div>
-            <div className="language-selector">
-              <button className="language-button active">EN</button>
-              <button className="language-button">FR</button>
-              <button className="language-button">KIN</button>
+            
+            <div className="vital-item">
+              <div className="vital-icon"><Activity size={20} /></div>
+              <div className="vital-info">
+                <span className="vital-label">Blood Pressure</span>
+                <span className="vital-value">{userData.vitals.bloodPressure} mmHg</span>
+              </div>
+              <div className="vital-status normal"></div>
+            </div>
+            
+            <div className="vital-item">
+              <div className="vital-icon"><Thermometer size={20} /></div>
+              <div className="vital-info">
+                <span className="vital-label">Temperature</span>
+                <span className="vital-value">{userData.vitals.temperature} °C</span>
+              </div>
+              <div className="vital-status normal"></div>
+            </div>
+            
+            <div className="vital-item">
+              <div className="vital-icon"><Droplet size={20} /></div>
+              <div className="vital-info">
+                <span className="vital-label">Oxygen Level</span>
+                <span className="vital-value">{userData.vitals.oxygenLevel}%</span>
+              </div>
+              <div className="vital-status normal"></div>
+            </div>
+            
+            <div className="vital-item">
+              <div className="vital-icon"><Scale size={20} /></div>
+              <div className="vital-info">
+                <span className="vital-label">Weight</span>
+                <span className="vital-value">{userData.vitals.weight} kg</span>
+              </div>
+              <div className="vital-status normal"></div>
+            </div>
+          </div>
+          
+          <div className="vital-actions">
+            <button className="btn primary" onClick={() => setShowUpdateVitals(true)}>
+              Update Vitals
+            </button>
+            <button className="btn secondary">Connect Device</button>
+          </div>
+          
+          <div className="vital-history">
+            <h3>History</h3>
+            <div className="history-tabs">
+              <button className="tab active">Week</button>
+              <button className="tab">Month</button>
+              <button className="tab">Year</button>
+            </div>
+            <div className="trend-chart">
+              {/* Simple chart representation */}
+              <div className="chart-line"></div>
             </div>
           </div>
         </div>
-      </header>
 
-      <div className="dashboard-layout">
-        <aside className="sidebar">
-          <nav className="sidebar-nav">
-            <Link to="/dashboard" className="sidebar-item active">
-              <div className="sidebar-icon">
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none">
-                  <rect x="3" y="3" width="7" height="7" />
-                  <rect x="14" y="3" width="7" height="7" />
-                  <rect x="14" y="14" width="7" height="7" />
-                  <rect x="3" y="14" width="7" height="7" />
-                </svg>
-              </div>
-              <span>Dashboard</span>
-            </Link>
-            <Link to="/appointments" className="sidebar-item">
-              <div className="sidebar-icon">
-                <Calendar size={20} />
-              </div>
-              <span>Appointments</span>
-            </Link>
-            <Link to="/teleconsultation" className="sidebar-item">
-              <div className="sidebar-icon">
-                <Phone size={20} />
-              </div>
-              <span>Teleconsultation</span>
-            </Link>
-            <Link to="/records" className="sidebar-item">
-              <div className="sidebar-icon">
-                <FileText size={20} />
-              </div>
-              <span>Medical Records</span>
-            </Link>
-            <Link to="/hospitals" className="sidebar-item">
-              <div className="sidebar-icon">
-                <MapPin size={20} />
-              </div>
-              <span>Nearby Hospitals</span>
-            </Link>
-            <Link to="/devices" className="sidebar-item">
-              <div className="sidebar-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
-                  <rect x="2" y="6" width="20" height="12" rx="2" />
-                  <path d="M12 12h.01" />
-                </svg>
-              </div>
+        {/* Appointments */}
+        <div className="dashboard-card appointments">
+          <div className="card-header">
+            <h2 className="card-title">Upcoming Appointments</h2>
+            <button className="btn text">View All</button>
+          </div>
+          
+          {userData.appointments.length > 0 ? (
+            <div className="appointment-list">
+              {userData.appointments.map(appointment => (
+                <div key={appointment.id} className="appointment-item">
+                  <div className="appointment-date">
+                    <Calendar size={18} />
+                    <div className="date-info">
+                      <span>{appointment.date}</span>
+                      <span>{appointment.time}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="appointment-details">
+                    <h3 className="doctor-name">{appointment.doctor}</h3>
+                    <span className="specialty">{appointment.specialty}</span>
+                    <div className="appointment-type">
+                      {appointment.type === 'teleconsultation' ? (
+                        <span className="teleconsult"><Video size={14} /> Teleconsultation</span>
+                      ) : (
+                        <span className="in-person"><Hospital size={14} /> In-person</span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="appointment-actions">
+                    <button 
+                      className="btn secondary small" 
+                      onClick={() => openRescheduleModal(appointment)}
+                    >
+                      Reschedule
+                    </button>
+                    <button 
+                      className="btn outline small" 
+                      onClick={() => cancelAppointment(appointment.id)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-appointments">
+              <p>No upcoming appointments</p>
+            </div>
+          )}
+          
+          <button 
+            className="btn primary full-width" 
+            onClick={() => setShowAppointmentModal(true)}
+          >
+            Schedule New Appointment
+          </button>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="dashboard-card quick-actions">
+          <h2 className="card-title">Quick Actions</h2>
+          <div className="action-grid">
+            <button className="action-button">
+              <Calendar size={24} />
+              <span>Schedule Appointment</span>
+            </button>
+            <button className="action-button">
+              <Video size={24} />
+              <span>Start Teleconsultation</span>
+            </button>
+            <button className="action-button">
+              <FileText size={24} />
+              <span>Upload Records</span>
+            </button>
+            <button className="action-button">
+              <Hospital size={24} />
+              <span>Find Hospital</span>
+            </button>
+            <button className="action-button">
+              <Smartphone size={24} />
               <span>Connect Device</span>
-            </Link>
-          </nav>
-          <div className="sidebar-footer">
-            <Link to="/settings" className="sidebar-item">
-              <div className="sidebar-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                </svg>
-              </div>
-              <span>Settings</span>
-            </Link>
-            <Link to="/help" className="sidebar-item">
-              <div className="sidebar-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                  <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>
-              </div>
-              <span>Help Center</span>
-            </Link>
-            <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-              <div className="sidebar-icon">
-                {isDarkMode ? (
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
-                    <circle cx="12" cy="12" r="5" />
-                    <line x1="12" y1="1" x2="12" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="23" />
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                    <line x1="1" y1="12" x2="3" y2="12" />
-                    <line x1="21" y1="12" x2="23" y2="12" />
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                  </svg>
-                ) : (
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                  </svg>
-                )}
-              </div>
-              <span>Dark Mode</span>
+            </button>
+            <button className="action-button">
+              <Clock size={24} />
+              <span>Medication Reminder</span>
             </button>
           </div>
-        </aside>
+        </div>
 
-        <main className="main-content">
-          <div className="page-header">
-            <h1>Welcome to Evuriro Health, <span className="highlight">{firstName}</span></h1>
-            <p className="subtitle">Your health journey at a glance</p>
+        {/* Recent Activity */}
+        <div className="dashboard-card recent-activity">
+          <div className="card-header">
+            <h2 className="card-title">Recent Activity</h2>
+            <button className="btn text">View All</button>
           </div>
+          
+          <div className="activity-list">
+            {userData.recentActivity.map(activity => (
+              <div key={activity.id} className="activity-item">
+                <div className="activity-icon"></div>
+                <div className="activity-details">
+                  <span className="activity-text">{activity.action}</span>
+                  <span className="activity-time">{activity.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-          <div className="dashboard-grid">
-            <section className="grid-item health-summary">
-              <div className="section-header">
-                <h2>Health Summary</h2>
-                <span className="label">Last updated: Today</span>
+      {/* Update Vitals Modal */}
+      {showUpdateVitals && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Update Vitals</h2>
+              <button className="close-btn" onClick={() => setShowUpdateVitals(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="form-group">
+                <label>Heart Rate</label>
+                <input 
+                  type="number" 
+                  name="heartRate" 
+                  value={vitalsForm.heartRate} 
+                  onChange={handleVitalsChange}
+                />
               </div>
-              <div className="vitals-grid">
-                <div className="vital-card">
-                  <div className="vital-icon heart-rate">
-                    <Heart size={24} />
-                  </div>
-                  <div className="vital-info">
-                    <span className="vital-label">Heart Rate</span>
-                    <span className="vital-value">{vitals.heartRate} <span className="unit">bpm</span></span>
-                  </div>
-                  <div className="vital-status normal"></div>
-                </div>
-                <div className="vital-card">
-                  <div className="vital-icon blood-pressure">
-                    <Activity size={24} />
-                  </div>
-                  <div className="vital-info">
-                    <span className="vital-label">Blood Pressure</span>
-                    <span className="vital-value">{vitals.bloodPressure} <span className="unit">mmHg</span></span>
-                  </div>
-                  <div className="vital-status normal"></div>
-                </div>
-                <div className="vital-card">
-                  <div className="vital-icon temperature">
-                    <Thermometer size={24} />
-                  </div>
-                  <div className="vital-info">
-                    <span className="vital-label">Temperature</span>
-                    <span className="vital-value">{vitals.temperature} <span className="unit">°C</span></span>
-                  </div>
-                  <div className="vital-status normal"></div>
-                </div>
-                <div className="vital-card">
-                  <div className="vital-icon oxygen">
-                    <Droplet size={24} />
-                  </div>
-                  <div className="vital-info">
-                    <span className="vital-label">Oxygen Level</span>
-                    <span className="vital-value">{vitals.oxygenLevel}<span className="unit">%</span></span>
-                  </div>
-                  <div className="vital-status normal"></div>
-                </div>
-                <div className="vital-card">
-                  <div className="vital-icon weight">
-                    <User size={24} />
-                  </div>
-                  <div className="vital-info">
-                    <span className="vital-label">Weight</span>
-                    <span className="vital-value">{vitals.weight} <span className="unit">kg</span></span>
-                  </div>
-                  <div className="vital-status normal"></div>
-                </div>
+              <div className="form-group">
+                <label>Blood Pressure</label>
+                <input 
+                  type="text" 
+                  name="bloodPressure" 
+                  value={vitalsForm.bloodPressure} 
+                  onChange={handleVitalsChange}
+                  placeholder="systolic/diastolic"
+                />
               </div>
-              <div className="vitals-actions">
-                <button className="button primary">Update Vitals</button>
-                <button className="button secondary">Connect Device</button>
+              <div className="form-group">
+                <label>Temperature</label>
+                <input 
+                  type="number" 
+                  name="temperature" 
+                  value={vitalsForm.temperature} 
+                  onChange={handleVitalsChange}
+                  step="0.1"
+                />
               </div>
-              <div className="trend-chart-container">
-                <div className="chart-header">
-                  <h3>Health Trends</h3>
-                  <div className="chart-period">
-                    <button className="period-button active">Week</button>
-                    <button className="period-button">Month</button>
-                    <button className="period-button">Year</button>
-                  </div>
-                </div>
-                <div className="trend-chart">
-                  <svg viewBox="0 0 300 100" className="chart">
-                    <polyline
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      points={
-                        healthTrends.map((value, index) => 
-                          `${index * (300 / (healthTrends.length - 1))},${100 - value}`
-                        ).join(' ')
-                      }
+              <div className="form-group">
+                <label>Oxygen Level</label>
+                <input 
+                  type="number" 
+                  name="oxygenLevel" 
+                  value={vitalsForm.oxygenLevel} 
+                  onChange={handleVitalsChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Weight</label>
+                <input 
+                  type="number" 
+                  name="weight" 
+                  value={vitalsForm.weight} 
+                  onChange={handleVitalsChange}
+                  step="0.1"
+                />
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="btn outline" onClick={() => setShowUpdateVitals(false)}>Cancel</button>
+              <button className="btn primary" onClick={saveVitals}>Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Book Appointment Modal */}
+      {showAppointmentModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Schedule New Appointment</h2>
+              <button className="close-btn" onClick={() => setShowAppointmentModal(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <div className="form-group">
+                <label>Doctor *</label>
+                <select 
+                  name="doctor" 
+                  value={newAppointment.doctor} 
+                  onChange={handleAppointmentChange}
+                  required
+                >
+                  <option value="">Select Doctor</option>
+                  <option value="Dr. Sarah Johnson">Dr. Sarah Johnson (Cardiology)</option>
+                  <option value="Dr. Michael Chen">Dr. Michael Chen (Dermatology)</option>
+                  <option value="Dr. Lisa Wong">Dr. Lisa Wong (General Practice)</option>
+                  <option value="Dr. James Miller">Dr. James Miller (Orthopedics)</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Appointment Type</label>
+                <div className="radio-group">
+                  <label>
+                    <input 
+                      type="radio" 
+                      name="type" 
+                      value="in-person" 
+                      checked={newAppointment.type === 'in-person'} 
+                      onChange={handleAppointmentChange} 
                     />
-                    {healthTrends.map((value, index) => (
-                      <circle
-                        key={index}
-                        cx={index * (300 / (healthTrends.length - 1))}
-                        cy={100 - value}
-                        r="3"
-                        fill="var(--color-primary)"
-                      />
-                    ))}
-                  </svg>
+                    In-person
+                  </label>
+                  <label>
+                    <input 
+                      type="radio" 
+                      name="type" 
+                      value="teleconsultation" 
+                      checked={newAppointment.type === 'teleconsultation'} 
+                      onChange={handleAppointmentChange} 
+                    />
+                    Teleconsultation
+                  </label>
                 </div>
               </div>
-            </section>
-
-            <section className="grid-item appointments">
-              <div className="section-header">
-                <h2>Upcoming Appointments</h2>
-                <Link to="/appointments" className="view-all">View All</Link>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Date *</label>
+                  <input 
+                    type="date" 
+                    name="date" 
+                    value={newAppointment.date} 
+                    onChange={handleAppointmentChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Time *</label>
+                  <input 
+                    type="time" 
+                    name="time" 
+                    value={newAppointment.time} 
+                    onChange={handleAppointmentChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="appointments-list">
-                {appointments.map((appointment, index) => (
-                  <div className="appointment-card" key={index}>
-                    <div className="appointment-header">
-                      <h3>{appointment.doctor}</h3>
-                      <span className={`appointment-type ${appointment.type}`}>
-                        {appointment.type === 'teleconsultation' ? 'Teleconsultation' : 'In-person'}
-                      </span>
-                    </div>
-                    <div className="appointment-specialty">{appointment.specialty}</div>
-                    <div className="appointment-time">
-                      <div className="appointment-date">
-                        <Calendar size={16} />
-                        <span>{appointment.date}</span>
-                      </div>
-                      <div className="appointment-hour">
-                        <Clock size={16} />
-                        <span>{appointment.time}</span>
-                      </div>
-                    </div>
-                    <div className="appointment-actions">
-                      <button className="button text">Reschedule</button>
-                      <button className="button text destructive">Cancel</button>
-                    </div>
-                  </div>
-                ))}
-                <button className="new-appointment-button">
-                  <Plus size={16} />
-                  <span>Book New Appointment</span>
-                </button>
+              <div className="form-group">
+                <label>Reason for Visit</label>
+                <textarea 
+                  name="reason" 
+                  value={newAppointment.reason || ''} 
+                  onChange={handleAppointmentChange}
+                  rows="3"
+                  placeholder="Briefly describe your symptoms or reason for the visit"
+                />
               </div>
-            </section>
-
-            <section className="grid-item quick-actions">
-              <div className="section-header">
-                <h2>Quick Actions</h2>
-              </div>
-              <div className="actions-grid">
-                <Link to="/appointments/schedule" className="action-card">
-                  <div className="action-icon">
-                    <Calendar size={24} />
-                  </div>
-                  <span>Schedule Appointment</span>
-                </Link>
-                <Link to="/teleconsultation/start" className="action-card">
-                  <div className="action-icon">
-                    <Phone size={24} />
-                  </div>
-                  <span>Start Teleconsultation</span>
-                </Link>
-                <Link to="/records/upload" className="action-card">
-                  <div className="action-icon">
-                    <Upload size={24} />
-                  </div>
-                  <span>Upload Records</span>
-                </Link>
-                <Link to="/hospitals/find" className="action-card">
-                  <div className="action-icon">
-                    <MapPin size={24} />
-                  </div>
-                  <span>Find Hospital</span>
-                </Link>
-              </div>
-            </section>
-
-            <section className="grid-item recent-activity">
-              <div className="section-header">
-                <h2>Recent Activity</h2>
-                <Link to="/activity" className="view-all">View All</Link>
-              </div>
-              <div className="activity-list">
-                {recentActivity.map((activity, index) => (
-                  <div className="activity-item" key={index}>
-                    <div className="activity-icon"></div>
-                    <div className="activity-details">
-                      <div className="activity-text">{activity.action}</div>
-                      <div className="activity-time">{activity.time}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+            </div>
+            <div className="modal-footer">
+              <button className="btn outline" onClick={() => setShowAppointmentModal(false)}>Cancel</button>
+              <button className="btn primary" onClick={bookAppointment}>Book Appointment</button>
+            </div>
           </div>
-        </main>
-      </div>
+        </div>
+      )}
 
-      <div className="weather-widget">
-        <div className="weather-temp">19°C</div>
-        <div className="weather-condition">Clear</div>
-      </div>
+      {/* Reschedule Appointment Modal */}
+      {showRescheduleModal && selectedAppointment && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Reschedule Appointment</h2>
+              <button className="close-btn" onClick={() => setShowRescheduleModal(false)}>×</button>
+            </div>
+            <div className="modal-body">
+              <p className="appointment-info">
+                Appointment with <strong>{selectedAppointment.doctor}</strong>
+                <br />
+                <span className="specialty">({selectedAppointment.specialty})</span>
+              </p>
+              
+              <div className="form-row">
+                <div className="form-group">
+                  <label>New Date</label>
+                  <input 
+                    type="date" 
+                    name="date" 
+                    value={selectedAppointment.date} 
+                    onChange={handleRescheduleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>New Time</label>
+                  <input 
+                    type="time" 
+                    name="time" 
+                    value={selectedAppointment.time} 
+                    onChange={handleRescheduleChange}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Reason for Rescheduling</label>
+                <textarea 
+                  name="rescheduleReason" 
+                  value={selectedAppointment.rescheduleReason || ''} 
+                  onChange={handleRescheduleChange}
+                  rows="2"
+                  placeholder="Optional: Provide a reason for rescheduling"
+                />
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="btn outline" onClick={() => setShowRescheduleModal(false)}>Cancel</button>
+              <button className="btn primary" onClick={rescheduleAppointment}>Confirm Reschedule</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
