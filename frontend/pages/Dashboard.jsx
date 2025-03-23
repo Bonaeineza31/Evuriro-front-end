@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/dashboard.css';
 
 // Icons
-import { Heart, Activity, Thermometer, Droplet, Scale, Calendar, Video, FileText, Hospital, Smartphone, Clock } from 'lucide-react';
+import { Heart, Activity, Thermometer, Droplet, Scale, Calendar, Video, FileText, Hospital, Smartphone,Wifi, Clock } from 'lucide-react';
 
 const Dashboard = () => {
   // State for user data
@@ -320,26 +320,26 @@ const Dashboard = () => {
         <div className="dashboard-card quick-actions">
           <h2 className="card-title">Quick Actions</h2>
           <div className="action-grid">
-            <button className="action-button">
+            <Link to ="/appointments" className="action-button">
               <Calendar size={24} />
               <span>Schedule Appointment</span>
-            </button>
-            <button className="action-button">
+            </Link>
+            <Link to ="/teleconsult" className="action-button">
               <Video size={24} />
               <span>Start Teleconsultation</span>
-            </button>
-            <button className="action-button">
+            </Link>
+            <Link to ="/uploadrecord" className="action-button">
               <FileText size={24} />
               <span>Upload Records</span>
-            </button>
-            <button className="action-button">
+            </Link>
+            <Link to ="/hospitals" className="action-button">
               <Hospital size={24} />
               <span>Find Hospital</span>
-            </button>
-            <button className="action-button">
-              <Smartphone size={24} />
+            </Link>
+            <Link className="action-button">
+              <Wifi size={24} />
               <span>Connect Device</span>
-            </button>
+            </Link>
             <button className="action-button">
               <Clock size={24} />
               <span>Medication Reminder</span>
