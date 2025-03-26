@@ -13,6 +13,7 @@
   --toggle-slider-size: 20px;
 }
 
+
 /* Dark theme variables */
 .dark {
   --text-color: #f0f0f0;
@@ -26,7 +27,7 @@ body.dark {
   color: var(--text-color);
 }
 
-.settings-container {
+.settings-container2 {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;

@@ -281,7 +281,7 @@ const Settings = () => {
   };
 
   return (
-    <div className={`settings-container ${preferences.theme}`}>
+    <div className={`settings-container2 ${preferences.theme}`}>
       <h1>{getTranslation('settings')}</h1>
       
       <div className="settings-card">
