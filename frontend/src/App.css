@@ -161,6 +161,7 @@ html[lang="kinyarwanda"] body {
 
 [data-theme="dark"] .card, 
 [data-theme="dark"] .panel, 
+[data-theme="dark"] .grid,
 [data-theme="dark"] .container {
   background-color: var(--component-bg-dark);
   border-color: var(--border-dark);

@@ -22,6 +22,8 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef(null);
   const notificationRef = useRef(null);
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
     avatar: null,
     unreadNotifications: 3
   };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   // Sample notification data
   const notifications = [
@@ -104,11 +107,11 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
 
   // Save language preference to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('preferredLanguage', language);
+    localStorage.setItem("preferredLanguage", language);
     // Broadcast language change to other components
-    window.dispatchEvent(new CustomEvent('languageChange', { detail: language }));
+    window.dispatchEvent(new CustomEvent("languageChange", { detail: language }));
   }, [language]);
-
+  
   // Handle clicks outside of dropdowns to close them
   useEffect(() => {
     function handleClickOutside(event) {
@@ -119,12 +122,26 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
         setIsNotificationOpen(false);
       }
     }
-    
-    document.addEventListener('mousedown', handleClickOutside);
+  
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
+  // Detect screen size for responsiveness
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+  
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+  
 
   const toggleLanguage = (lang) => {
     setLanguage(lang);
@@ -196,13 +213,16 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
           </div>
         </div>
 
-        <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
-          <Link to="/dashboard" className="navbar-item">Dashboard</Link>
-          <Link to="/teleconsult" className="navbar-item">Teleconsultation</Link>
-          <Link to="/records" className="navbar-item">Records</Link>
-          <Link to="/hospitals" className="navbar-item">Nearby Hospitals</Link>
-          <Link to="/find" className="navbar-item">Find a Doctor</Link>
-        </div>
+       {/* Desktop Navbar - Show Only on Large Screens */}
+       {!isMobile && (
+          <ul className="nav-links">
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/teleconsult">Teleconsultation</Link></li>
+            <li><Link to="/records">Records</Link></li>
+            <li><Link to="/hospitals">Nearby Hospitals</Link></li>
+            <li><Link to="/find">Find a Doctor</Link></li>
+          </ul>
+        )}
 
           <div className="navbar-right">
 
@@ -294,17 +314,27 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
               </div>
             )}
           </div>
-
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          {isMobile && (
+          <button 
+            className="hamburger-button" 
+            onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            ☰
           </button>
-        </div>
-      </nav>
+        )}
+
+        {/* Hamburger Dropdown - Mobile Only */}
+        {isMobile && isHamburgerOpen && (
+          <div className="dropdown-menu">
+            <Link to="/dashboard" className="dropdown-item">Dashboard</Link>
+            <Link to="/teleconsult" className="dropdown-item">Teleconsultation</Link>
+            <Link to="/records" className="dropdown-item">Records</Link>
+            <Link to="/hospitals" className="dropdown-item">Nearby Hospitals</Link>
+            <Link to="/find" className="dropdown-item">Find a Doctor</Link>
+          </div>
+        )}
+      </div>
+    </nav>
     </LanguageContext.Provider>
   );
 };
