@@ -371,7 +371,7 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #666;
+    color:rgba(0, 0, 0, 0.15);
   }
   
   .med-modal-body {
