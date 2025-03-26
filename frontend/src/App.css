@@ -23,11 +23,13 @@
 
 /* Dark theme variables */
 [data-theme="dark"] {
-  --bg-primary: #111827;
+  --bg-primary:  #1a202c;
   --bg-secondary: #1e293b;
   --text-primary: #e2e8f0;
   --component-bg-dark: #1e293b;
   --border-dark: #374151;
+
+ 
 }
 
 body {

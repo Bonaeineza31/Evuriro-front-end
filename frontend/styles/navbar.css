@@ -124,8 +124,13 @@
   transition: color 0.3s;
   position: relative;
 }
-
-[data-theme="dark"] .nav-links {
+.nav-links li{
+  list-style: none;
+}
+.nav-links a{
+  text-decoration: none;
+}
+[data-theme="dark"] .nav-links a{
   color: #e2e8f0;
 }
 
@@ -673,7 +678,7 @@
     display: block;
   }
 }
-.nav-links {
+/* .nav-links {
   display: flex;
   gap: 15px;
 }
@@ -684,7 +689,7 @@
 
 .nav-links a {
   text-decoration: none;
-}
+} */
 
 [data-theme="dark"] .dropdown-menu {
   background-color: #1a202c;
