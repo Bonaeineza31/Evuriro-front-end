@@ -1,7 +1,8 @@
+"use client"
 
 import { useState, useEffect } from "react"
 import { Search, Place, LocationOn, Phone, Schedule, Star, StarHalf, StarBorder } from "@mui/icons-material"
-import "../styles/nearbyhospitals.css"
+import "./nearbyhospitals.css"
 
 const NearbyHospitals = () => {
   // State variables
@@ -106,6 +107,8 @@ const NearbyHospitals = () => {
             lng: position.coords.longitude,
           })
           setLocationPermission("granted")
+          // Now that we have location, filter and display hospitals
+          filterAndDisplayHospitals()
         },
         (error) => {
           console.error("Error getting location:", error)
@@ -209,19 +212,13 @@ const NearbyHospitals = () => {
     }
   }, [isProfileMenuOpen])
 
-  // Initialize the page - display all hospitals initially
+  // Initialize the page - don't display hospitals until location is shared
   useEffect(() => {
-    filterAndDisplayHospitals()
-
-    // If we already have location permission, get location automatically
-    if (navigator.permissions && navigator.permissions.query) {
-      navigator.permissions.query({ name: "geolocation" }).then((result) => {
-        if (result.state === "granted") {
-          getUserLocation()
-        }
-      })
+    // Only filter and display hospitals if location permission has been granted or denied
+    if (locationPermission === "granted" || locationPermission === "denied" || locationPermission === "unavailable") {
+      filterAndDisplayHospitals()
     }
-  }, [searchQuery, searchRadius, selectedSpecialty])
+  }, [locationPermission, searchQuery, searchRadius, selectedSpecialty])
 
   return (
     <div className="app-container">
@@ -303,7 +300,11 @@ const NearbyHospitals = () => {
             </div>
 
             <div className="hospitals-list">
-              {filteredHospitals.length === 0 ? (
+              {locationPermission === "pending" ? (
+                <div className="no-results">
+                  <p>Please share your location to see nearby hospitals.</p>
+                </div>
+              ) : filteredHospitals.length === 0 ? (
                 <div className="no-results">
                   <p>No hospitals found matching your criteria. Try adjusting your filters.</p>
                 </div>
