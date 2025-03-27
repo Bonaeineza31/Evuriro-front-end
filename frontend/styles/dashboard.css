@@ -47,6 +47,10 @@ body, html {
   padding: 24px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
+[data-theme="dark"] .dashboard-card {
+  background-color: #1f2937;
+  border-right-color: #374151;
+}
 
 .dashboard-card:hover {
   transform: translateY(-2px);
@@ -60,6 +64,11 @@ body, html {
   font-size: 18px;
   font-weight: 600;
 }
+[data-theme="dark"] .dashboard-card h2 {
+  color: #e2e8f0;
+  border-right-color: #374151;
+}
+
 
 .card-header {
   display: flex;
@@ -75,6 +84,11 @@ body, html {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+}
+
+[data-theme="dark"] .view-all-btn {
+  color: #e2e8f0;
+  border-right-color: #374151;
 }
 
 .view-all-btn:hover {
@@ -97,9 +111,17 @@ body, html {
   background-color: #f8fafc;
   transition: background-color 0.2s;
 }
+[data-theme="dark"] .vital-item {
+  color: #1f2937;
+  border-right-color: #374151;
+}
 
 .vital-item:hover {
   background-color: #f0f5ff;
+}
+[data-theme="dark"] .vital-item {
+  background-color:  #919cad;
+  border-right-color: #374151;
 }
 
 .vital-status {
@@ -132,6 +154,11 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+[data-theme="dark"] .vital-icon {
+  background-color: #1f2937;
+  border-right-color: #374151;
 }
 
 .vital-info {
@@ -167,16 +194,23 @@ body, html {
   cursor: pointer;
   transition: all 0.2s;
 }
-
-.update-vitals-btn:hover, .connect-device-btn:hover {
-  background-color: #dbeafe;
+[data-theme="dark"] .connect-device-btn {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f0f5ff;
 }
+
+
 
 /* Trends Visualization */
 .vital-trends {
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid #f1f5f9;
+}
+[data-theme="dark"] .vital-trends{
+  background-color: #1f2937;
+  border-top: #374151;
 }
 
 .trends-header {
@@ -192,6 +226,11 @@ body, html {
   color: #475569;
   margin: 0;
 }
+[data-theme="dark"] .trends-header h3{
+  color: #f0f5ff;
+  border-top: #374151;
+}
+
 
 .trends-period-selector {
   display: flex;
@@ -220,6 +259,10 @@ body, html {
   border-radius: 8px;
   padding: 12px;
   overflow: hidden;
+}
+[data-theme="dark"] .trend-chart{
+  background-color: #1f2937;
+  border-top: #374151;
 }
 
 .chart-placeholder {
@@ -252,10 +295,17 @@ body, html {
   border-radius: 10px;
   transition: transform 0.2s;
 }
-
+[data-theme="dark"] .appointment-item {
+  background-color:  #919cad;
+  border-right-color: #374151;
+}
 .appointment-item:hover {
   transform: translateX(2px);
   background-color: #f0f5ff;
+}
+[data-theme="dark"] .appointment-item {
+  background-color:  #919cad;
+  border-right-color: #374151;
 }
 
 .appointment-icon {
@@ -268,7 +318,10 @@ body, html {
   align-items: center;
   justify-content: center;
 }
-
+[data-theme="dark"] .appointment-icon {
+  background-color:  #919cad;
+  border-right-color: #374151;
+}
 .appointment-details h3 {
   margin: 0;
   font-size: 16px;
@@ -280,6 +333,10 @@ body, html {
   color: #64748b;
   font-size: 14px;
 }
+[data-theme="dark"] .appointment-details p{
+  color:#374151 ;
+  border-right-color: #374151;
+}
 
 .appointment-time {
   display: flex;
@@ -287,6 +344,10 @@ body, html {
   margin-top: 8px;
   font-size: 12px;
   color: #64748b;
+}
+[data-theme="dark"] .appointment-time{
+  color:#374151 ;
+  border-right-color: #374151;
 }
 
 .no-appointments {
@@ -319,13 +380,20 @@ body, html {
   gap: 14px;
   margin-top: 8px;
 }
-
+[data-theme="dark"] .action-buttons2{
+  color:white ;
+  border-right-color: #374151;
+}
 .action-btn2 {
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: all 0.2s;
   cursor: pointer;
+}
+[data-theme="dark"] .action-btn2{
+  color:white ;
+  border-right-color: #374151;
 }
 a.action-btn2 {
   text-decoration: none;
@@ -336,6 +404,11 @@ a.action-btn2 {
   background-color: #f0f5ff;
   border-color: #dbeafe;
   transform: translateY(-2px);
+}
+
+[data-theme="dark"] .action-btn2 p{
+  color:#374151 ;
+  border-right-color: #374151;
 }
 
 .action-btn2 span {
@@ -361,9 +434,13 @@ a.action-btn2 {
   transition: background-color 0.2s;
 }
 
-.activity-item:hover {
-  background-color: #f0f5ff;
+[data-theme="dark"] .activity-item{
+  background-color: #919cad ;
+  border-right-color: #374151;
+  transition: background-color 0.2s;
 }
+
+
 
 .activity-icon {
   width: 32px;
@@ -386,7 +463,10 @@ a.action-btn2 {
 .teleconsult-icon {
   background-color: #dcfce7;
 }
-
+[data-theme="dark"] .medication-icon, .appointment-icon,.teleconsult-icon{
+  background-color: #919cad ;
+  border-right-color: #374151;
+}
 .activity-details {
   flex: 1;
 }
@@ -401,7 +481,10 @@ a.action-btn2 {
   font-size: 12px;
   color: #94a3b8;
 }
-
+[data-theme="dark"] .activity-time{
+  background-color: #919cad ;
+  color: #374151;
+}
 /* Modal styles */
 .modal-overlay {
   position: fixed;
@@ -425,6 +508,11 @@ a.action-btn2 {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+[data-theme="dark"] .modal-content{
+  background-color: #1f2937 ;
+  border-right-color: #374151;
+}
+
 .modal-content h2 {
   margin-top: 0;
   margin-bottom: 24px;
@@ -442,6 +530,11 @@ a.action-btn2 {
   margin-bottom: 8px;
   font-size: 14px;
   color: #64748b;
+}
+
+[data-theme="dark"] .form-group label{
+  background-color: #1f2937 ;
+  color: #f0f5ff;
 }
 
 .form-group input {
@@ -475,6 +568,10 @@ a.action-btn2 {
   color: #64748b;
   cursor: pointer;
 }
+[data-theme="dark"] .cancel-btn{
+  background-color: #1f2937 ;
+  border-right-color: #374151;
+}
 
 .save-btn {
   background-color: #2563eb;
@@ -487,9 +584,6 @@ a.action-btn2 {
   cursor: pointer;
 }
 
-.cancel-btn:hover {
-  background-color: #e2e8f0;
-}
 
 .save-btn:hover {
   background-color: #1d4ed8;

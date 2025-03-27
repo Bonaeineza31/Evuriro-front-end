@@ -165,6 +165,6 @@ html[lang="kinyarwanda"] body {
 [data-theme="dark"] .panel, 
 [data-theme="dark"] .grid,
 [data-theme="dark"] .container {
-  background-color: var(--component-bg-dark);
-  border-color: var(--border-dark);
+  background-color: #1f2937;
+  border-right-color: #374151;
 }

@@ -134,11 +134,11 @@
   color: #e2e8f0;
 }
 
-.nav-links:hover {
+.nav-links a:hover {
   color: #2563eb;
 }
 
-[data-theme="dark"] .nav-link:hover {
+[data-theme="dark"] .nav-links a:hover {
   color: #60a5fa;
 }
 
@@ -692,6 +692,6 @@
 } */
 
 [data-theme="dark"] .dropdown-menu {
-  background-color: #1a202c;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: #1f2937;
+  border-right-color: #374151;
 }
