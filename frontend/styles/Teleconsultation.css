@@ -6,7 +6,7 @@
     padding: 20px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #333;
-    background-color: #f9fafb;
+    /* background-color: #f9fafb; */
   }
   
   /* Header styles */
@@ -22,6 +22,10 @@
     font-weight: 600;
     margin: 0;
     color: #2563eb;
+  }
+
+  [data-theme="dark"] .telecon-header h1 {
+    color: #f0f0f0;
   }
   
   .telecon-appointment-status {
