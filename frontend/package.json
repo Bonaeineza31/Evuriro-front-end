@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.0.0",
     "axios": "^1.8.3",
+    "icons-material": "^0.0.1-security",
     "lucide-react": "^0.483.0",
     "notiflix": "^3.2.8",
     "react": "^18.3.1",

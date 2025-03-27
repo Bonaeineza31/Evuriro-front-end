@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useEffect } from "react"
 import { Search, Place, LocationOn, Phone, Schedule, Star, StarHalf, StarBorder } from "@mui/icons-material"
