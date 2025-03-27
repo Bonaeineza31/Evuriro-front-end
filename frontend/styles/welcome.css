@@ -37,6 +37,7 @@
     transition: all 0.3s ease;
   }
   
+  
   .language-selector button.active {
     background: #1a56db;
     color: #ffffff;
