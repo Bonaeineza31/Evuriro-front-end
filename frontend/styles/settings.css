@@ -17,8 +17,8 @@
 /* Dark theme variables */
 .dark {
   --text-color: #f0f0f0;
-  --background-color: #121212;
-  --card-background: #1e1e1e;
+  --background-color: #1f2937;
+  --card-background: #1f2937;
   --border-color: #333;
 }
 
@@ -31,7 +31,6 @@ body.dark {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--background-color);
   color: var(--text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
