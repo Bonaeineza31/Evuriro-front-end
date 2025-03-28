@@ -215,7 +215,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
 
        {/* Desktop Navbar - Show Only on Large Screens */}
        {!isMobile && (
-          <ul className="nav-links">
+          <ul className="nav-links2">
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/teleconsult">Teleconsultation</Link></li>
             <li><Link to="/records">Records</Link></li>
