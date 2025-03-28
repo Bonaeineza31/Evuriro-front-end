@@ -1,46 +1,32 @@
-import React, { useState, useEffect } from 'react';
+"use client"
 
-export const LanguageContext = React.createContext();
+import React from "react"
+import { useTheme } from "./pages/Theme"
 
+export const LanguageContext = React.createContext()
+
+// We'll keep this for backward compatibility, but it will use the ThemeContext
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(
-    localStorage.getItem('preferredLanguage') || 'english'
-  );
+  const { language, setLanguage } = useTheme()
 
-  useEffect(() => {
-    localStorage.setItem('preferredLanguage', language);
-  }, [language]);
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-};
+  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>
+}
 
 export const LanguageSelector = () => {
-  const { language, setLanguage } = React.useContext(LanguageContext);
+  const { language, setLanguage } = useTheme()
 
   return (
     <div className="language-selector">
-      <button 
-        className={language === 'english' ? 'active' : ''} 
-        onClick={() => setLanguage('english')}
-      >
+      <button className={language === "english" ? "active" : ""} onClick={() => setLanguage("english")}>
         EN
       </button>
-      <button 
-        className={language === 'french' ? 'active' : ''} 
-        onClick={() => setLanguage('french')}
-      >
+      <button className={language === "french" ? "active" : ""} onClick={() => setLanguage("french")}>
         FR
       </button>
-      <button 
-        className={language === 'kinyarwanda' ? 'active' : ''} 
-        onClick={() => setLanguage('kinyarwanda')}
-      >
+      <button className={language === "kinyarwanda" ? "active" : ""} onClick={() => setLanguage("kinyarwanda")}>
         KIN
       </button>
     </div>
-  );
-};
+  )
+}
+
