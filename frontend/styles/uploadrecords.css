@@ -232,9 +232,6 @@
 }
 
 /* Dark mode styles using data-theme attribute */
-[data-theme="dark"] .upload-records-container {
-  background-color: #121212;
-}
 
 [data-theme="dark"] .upload-header h1 {
   color: #90caf9;

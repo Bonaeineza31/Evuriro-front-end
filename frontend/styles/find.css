@@ -203,9 +203,6 @@
 }
 
 /* Dark mode styles using data-theme attribute */
-[data-theme="dark"] .find-doctor-container3 {
-  background-color: #121212;
-}
 
 [data-theme="dark"] .search-section3 h1 {
   color: #90caf9;
