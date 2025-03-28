@@ -416,8 +416,7 @@
 
 /* Dark mode styles using data-theme attribute */
 [data-theme="dark"] .help-center-container {
-  color: #e0e0e0;
-  background-color: #121212;
+  background-color:#1f2937 ;
 }
 
 [data-theme="dark"] .help-center-header h1 {
