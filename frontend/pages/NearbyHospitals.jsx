@@ -1,8 +1,8 @@
-"use client"
+
 
 import { useState, useEffect } from "react"
 import { Search, Place, LocationOn, Phone, Schedule, Star, StarHalf, StarBorder } from "@mui/icons-material"
-import "./nearbyhospitals.css"
+import "../styles/nearbyhospitals.css"
 
 const NearbyHospitals = () => {
   // State variables
