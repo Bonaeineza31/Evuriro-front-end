@@ -430,69 +430,99 @@
   }
 }
 
-/* Dark mode support */
-body.dark-mode .nearby-hospitals-header h1 {
+/* Dark mode support using data-theme attribute */
+[data-theme="dark"] .nearby-hospitals-header h1 {
   color: #90caf9;
 }
 
-body.dark-mode .nearby-hospitals-header p,
-body.dark-mode .location-request p,
-body.dark-mode .location-loading p,
-body.dark-mode .location-denied p {
+[data-theme="dark"] .nearby-hospitals-header p,
+[data-theme="dark"] .location-request p,
+[data-theme="dark"] .location-loading p,
+[data-theme="dark"] .location-denied p {
   color: #b0bec5;
 }
 
-body.dark-mode .location-permission-container,
-body.dark-mode .search-filter-container,
-body.dark-mode .hospital-card,
-body.dark-mode .loading-state,
-body.dark-mode .no-results {
-  background-color: #1e1e1e;
+[data-theme="dark"] .location-permission-container,
+[data-theme="dark"] .search-filter-container,
+[data-theme="dark"] .hospital-card,
+[data-theme="dark"] .loading-state,
+[data-theme="dark"] .no-results {
+  background-color: #1f2937;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .search-box input,
-body.dark-mode .filter-item select {
-  background-color: #333333;
-  border-color: #424242;
+[data-theme="dark"] .search-box input,
+[data-theme="dark"] .filter-item select {
+  background-color: #374151;
+  border-color: #4b5563;
   color: #e0e0e0;
 }
 
-body.dark-mode .secondary-button {
-  background-color: #333333;
+[data-theme="dark"] .filter-item label {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .primary-button {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .primary-button:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .secondary-button {
+  background-color: #374151;
   color: #90caf9;
   border-color: #90caf9;
 }
 
-body.dark-mode .secondary-button:hover {
+[data-theme="dark"] .secondary-button:hover {
   background-color: rgba(144, 202, 249, 0.1);
 }
 
-body.dark-mode .hospital-header h2 {
+[data-theme="dark"] .hospital-header h2 {
   color: #90caf9;
 }
 
-body.dark-mode .hospital-distance,
-body.dark-mode .hospital-address,
-body.dark-mode .hospital-phone,
-body.dark-mode .wait-time,
-body.dark-mode .rating-value {
+[data-theme="dark"] .hospital-distance,
+[data-theme="dark"] .hospital-address,
+[data-theme="dark"] .hospital-phone,
+[data-theme="dark"] .wait-time,
+[data-theme="dark"] .rating-value {
   color: #b0bec5;
 }
 
-body.dark-mode .specialty-tag {
+[data-theme="dark"] .specialty-tag {
   background-color: rgba(144, 202, 249, 0.2);
   color: #90caf9;
 }
 
-body.dark-mode .open-status.open {
+[data-theme="dark"] .open-status.open {
   background-color: rgba(46, 125, 50, 0.2);
   color: #81c784;
 }
 
-body.dark-mode .open-status.closed {
+[data-theme="dark"] .open-status.closed {
   background-color: rgba(198, 40, 40, 0.2);
   color: #ef9a9a;
+}
+
+[data-theme="dark"] .stars svg.filled {
+  color: #ffc107;
+}
+
+[data-theme="dark"] .stars svg.empty {
+  color: #4b5563;
+}
+
+[data-theme="dark"] .search-button {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .search-button:hover {
+  background-color: #374151;
 }
 
 /* Accessibility enhancements */
@@ -502,5 +532,12 @@ body.dark-mode .open-status.closed {
 .filter-item select:focus {
   outline: 2px solid #1976d2;
   outline-offset: 2px;
+}
+
+[data-theme="dark"] .primary-button:focus,
+[data-theme="dark"] .secondary-button:focus,
+[data-theme="dark"] .search-box input:focus,
+[data-theme="dark"] .filter-item select:focus {
+  outline-color: #90caf9;
 }
 
