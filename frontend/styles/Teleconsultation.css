@@ -1,310 +1,306 @@
 /* Main container styles */
 .telecon-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #333;
-    /* background-color: #f9fafb; */
-  }
-  
-  /* Header styles */
-  .telecon-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .telecon-header h1 {
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0;
-    color: #2563eb;
-  }
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #333;
+  /* background-color: #f9fafb; */
+}
 
-  [data-theme="dark"] .telecon-header h1 {
-    color: #f0f0f0;
-  }
-  
-  .telecon-appointment-status {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #4b5563;
-  }
-  
-  .telecon-status-indicator {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 8px;
-  }
-  
-  .telecon-status-indicator.active {
-    background-color: #10b981;
-  }
-  
-  /* Appointment card styles */
-  .telecon-appointment-details {
-    margin-bottom: 20px;
-  }
-  
-  .telecon-appointment-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .telecon-doctor-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .telecon-doctor-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-  }
-  
-  .telecon-avatar-placeholder {
-    font-size: 20px;
-    font-weight: 600;
-    color: #6b7280;
-  }
-  
-  .telecon-doctor-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .telecon-doctor-details h2 {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-    color: #111827;
-  }
-  
-  .telecon-doctor-details p {
-    font-size: 14px;
-    color: #4b5563;
-    margin: 4px 0;
-  }
-  
-  .telecon-appointment-time {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #6b7280;
-    margin-top: 4px;
-  }
-  
-  .telecon-icon-calendar::before {
-    content: "📅";
-    margin-right: 5px;
-  }
-  
-  /* Button styles */
-  .telecon-action-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .telecon-btn-join {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .telecon-btn-join:hover {
-    background-color: #1d4ed8;
-  }
-  
-  .telecon-btn-connecting {
-    background-color: #9ca3af;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 500;
-    cursor: not-allowed;
-  }
-  
-  .telecon-btn-end-call {
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .telecon-btn-end-call:hover {
-    background-color: #dc2626;
-  }
-  
-  .telecon-btn-chat {
-    background-color: #f3f4f6;
-    color: #4b5563;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .telecon-btn-chat:hover {
-    background-color: #e5e7eb;
-  }
-  
-  .telecon-btn-chat.active {
-    background-color: #e5e7eb;
-    color: #111827;
-  }
-  
-  /* Tab styles */
-  .telecon-consultation-content {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .telecon-tabs {
-    display: flex;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #f9fafb;
-  }
-  
-  .telecon-tabs button {
-    padding: 15px 20px;
-    border: none;
-    background-color: transparent;
-    font-size: 14px;
-    font-weight: 500;
-    color: #6b7280;
-    cursor: pointer;
-    transition: all 0.2s;
-    border-bottom: 2px solid transparent;
-  }
-  
-  .telecon-tabs button:hover {
-    color: #111827;
-  }
-  
-  .telecon-tabs button.active {
-    color: #2563eb;
-    border-bottom: 2px solid #2563eb;
-    background-color: #fff;
-  }
-  
-  .telecon-tab-content {
-    padding: 20px;
-  }
-  
-  /* Appointment info styles */
-  .telecon-appointment-info h3,
-  .telecon-vitals-info h3,
-  .telecon-symptoms-tracker h3,
-  .telecon-medical-history h3 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #111827;
-  }
-  
-  .telecon-info-item {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .telecon-label {
-    font-size: 13px;
-    color: #6b7280;
-    margin-bottom: 4px;
-  }
-  
-  .telecon-value {
-    font-size: 15px;
-    font-weight: 500;
-    color: #111827;
-  }
-  
-  .telecon-appointment-notes {
-    margin-bottom: 20px;
-  }
-  
-  .telecon-appointment-notes h4,
-  .telecon-prepare-checklist h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #374151;
-  }
-  
-  .telecon-appointment-notes p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #4b5563;
-    margin: 0;
-  }
-  
-  /* Checklist styles */
-  .telecon-checklist {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .telecon-checklist li {
-    display: flex;
-    align-items: flex-start;
-    font-size: 14px;
-    color: #4b5563;
-    padding: 8px 0;
-    position: relative;
-    padding-left: 25px;
-  }
-  
-  .telecon-checklist li::before {
-    content: "□";
-    position: absolute;
-    left: 0;
-    font-size: 16px;
-    color: #9ca3af;
-  }
-  
-  .telecon-checklist li.checked {
-    color: #10b981;
-  }
-  
-  .telecon-checklist li.checked::before {
-    content: "✓";
-    color: #10b981;
-  }
-  
-  /* Vitals styles */
+/* Header styles */
+.telecon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.telecon-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #2563eb;
+}
+
+.telecon-appointment-status {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.telecon-status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.telecon-status-indicator.active {
+  background-color: #10b981;
+}
+
+/* Appointment card styles */
+.telecon-appointment-details {
+  margin-bottom: 20px;
+}
+
+.telecon-appointment-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.telecon-doctor-info {
+  display: flex;
+  align-items: center;
+}
+
+.telecon-doctor-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.telecon-avatar-placeholder {
+  font-size: 20px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.telecon-doctor-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.telecon-doctor-details h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.telecon-doctor-details p {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 4px 0;
+}
+
+.telecon-appointment-time {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.telecon-icon-calendar::before {
+  content: "📅";
+  margin-right: 5px;
+}
+
+/* Button styles */
+.telecon-action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.telecon-btn-join {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.telecon-btn-join:hover {
+  background-color: #1d4ed8;
+}
+
+.telecon-btn-connecting {
+  background-color: #9ca3af;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: not-allowed;
+}
+
+.telecon-btn-end-call {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.telecon-btn-end-call:hover {
+  background-color: #dc2626;
+}
+
+.telecon-btn-chat {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.telecon-btn-chat:hover {
+  background-color: #e5e7eb;
+}
+
+.telecon-btn-chat.active {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Tab styles */
+.telecon-consultation-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.telecon-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.telecon-tabs button {
+  padding: 15px 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.telecon-tabs button:hover {
+  color: #111827;
+}
+
+.telecon-tabs button.active {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+  background-color: #fff;
+}
+
+.telecon-tab-content {
+  padding: 20px;
+}
+
+/* Appointment info styles */
+.telecon-appointment-info h3,
+.telecon-vitals-info h3,
+.telecon-symptoms-tracker h3,
+.telecon-medical-history h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.telecon-info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.telecon-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.telecon-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.telecon-appointment-notes {
+  margin-bottom: 20px;
+}
+
+.telecon-appointment-notes h4,
+.telecon-prepare-checklist h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.telecon-appointment-notes p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Checklist styles */
+.telecon-checklist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.telecon-checklist li {
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  color: #4b5563;
+  padding: 8px 0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.telecon-checklist li::before {
+  content: "□";
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  color: #9ca3af;
+}
+
+.telecon-checklist li.checked {
+  color: #10b981;
+}
+
+.telecon-checklist li.checked::before {
+  content: "✓";
+  color: #10b981;
+}
+
+/* Vitals styles */
 .vitals-update-modal-overlay {
   position: fixed;
   top: 0;
@@ -387,600 +383,985 @@
 .btn-save:hover {
   background-color: #2563eb;
 }
-  
 
-  /* Symptom tracker styles */
-  .telecon-symptom-section {
-    margin-bottom: 25px;
+/* Symptom tracker styles */
+.telecon-symptom-section {
+  margin-bottom: 25px;
+}
+
+.telecon-symptom-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.telecon-symptom-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.telecon-symptom-tag {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.telecon-remove-tag {
+  background: none;
+  border: none;
+  color: #0369a1;
+  margin-left: 5px;
+  cursor: pointer;
+  padding: 0 3px;
+  font-size: 16px;
+}
+
+.telecon-add-symptom {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px dashed #d1d5db;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.telecon-timeline {
+  border-left: 2px solid #e5e7eb;
+  padding-left: 20px;
+}
+
+.telecon-timeline-item {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.telecon-timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  left: -26px;
+  top: 4px;
+}
+
+.telecon-timeline-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+
+.telecon-timeline-content {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.telecon-symptom-notes textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.telecon-btn-save {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.telecon-btn-save:hover {
+  background-color: #1d4ed8;
+}
+
+/* Medical history styles */
+.telecon-history-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.telecon-history-section {
+  margin-bottom: 20px;
+}
+
+.telecon-history-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.telecon-medication-list,
+.telecon-allergy-list,
+.telecon-condition-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.telecon-medication-list li,
+.telecon-condition-list li {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.telecon-medication-list li:last-child,
+.telecon-condition-list li:last-child {
+  border-bottom: none;
+}
+
+.telecon-medication-name,
+.telecon-condition-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.telecon-medication-details,
+.telecon-condition-details {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.telecon-allergy-list li {
+  display: inline-block;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 13px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.telecon-past-appointment {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.telecon-appointment-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 6px 6px 0 0;
+}
+
+.telecon-past-doctor {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.telecon-past-date {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.telecon-appointment-summary {
+  padding: 10px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* Video call styles */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"); /* Font Awesome */
+
+.telecon-video-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1e293b; /* Dark Blue Grey */
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  border-top: 3px solid #3b82f6; /* Subtle blue highlight */
+}
+
+.telecon-main-video {
+  flex-grow: 1;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.telecon-self-video {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  bottom: 60px;
+  right: 20px;
+  z-index: 1010;
+  border-radius: 8px;
+  border: 2px solid #3b82f6; /* Blue accent */
+}
+
+.telecon-video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  background-color: #334155; /* Soft Grey Blue */
+}
+
+.telecon-video-placeholder.doctor {
+  background-color: #475569; /* Muted Grey */
+}
+
+.telecon-video-placeholder.self {
+  background-color: #64748b; /* Slightly lighter grey */
+}
+
+.telecon-call-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.telecon-control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background-color: #334155; /* Grey Blue */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.telecon-control-btn:hover {
+  background-color: #475569; /* Slightly lighter grey */
+  transform: scale(1.05);
+}
+
+.telecon-control-btn.active {
+  background-color: #2563eb; /* Blue */
+}
+
+.telecon-control-btn.end {
+  background-color: #475569; /* Neutral grey */
+}
+
+.telecon-control-btn.end:hover {
+  background-color: #64748b;
+}
+
+/* Chat panel styles */
+.telecon-chat-panel {
+  position: fixed;
+  right: 0;
+  top: 30rem;
+  bottom: 0;
+  width: 300px; /* This is already set to 300px which seems reasonable */
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.telecon-chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.telecon-chat-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.telecon-close-chat {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.telecon-chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.telecon-message {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.telecon-message.outgoing {
+  justify-content: flex-end;
+}
+
+.telecon-message-content {
+  max-width: 80%;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.telecon-message.incoming .telecon-message-content {
+  background-color: #f3f4f6;
+}
+
+.telecon-message.outgoing .telecon-message-content {
+  background-color: #dbeafe;
+}
+
+.telecon-message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.telecon-message-sender {
+  font-weight: 500;
+  color: #374151;
+}
+
+.telecon-message-time {
+  color: #6b7280;
+}
+
+.telecon-message-text {
+  font-size: 14px;
+  margin: 0;
+  color: #111827;
+}
+
+.telecon-chat-input {
+  padding: 15px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+}
+
+.telecon-chat-input textarea {
+  flex-grow: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: none;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.telecon-send-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.telecon-icon-send::before {
+  content: "➤";
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .telecon-appointment-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .telecon-symptom-section h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #374151;
-  }
-  
-  .telecon-symptom-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
-  .telecon-symptom-tag {
-    background-color: #e0f2fe;
-    color: #0369a1;
-    border-radius: 16px;
-    padding: 5px 12px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .telecon-remove-tag {
-    background: none;
-    border: none;
-    color: #0369a1;
-    margin-left: 5px;
-    cursor: pointer;
-    padding: 0 3px;
-    font-size: 16px;
-  }
-  
-  .telecon-add-symptom {
-    background-color: #f3f4f6;
-    color: #4b5563;
-    border: 1px dashed #d1d5db;
-    border-radius: 16px;
-    padding: 5px 12px;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  
-  .telecon-timeline {
-    border-left: 2px solid #e5e7eb;
-    padding-left: 20px;
-  }
-  
-  .telecon-timeline-item {
-    margin-bottom: 15px;
-    position: relative;
-  }
-  
-  .telecon-timeline-item::before {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: #e5e7eb;
-    border-radius: 50%;
-    left: -26px;
-    top: 4px;
-  }
-  
-  .telecon-timeline-date {
-    font-size: 14px;
-    font-weight: 600;
-    color: #4b5563;
-    margin-bottom: 5px;
-  }
-  
-  .telecon-timeline-content {
-    font-size: 14px;
-    color: #6b7280;
-  }
-  
-  .telecon-symptom-notes textarea {
+
+  .telecon-action-buttons {
+    margin-top: 15px;
     width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: vertical;
-    margin-bottom: 10px;
   }
-  
-  .telecon-btn-save {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 15px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
+
+  .telecon-info-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .telecon-btn-save:hover {
-    background-color: #1d4ed8;
+
+  .telecon-vitals-grid {
+    grid-template-columns: 1fr;
   }
-  
-  /* Medical history styles */
+
   .telecon-history-sections {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
   }
-  
-  .telecon-history-section {
-    margin-bottom: 20px;
+
+  .telecon-chat-panel {
+    width: 100%;
   }
-  
-  .telecon-history-section h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #374151;
-  }
-  
-  .telecon-medication-list,
-  .telecon-allergy-list,
-  .telecon-condition-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .telecon-medication-list li,
-  .telecon-condition-list li {
-    padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .telecon-medication-list li:last-child,
-  .telecon-condition-list li:last-child {
-    border-bottom: none;
-  }
-  
-  .telecon-medication-name,
-  .telecon-condition-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 4px;
-  }
-  
-  .telecon-medication-details,
-  .telecon-condition-details {
-    font-size: 13px;
-    color: #6b7280;
-  }
-  
-  .telecon-allergy-list li {
-    display: inline-block;
-    background-color: #fee2e2;
-    color: #b91c1c;
-    border-radius: 16px;
-    padding: 5px 12px;
-    font-size: 13px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .telecon-past-appointment {
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .telecon-appointment-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
-    border-radius: 6px 6px 0 0;
-  }
-  
-  .telecon-past-doctor {
-    font-size: 14px;
-    font-weight: 500;
-    color: #111827;
-  }
-  
-  .telecon-past-date {
-    font-size: 13px;
-    color: #6b7280;
-  }
-  
-  .telecon-appointment-summary {
-    padding: 10px;
-    font-size: 14px;
-    color: #4b5563;
-  }
-  
-  /* Video call styles */
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'); /* Font Awesome */
 
   .telecon-video-container {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #1e293b; /* Dark Blue Grey */
-      padding: 20px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      height: 60vh;
-      border-top: 3px solid #3b82f6; /* Subtle blue highlight */
+    height: 80vh;
   }
-  
-  .telecon-main-video {
-      flex-grow: 1;
-      position: relative;
-      margin-bottom: 10px;
-  }
-  
-  .telecon-self-video {
-      position: absolute;
-      width: 150px;
-      height: 100px;
-      bottom: 60px;
-      right: 20px;
-      z-index: 1010;
-      border-radius: 8px;
-      border: 2px solid #3b82f6; /* Blue accent */
-  }
-  
-  .telecon-video-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 500;
-      border-radius: 8px;
-      background-color: #334155; /* Soft Grey Blue */
-  }
-  
-  .telecon-video-placeholder.doctor {
-      background-color: #475569; /* Muted Grey */
-  }
-  
-  .telecon-video-placeholder.self {
-      background-color: #64748b; /* Slightly lighter grey */
-  }
-  
-  .telecon-call-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 10px;
-  }
-  
-  .telecon-control-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      background-color: #334155; /* Grey Blue */
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 18px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background-color 0.2s, transform 0.1s;
-  }
-  
-  .telecon-control-btn:hover {
-      background-color: #475569; /* Slightly lighter grey */
-      transform: scale(1.05);
-  }
-  
-  .telecon-control-btn.active {
-      background-color: #2563eb; /* Blue */
-  }
-  
-  .telecon-control-btn.end {
-      background-color: #475569; /* Neutral grey */
-  }
-  
-  .telecon-control-btn.end:hover {
-      background-color: #64748b;
-  }
-  
- 
-  
+}
 
-  /* Chat panel styles */
-  .telecon-chat-panel {
-    position: fixed;
-    right: 0;
-    top: 30rem;
-    bottom:0;
-    width: 300px; /* This is already set to 300px which seems reasonable */
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .telecon-chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .telecon-chat-header h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
-    color: #111827;
-  }
-  
-  .telecon-close-chat {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #6b7280;
-    cursor: pointer;
-  }
-  
-  .telecon-chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 15px;
-  }
-  
-  .telecon-message {
-    margin-bottom: 15px;
-    display: flex;
-  }
-  
-  .telecon-message.outgoing {
-    justify-content: flex-end;
-  }
-  
-  .telecon-message-content {
-    max-width: 80%;
-    border-radius: 8px;
-    padding: 10px;
-  }
-  
-  .telecon-message.incoming .telecon-message-content {
-    background-color: #f3f4f6;
-  }
-  
-  .telecon-message.outgoing .telecon-message-content {
-    background-color: #dbeafe;
-  }
-  
-  .telecon-message-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    font-size: 12px;
-  }
-  
-  .telecon-message-sender {
-    font-weight: 500;
-    color: #374151;
-  }
-  
-  .telecon-message-time {
-    color: #6b7280;
-  }
-  
-  .telecon-message-text {
-    font-size: 14px;
-    margin: 0;
-    color: #111827;
-  }
-  
-  .telecon-chat-input {
-    padding: 15px;
-    border-top: 1px solid #e5e7eb;
-    display: flex;
-  }
-  
-  .telecon-chat-input textarea {
-    flex-grow: 1;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    padding: 8px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: none;
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .telecon-send-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .telecon-icon-send::before {
-    content: "➤";
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .telecon-appointment-card {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .telecon-action-buttons {
-      margin-top: 15px;
-      width: 100%;
-    }
-    
-    .telecon-info-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .telecon-vitals-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .telecon-history-sections {
-      grid-template-columns: 1fr;
-    }
-    
-    .telecon-chat-panel {
-      width: 100%;
-    }
-    
-    .telecon-video-container {
-      height: 80vh;
-    }
-  }
-  
-  /* Additional styling for symptoms form */
-  .telecon-add-symptom-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    width: 100%;
-  }
-  
-  .telecon-add-symptom-form input,
-  .telecon-add-symptom-form select {
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .telecon-add-symptom-form button {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .telecon-add-symptom-form button:last-child {
-    background-color: #f3f4f6;
-    color: #4b5563;
-    border: 1px solid #d1d5db;
-  }
+/* Additional styling for symptoms form */
+.telecon-add-symptom-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+}
 
-  .telecon-vitals-info {
-    padding: 20px;
-  }
-  
-  .telecon-vitals-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #1f2937;
-  }
-  
-  .telecon-vitals-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .telecon-vital-item {
-    display: grid;
-    align-items: center;
-    gap: 12px;
+.telecon-add-symptom-form input,
+.telecon-add-symptom-form select {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
-  }
-  
-  .telecon-vital-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: #e0e7ff;
-  }
-  
-  .telecon-vital-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .telecon-vital-data {
-     display: flex;
-     flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-  
-  
-  .telecon-vital-label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #1f2937;
-  }
-  
-  .telecon-vital-value {
-    font-size: 16px;
-    color: #4b5563;
-  }
-  
-  .telecon-vital-history {
-    margin-top: 30px;
-  }
-  
-  .telecon-vital-history h4 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #1f2937;
-  }
-  
-  .telecon-chart-placeholder {
-    background-color: #f3f4f6;
-    border-radius: 8px;
-    padding: 40px;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #6b7280;
-  }
-  
-  .telecon-btn-upload {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .telecon-btn-upload:hover {
-    background-color: #1d4ed8;
-  }
-  
-  /* Icon specific colors */
-  .heart-icon {
-    background-color: #eff6ff;
-  }
-  
-  .bp-icon {
-    background-color: #f1f5f9;
-  }
-  
-  .temp-icon {
-    background-color: #f3f4f6;
-  }
-  
-  .oxygen-icon {
-    background-color: #f0f9ff;
-  }
+.telecon-add-symptom-form button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
 
-  
+.telecon-add-symptom-form button:last-child {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.telecon-vitals-info {
+  padding: 20px;
+}
+
+.telecon-vitals-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.telecon-vitals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.telecon-vital-item {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+}
+
+.telecon-vital-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #e0e7ff;
+}
+
+.telecon-vital-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.telecon-vital-data {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.telecon-vital-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.telecon-vital-value {
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.telecon-vital-history {
+  margin-top: 30px;
+}
+
+.telecon-vital-history h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.telecon-chart-placeholder {
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  padding: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.telecon-btn-upload {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.telecon-btn-upload:hover {
+  background-color: #1d4ed8;
+}
+
+/* Icon specific colors */
+.heart-icon {
+  background-color: #eff6ff;
+}
+
+.bp-icon {
+  background-color: #f1f5f9;
+}
+
+.temp-icon {
+  background-color: #f3f4f6;
+}
+
+.oxygen-icon {
+  background-color: #f0f9ff;
+}
+
+/* Dark mode styles using data-theme attribute */
+[data-theme="dark"] .telecon-container {
+  color: #e0e0e0;
+  background-color: #121212;
+}
+
+[data-theme="dark"] .telecon-header h1 {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .telecon-appointment-status {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-appointment-card {
+  background-color: #1f2937;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .telecon-doctor-avatar {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .telecon-avatar-placeholder {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-doctor-details h2 {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-doctor-details p {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-appointment-time {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-btn-join {
+  background-color: #1f2937;
+  color: #f0f0f0;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .telecon-btn-join:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .telecon-btn-connecting {
+  background-color: #4b5563;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-btn-end-call {
+  background-color: #991b1b;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-btn-end-call:hover {
+  background-color: #b91c1c;
+}
+
+[data-theme="dark"] .telecon-btn-chat {
+  background-color: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-btn-chat:hover {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-btn-chat.active {
+  background-color: #4b5563;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-consultation-content {
+  background-color: #1f2937;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .telecon-tabs {
+  border-bottom-color: #374151;
+  background-color: #111827;
+}
+
+[data-theme="dark"] .telecon-tabs button {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-tabs button:hover {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-tabs button.active {
+  color: #90caf9;
+  border-bottom-color: #3b82f6;
+  background-color: #1f2937;
+}
+
+[data-theme="dark"] .telecon-appointment-info h3,
+[data-theme="dark"] .telecon-vitals-info h3,
+[data-theme="dark"] .telecon-symptoms-tracker h3,
+[data-theme="dark"] .telecon-medical-history h3 {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-label {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-value {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-appointment-notes h4,
+[data-theme="dark"] .telecon-prepare-checklist h4,
+[data-theme="dark"] .telecon-history-section h4,
+[data-theme="dark"] .telecon-symptom-section h4 {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-appointment-notes p,
+[data-theme="dark"] .telecon-timeline-content {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-checklist li {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-checklist li::before {
+  color: #6b7280;
+}
+
+[data-theme="dark"] .telecon-checklist li.checked {
+  color: #10b981;
+}
+
+[data-theme="dark"] .vitals-update-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .vitals-update-modal {
+  background-color: #1f2937;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .vitals-update-modal h2 {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .update-vital-field label {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .update-vital-field input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .btn-cancel {
+  background-color: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .btn-cancel:hover {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] .btn-save {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .btn-save:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .telecon-symptom-tag {
+  background-color: #1e3a5f;
+  color: #90caf9;
+}
+
+[data-theme="dark"] .telecon-remove-tag {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .telecon-add-symptom {
+  background-color: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-timeline {
+  border-left-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-timeline-item::before {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-timeline-date {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-symptom-notes textarea {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-btn-save {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-btn-save:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .telecon-medication-list li,
+[data-theme="dark"] .telecon-condition-list li {
+  border-bottom-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-medication-name,
+[data-theme="dark"] .telecon-condition-name {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-medication-details,
+[data-theme="dark"] .telecon-condition-details {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-allergy-list li {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .telecon-past-appointment {
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-appointment-header {
+  background-color: #111827;
+  border-bottom-color: #374151;
+}
+
+[data-theme="dark"] .telecon-past-doctor {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-past-date {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-appointment-summary {
+  color: #b0bec5;
+}
+
+/* Video call styles are already dark by default */
+
+[data-theme="dark"] .telecon-chat-panel {
+  background-color: #1f2937;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .telecon-chat-header {
+  border-bottom-color: #374151;
+}
+
+[data-theme="dark"] .telecon-chat-header h3 {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-close-chat {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-message.incoming .telecon-message-content {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .telecon-message.outgoing .telecon-message-content {
+  background-color: #1e3a5f;
+}
+
+[data-theme="dark"] .telecon-message-sender {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-message-time {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-message-text {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-chat-input {
+  border-top-color: #374151;
+}
+
+[data-theme="dark"] .telecon-chat-input textarea {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-send-button {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-add-symptom-form input,
+[data-theme="dark"] .telecon-add-symptom-form select {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-add-symptom-form button {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-add-symptom-form button:last-child {
+  background-color: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .telecon-vitals-info h3 {
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-vital-icon {
+  background-color: #1e3a5f;
+}
+
+[data-theme="dark"] .telecon-vital-label {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-vital-value {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .telecon-vital-history h4 {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .telecon-chart-placeholder {
+  background-color: #374151;
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .telecon-btn-upload {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .telecon-btn-upload:hover {
+  background-color: #374151;
+}
+
+/* Dark mode icon specific colors */
+[data-theme="dark"] .heart-icon {
+  background-color: #1e3a5f;
+}
+
+[data-theme="dark"] .bp-icon {
+  background-color: #1f2937;
+}
+
+[data-theme="dark"] .temp-icon {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .oxygen-icon {
+  background-color: #1e3a5f;
+}
+
