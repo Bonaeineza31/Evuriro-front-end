@@ -29,7 +29,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
   const navigate = useNavigate();
   
   const user = {
-    name: 'John Doe',
+    name: 'Bonae Ineza',
     avatar: null,
     unreadNotifications: 3
   };
@@ -307,7 +307,7 @@ const Navbar = ({ toggleTheme }) => { // Accept toggleTheme as a prop
                 <p className="user-name">{user.name}</p>
                 <Link to="/profile" className="dropdown-item">{text.profile}</Link>
                 <Link to="/settings" className="dropdown-item">{text.settings}</Link>
-                <Link to="/help-center" className="dropdown-item">{text.help}</Link>
+                <Link to="/help" className="dropdown-item">{text.help}</Link>
                 <button onClick={handleLogout} className="dropdown-item logout">
                   {text.logout}
                 </button>
