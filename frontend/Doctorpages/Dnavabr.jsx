@@ -93,38 +93,7 @@ const Dnavabr = () => {
       </div>
       
       <div className="navbar-actions">
-        <div className="language-selector" ref={languageDropdownRef}>
-          <button 
-            className="language-button"
-            onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-          >
-            {activeLanguage} <FaChevronDown className="dropdown-icon" />
-          </button>
-          
-          {showLanguageDropdown && (
-            <div className="language-dropdown">
-              <div 
-                className={`language-option ${activeLanguage === 'EN' ? 'active' : ''}`}
-                onClick={() => handleLanguageChange('EN')}
-              >
-                EN
-              </div>
-              <div 
-                className={`language-option ${activeLanguage === 'FR' ? 'active' : ''}`}
-                onClick={() => handleLanguageChange('FR')}
-              >
-                FR
-              </div>
-              <div 
-                className={`language-option ${activeLanguage === 'KIN' ? 'active' : ''}`}
-                onClick={() => handleLanguageChange('KIN')}
-              >
-                KIN
-              </div>
-            </div>
-          )}
-        </div>
-        
+         
         <button className="icon-button notification-button">
           <FaBell />
           <span className="notification-badge">3</span>

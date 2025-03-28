@@ -65,14 +65,6 @@ const Dsidebar = () => {
           </Link>
         ))}
       </div>
-      {!isMobile && (
-        <div className="sidebar-footer">
-          <div className="dark-mode-toggle">
-            <FaMoon />
-            <span>Dark Mode</span>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
