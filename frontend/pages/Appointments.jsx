@@ -15,7 +15,7 @@ import emily from "../images/Screenshot 2025-03-01 224927.png"
 import david from "../images/Screenshot 2025-03-01 224939.png"
 
 // API configuration
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5006"
+const API_URL = 'https://evuriro-backend.onrender.com';
 const axiosInstance = axios.create({
   baseURL: API_URL,
   withCredentials: true,
