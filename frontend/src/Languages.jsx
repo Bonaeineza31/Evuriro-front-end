@@ -1,7 +1,6 @@
-"use client"
 
 import React from "react"
-import { useTheme } from "./pages/Theme"
+import { useTheme } from "../pages/Theme"
 
 export const LanguageContext = React.createContext()
 
