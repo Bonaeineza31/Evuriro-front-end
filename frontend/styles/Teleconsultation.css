@@ -974,10 +974,6 @@
 }
 
 /* Dark mode styles using data-theme attribute */
-[data-theme="dark"] .telecon-container {
-  color: #e0e0e0;
-  background-color: #121212;
-}
 
 [data-theme="dark"] .telecon-header h1 {
   color: #90caf9;
