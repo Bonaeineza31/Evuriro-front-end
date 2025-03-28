@@ -2,333 +2,500 @@
 
 .evr-connect-device-container {
   width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.evr-connect-device-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 16px;
+}
+
+.evr-connect-device-title {
+  color: #2563eb;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.evr-connect-device-description {
+  color: #666;
+  font-size: 14px;
+}
+
+.evr-connect-device-error {
+  background-color: #fff3f3;
+  border-left: 4px solid #e74c3c;
+  padding: 12px 16px;
+  color: #e74c3c;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.evr-connect-device-scan-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.evr-connect-device-instruction {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.evr-connect-device-instruction-icon {
+  background-color: #e1eefa;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2b79c2;
+  font-size: 22px;
+}
+
+.evr-connect-device-instruction-text h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.evr-connect-device-instruction-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.evr-connect-device-scan-button {
+  background-color: #2b79c2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.evr-connect-device-scan-button:hover {
+  background-color: #1e5c99;
+}
+
+.evr-connect-device-scan-button:disabled {
+  background-color: #92b6d5;
+  cursor: not-allowed;
+}
+
+.evr-connect-device-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #666;
+}
+
+.evr-connect-device-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e1eefa;
+  border-top: 3px solid #2b79c2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .evr-connect-device-header {
-    margin-bottom: 24px;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 16px;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .evr-connect-device-title {
-    color: #2563eb;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
+}
+
+.evr-connect-device-list {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.evr-connect-device-list h3 {
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.evr-connect-device-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eaeaea;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.evr-connect-device-item:last-child {
+  border-bottom: none;
+}
+
+.evr-connect-device-item:hover {
+  background-color: #f8f9fa;
+}
+
+.evr-connect-device-item-info {
+  flex: 1;
+}
+
+.evr-connect-device-item-name {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.evr-connect-device-item-id {
+  font-size: 12px;
+  color: #888;
+}
+
+.evr-connect-device-item-battery {
+  color: #666;
+  font-size: 12px;
+  margin-right: 16px;
+}
+
+.evr-connect-device-item-button {
+  background-color: #e1eefa;
+  color: #2b79c2;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.evr-connect-device-item-button:hover {
+  background-color: #c9e2f8;
+}
+
+/* Connected device section styles */
+.evr-connect-device-monitor-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.evr-connect-device-connected-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e8f4ea;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.evr-connect-device-connected-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.evr-connect-device-disconnect-button {
+  background-color: #f8f9fa;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.evr-connect-device-disconnect-button:hover {
+  background-color: #f1f1f1;
+}
+
+.evr-connect-device-vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.evr-connect-device-vital-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.evr-connect-device-vital-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.evr-temp-icon {
+  background-color: #ffeaec;
+  color: #e74c3c;
+}
+
+.evr-heart-icon {
+  background-color: #ffecec;
+  color: #e74c3c;
+}
+
+.evr-oxygen-icon {
+  background-color: #e1f0ff;
+  color: #3498db;
+}
+
+.evr-bp-icon {
+  background-color: #e8f8f5;
+  color: #2ecc71;
+}
+
+.evr-connect-device-vital-info {
+  flex: 1;
+}
+
+.evr-connect-device-vital-label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.evr-connect-device-vital-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.evr-connect-device-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.evr-connect-device-save-button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.evr-connect-device-save-button:hover {
+  background-color: #219653;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .evr-connect-device-vitals-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .evr-connect-device-description {
-    color: #666;
-    font-size: 14px;
-  }
-  
-  .evr-connect-device-error {
-    background-color: #fff3f3;
-    border-left: 4px solid #e74c3c;
-    padding: 12px 16px;
-    color: #e74c3c;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .evr-connect-device-scan-section {
-    display: flex;
+
+  .evr-connect-device-connected-info {
     flex-direction: column;
-    gap: 20px;
-  }
-  
-  .evr-connect-device-instruction {
-    display: flex;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 16px;
-    border-radius: 8px;
     gap: 16px;
+    align-items: flex-start;
   }
-  
-  .evr-connect-device-instruction-icon {
-    background-color: #e1eefa;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2b79c2;
-    font-size: 22px;
-  }
-  
-  .evr-connect-device-instruction-text h3 {
-    margin: 0 0 4px 0;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .evr-connect-device-instruction-text p {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .evr-connect-device-scan-button {
-    background-color: #2b79c2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
+
+  .evr-connect-device-disconnect-button {
     align-self: flex-start;
   }
-  
-  .evr-connect-device-scan-button:hover {
-    background-color: #1e5c99;
-  }
-  
-  .evr-connect-device-scan-button:disabled {
-    background-color: #92b6d5;
-    cursor: not-allowed;
-  }
-  
-  .evr-connect-device-loading {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #666;
-  }
-  
-  .evr-connect-device-spinner {
-    width: 24px;
-    height: 24px;
-    border: 3px solid #e1eefa;
-    border-top: 3px solid #2b79c2;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .evr-connect-device-list {
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .evr-connect-device-list h3 {
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 12px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  .evr-connect-device-item {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border-bottom: 1px solid #eaeaea;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .evr-connect-device-item:last-child {
-    border-bottom: none;
-  }
-  
-  .evr-connect-device-item:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .evr-connect-device-item-info {
-    flex: 1;
-  }
-  
-  .evr-connect-device-item-name {
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 4px;
-  }
-  
-  .evr-connect-device-item-id {
-    font-size: 12px;
-    color: #888;
-  }
-  
-  .evr-connect-device-item-battery {
-    color: #666;
-    font-size: 12px;
-    margin-right: 16px;
-  }
-  
-  .evr-connect-device-item-button {
-    background-color: #e1eefa;
-    color: #2b79c2;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .evr-connect-device-item-button:hover {
-    background-color: #c9e2f8;
-  }
-  
-  /* Connected device section styles */
-  .evr-connect-device-monitor-section {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .evr-connect-device-connected-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e8f4ea;
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  .evr-connect-device-connected-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #27ae60;
-    font-weight: 500;
-  }
-  
-  .evr-connect-device-disconnect-button {
-    background-color: #f8f9fa;
-    color: #666;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .evr-connect-device-disconnect-button:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .evr-connect-device-vitals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-  }
-  
-  .evr-connect-device-vital-card {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .evr-connect-device-vital-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
-  
-  .evr-temp-icon {
-    background-color: #ffeaec;
-    color: #e74c3c;
-  }
-  
-  .evr-heart-icon {
-    background-color: #ffecec;
-    color: #e74c3c;
-  }
-  
-  .evr-oxygen-icon {
-    background-color: #e1f0ff;
-    color: #3498db;
-  }
-  
-  .evr-bp-icon {
-    background-color: #e8f8f5;
-    color: #2ecc71;
-  }
-  
-  .evr-connect-device-vital-info {
-    flex: 1;
-  }
-  
-  .evr-connect-device-vital-label {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 4px;
-  }
-  
-  .evr-connect-device-vital-value {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .evr-connect-device-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 16px;
-  }
-  
-  .evr-connect-device-save-button {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .evr-connect-device-save-button:hover {
-    background-color: #219653;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .evr-connect-device-vitals-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .evr-connect-device-connected-info {
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    
-    .evr-connect-device-disconnect-button {
-      align-self: flex-start;
-    }
-  }
+}
+
+/* Dark mode styles using data-theme attribute */
+[data-theme="dark"] .evr-connect-device-container {
+  background-color: #1f2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .evr-connect-device-header {
+  border-bottom-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-title {
+  color: #90caf9;
+}
+
+[data-theme="dark"] .evr-connect-device-description {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .evr-connect-device-error {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-left-color: #e74c3c;
+  color: #f87171;
+}
+
+[data-theme="dark"] .evr-connect-device-instruction {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .evr-connect-device-instruction-icon {
+  background-color: #1e3a5f;
+  color: #90caf9;
+}
+
+[data-theme="dark"] .evr-connect-device-instruction-text h3 {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .evr-connect-device-instruction-text p {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .evr-connect-device-scan-button {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .evr-connect-device-scan-button:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .evr-connect-device-scan-button:disabled {
+  background-color: #4b5563;
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .evr-connect-device-loading {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .evr-connect-device-spinner {
+  border-color: #374151;
+  border-top-color: #90caf9;
+}
+
+[data-theme="dark"] .evr-connect-device-list {
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-list h3 {
+  background-color: #374151;
+  color: #e0e0e0;
+  border-bottom-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-item {
+  border-bottom-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-item:hover {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .evr-connect-device-item-name {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .evr-connect-device-item-id {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .evr-connect-device-item-battery {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .evr-connect-device-item-button {
+  background-color: #1e3a5f;
+  color: #90caf9;
+}
+
+[data-theme="dark"] .evr-connect-device-item-button:hover {
+  background-color: #2c5282;
+}
+
+[data-theme="dark"] .evr-connect-device-connected-info {
+  background-color: rgba(39, 174, 96, 0.1);
+}
+
+[data-theme="dark"] .evr-connect-device-connected-status {
+  color: #34d399;
+}
+
+[data-theme="dark"] .evr-connect-device-disconnect-button {
+  background-color: #374151;
+  color: #e0e0e0;
+  border-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-disconnect-button:hover {
+  background-color: #4b5563;
+}
+
+[data-theme="dark"] .evr-connect-device-vital-card {
+  background-color: #374151;
+}
+
+[data-theme="dark"] .evr-temp-icon {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #f87171;
+}
+
+[data-theme="dark"] .evr-heart-icon {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #f87171;
+}
+
+[data-theme="dark"] .evr-oxygen-icon {
+  background-color: rgba(52, 152, 219, 0.2);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .evr-bp-icon {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #34d399;
+}
+
+[data-theme="dark"] .evr-connect-device-vital-label {
+  color: #b0bec5;
+}
+
+[data-theme="dark"] .evr-connect-device-vital-value {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .evr-connect-device-save-button {
+  background-color: #1f2937;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .evr-connect-device-save-button:hover {
+  background-color: #374151;
+}
+

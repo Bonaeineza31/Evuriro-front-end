@@ -431,6 +431,7 @@
 }
 
 /* Dark mode support using data-theme attribute */
+
 [data-theme="dark"] .nearby-hospitals-header h1 {
   color: #90caf9;
 }
@@ -520,7 +521,6 @@
   background-color: #1f2937;
   color: #f0f0f0;
 }
-
 
 [data-theme="dark"] .search-button:hover {
   background-color: #374151;
