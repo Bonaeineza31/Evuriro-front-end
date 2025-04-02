@@ -7,21 +7,22 @@
 
 .content-container {
   display: flex;
-  height: calc(100vh - 70px);
-  flex: 1; /* Add this to ensure it takes available space */
+  flex: 1; /* This ensures it takes all available space */
+  height: calc(100vh - 60px); /* Adjusted to match navbar height */
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  display: flex; /* Add this to allow children to fill height */
+  display: flex; /* Make it a flex container */
   flex-direction: column; /* Stack children vertically */
 }
 
 /* Make sure all direct children of main-content can fill height if needed */
 .main-content > * {
-  flex: 1;
+  flex: 1; /* Allow children to grow and fill space */
+  min-height: 0; /* Important for proper scrolling behavior */
 }
 
 /* Dark mode styles */
@@ -47,14 +48,20 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-    height: auto;
-  }
-
+@media (max-width: 1024px) {
   .main-content {
-    padding: 12px;
+    padding: 16px;
   }
 }
 
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack sidebar and content on mobile */
+    height: auto;
+  }
+  
+  .main-content {
+    padding: 12px;
+    min-height: calc(100vh - 120px); /* Account for navbar and mobile sidebar */
+  }
+}
