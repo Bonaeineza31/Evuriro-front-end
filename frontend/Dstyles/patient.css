@@ -1,67 +1,80 @@
 /* Main container styles */
 .patient-container {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: #333;
-  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   background-color: #f8f9fa;
+  overflow-x: hidden;
 }
 
 /* Patient header styles */
 .patient-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  flex-direction: column;
+  margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #e0e0e0;
-  flex-wrap: wrap;
-  gap: 15px;
+  width: 100%;
 }
 
 .patient-info {
-  flex: 1;
-  min-width: 250px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .patient-info h1 {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-  margin: 0 0 8px 0;
+  margin: 0 0 5px 0;
   color: #1e3a8a;
 }
 
 .patient-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  font-size: 14px;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
   color: #64748b;
 }
 
 .patient-actions {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.patient-actions button {
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
+  font-size: 14px;
 }
 
 /* Navigation styles */
 .patient-nav {
   display: flex;
   border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  padding-bottom: 2px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.patient-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-btn {
-  padding: 12px 20px;
+  padding: 10px 15px;
   background: none;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #64748b;
   cursor: pointer;
@@ -80,7 +93,7 @@
 }
 
 .nav-btn.active::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -94,67 +107,74 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 15px;
+  width: 100%;
   overflow-x: hidden;
 }
 
 /* Overview tab styles */
 .overview-section {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .overview-section h3 {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   color: #1e3a8a;
 }
 
 .section-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.section-header h3 {
+  margin-bottom: 0;
+}
+
+.section-header button {
+  align-self: flex-start;
 }
 
 /* Vitals grid */
 .vitals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   margin-bottom: 10px;
 }
 
 .vital-card {
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
 }
 
 .vital-info {
-  margin-left: 12px;
+  margin-left: 10px;
 }
 
 .vital-label {
   display: block;
-  font-size: 13px;
+  font-size: 12px;
   color: #64748b;
   margin-bottom: 2px;
 }
 
 .vital-value {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #1e3a8a;
 }
 
 .vital-value small {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: normal;
   color: #64748b;
 }
@@ -162,26 +182,18 @@
 /* Appointments list */
 .appointments-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .appointment-card {
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-@media (min-width: 640px) {
-  .appointment-card {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  gap: 8px;
 }
 
 .appointment-date {
@@ -189,24 +201,26 @@
   align-items: center;
   color: #2563eb;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .appointment-date span {
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .appointment-details {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .appointment-time {
   font-weight: 500;
+  font-size: 14px;
 }
 
-.appointment-type,
-.appointment-doctor {
-  font-size: 13px;
+.appointment-type, .appointment-doctor {
+  font-size: 12px;
   color: #64748b;
 }
 
@@ -214,18 +228,18 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-left: auto;
+  margin-top: 5px;
 }
 
 /* Medical history list */
 .medical-history-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .medical-record-card {
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -239,30 +253,31 @@
 }
 
 .record-date {
-  font-size: 13px;
+  font-size: 12px;
   color: #64748b;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .record-diagnosis {
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  font-size: 14px;
 }
 
 .record-doctor {
-  font-size: 13px;
+  font-size: 12px;
   color: #64748b;
 }
 
 /* Medications list */
 .medications-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .medication-card {
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -272,17 +287,18 @@
 
 .medication-name {
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #1e3a8a;
+  font-size: 14px;
 }
 
 .medication-details {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  font-size: 13px;
+  gap: 2px;
+  font-size: 12px;
   color: #64748b;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .medication-actions {
@@ -294,7 +310,7 @@
 .allergies-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .allergy-badge {
@@ -302,47 +318,48 @@
   align-items: center;
   background-color: #fee2e2;
   color: #b91c1c;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .icon-left {
-  margin-right: 6px;
+  margin-right: 5px;
 }
 
 /* Lab results list */
 .lab-results-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .lab-result-card {
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
 }
 
 .result-date {
-  font-size: 13px;
+  font-size: 12px;
   color: #64748b;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .result-test {
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .result-status {
   display: inline-block;
-  padding: 3px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .result-status.completed {
@@ -356,15 +373,11 @@
 }
 
 .result-value {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* Full tabs styles */
-.appointments-tab,
-.medical-history-tab,
-.medications-tab,
-.lab-results-tab,
-.notes-tab {
+.appointments-tab, .medical-history-tab, .medications-tab, .lab-results-tab, .notes-tab {
   padding: 5px 0;
 }
 
@@ -372,25 +385,17 @@
 .appointments-list-full {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .appointment-card-full {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
-  gap: 10px;
-}
-
-@media (min-width: 768px) {
-  .appointment-card-full {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  gap: 8px;
 }
 
 .appointment-card-full.past {
@@ -399,19 +404,21 @@
 
 .appointment-main-info {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .appointment-secondary-info {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
 }
 
 .appointment-status {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .appointment-status.completed {
@@ -422,21 +429,21 @@
 .records-table-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: 0 -20px;
-  padding: 0 20px;
-  width: calc(100% + 40px);
+  margin: 0 -15px;
+  padding: 0 15px;
+  width: calc(100% + 30px);
 }
 
 .records-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
-  min-width: 600px; /* Ensures table doesn't get too narrow */
+  font-size: 13px;
+  min-width: 500px; /* Ensures table doesn't get too narrow */
 }
 
 .records-table th {
   text-align: left;
-  padding: 12px;
+  padding: 10px 8px;
   background-color: #f8fafc;
   color: #64748b;
   font-weight: 500;
@@ -445,7 +452,7 @@
 }
 
 .records-table td {
-  padding: 12px;
+  padding: 10px 8px;
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -459,9 +466,9 @@
 
 .status-badge {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
 }
 
@@ -479,8 +486,8 @@
 .allergies-large {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .allergy-item {
@@ -488,28 +495,30 @@
   align-items: center;
   background-color: #fee2e2;
   color: #b91c1c;
-  padding: 8px 15px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 /* Notes tab */
 .notes-content {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 .notes-text {
-  line-height: 1.6;
+  line-height: 1.5;
   color: #334155;
+  font-size: 14px;
 }
 
 .notes-editor {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   font-family: inherit;
   resize: vertical;
+  font-size: 14px;
 }
 
 /* Modal styles */
@@ -524,7 +533,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 15px;
+  padding: 10px;
 }
 
 .modal-container {
@@ -545,7 +554,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 12px 15px;
   border-bottom: 1px solid #e2e8f0;
   position: sticky;
   top: 0;
@@ -555,7 +564,7 @@
 
 .modal-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #1e3a8a;
 }
@@ -578,14 +587,14 @@
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 15px;
 }
 
 .modal-footer {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 15px 20px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 15px;
   border-top: 1px solid #e2e8f0;
   position: sticky;
   bottom: 0;
@@ -593,22 +602,27 @@
   z-index: 1;
 }
 
+.modal-footer button {
+  width: 100%;
+  justify-content: center;
+}
+
 /* Forms */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 5px;
+  font-size: 13px;
   font-weight: 500;
   color: #334155;
 }
 
 .form-control {
   width: 100%;
-  padding: 10px;
+  padding: 8px 10px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   font-size: 14px;
@@ -622,7 +636,7 @@
 
 /* Record detail view */
 .record-detail {
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 .detail-row {
@@ -632,32 +646,21 @@
   border-bottom: 1px solid #e2e8f0;
 }
 
-@media (min-width: 640px) {
-  .detail-row {
-    flex-direction: row;
-  }
-}
-
 .detail-row:last-child {
   border-bottom: none;
 }
 
 .detail-label {
   width: 100%;
-  max-width: 120px;
   font-weight: 500;
   color: #64748b;
   margin-bottom: 4px;
-}
-
-@media (min-width: 640px) {
-  .detail-label {
-    margin-bottom: 0;
-  }
+  font-size: 13px;
 }
 
 .detail-value {
   flex: 1;
+  font-size: 14px;
 }
 
 /* Full records view */
@@ -671,11 +674,11 @@
 }
 
 .record-section h4 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: #1e3a8a;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -689,6 +692,7 @@
 .allergies-list li {
   padding: 8px 0;
   border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
 }
 
 .allergies-list li:last-child {
@@ -708,6 +712,7 @@
   align-items: center;
   transition: background-color 0.2s ease;
   white-space: nowrap;
+  font-size: 14px;
 }
 
 .btn-primary:hover {
@@ -726,6 +731,7 @@
   align-items: center;
   transition: background-color 0.2s ease;
   white-space: nowrap;
+  font-size: 14px;
 }
 
 .btn-secondary:hover {
@@ -744,6 +750,7 @@
   align-items: center;
   transition: all 0.2s ease;
   white-space: nowrap;
+  font-size: 14px;
 }
 
 .btn-outline:hover {
@@ -755,7 +762,7 @@
   color: #2563eb;
   border: 1px solid #2563eb;
   padding: 4px 10px;
-  font-size: 13px;
+  font-size: 12px;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
@@ -773,7 +780,7 @@
   color: white;
   border: none;
   padding: 4px 10px;
-  font-size: 13px;
+  font-size: 12px;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
@@ -791,7 +798,7 @@
   color: white;
   border: none;
   padding: 4px 10px;
-  font-size: 13px;
+  font-size: 12px;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
@@ -821,8 +828,8 @@
 }
 
 /* Print/Download button */
-.btn-primary .icon-left,
-.btn-secondary .icon-left,
+.btn-primary .icon-left, 
+.btn-secondary .icon-left, 
 .btn-outline .icon-left,
 .btn-outline-sm .icon-left {
   margin-right: 6px;
@@ -830,16 +837,17 @@
 
 /* Empty state styles */
 .empty-state {
-  padding: 30px 20px;
+  padding: 20px 15px;
   text-align: center;
   background-color: #f8fafc;
   border-radius: 8px;
   color: #64748b;
+  font-size: 14px;
 }
 
 /* Margin utilities */
 .mt-4 {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 /* Notification toast */
@@ -849,12 +857,13 @@
   right: 20px;
   background-color: #dcfce7;
   color: #166534;
-  padding: 12px 16px;
+  padding: 10px 14px;
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1100;
   animation: slideIn 0.3s ease-out;
   max-width: 90%;
+  font-size: 14px;
 }
 
 .notification-content {
@@ -877,126 +886,101 @@
   }
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Mobile responsive styles */
-@media (max-width: 768px) {
+/* Larger screen adjustments */
+@media (min-width: 640px) {
   .patient-container {
     padding: 15px;
   }
-
+  
   .patient-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .patient-actions {
-    width: 100%;
+    flex-direction: row;
     justify-content: space-between;
-  }
-
-  .patient-content {
-    padding: 15px;
-  }
-
-  .vitals-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  }
-
-  .section-header {
-    flex-direction: column;
     align-items: flex-start;
   }
-
-  .section-header button {
-    align-self: flex-end;
-    margin-top: -30px;
+  
+  .patient-info {
+    margin-bottom: 0;
   }
-
-  .appointment-card-full .appointment-actions {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-  }
-
-  .appointment-card-full .appointment-actions button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
+  
   .patient-info h1 {
-    font-size: 20px;
+    font-size: 22px;
   }
-
+  
   .patient-meta {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .patient-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .patient-actions button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-btn {
-    padding: 10px 15px;
+    flex-direction: row;
+    gap: 12px;
     font-size: 14px;
   }
-
+  
+  .patient-actions {
+    flex-direction: row;
+    width: auto;
+  }
+  
+  .patient-actions button {
+    width: auto;
+  }
+  
+  .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
   .vitals-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
   }
-
-  .vital-card {
-    padding: 10px;
+  
+  .appointment-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
-
-  .vital-value {
-    font-size: 16px;
+  
+  .appointments-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-
+  
+  .medical-history-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .medications-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .lab-results-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .appointment-card-full {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
   .appointment-main-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    flex-direction: row;
+    align-items: center;
   }
-
-  .modal-body {
-    padding: 15px;
+  
+  .detail-row {
+    flex-direction: row;
   }
-
+  
+  .detail-label {
+    width: 120px;
+    margin-bottom: 0;
+  }
+  
   .modal-footer {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
   }
-
+  
   .modal-footer button {
-    width: 100%;
-    justify-content: center;
+    width: auto;
   }
 }
 
@@ -1006,11 +990,11 @@
     background-color: white;
     padding: 0;
   }
-
-  .patient-nav,
-  .patient-actions,
-  .btn-primary,
-  .btn-secondary,
+  
+  .patient-nav, 
+  .patient-actions, 
+  .btn-primary, 
+  .btn-secondary, 
   .btn-outline,
   .btn-outline-sm,
   .btn-sm,
@@ -1019,26 +1003,25 @@
   .section-header button {
     display: none;
   }
-
+  
   .patient-content,
   .modal-container {
     box-shadow: none;
     border: none;
   }
-
+  
   .modal-overlay {
     position: static;
     background: none;
   }
-
+  
   .modal-container {
     max-width: 100%;
     max-height: none;
   }
-
+  
   .full-records-container {
     max-height: none;
     overflow: visible;
   }
 }
-
