@@ -8,12 +8,20 @@
 .content-container {
   display: flex;
   height: calc(100vh - 70px);
+  flex: 1; /* Add this to ensure it takes available space */
 }
 
 .main-content {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  display: flex; /* Add this to allow children to fill height */
+  flex-direction: column; /* Stack children vertically */
+}
+
+/* Make sure all direct children of main-content can fill height if needed */
+.main-content > * {
+  flex: 1;
 }
 
 /* Dark mode styles */
@@ -37,3 +45,16 @@
   background-color: #3b82f6;
   color: white;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .main-content {
+    padding: 12px;
+  }
+}
+
