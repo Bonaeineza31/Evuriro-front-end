@@ -7,6 +7,7 @@ import { LanguageContext, LanguageSelector } from '../src/Languages';
 import doctorImage from '../images/Premium Photo _ Beautiful smiling female doctor stand in office.jpg';
 import '../styles/welcome.css';
 
+
 const Welcome = () => {
   const navigate = useNavigate();
   const { language, setLanguage } = useContext(LanguageContext);
