@@ -291,7 +291,7 @@ const DoctorDashboard = () => {
   return (
     <div className="evuriro-dashboard">
       {/* Main Content */}
-      <div className="dashboard-content">
+      <div className="dashboard-content2">
         {/* Welcome Banner */}
         <div className="welcome-banner">
           <h2 className="welcome-heading">Welcome back, {doctorName.split(" ")[1]}</h2>
@@ -358,15 +358,15 @@ const DoctorDashboard = () => {
               </h3>
               <button className="view-all-btn">View All</button>
             </div>
-            <div className="panel-content">
-              <ul className="patient-list">
+            <div className="panel-content2">
+              <ul className="patient-list2">
                 {waitingPatients.map((patient) => (
                   <li key={patient.id} className="patient-item">
-                    <div className="patient-info">
-                      <h4 className="patient-name">{patient.name}</h4>
+                    <div className="patient-info2">
+                      <h4 className="patient-name2">{patient.name}</h4>
                       <span className={`priority-badge ${patient.priority.toLowerCase()}`}>{patient.priority}</span>
                     </div>
-                    <div className="waiting-time">
+                    <div className="waiting-time2">
                       <span>Waiting: {patient.waiting}</span>
                       <button className="call-btn">Call</button>
                     </div>
@@ -413,9 +413,9 @@ const DoctorDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="quick-actions">
+        <div className="quick-actions2">
           <h3 className="section-title">Quick Actions</h3>
-          <div className="action-buttons">
+          <div className="action-buttons2">
             <button
               className="action-btn"
               onMouseEnter={() => setActiveTooltip("newPatient")}
