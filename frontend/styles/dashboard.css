@@ -378,17 +378,17 @@ body, html {
 }
 
 /* Quick Actions Section */
-.action-buttons2 {
+.action-buttons3 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
   margin-top: 8px;
 }
-[data-theme="dark"] .action-buttons2{
+[data-theme="dark"] .action-buttons3{
   color:white ;
   border-right-color: #374151;
 }
-.action-btn2 {
+.action-btn3 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -399,12 +399,12 @@ body, html {
   color:white ;
   border-right-color: #374151;
 }
-a.action-btn2 {
+a.action-btn3 {
   text-decoration: none;
 }
 
 
-.action-btn2:hover {
+.action-btn3:hover {
   background-color: #f0f0f0;
   border-color: #dbeafe;
   transform: translateY(-2px);
@@ -415,7 +415,7 @@ a.action-btn2 {
   border-right-color: #374151;
 }
 
-.action-btn2 span {
+.action-btn3 span {
   font-size: 14px;
   font-weight: 500;
   color: #475569;
